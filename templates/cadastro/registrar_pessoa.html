@@ -4,14 +4,22 @@
 
 {% block content %}
 
-<body class="blue lighten-3">
+<script>
+    $(document).ready(function(){
+        $("#id_data_nascimento").addClass('datepicker').attr("type","text"); 
+        $("#id_data_inicio").addClass('datepicker').attr("type","text"); 
+        $("#id_data_fim").addClass('datepicker').attr("type","text");         
+    }); 
+</script>
+
+<body class="blue lighten-5">
     <section>
         <div class="container">
-            <form method="post">
+            <form method="POST">
                 {% csrf_token %}
                 <div class="container">
-                    <div class="card">
-                        <div class="container">                            
+                    <div class="card teste">
+                        <div class="container style-form">                       
                             {{ form|materializecss }} 
                         </div>
                     </div>
