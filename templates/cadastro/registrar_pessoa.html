@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load materializecss %}
+
 {% block content %}
 
 <body style="background-color: pink;">
@@ -10,7 +12,7 @@
                     <div class="container">
                         <form method="post">
                         {% csrf_token %}
-                            {{ form.as_p }}
+                            {{ form|materializecss }}
 
                             <div class="text-right">
                                 <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">

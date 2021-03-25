@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'materializecssform',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'administracao',
     'cadastro',
-    'widget_tweaks',
+
 ]
 
 MIDDLEWARE = [
