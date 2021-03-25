@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from cadastro.forms import PessoaForm
 
 def index(request):
 
@@ -9,8 +9,6 @@ def index(request):
     }
 
     return render(request, "index.html", context)
-
-    
 
 def registrar_pessoa(request):
 
@@ -35,5 +33,5 @@ def registrar_pessoa(request):
         "form": form,
     }
 
-    return render(request, "registrar_pessoa.html", context)
+    return render(request, "cadastro/registrar_pessoa.html", context)
 

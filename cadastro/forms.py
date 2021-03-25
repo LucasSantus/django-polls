@@ -1,10 +1,9 @@
 from django import forms
 from cadastro.models import Pessoa
 
-
 class PessoaForm(forms.ModelForm):
     class Meta:
-        model = Visitante
+        model = Pessoa
         fields = [
             "nome", "cpf", "data_nascimento", "email",
         ]  
