@@ -20,5 +20,5 @@ from cadastro.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", index, name="index"),
-    path("registrar-pessoa", registrar_pessoa, name="registrar_pessoa"),
+    path("registrar-pessoa/", registrar_pessoa, name="registrar_pessoa"),
 ]

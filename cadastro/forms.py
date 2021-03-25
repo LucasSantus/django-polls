@@ -1,12 +1,68 @@
 from django import forms
-from cadastro.models import Pessoa
+from cadastro.models import *
 
 class PessoaForm(forms.ModelForm):
     class Meta:
         model = Pessoa
-        fields = [
-            "nome", "cpf", "data_nascimento", "email",
-        ]  
+        fields = ('__all__')
+
+        error_messages = {
+            "nome":{
+                "required": "O nome completo da pessoa é obrigatório para o registro",
+            },
+
+            "cpf":{
+                "required": "O  cpf da pessoa é obrigatório para o registro",
+            },
+
+            "data_nascimento":{
+                "required": "A data de nascimento da pessoa é obrigatório para o registro",
+                "invalid": "Por favor, informe um formato válido para a data de nascimento (DD/DD/AAAA)",
+            },
+
+            "email":{
+                "required": "Por favor, informe o número da casa a ser visitada",
+                "invalid": "Por favor, informe um formato válido para o email",
+            },
+        }
+
+class VotacaoForm(forms.ModelForm):
+    class Meta:
+        model = Votacao
+        fields = ('__all__')
+
+        error_messages = {
+            "nome":{
+                "required": "O nome é obrigatório para o registro",
+            },
+
+            "descricao":{
+                "required": "a descrição é obrigatório para o registro",
+            },
+
+            "anonimo":{
+                "required": "A data de nascimento da pessoa é obrigatório para o registro",
+            },
+
+            "voto_unico":{
+                "required": "Por favor, informe o número da casa a ser visitada",
+                "invalid": "Por favor, informe um formato válido para o email",
+            },
+            "data_inicio":{
+                "required": "O  cpf da pessoa é obrigatório para o registro",
+            },
+
+            "data_fim":{
+                "required": "A data de nascimento da pessoa é obrigatório para o registro",
+                "invalid": "Por favor, informe um formato válido para a data de nascimento (DD/DD/AAAA)",
+            },
+        }
+
+class PessoaForm(forms.ModelForm):
+    class Meta:
+        model = Pessoa
+        fields = ('__all__')
+
         error_messages = {
             "nome":{
                 "required": "O nome completo da pessoa é obrigatório para o registro",

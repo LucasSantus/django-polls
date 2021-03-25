@@ -9,6 +9,7 @@ class Pessoa(models.Model):
     cpf = models.CharField(
         verbose_name = "CPF",
         max_length=11,
+        unique=True,
     )
 
     data_nascimento = models.DateField(
@@ -20,6 +21,7 @@ class Pessoa(models.Model):
     email = models.EmailField(
         max_length=254,
         verbose_name = "E-mail",
+        unique=True,
     )
 
     def get_cpf(self):

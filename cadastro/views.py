@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from cadastro.forms import PessoaForm
 
 def index(request):
@@ -18,13 +18,9 @@ def registrar_pessoa(request):
         form = PessoaForm(request.POST)
 
         if form.is_valid():
-            visitante = form.save(commit=False)
+            pessoa = form.save(commit=False)
 
-            visitante.save()
-
-            messages.success(
-                request, "Visitante registrado com sucesso!"
-            )
+            pessoa.save()
 
             return redirect("index")
 
