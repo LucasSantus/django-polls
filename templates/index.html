@@ -9,10 +9,12 @@
         <h1 class="h3 mb-0 text-gray-800">{{ nome_pagina }}</h1>
         <a href="{% url 'registrar_pessoa' %}" class="btn btn-primary btn-icon-split btn-sm">
             <span class="text">Registrar Pessoa</span>
-
-            <span class="icon text-white-s8">
-                <i class="fas fa-user-plus"></i>
-            </span>
+        </a>
+        <a href="{% url 'registrar_votacao' %}" class="btn btn-primary btn-icon-split btn-sm">
+            <span class="text">Registrar Votação</span>
+        </a>
+        <a href="{% url 'registrar_opcao_voto' %}" class="btn btn-primary btn-icon-split btn-sm">
+            <span class="text">Registrar Opção Voto</span>
         </a>
     </div>
 
