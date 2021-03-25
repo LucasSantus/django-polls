@@ -4,28 +4,27 @@
 
 {% block content %}
 
-<body style="background-color: pink;">
+<body class="blue lighten-3">
     <section>
         <div class="container">
-            <div class="container">
-                <div class="card">
-                    <div class="container">
-                        <form method="post">
-                        {% csrf_token %}
-                            {{ form|materializecss }}
-
-                            <div class="text-right">
-                                <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
-                                    <span class="text">Cancelar</span>
-                                </a>
-                                <button class="btn btn-primary" type="submit">
-                                    <span class="text">Registrar Pessoa</span>
-                                </button>
-                            </div>
-                        </form>
+            <form method="post">
+                {% csrf_token %}
+                <div class="container">
+                    <div class="card">
+                        <div class="container">                            
+                            {{ form|materializecss }} 
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
+                            <span class="text">Cancelar</span>
+                        </a>
+                        <button class="btn btn-primary" type="submit">
+                            <span class="text">Registrar Pessoa</span>
+                        </button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 </body>

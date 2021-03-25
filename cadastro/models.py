@@ -93,7 +93,7 @@ class OpcaoVoto(models.Model):
         max_length=194,
     )
 
-    votacao = models.ForeignKey(Votacao, on_delete=models.CASCADE)
+    votacao = models.ForeignKey(Votacao, verbose_name="Votação", on_delete=models.CASCADE)
 
     codigo = models.CharField(
         verbose_name="Código",
