@@ -75,7 +75,6 @@ def listar_pessoas(request):
 
     return render(request, "cadastro/listar_pessoa.html", context)
 
-
 def votar(request, id_votacao):
 
     objVotacao = Votacao.objects.get(pk=id_votacao)

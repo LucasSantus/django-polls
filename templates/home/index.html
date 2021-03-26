@@ -12,7 +12,7 @@
     </div>
 
     <div class="container">
-        <table>
+        <table class="responsive-table">
             <thead>
               <tr>
                   <th>Nome</th>
@@ -28,7 +28,7 @@
                         <td>{{votacao.nome}}</td>
                         <td>{{votacao.data_inicio}}</td>
                         <td>{{votacao.data_fim}}</td>
-                        <td><a href="#">Votar</a></td>
+                        <td><a href="{% url 'votar' votacao.id %}">Votar</a></td>
                     </tr>
                 {% endfor %} 
             </tbody>

@@ -7,4 +7,6 @@ urlpatterns = [
     path("registrar-votacao/", registrar_votacao, name="registrar_votacao"),
     path("registrar-opcao-voto/", registrar_opcao, name="registrar_opcao"),
     path("listar-pessoas/", listar_pessoas, name="listar_pessoas"),
+
+    path("votar/<int:id_votacao>", votar, name="votar"),
 ]
