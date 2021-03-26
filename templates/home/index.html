@@ -5,13 +5,20 @@
 {% block content %}
 
 <div class="container">
+    <div class="container center">
+        <h2 class="text-theme">
+            Sistema de Votação
+        </h2>
+    </div>
+
     <div class="container">
         <table>
             <thead>
               <tr>
-                  <th>Name</th>
-                  <th>Item Name</th>
-                  <th>Item Price</th>
+                  <th>Nome</th>
+                  <th>Horário Ínicio</th>
+                  <th>Horário Término</th>
+                  <th>Votação</th>
               </tr>
             </thead>
     
@@ -19,13 +26,11 @@
                 {% for votacao in votacoes %}
                     <tr>
                         <td>{{votacao.nome}}</td>
-                        <td>{{votacao.cpf}}</td>
-                        <td>{{votacao.data_nascimento}}</td>
-                        <td>{{votacao.email}}</td>
-                        <td>Informações</td>
+                        <td>{{votacao.data_inicio}}</td>
+                        <td>{{votacao.data_fim}}</td>
+                        <td><a href="#">Votar</a></td>
                     </tr>
                 {% endfor %} 
-              
             </tbody>
           </table>
     </div>

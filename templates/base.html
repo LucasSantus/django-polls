@@ -59,28 +59,15 @@
                     <div class="nav-wrapper">
                         <a href="{% url 'index' %}" class="brand-logo">Spending Control</a>
                         <ul class="right hide-on-med-and-down">
-                            <li><a href="#">Sass</a></li>
-                            <li><a href="#">Components</a></li>
+                            <li><a href="{% url 'registrar_pessoa' %}">Pessoa</a></li>
+                            <li><a href="{% url 'registrar_votacao' %}">Votação</a></li>
+                            <li><a href="{% url 'registrar_opcao' %}">Opções de Voto</a></li>
                         </ul>
                     </div>
                 </nav>
             </div>
         </header>
 
-        <h1 class="h3 mb-0 text-gray-800">{{ nome_pagina }}</h1>
-        <a href="{% url 'registrar_pessoa' %}" class="btn btn-primary btn-icon-split btn-sm">
-            <span class="text">Registrar Pessoa</span>
-        </a>
-        <a href="{% url 'registrar_votacao' %}" class="btn btn-primary btn-icon-split btn-sm">
-            <span class="text">Registrar Votação</span>
-        </a>
-        <a href="{% url 'registrar_opcao' %}" class="btn btn-primary btn-icon-split btn-sm">
-            <span class="text">Registrar Opção Voto</span>
-        </a>
-        <a href="{% url 'listar_pessoas' %}" class="btn btn-primary btn-icon-split btn-sm">
-            <span class="text">Listar Pessoa</span>
-        </a>
-        
         <main>
             {% block content %}
             {% endblock %}
