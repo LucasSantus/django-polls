@@ -2,10 +2,8 @@ from django.shortcuts import render, redirect
 from cadastro.forms import *
 
 def index(request):
-
     context = {
         "nome_pagina": "Inicio do dashboard",
-
     }
 
     return render(request, "index.html", context)
@@ -18,7 +16,7 @@ def registrar_pessoa(request):
         form = PessoaForm(request.POST)
 
         if form.is_valid():
-            pessoa = form.save(commit=False)
+            pessoa = form.save()
 
             pessoa.save()
 
@@ -39,7 +37,7 @@ def registrar_votacao(request):
         form = VotacaoForm(request.POST)
 
         if form.is_valid():
-            votacao = form.save(commit=False)
+            votacao = form.save()
 
             votacao.save()
 
@@ -52,7 +50,7 @@ def registrar_votacao(request):
 
     return render(request, "cadastro/registrar_pessoa.html", context)
 
-def registrar_opcao_voto(request):
+def registrar_opcao(request):
 
     form = OpcaoVotoForm()
 
@@ -60,7 +58,7 @@ def registrar_opcao_voto(request):
         form = OpcaoVotoForm(request.POST)
 
         if form.is_valid():
-            opcao_voto = form.save(commit=False)
+            opcao_voto = form.save()
 
             opcao_voto.save()
 
@@ -72,3 +70,13 @@ def registrar_opcao_voto(request):
     }
 
     return render(request, "cadastro/registrar_pessoa.html", context)
+
+def listar_pessoas(request):
+
+    pessoas = Pessoa.objects.all()
+
+    context = {
+        "pessoas": pessoas,
+    }
+
+    return render(request, "cadastro/listar_pessoa.html", context)

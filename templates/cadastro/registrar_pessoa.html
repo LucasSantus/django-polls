@@ -7,8 +7,13 @@
 <script>
     $(document).ready(function(){
         $("#id_data_nascimento").addClass('datepicker').attr("type","text"); 
-        $("#id_data_inicio").addClass('datepicker').attr("type","text"); 
-        $("#id_data_fim").addClass('datepicker').attr("type","text");         
+        $("#id_data_inicio").attr("type","text"); 
+        $("#id_data_fim").attr("type","text"); 
+
+        M.AutoInit();
+
+        var DateField = MaterialDateTimePicker.create($('#id_data_inicio'));
+        var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
     }); 
 </script>
 

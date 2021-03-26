@@ -13,18 +13,13 @@
         <a href="{% url 'registrar_votacao' %}" class="btn btn-primary btn-icon-split btn-sm">
             <span class="text">Registrar Votação</span>
         </a>
-        <a href="{% url 'registrar_opcao_voto' %}" class="btn btn-primary btn-icon-split btn-sm">
+        <a href="{% url 'registrar_opcao' %}" class="btn btn-primary btn-icon-split btn-sm">
             <span class="text">Registrar Opção Voto</span>
         </a>
+        <a href="{% url 'listar_pessoas' %}" class="btn btn-primary btn-icon-split btn-sm">
+            <span class="text">Listar Pessoa</span>
+        </a>
     </div>
-
-    {% if messages %}  
-        {% for messagem in messages %}
-            <div class="alert alert-success" role="alert">
-                {{ messagem }}
-            </div>
-        {% endfor %}
-    {% endif %}
 </div>
 
 {% endblock content %}
