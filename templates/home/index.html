@@ -28,7 +28,7 @@
                         <td>{{votacao.nome}}</td>
                         <td>{{votacao.data_inicio}}</td>
                         <td>{{votacao.data_fim}}</td>
-                        <td><a href="{% url 'votar' votacao.id %}">Votar</a></td>
+                        <td><a href="{% url 'validar_cpf' votacao.id %}">Votar</a></td>
                     </tr>
                 {% endfor %} 
             </tbody>

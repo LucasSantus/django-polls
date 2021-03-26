@@ -84,7 +84,7 @@ def votar(request, id_votacao):
         idOpcaoVoto = request.POST.get('voto', None)
         objOpcaoVoto = OpcaoVoto.objects.get(pk=idOpcaoVoto)
 
-        objOpcaoVoto.quantidade_votos += 1
+        objOpcaoVoto.numero_votos += 1
         objOpcaoVoto.save()
         return redirect('index')
 
@@ -93,4 +93,14 @@ def votar(request, id_votacao):
         "listOpcaoVoto": listOpcaoVoto,
     }
 
-    return render(request, "votar.html", context)
+    return render(request, "cadastro/votar.html", context)
+
+def validar_cpf(request, id):
+    pessoas = Pessoa.objects.all()
+
+    if request.POST:
+        for validar in pessoas:
+            if validar.cpf == request.POST.get('cpf', None):
+                return redirect("votar", id)
+
+    return render(request, "cadastro/validar_cpf.html")
