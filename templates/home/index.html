@@ -4,21 +4,30 @@
 
 {% block content %}
 
-<div class="container-fluid">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">{{ nome_pagina }}</h1>
-        <a href="{% url 'registrar_pessoa' %}" class="btn btn-primary btn-icon-split btn-sm">
-            <span class="text">Registrar Pessoa</span>
-        </a>
-        <a href="{% url 'registrar_votacao' %}" class="btn btn-primary btn-icon-split btn-sm">
-            <span class="text">Registrar Votação</span>
-        </a>
-        <a href="{% url 'registrar_opcao' %}" class="btn btn-primary btn-icon-split btn-sm">
-            <span class="text">Registrar Opção Voto</span>
-        </a>
-        <a href="{% url 'listar_pessoas' %}" class="btn btn-primary btn-icon-split btn-sm">
-            <span class="text">Listar Pessoa</span>
-        </a>
+<div class="container">
+    <div class="container">
+        <table>
+            <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Item Name</th>
+                  <th>Item Price</th>
+              </tr>
+            </thead>
+    
+            <tbody>
+                {% for votacao in votacoes %}
+                    <tr>
+                        <td>{{votacao.nome}}</td>
+                        <td>{{votacao.cpf}}</td>
+                        <td>{{votacao.data_nascimento}}</td>
+                        <td>{{votacao.email}}</td>
+                        <td>Informações</td>
+                    </tr>
+                {% endfor %} 
+              
+            </tbody>
+          </table>
     </div>
 </div>
 

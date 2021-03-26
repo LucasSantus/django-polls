@@ -1,12 +1,6 @@
 from django.shortcuts import render, redirect
-from cadastro.forms import *
-
-def index(request):
-    context = {
-        "nome_pagina": "Inicio do dashboard",
-    }
-
-    return render(request, "index.html", context)
+from .forms import *
+from .models import *
 
 def registrar_pessoa(request):
 
@@ -80,3 +74,24 @@ def listar_pessoas(request):
     }
 
     return render(request, "cadastro/listar_pessoa.html", context)
+
+
+def votar(request, id_votacao):
+
+    objVotacao = Votacao.objects.get(pk=id_votacao)
+
+    listOpcaoVoto = OpcaoVoto.objects.filter(votacao=objVotacao)
+    if request.POST:
+        idOpcaoVoto = request.POST.get('voto', None)
+        objOpcaoVoto = OpcaoVoto.objects.get(pk=idOpcaoVoto)
+
+        objOpcaoVoto.quantidade_votos += 1
+        objOpcaoVoto.save()
+        return redirect('index')
+
+    context = {
+        "objVotacao": objVotacao,
+        "listOpcaoVoto": listOpcaoVoto,
+    }
+
+    return render(request, "votar.html", context)
