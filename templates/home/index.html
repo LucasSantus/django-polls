@@ -3,37 +3,46 @@
 {% load static %}
 
 {% block content %}
-
-<div class="container">
-    <div class="container center">
-        <h2 class="text-theme">
-            Sistema de Votação
-        </h2>
-    </div>
-
-    <div class="container">
-        <table class="responsive-table">
-            <thead>
-              <tr>
-                  <th>Nome</th>
-                  <th>Horário Ínicio</th>
-                  <th>Horário Término</th>
-                  <th>Votação</th>
-              </tr>
-            </thead>
     
-            <tbody>
-                {% for votacao in votacoes %}
-                    <tr>
-                        <td>{{votacao.nome}}</td>
-                        <td>{{votacao.data_inicio}}</td>
-                        <td>{{votacao.data_fim}}</td>
-                        <td><a href="{% url 'validar_cpf' votacao.id %}">Votar</a></td>
-                    </tr>
-                {% endfor %} 
-            </tbody>
-          </table>
-    </div>
-</div>
+        <div class="container">
+            <div class="container center">
+                <h2 class="text-theme truncate" >
+                    Sistema de Votação
+                </h2>
+            </div>
 
+            {% if not votacoes %}
+                <div class="container center">
+                    <p class="truncate">
+                        Não existem votações disponiveis no momento!
+                    </p>
+                </div>
+
+            {% else %}
+                <div class="container">
+                    <table class="responsive-table highlight centered striped">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Horário Ínicio</th>
+                            <th>Horário Término</th>
+                            
+                        </tr>
+                        </thead>
+                
+                        <tbody>
+                            {% for votacao in votacoes %}
+                                <tr>
+                                    <td>{{votacao.nome}}</td>
+                                    <td>{{votacao.data_inicio}}</td>
+                                    <td>{{votacao.data_fim}}</td>
+                                    <td><a href="{% url 'validar_cpf' votacao.id %}">Votar</a></td>
+                                </tr>
+                            {% endfor %} 
+                        </tbody>
+                    </table>
+                </div>
+
+            {% endif %}
+        </div>
 {% endblock content %}
