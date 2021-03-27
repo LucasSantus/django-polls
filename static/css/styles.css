@@ -1,20 +1,36 @@
+/* BODY */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* MAIN */
+main {
+    flex: 1 0 auto;
+}
+
+/* HEADER */
 .nav-wrapper{
     background-color: blueviolet;
 }
 
+/* FOOTER */
 .page-footer{
     padding-top: 20px;
     background-color: blueviolet;
     margin: auto;
     width: 100%;
     bottom: 0;
-    position: fixed;
+    
 }
 
+/* CARD's */
 .card{
     padding: 5%;
 }
 
+/* Texto de ínicio */
 .text-theme{
     width: 100%;
     font-size: 60px;
