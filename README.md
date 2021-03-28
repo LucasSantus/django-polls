@@ -45,7 +45,9 @@ Este é um projeto totalmente grátis!
 
 ### Instalando o Projeto
 
-##teste
+#### Linux
+
+> **Observação:** Foi utilizado o Linux Mint versão 20.1, caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
 
 **Clonando o Repositório**
 
@@ -54,7 +56,7 @@ Dentro da pasta onde o projeto irá ficar armazenado, abra o terminal PowerShell
 ```
 $ git init
 
-$ git clone https://github.com/LucasSantus/sistema-votacao.git
+$ git clone git@github.com:LucasSantus/sistema-votacao.git
 
 $ cd controle-gastos
 ```
