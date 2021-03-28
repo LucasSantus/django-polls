@@ -14,9 +14,9 @@ Se você quiser dar uma olhada em todas as telas do aplicativo, elas estão [aqu
 
 A ideia é:
 
-_"Criar uma aplicação de Controle de Gastos onde a mesma tenha um design simples e belo, com intuito de promover o aprendizado utilizando o framework Django"_
+_"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado utilizando o framework Django"_
 
-Este repositório tem foco, na criação de uma aplicação de Controle de Gastos, interligado a um banco de dados provido pelo próprio Django Framework facilitando dessa forma a manipulação de dados.
+Este repositório tem foco, na criação de um Sistema de Votacao, interligado a um banco de dados provido pelo próprio Django Framework facilitando dessa forma a manipulação de dados.
 
 
 --------------------------------------------------------------------------------------
@@ -28,7 +28,6 @@ Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso voc
 Você pode usar este projeto como quiser, seja para estudar, fazer melhorias, você que manda!
 
 Este é um projeto totalmente grátis!
-
 
 --------------------------------------------------------------------------------------
 
