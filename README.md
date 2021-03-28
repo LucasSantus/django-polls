@@ -28,19 +28,6 @@ Este é um projeto totalmente grátis!
 
 --------------------------------------------------------------------------------------
 
-### Funcionalidades do Projeto
-
-- Funcionalidade....
-
-- Funcionalidade....
-	- Funcionalidade dessa funcionalidade....
-	- Funcionalidade dessa funcionalidade....
-		- Funcionalidade da funcionalidade dessa funcionalidade....
-			- blablabla
-			- blablabla	
-
---------------------------------------------------------------------------------------
-
 ### Instalando o Projeto
 
 #### Linux
