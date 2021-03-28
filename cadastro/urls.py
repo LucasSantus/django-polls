@@ -9,5 +9,5 @@ urlpatterns = [
     path("listar-pessoas/", listar_pessoas, name="listar_pessoas"),
 
     path("votar/<int:id_votacao>", votar, name="votar"),
-    path("validar_cpf/<int:id>", validar_cpf, name="validar_cpf"),
+    path("validacao/<int:id>", validacao, name="validacao"),
 ]

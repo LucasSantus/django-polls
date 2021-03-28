@@ -95,7 +95,7 @@ def votar(request, id_votacao):
 
     return render(request, "cadastro/votar.html", context)
 
-def validar_cpf(request, id):
+def validacao(request, id):
     pessoas = Pessoa.objects.all()
 
     if request.POST:
@@ -103,4 +103,4 @@ def validar_cpf(request, id):
             if validar.cpf == request.POST.get('cpf', None):
                 return redirect("votar", id)
 
-    return render(request, "cadastro/validar_cpf.html")
+    return render(request, "cadastro/validacao.html")

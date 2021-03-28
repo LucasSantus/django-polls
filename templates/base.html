@@ -1,6 +1,5 @@
 {% load static %}
 
-<!DOCTYPE html>
 <html>
     <head>
         <!-- Import Material Icons -->
@@ -9,7 +8,7 @@
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection"/>
 
-        <!-- css interno -->
+        <!-- Import CSS Personalizado -->
         <link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}">
 
         <!-- Let browser know website is optimized for mobile -->
@@ -18,48 +17,22 @@
         <!-- Import JQuery -->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
         
-        <!-- Import Java Script -->
+        <!-- Import Java Script Materialize -->
         <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
-        <script src="js/index.js" defer></script>
 
+        <!-- Import Java Script Personalizado -->
+        <script src="{% static 'js/index.js' %}" defer></script>
+
+        <!-- Import Java Script DateTimePicker -->
         <script type="text/javascript" src="{% static 'js/materializedatetimepicker.js' %}" defer></script>
     </head>
 
     <body>
-        <script>
-
-            $(document).ready(function(){
-                $('select').formSelect();
-                $('.datepicker').datepicker({
-                    i18n: {
-                    months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                    weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
-                    weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-                    weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-                    today: 'Hoje',
-                    clear: 'Limpar',
-                    cancel: 'Sair',
-                    done: 'Confirmar',
-                    labelMonthNext: 'Próximo mês',
-                    labelMonthPrev: 'Mês anterior',
-                    labelMonthSelect: 'Selecione um mês',
-                    labelYearSelect: 'Selecione um ano',
-                    selectMonths: true,
-                    selectYears: 15,
-                    },
-                    format: 'yyyy-mm-dd',
-                    container: 'body',
-                    minDate: new Date(),
-                }); 
-            });
-        
-            </script>
         <header>
             <div class="navbar-fixed">
                 <nav>
                     <div class="nav-wrapper">
-                        <a href="{% url 'index' %}" class="brand-logo">Sistema de Votos</a>
+                        <a href="{% url 'index' %}" class="brand-logo truncate">Sistema de Votação</a>
                         <ul class="right hide-on-med-and-down">
                             <li><a href="{% url 'registrar_pessoa' %}">Pessoa</a></li>
                             <li><a href="{% url 'registrar_votacao' %}">Votação</a></li>
@@ -73,20 +46,12 @@
         <main>
             {% block content %}
             {% endblock %}
-            <!--
-            <div class="fixed-action-btn">
-                <a href="#" class="btn-floating btn-large pulse">
-                    <i class="large material-icons">add</i>
-                </a>
-            </div>
-            -->
-            
         </main>
         
         <footer class="page-footer">
             <div class="footer-copyright">
                 <div class="container">
-                    Copyright © 2021 Sistema de Votos
+                    Copyright © 2021 Sistema de Votação
                     <a class="white-text text-lighten-3 right" href="#!">More Links</a>
                 </div>
         </footer>
