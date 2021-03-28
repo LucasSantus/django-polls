@@ -96,10 +96,6 @@ para visualizar o projeto: http://127.0.0.1:8000/
 ### Autor(es)
  
 - **Lucas Santos:** [GitHub](https://github.com/LucasSantus)
-
-Caso tenha alguma dúvida ou deseja participar do projeto, entre em contato!
-
-E-mail: leos9877@gmail.com
  
 Siga-me no github!
 
