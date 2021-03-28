@@ -1,8 +1,8 @@
 ## Sistema de Votação
 
-![License](https://img.shields.io/github/license/LucasSantus/sistema-votacao?style=social)
-![Languages](https://img.shields.io/github/languages/count/LucasSantus/sistema-votacao?style=social)
-![GitHub repo size](https://img.shields.io/github/repo-size/LucasSantus/sistema-votacao?style=social)
+![License](https://img.shields.io/github/license/LucasSantus/sistema-votaca?style=social)
+![Languages](https://img.shields.io/github/languages/count/LucasSantus/sistema-votaca?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/LucasSantus/sistema-votaca?style=social)
 
 (Se Possivel, imagem do projeto).
 Se você quiser dar uma olhada em todas as telas do aplicativo, elas estão [aqui] (link).
@@ -17,7 +17,6 @@ A ideia é:
 _"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado utilizando o framework Django"_
 
 Este repositório tem foco, na criação de um Sistema de Votacao, interligado a um banco de dados provido pelo próprio Django Framework facilitando dessa forma a manipulação de dados.
-
 
 --------------------------------------------------------------------------------------
 
@@ -45,6 +44,8 @@ Este é um projeto totalmente grátis!
 --------------------------------------------------------------------------------------
 
 ### Instalando o Projeto
+
+##teste
 
 **Clonando o Repositório**
 
