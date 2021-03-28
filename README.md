@@ -1,6 +1,6 @@
 ## Sistema de Votação
 
-![License](https://img.shields.io/github/license/LucasSantus/sistema-votacao?style=social)
+![License]()
 ![Languages](https://img.shields.io/github/languages/count/LucasSantus/sistema-votacao?style=social)
 ![GitHub repo size](https://img.shields.io/github/repo-size/LucasSantus/sistema-votacao?style=social)
 
