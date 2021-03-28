@@ -11,9 +11,7 @@ def registrar_pessoa(request):
 
         if form.is_valid():
             pessoa = form.save()
-
             pessoa.save()
-
             return redirect("index")
 
     context = {
@@ -32,9 +30,7 @@ def registrar_votacao(request):
 
         if form.is_valid():
             votacao = form.save()
-
             votacao.save()
-
             return redirect("index")
 
     context = {
@@ -42,7 +38,7 @@ def registrar_votacao(request):
         "form": form,
     }
 
-    return render(request, "cadastro/registrar_pessoa.html", context)
+    return render(request, "cadastro/registrar_votacao.html", context)
 
 def registrar_opcao(request):
 
@@ -63,7 +59,7 @@ def registrar_opcao(request):
         "form": form,
     }
 
-    return render(request, "cadastro/registrar_pessoa.html", context)
+    return render(request, "cadastro/registrar_opcao.html", context)
 
 def listar_pessoas(request):
 

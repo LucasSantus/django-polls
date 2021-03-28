@@ -13,6 +13,7 @@ class PessoaForm(forms.ModelForm):
 
             "cpf":{
                 "required": "O  cpf da pessoa é obrigatório para o registro",
+                "invalid": "Por favor, insira um CPF válido!",
             },
 
             "data_nascimento":{
@@ -29,7 +30,7 @@ class PessoaForm(forms.ModelForm):
 class VotacaoForm(forms.ModelForm):
     class Meta:
         model = Votacao
-        fields = ('__all__')
+        fields = ('nome', 'descricao', 'data_inicio', 'data_fim', )
 
         error_messages = {
             "nome":{
@@ -46,7 +47,6 @@ class VotacaoForm(forms.ModelForm):
 
             "voto_unico":{
                 "required": "Por favor, informe o número da casa a ser visitada",
-                "invalid": "Por favor, informe um formato válido para o email",
             },
             "data_inicio":{
                 "required": "O  cpf da pessoa é obrigatório para o registro",

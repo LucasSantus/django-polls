@@ -6,7 +6,13 @@
 
 <script>
     $(document).ready(function(){
-        $("#id_data_nascimento").addClass('datepicker').attr("type","text"); 
+        $("#id_data_inicio").attr("type","text"); 
+        $("#id_data_fim").attr("type","text"); 
+
+        M.AutoInit();
+
+        var DateField = MaterialDateTimePicker.create($('#id_data_inicio'));
+        var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
     }); 
 </script>
 
@@ -19,7 +25,6 @@
                     <div class="card teste">
                         <div class="container style-form">                       
                             {{ form|materializecss }} 
-                            
                         </div>
                         <div class="center text-right">
                             <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
