@@ -10,11 +10,11 @@ Se você quiser dar uma olhada em todas as telas do aplicativo, elas estão [aqu
 
 ### Sobre o Projeto
 <div class="container">
-A ideia é:
+	A ideia é:
 
-_"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado utilizando o framework Django"_
+	_"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado utilizando o framework Django"_
 
-Este repositório tem foco, na criação de um Sistema de Votacao, interligado a um banco de dados provido pelo próprio Django Framework facilitando dessa forma a manipulação de dados.
+	Este repositório tem foco, na criação de um Sistema de Votacao, interligado a um banco de dados provido pelo próprio Django Framework facilitando dessa forma a manipulação de dados.
 </div>
 
 
