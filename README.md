@@ -80,7 +80,7 @@ para visualizar o projeto: http://127.0.0.1:8000/
 
 **Acessando o Admin**
 
-Com o projeto rodando, adicione o admin/ dps da URL:
+Com o projeto rodando, adicione o 'admin/' dps da URL:
 
 http://127.0.0.1:8000/admin/
 
