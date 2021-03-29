@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
+from django.contrib import messages
 
 def registrar_pessoa(request):
 
@@ -92,11 +93,16 @@ def votar(request, id_votacao):
     return render(request, "cadastro/votar.html", context)
 
 def validacao(request, id):
-    pessoas = Pessoa.objects.all()
 
     if request.POST:
-        for validar in pessoas:
-            if validar.cpf == request.POST.get('cpf', None):
+        try: 
+            cpf = request.POST.get('cpf', None)
+            pessoa = Pessoa.objects.get(cpf=cpf)
+
+            if pessoa.cpf == cpf:
                 return redirect("votar", id)
+
+        except Pessoa.DoesNotExist: 
+            messages.error(request, "hihihi")
 
     return render(request, "cadastro/validacao.html")
