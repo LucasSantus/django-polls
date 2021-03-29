@@ -93,14 +93,11 @@ def votar(request, id_votacao):
     return render(request, "cadastro/votar.html", context)
 
 def validacao(request, id):
-
     if request.POST:
+        cpf = request.POST.get('cpf', None)
         try: 
-            cpf = request.POST.get('cpf', None)
             pessoa = Pessoa.objects.get(cpf=cpf)
-
-            if pessoa.cpf == cpf:
-                return redirect("votar", id)
+            return redirect("votar", id)
 
         except Pessoa.DoesNotExist: 
             messages.error(request, "hihihi")

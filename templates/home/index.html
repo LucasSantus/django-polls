@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block content %}
+<main>
     <div class="container center">
         <h2 class="text-theme truncate" >
             Sistema de Votação
@@ -10,15 +11,16 @@
     </div>
 
     {% if not votacoes %}
-        <div class="container center">
-            <p class="truncate">
-                Não existem votações disponiveis no momento!
-            </p>
+    <div class="container">
+        <div class="alert card z-depth-5">
+            <div class="card-content">
+                <p><i class="material-icons">info</i><span>No momento, não existem votações disponíveis!</span></p>
+            </div>
         </div>
-
+    </div>
     {% else %}
         <div class="container">
-            <table class="responsive-table highlight centered striped">
+            <table class="responsive-table highlight striped z-depth-2">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -29,7 +31,7 @@
                 <tbody>
                     {% for votacao in votacoes %}
                         <tr>
-                            <td>{{votacao.nome}}</td>
+                            <td class="truncate">{{votacao.nome}}</td>
                             <td>{{votacao.data_inicio}}</td>
                             <td>{{votacao.data_fim}}</td>
                             <td><a href="{% url 'validacao' votacao.id %}">Votar</a></td>
@@ -39,4 +41,5 @@
             </table>
         </div>
     {% endif %}
+</main>
 {% endblock content %}

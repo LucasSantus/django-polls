@@ -5,7 +5,7 @@ from django.utils import timezone
 def index(request):
 
     votacoes = Votacao.objects.filter(data_inicio__lt=timezone.now(), data_fim__gt=timezone.now())
-
+    
     context = {
         "votacoes": votacoes,
     }
