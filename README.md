@@ -12,7 +12,7 @@ Se você quiser dar uma olhada em todas as telas do aplicativo, elas estão [aqu
 
 A ideia é:
 
-_"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado utilizando o framework Django"_
+_"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado utilizando o Django framework"_
 
 Este repositório tem foco, na criação de um Sistema de Votacao, interligado a um banco de dados provido pelo próprio Django Framework facilitando dessa forma a manipulação de dados.
 
@@ -75,8 +75,14 @@ $ python manage.py createsuperuser
 ```
 $ python manage.py runserver
 ```
-
 para visualizar o projeto: http://127.0.0.1:8000/
+
+
+**Acessando o Admin**
+
+Com o projeto rodando, adicione o 'admin/' dps da URL:
+
+http://127.0.0.1:8000/admin/
 
 --------------------------------------------------------------------------------------
 
