@@ -1,24 +1,13 @@
 {% extends 'base.html' %}
 
-{% load static %}
-
 {% block content %}
-<main>
     <div class="container center">
         <h2 class="text-theme truncate" >
             Sistema de Votação
         </h2>
     </div>
 
-    {% if not votacoes %}
-    <div class="container">
-        <div class="alert card z-depth-5">
-            <div class="card-content">
-                <p><i class="material-icons">info</i><span>No momento, não existem votações disponíveis!</span></p>
-            </div>
-        </div>
-    </div>
-    {% else %}
+    {% if votacoes %}
         <div class="container">
             <table class="responsive-table centered highlight striped z-depth-3">
                 <thead>
@@ -26,6 +15,7 @@
                         <th>Nome</th>
                         <th>Horário Ínicio</th>
                         <th>Horário Término</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody class="table-index">
@@ -40,6 +30,13 @@
                 </tbody>
             </table>
         </div>
+    {% else %}
+        <div class="container">
+            <div class="alert card z-depth-5">
+                <div class="card-content">
+                    <p><i class="material-icons">info</i><span>No momento, não existem votações disponíveis!</span></p>
+                </div>
+            </div>
+        </div>
     {% endif %}
-</main>
 {% endblock content %}

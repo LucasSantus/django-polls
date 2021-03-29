@@ -5,6 +5,10 @@ body {
     flex-direction: column;
 }
 
+.brand-logo{
+    
+}
+
 /* MAIN */
 main {
     flex: 1 0 auto;
@@ -52,4 +56,16 @@ main {
 .text-theme{
     width: 100%;
     font-size: 60px;
+}
+
+.table-index{
+    border-collapse: collapse;
+}
+
+.table-index tr, th{
+    border-bottom: 1px solid #ddd;
+}
+
+.table-index tr, td{
+    border-bottom: 1px solid #ddd;
 }
