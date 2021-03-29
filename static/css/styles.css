@@ -26,8 +26,15 @@ main {
 }
 
 /* CARD's */
+
+
 .container .container .card{
-    padding: 5%;
+    padding: 2%;
+}
+
+.container .container .card .container h2 span{
+    font-size: large;
+
 }
 
 .alert .card-content span {

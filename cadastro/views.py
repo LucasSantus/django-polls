@@ -100,6 +100,6 @@ def validacao(request, id):
             return redirect("votar", id)
 
         except Pessoa.DoesNotExist: 
-            messages.error(request, "hihihi")
+            messages.error(request, "CPF não cadastrado!")
 
     return render(request, "cadastro/validacao.html")

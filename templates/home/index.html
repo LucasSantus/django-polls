@@ -20,7 +20,7 @@
     </div>
     {% else %}
         <div class="container">
-            <table class="responsive-table highlight striped z-depth-2">
+            <table class="responsive-table centered highlight striped z-depth-3">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -28,7 +28,7 @@
                         <th>Horário Término</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table-index">
                     {% for votacao in votacoes %}
                         <tr>
                             <td class="truncate">{{votacao.nome}}</td>

@@ -16,29 +16,26 @@
     }); 
 </script>
 
-<body class="blue lighten-5">
-    <section>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
         <div class="container">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="container">
-                    <div class="card teste">
-                        <div class="container style-form">                       
-                            {{ form|materializecss }}
-                        </div>
-                        <div class="center text-right">
-                            <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
-                                <span class="text">Cancelar</span>
-                            </a>
-                            <button class="btn btn-primary" type="submit">
-                                <span class="text">Cadastrar</span>
-                            </button>
-                        </div>
-                    </div>
+            <div class="card z-depth-5">
+                <div class="container style-form">                       
+                    {{ form|materializecss }}
                 </div>
-            </form>
+                <div class="center text-right">
+                    <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
+                        <span class="text">Cancelar</span>
+                    </a>
+                    <button class="btn btn-primary" type="submit">
+                        <span class="text">Cadastrar</span>
+                    </button>
+                </div>
+            </div>
         </div>
-    </section>
-</body>
+    </form>
+</div>
+   
 
 {% endblock content %}
