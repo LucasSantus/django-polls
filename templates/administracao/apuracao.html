@@ -1,22 +1,44 @@
 {% extends "base.html" %}
 
-
 {% block content %}
 
-<main>
     <div class="container center">
         <h2 class="text-theme truncate" >
-            {{ voto }}
+            Apuração
         </h2>
     </div>
-    <div class="container">
+
+    {% if votos %}
         <div class="container">
-            <div class="card z-depth-3">
-                {{ voto }}
+            <table class="responsive-table centered highlight striped z-depth-3">
+                <thead>
+                    <tr>
+                        <th>Votação</th>
+                        <th>Horário Término</th>
+                        <th>Quantidade de Votos</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-index">
+                    {% for voto in votos %}
+                        <tr>
+                            <td class="truncate">{{voto.votacao.nome}}</td>
+                            <td>{{voto.votacao.data_fim}}</td>
+                            <td>{{voto.quantidade_votos}}</td>
+                            
+                        </tr>
+                    {% endfor %} 
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="alert card z-depth-5">
+                <div class="card-content">
+                    <p><i class="material-icons">info</i><span>No momento, não existem apurações disponíveis!</span></p>
+                </div>
             </div>
         </div>
-    </div>
-
-</main>
+    {% endif %}
 
 {% endblock content %}

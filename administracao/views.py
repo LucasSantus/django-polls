@@ -51,10 +51,10 @@ def apuracao(request, id_votacao):
     
     votacao = Votacao.objects.get(pk=id_votacao)
     
-    voto = Pessoa_Voto.objects.filter(votacao=votacao)
+    votos = Pessoa_Voto.objects.filter(votacao=votacao)
 
     context = {
-        "voto": voto,
+        "votos": votos,
     }
 
     return render(request, "administracao/apuracao.html", context)
