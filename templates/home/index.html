@@ -16,6 +16,7 @@
                         <th>Horário Ínicio</th>
                         <th>Horário Término</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody class="table-index">
@@ -25,6 +26,7 @@
                             <td>{{votacao.data_inicio}}</td>
                             <td>{{votacao.data_fim}}</td>
                             <td><a href="{% url 'validacao' votacao.id %}">Votar</a></td>
+                            <td><a href="{% url 'apuracao' votacao.id %}">Apuração</a></td>
                         </tr>
                     {% endfor %} 
                 </tbody>

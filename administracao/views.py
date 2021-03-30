@@ -15,7 +15,7 @@ def validacao(request, id_votacao):
     return render(request, "administracao/validacao.html")
 
 def votar(request, id_votacao, id_pessoa):
-
+    
     pessoa = Pessoa.objects.get(pk=id_pessoa)
     votacao = Votacao.objects.get(pk=id_votacao)
     listOpcaoVoto = OpcaoVoto.objects.filter(votacao=votacao)
@@ -46,3 +46,15 @@ def votar(request, id_votacao, id_pessoa):
     }
 
     return render(request, "administracao/votar.html", context)
+
+def apuracao(request, id_votacao):
+    
+    votacao = Votacao.objects.get(pk=id_votacao)
+    
+    voto = Pessoa_Voto.objects.filter(votacao=votacao)
+
+    context = {
+        "voto": voto,
+    }
+
+    return render(request, "administracao/apuracao.html", context)
