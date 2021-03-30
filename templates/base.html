@@ -44,17 +44,6 @@
         </header>
 
         <main>
-            {% if messages %}  
-                {% for messagem in messages %}
-                    <div class="container">
-                        <div class="alert card red lighten-5 red-text text-lighten-2">
-                            <div class="card-content">
-                                <p><i class="material-icons">report_problem</i><span>Este é um alerta: </span>{{ messagem }}</p>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
             {% block content %}
             {% endblock %}
         </main>

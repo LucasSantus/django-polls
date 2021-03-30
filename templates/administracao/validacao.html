@@ -5,6 +5,22 @@
 {% block content %}
 
 <main>
+    <nav>
+        <div class="nav-wrapper z-depth-1">
+            <div class="col s12">
+                <a href="{% url 'index' %}" class="breadcrumb">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <div class="container">
         <div class="container">
             <div class="card z-depth-5">  

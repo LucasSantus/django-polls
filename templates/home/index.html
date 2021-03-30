@@ -22,7 +22,7 @@
                 <tbody class="table-index">
                     {% for votacao in votacoes %}
                         <tr>
-                            <td class="truncate">{{votacao.nome}}</td>
+                            <td>{{votacao.nome}}</td>
                             <td>{{votacao.data_inicio}}</td>
                             <td>{{votacao.data_fim}}</td>
                             <td><a href="{% url 'validacao' votacao.id %}" class="purple btn"><span class='color-button-table'>Votar</span></a></td>
