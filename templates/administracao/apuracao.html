@@ -27,7 +27,7 @@
                             <td class="truncate">{{voto.codigo}}</td>
                             <td>{{voto.numero_votos}}</td>
                             <td>informaçoes</td>
-                            
+                            <td><a href="{% url 'detalhe_apuracao' voto.id %}" class="purple lighten-1 btn"><span class='color-button-table'>Apuração</span></a></td>
                         </tr>
                     {% endfor %} 
                 </tbody>
