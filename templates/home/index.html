@@ -25,8 +25,8 @@
                             <td class="truncate">{{votacao.nome}}</td>
                             <td>{{votacao.data_inicio}}</td>
                             <td>{{votacao.data_fim}}</td>
-                            <td><a href="{% url 'validacao' votacao.id %}">Votar</a></td>
-                            <td><a href="{% url 'apuracao' votacao.id %}">Apuração</a></td>
+                            <td><a href="{% url 'validacao' votacao.id %}" class="purple btn"><span class='color-button-table'>Votar</span></a></td>
+                            <td><a href="{% url 'apuracao' votacao.id %}" class="purple lighten-1 btn"><span class='color-button-table'>Apuração</span></a></td>
                         </tr>
                     {% endfor %} 
                 </tbody>
