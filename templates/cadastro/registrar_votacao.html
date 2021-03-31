@@ -16,14 +16,29 @@
     }); 
 </script>
 
+{% if form.errors %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
 <div class="container">
     <form method="POST">
         {% csrf_token %}
         <div class="container">
             <div class="card z-depth-5">
-                <div class="container style-form">                       
-                    {{ form|materializecss }}
+                <div class='container center'>
+                    <h4>
+                        Cadastrar nova votação
+                    </h4>
                 </div>
+
+                <div class="container style-form">                       
+                    {{ form|materializecss }} 
+                </div>
+
                 <div class="center text-right">
                     <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
                         <span class="text">Cancelar</span>
@@ -36,6 +51,5 @@
         </div>
     </form>
 </div>
-   
 
 {% endblock content %}

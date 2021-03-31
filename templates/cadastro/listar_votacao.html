@@ -29,24 +29,18 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Anônimo</th>
-                        <th>Voto Único</th>
                         <th>Horário Inicio</th>
                         <th>Horário Término</th>
-                        
+                        <th>Informações</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for votacao in votacoes %}
                         <tr>
                             <td>{{votacao.nome}}</td>
-                            <td>{{votacao.descricao}}</td>
-                            <td>{{votacao.anonimo}}</td>
-                            <td>{{votacao.voto_unico}}</td>
                             <td>{{votacao.data_inicio}}</td>
                             <td>{{votacao.data_fim}}</td>
-    
+                            <td><a href="{% url 'detalhe_votacao' votacao.id %}" class="purple btn"><span class='color-button-table'>Ver Informações</span></a></td>
                         </tr>
                     {% endfor %} 
                 </tbody>

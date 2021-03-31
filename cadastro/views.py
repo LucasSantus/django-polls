@@ -85,7 +85,7 @@ def listar_votacoes(request):
         "votacoes": votacoes,
     }
 
-    return render(request, "cadastro/listar_pessoa.html", context)
+    return render(request, "cadastro/listar_votacao.html", context)
 
 def listar_opcoes(request):
     
@@ -95,4 +95,14 @@ def listar_opcoes(request):
         "opcoes": opcoes,
     }
 
-    return render(request, "cadastro/listar_pessoa.html", context)
+    return render(request, "cadastro/listar_opcoes.html", context)
+
+def detalhe_votacao(request, id_votacao):
+    
+    votacao = Votacao.objects.get(pk=id_votacao)
+
+    context = {
+        "votacao": votacao,
+    }
+
+    return render(request, "cadastro/detalhe_votacao.html", context)

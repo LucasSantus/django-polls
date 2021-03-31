@@ -8,4 +8,8 @@ urlpatterns = [
     path("registrar-opcao-voto/", registrar_opcao, name="registrar_opcao"),
     
     path("listar-pessoas/", listar_pessoas, name="listar_pessoas"),
+    path("listar-votacos/", listar_votacoes, name="listar_votacoes"),
+    path("listar-opcoes/", listar_opcoes, name="listar_opcoes"),
+    
+    path("detalhe-votacao/<int:id_votacao>", detalhe_votacao, name="detalhe_votacao"),
 ]

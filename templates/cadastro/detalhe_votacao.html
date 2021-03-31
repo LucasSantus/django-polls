@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <table class="responsive-table centered highlight striped z-depth-3">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Anônimo</th>
+                <th>Voto Único</th>
+                <th>Horário Inicio</th>
+                <th>Horário Término</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{votacao.nome}}</td>
+                <td>{{votacao.descricao}}</td>
+                <td>{{votacao.anonimo}}</td>
+                <td>{{votacao.voto_unico}}</td>
+                <td>{{votacao.data_inicio}}</td>
+                <td>{{votacao.data_fim}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
