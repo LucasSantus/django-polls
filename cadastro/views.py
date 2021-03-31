@@ -13,7 +13,12 @@ def registrar_pessoa(request):
         if form.is_valid():
             pessoa = form.save()
             pessoa.save()
-            return redirect("index")
+            
+            messages.success(
+                request, "Pessoa registrado com sucesso!"
+            )
+            
+            return redirect("listar_pessoas")
 
     context = {
         "nome_pagina": "Registrar pessoa",
@@ -68,6 +73,26 @@ def listar_pessoas(request):
 
     context = {
         "pessoas": pessoas,
+    }
+
+    return render(request, "cadastro/listar_pessoa.html", context)
+
+def listar_votacoes(request):
+    
+    votacoes = Votacao.objects.all()
+
+    context = {
+        "votacoes": votacoes,
+    }
+
+    return render(request, "cadastro/listar_pessoa.html", context)
+
+def listar_opcoes(request):
+    
+    opcoes = OpcaoVoto.objects.all()
+
+    context = {
+        "opcoes": opcoes,
     }
 
     return render(request, "cadastro/listar_pessoa.html", context)
