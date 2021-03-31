@@ -30,8 +30,8 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>CPF</th>
-                        <th>Data de Nascimento</th>
+                        <th>Votação</th>
+                        <th>Código</th>
                         <th>Número de Votos</th>
                     </tr>
                 </thead>
@@ -39,7 +39,7 @@
                     {% for opcao in opcoes %}
                         <tr>
                             <td>{{opcao.nome}}</td>
-                            <td>{{opcao.votacao}}</td>
+                            <td>{{opcao.votacao.nome}}</td>
                             <td>{{opcao.codigo}}</td>
                             <td>{{opcao.numero_votos}}</td>
                         </tr>

@@ -25,7 +25,7 @@
 {% endif %}
 
 <div class="container">
-    <form method="POST">
+    <form method="POST" onsubmit="return validacao_data()">
         {% csrf_token %}
         <div class="container">
             <div class="card z-depth-5">
