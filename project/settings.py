@@ -1,8 +1,7 @@
-import os
+import os, sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -15,9 +14,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+#Localização dos Aplicativos Internos
+sys.path.append(
+    os.path.join(BASE_DIR, "apps")
+)
 
-# Application definition
-
+# APP's Padrões
 INSTALLED_APPS = [
     'materializecssform',
     'django.contrib.admin',
@@ -28,11 +30,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# APP's Internas
 INSTALLED_APPS += [
-    'administracao',
+    'home',
+    'usuarios',
+    'votacao',
     'cadastro',
-
+    'administracao',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
