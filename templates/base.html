@@ -32,16 +32,6 @@
 
         <!-- Estilização da Página -->
         {% block css %}
-            <style>
-                body {
-                    display: flex;
-                    min-height: 100vh;
-                    flex-direction: column;
-                }
-                main {
-                    flex: 1 0 auto;
-                }
-            </style>
         {% endblock %}
 
         <!-- Título da Página -->
@@ -63,8 +53,8 @@
                         <li><a href="{% url 'listar_pessoas' %}">Pessoas</a></li>
                         <li><a href="{% url 'listar_votacoes' %}">Votações</a></li>
                         <li><a href="{% url 'listar_opcoes' %}">Opções de Votos</a></li>
-                        <li><a href="/">About Us</a></li>
-                        <li><a href="/">Contact Us</a></li>
+                        <!-- <li><a href="/">About Us</a></li>
+                        <li><a href="/">Contact Us</a></li> -->
                     </ul>
                 </div>
             </nav>
@@ -73,8 +63,8 @@
                 <li><a href="{% url 'listar_pessoas' %}">Pessoas</a></li>
                 <li><a href="{% url 'listar_votacoes' %}">Votações</a></li>
                 <li><a href="{% url 'listar_opcoes' %}">Opções de Votos</a></li>
-                <li><a href="/">About Us</a></li>
-                <li><a href="/">Contact Us</a></li>
+                <!-- <li><a href="/">About Us</a></li>
+                <li><a href="/">Contact Us</a></li> -->
             </ul>
         </header>
 
@@ -90,6 +80,12 @@
                 </div>
             </div>
         </footer>
+
+        <script>
+            $(document).ready(function(){
+                $('.sidenav').sidenav();
+            });
+        </script>
 
         <!-- Script da Página -->
         {% block javascript %}

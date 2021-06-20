@@ -1,4 +1,11 @@
-
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}
 
 /* FOOTER */
 .page-footer{
@@ -15,7 +22,6 @@
 
 .container .container .card .container h2 span{
     font-size: large;
-
 }
 
 .alert .card-content span {

@@ -66,14 +66,14 @@ class Votacao(models.Model):
     )
 
     data_inicio = models.DateTimeField(
-        verbose_name = "Inicio do breguenait",
+        verbose_name = "Inicio da Votação",
         auto_now=False,
         blank=True,
         null=True,
     )
 
     data_fim = models.DateTimeField(
-        verbose_name = "Fim do breguenait",
+        verbose_name = "Término da Votação",
         auto_now=False,
         blank=True,
         null=True,

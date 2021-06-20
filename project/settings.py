@@ -39,7 +39,6 @@ INSTALLED_APPS += [
     'administracao',
 ]
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -63,6 +62,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
                 #CONFIGURAÇÃO PARA APARECER O ANO NO TEMPLATE BASE
                 'home.views.base',
             ],

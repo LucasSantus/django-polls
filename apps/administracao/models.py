@@ -2,9 +2,18 @@ from django.db import models
 from cadastro.models import *
 
 class Pessoa_Voto(models.Model):
-    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
-    votacao = models.ForeignKey(Votacao, on_delete=models.CASCADE)
-    opcao = models.ForeignKey(OpcaoVoto, on_delete=models.CASCADE)
+    pessoa = models.ForeignKey(
+        Pessoa, 
+        on_delete=models.CASCADE
+    )
+    votacao = models.ForeignKey(
+        Votacao, 
+        on_delete=models.CASCADE
+    )
+    opcao = models.ForeignKey(
+        OpcaoVoto, 
+        on_delete=models.CASCADE
+    )
     quantidade_votos = models.IntegerField(
         verbose_name = "Quantidade de Votos",
         null=True,
