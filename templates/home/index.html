@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    <!-- <div class="container center">
-        <h2 class="text-theme truncate">
-            Home
-        </h2>
-    </div> -->
+{% block css %}
 
+{% endblock %}
+
+{% block title %}
+    Dashboard | System Votation
+{% endblock %}
+
+{% block content %}
     {% if votacoes %}
         <div class="container">
             <table class="responsive-table centered highlight striped z-depth-3">
@@ -40,3 +42,6 @@
         </div>
     {% endif %}
 {% endblock content %}
+
+{% block javascript %}
+{% endblock %}
