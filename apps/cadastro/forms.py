@@ -30,7 +30,7 @@ class PessoaForm(forms.ModelForm):
 class VotacaoForm(forms.ModelForm):
     class Meta:
         model = Votacao
-        fields = ('nome', 'descricao','anonimo', 'voto_unico', 'data_inicio', 'data_fim', )
+        fields = ('nome', 'descricao','anonimo', 'voto_unico', 'data_inicio', 'data_fim')
 
         error_messages = {
             "nome":{

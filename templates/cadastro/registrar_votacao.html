@@ -25,11 +25,25 @@
                             Registrar
                         </h4>
                     </div>
-                    
-                    <div class="container style-form">                       
-                        {{ form|materializecss }} 
+                    <div class="container style-form">
+                        <div class="row">
+                            <div class="input-field col s12 m12 l12 xl12">
+                                {{ form.nome|materializecss:'icon=person' }}
+                            </div>
+                            <div class="input-field col s12 m12 l12 xl12">
+                                {{ form.descricao|materializecss:'icon=description' }}
+                            </div> 
+                            <div class="input-field center col s12 m12 l12 xl12">
+                                {{ form.anonimo|materializecss }}
+                            </div>
+                            <div class="input-field col s12 m6 l6 xl6">
+                                {{ form.data_inicio|materializecss:'icon=watch_later' }}
+                            </div> 
+                            <div class="input-field col s12 m6 l6 xl6">
+                                {{ form.data_fim|materializecss:'icon=watch_later' }}
+                            </div> 
+                        </div>
                     </div>
-
                     <div class="center text-right">
                         <a href="{% url 'index' %}" class="waves-effect waves-light btn btn-secondary text-white {{colors.primary_class}}" style="margin-top: 3px;" type="button">
                             <span class="text">CANCELAR</span>
