@@ -30,10 +30,10 @@ class PessoaForm(forms.ModelForm):
 class VotacaoForm(forms.ModelForm):
     class Meta:
         model = Votacao
-        fields = ('nome', 'descricao','anonimo', 'voto_unico', 'data_inicio', 'data_fim')
+        fields = ('titulo', 'descricao','anonimo', 'data_inicio', 'data_fim')
 
         error_messages = {
-            "nome":{
+            "titulo":{
                 "required": "O nome é obrigatório para o registro",
             },
 
@@ -45,9 +45,6 @@ class VotacaoForm(forms.ModelForm):
                 "required": "A data de nascimento da pessoa é obrigatório para o registro",
             },
 
-            "voto_unico":{
-                "required": "Por favor, informe o número da casa a ser visitada",
-            },
             "data_inicio":{
                 "required": "O  cpf da pessoa é obrigatório para o registro",
                 "invalid": "Por favor, informe um formato válido para a data de nascimento (DD/DD/AAAA)",
