@@ -2,25 +2,25 @@ from django.db import models
 
 class Pessoa(models.Model):
     nome = models.CharField(
-        verbose_name = "Nome Completo",
+        verbose_name = "Nome Completo:",
         max_length=194,
     )
 
     cpf = models.CharField(
-        verbose_name = "CPF",
+        verbose_name = "CPF:",
         max_length=11,
         unique=True,
     )
 
     data_nascimento = models.DateField(
-        verbose_name = "Data de Nascimento",
+        verbose_name = "Data de Nascimento:",
         auto_now_add=False,
         auto_now=False,
     )
 
     email = models.EmailField(
         max_length=254,
-        verbose_name = "E-mail",
+        verbose_name = "E-mail:",
         unique=True,
     )
 
@@ -40,40 +40,35 @@ class Pessoa(models.Model):
     class Meta:
         verbose_name = "Pessoa"
         verbose_name_plural = "Pessoas"
-        db_table = "pessoa"
 
     def __str__(self):
         return self.nome
 
 class Votacao(models.Model):
-    nome = models.CharField(
-        verbose_name = "Nome",
+    titulo = models.CharField(
+        verbose_name = "Título:",
         max_length=194,
     )
 
     descricao = models.TextField(
-        verbose_name = "Descrição",
+        verbose_name = "Descrição:",
         max_length=340,
     )
 
     anonimo = models.BooleanField(
-        verbose_name="Usuário anônimo",
-        default=False,
-    )
-
-    voto_unico = models.BooleanField(
+        verbose_name="Usuário Anônimo:",
         default=False,
     )
 
     data_inicio = models.DateTimeField(
-        verbose_name = "Inicio da Votação",
+        verbose_name = "Inicio da Votação:",
         auto_now=False,
         blank=True,
         null=True,
     )
 
     data_fim = models.DateTimeField(
-        verbose_name = "Término da Votação",
+        verbose_name = "Término da Votação:",
         auto_now=False,
         blank=True,
         null=True,
@@ -82,10 +77,9 @@ class Votacao(models.Model):
     class Meta:
         verbose_name = "Votação"
         verbose_name_plural = "Votações"
-        db_table = "votacao"
 
     def __str__(self):
-        return self.nome
+        return self.titulo
 
 class OpcaoVoto(models.Model):
     nome = models.CharField(
@@ -93,22 +87,21 @@ class OpcaoVoto(models.Model):
         max_length=194,
     )
 
-    votacao = models.ForeignKey(Votacao, verbose_name="Votação", on_delete=models.CASCADE)
+    votacao = models.ForeignKey(Votacao, verbose_name="Votação:", on_delete=models.CASCADE)
 
     codigo = models.CharField(
-        verbose_name="Código",
+        verbose_name="Código:",
         max_length=194,
     )
 
     numero_votos = models.PositiveSmallIntegerField(
-        verbose_name = "Número de Voto",
+        verbose_name = "Número de Voto:",
         default=0,
     )
 
     class Meta:
         verbose_name = "Opcão de Voto"
         verbose_name_plural = "Opções de Votos"
-        db_table = "opcao"
 
     def __str__(self):
         return self.nome
