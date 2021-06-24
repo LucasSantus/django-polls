@@ -2,54 +2,62 @@
 
 {% load materializecss %}
 
+{% block title %}
+    Register | System Votation
+{% endblock %}
+
 {% block content %}
+    {% if form.errors %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
 
-<script>
-    $(document).ready(function(){
-        $("#id_data_inicio").attr("type","text"); 
-        $("#id_data_fim").attr("type","text"); 
+    <div class="container">
+        <form method="POST" onsubmit="return validacao_data()">
+            {% csrf_token %}
+            <div class="container">
+                <div class="card z-depth-5">
+                    <div class='container center'>
+                        <h4>
+                            Cadastrar nova votação
+                        </h4>
+                    </div>
 
-        M.AutoInit();
+                    <div class="container style-form">                       
+                        {{ form|materializecss }} 
+                    </div>
 
-        var DateField = MaterialDateTimePicker.create($('#id_data_inicio'));
-        var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
-    }); 
-</script>
-
-{% if form.errors %}
-    {% for error in form.non_field_errors %}
-        <div class="alert alert-danger">
-            <strong>{{ error|escape }}</strong>
-        </div>
-    {% endfor %}
-{% endif %}
-
-<div class="container">
-    <form method="POST" onsubmit="return validacao_data()">
-        {% csrf_token %}
-        <div class="container">
-            <div class="card z-depth-5">
-                <div class='container center'>
-                    <h4>
-                        Cadastrar nova votação
-                    </h4>
-                </div>
-
-                <div class="container style-form">                       
-                    {{ form|materializecss }} 
-                </div>
-
-                <div class="center text-right">
-                    <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
-                        <span class="text">Cancelar</span>
-                    </a>
-                    <button class="btn btn-primary" type="submit">
-                        <span class="text">Cadastrar</span>
-                    </button>
+                    <div class="center text-right">
+                        <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
+                            <span class="text">Cancelar</span>
+                        </a>
+                        <button class="btn btn-primary" type="submit">
+                            <span class="text">Cadastrar</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
-</div>
-
+        </form>
+    </div>
 {% endblock content %}
+
+{% block css %}
+
+    
+
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function(){
+            $("#id_data_inicio").attr("type","text"); 
+            $("#id_data_fim").attr("type","text"); 
+            M.AutoInit();
+            var DateField = MaterialDateTimePicker.create($('#id_data_inicio'));
+            var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
+        }); 
+    </script>
+{% endblock %}

@@ -29,6 +29,18 @@
         
         <!-- Import Java Script Materialize -->
         <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
+        
+        <!-- Footer na Posição Inferior -->
+        <style>
+            body {
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+            }
+            main {
+                flex: 1 0 auto;
+            }
+        </style>
 
         <!-- Estilização da Página -->
         {% block css %}
@@ -44,7 +56,7 @@
 
     <body>
         <header>
-            <nav class="deep-purple accent-2">
+            <nav class="{{colors.primary_class}} accent-3">
                 <div class="nav-wrapper container">
                     <a href="/" class="brand-logo">System Votation</a>
                     <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -75,7 +87,7 @@
 
         <footer class="page-footer transparent">
             <div class="row" style="width: 80%;">
-                <div class="col s12 center black-text">
+                <div class="col s12 center {{colors.primary_class}}-text text-{{colors.primary_hue_class}}">
                     <span>&copy; 2020 - {{date.year}} Copyright System Votation, All rights reserved.</span>
                 </div>
             </div>
