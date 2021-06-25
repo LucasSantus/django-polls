@@ -93,16 +93,6 @@
 {% block javascript %}
     <script>
         $(document).ready(function(){
-            if("{{ pessoa.mode }}" == "DARK"){
-                alert("OI")
-                $('#switch-check').val("on");
-                
-            }
-            else if("{{ pessoa.mode }}" == "MAIN"){
-                $('#switch-check').val("");
-                alert("ola")
-            }
-            
             M.AutoInit();
             $("#id_data_inicio").attr("type","text"); 
             $("#id_data_fim").attr("type","text"); 

@@ -17,33 +17,6 @@
         <!-- Let browser know website is optimized for mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
-        <!-- Import Font's -->  
-        <!-- <script type="text/javascript" script-name="alex-brush" src="http://use.edgefonts.net/alex-brush.js"></script>
-        <script type="text/javascript" script-name="carter-one" src="http://use.edgefonts.net/carter-one.js"></script> -->
-
-        <!-- Footer na Posição Inferior -->
-        <style>
-            body {
-                display: flex;
-                min-height: 100vh;
-                flex-direction: column;
-            }
-            main {
-                flex: 1 0 auto;
-            }
-            .alert .card-content span{
-                font-weight: bold;
-                font-size: 1.1em;
-                margin-right:4px;
-            }
-            .alert .card-content .material-icons {
-                font-size: 1.5em;
-                position: relative;
-                top: 5px;
-                margin-right: 0.5em;
-            } 
-        </style>
-
         <!-- Estilização da Página -->
         {% block css %}
         {% endblock %}
@@ -153,10 +126,44 @@
         <!-- Import Java Script DateTimePicker -->
         <script type="text/javascript" src="{% static 'js/datetimepicker.js' %}" defer></script>
 
+        <style>
+            /* Footer na Posição Inferior */
+            body {
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+            }
+            main {
+                flex: 1 0 auto;
+            }
+
+            /* Estilização dos Alert's */
+            .alert{
+                margin-top: 2%;
+                margin-bottom: 2%;
+            }
+            .alert .card-content span{
+                font-weight: bold;
+                font-size: 2em;
+                margin-right:4px;
+            }
+            .alert .card-content .material-icons {
+                font-size: 1.5em;
+                position: relative;
+                top: 5px;
+                margin-right: 0.5em;
+            } 
+        </style>
+
         <script>
             $(document).ready(function(){
+                /* Inicialização do sidenav */
                 $('.sidenav').sidenav();
+
+                /* Inicialização do select */
                 $('select').formSelect();
+
+                /* Inicialização do datepicker */
                 $('.datepicker').datepicker({
                     i18n: {
                         months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
