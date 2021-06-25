@@ -38,6 +38,9 @@ def registrar_votacao(request):
         if form.is_valid():
             votacao = form.save()
             votacao.save()
+
+            messages.success(request,"HIHIIH")
+            
             return redirect("index")
 
     context = {

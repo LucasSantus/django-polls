@@ -83,60 +83,48 @@
         </header>
 
         <main>
-            <div class="container">
-                <div class="row">
-                    <div class="alert card blue lighten-4 blue-text text-darken-3">
-                        <div class="card-content">
-                            <p><i class="material-icons">info</i><span>This is an alert:</span> It has text within it.</p>
-                        </div>
-                    </div>
-
-                    <div class="alert card amber lighten-4 brown-text">
-                        <div class="card-content">
-                            <p><i class="material-icons">report_problem</i><span>This is an alert:</span> It has text within it.</p>
-                        </div>
-                    </div>
-
-                    <div class="alert card red lighten-4 red-text text-darken-4">
-                        <div class="card-content">
-                            <p><i class="material-icons">report</i><span>This is an alert:</span> It has text within it.</p>
-                        </div>
-                    </div>
-
-                    <div class="alert card green lighten-4 green-text text-darken-4">
-                        <div class="card-content">
-                            <p><i class="material-icons">check_circle</i><span>This is an alert:</span> It has text within it.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             {% if messages %}
                 {% for message in messages %}
                     {% if message.tags == 'success' %}
-                    {% if message.tags == 'success' %}
-                    {% if message.tags == 'success' %}
-                    {% if message.tags == 'success' %}
-                    {% if message.tags == 'success' %}
-                        <script type="text/javascript">
-                            var toastHTML = '<h5>{{ message }} </h5>';
-                            M.toast({html: toastHTML, displayLength:6000, classes:'green'});
-                        </script>
-                    {% elif message.tags == 'error' %}
-                        <script type="text/javascript">
-                            var toastHTML = '<h5>{{ message }} </h5>';
-                            M.toast({html: toastHTML, displayLength:6000, classes:'red'});
-                        </script>
+                        <div class="container">
+                            <div class="row">
+                                <div class="alert card green lighten-4 green-text text-darken-4">
+                                    <div class="card-content">
+                                        <p><i class="material-icons">check_circle</i>{{ message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {% elif message.tags == 'info' %}
-                        <script type="text/javascript">
-                            var toastHTML = '<h5>{{ message }} </h5>';
-                            M.toast({html: toastHTML, displayLength:6000, classes:'blue'});
-                        </script>
+                        <div class="container">
+                            <div class="row">
+                                <div class="alert card blue lighten-4 blue-text text-darken-3">
+                                    <div class="card-content">
+                                        <p><i class="material-icons">info</i>{{ message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {% elif message.tags == 'warning' %}
-                        <script type="text/javascript">
-                            var toastHTML = '<h5>{{ message }} </h5>';
-                            M.toast({html: toastHTML, displayLength:6000, classes:'orange'});
-                        </script>
+                        <div class="container">
+                            <div class="row">
+                                <div class="alert card amber lighten-4 brown-text">
+                                    <div class="card-content">
+                                        <p><i class="material-icons">report_problem</i>{{ message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% elif message.tags == 'error' %}
+                        <div class="container">
+                            <div class="row">
+                                <div class="alert card red lighten-4 red-text text-darken-4">
+                                    <div class="card-content">
+                                        <p><i class="material-icons">report</i>{{ message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {% endif %}
                 {% endfor %}
             {% endif %}

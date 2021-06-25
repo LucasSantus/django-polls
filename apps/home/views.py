@@ -4,6 +4,7 @@ from datetime import date
 from django.http import JsonResponse
 from cadastro.models import Votacao, Pessoa
 from .colors import Color
+from django.contrib import messages
 
 def base(request):
     get_colors = Color.get_colors()
@@ -22,7 +23,9 @@ def base(request):
 
 def index(request):
     votacoes = Votacao.objects.filter(data_inicio__lte=timezone.now(), data_fim__gte=timezone.now())
-    
+    if not votacoes:
+        messages.info(request,"No momento não existem votações disponiveis ")
+
     context = {
         "votacoes": votacoes,
     }
