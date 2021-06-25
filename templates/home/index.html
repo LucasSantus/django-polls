@@ -1,16 +1,12 @@
 {% extends 'base.html' %}
 
-{% block css %}
-
-{% endblock %}
-
 {% block title %}
     Dashboard | System Votation
 {% endblock %}
 
 {% block content %}
     {% if votacoes %}
-        <div class="container">
+        <div class="container format-form">
             <table class="responsive-table centered highlight striped z-depth-3">
                 <thead>
                     <tr>
@@ -26,7 +22,7 @@
                             <td>{{votacao.titulo}}</td>
                             <td>{{votacao.data_inicio}}</td>
                             <td>{{votacao.data_fim}}</td>
-                            <td><a href="{% url 'validacao' votacao.id %}" class="{{colors.primary_class}} btn"><span class='color-button-table'>Votar</span></a></td>
+                            <td><a href="{% url 'validacao' votacao.id %}" class="{{colors.primary_class}} btn"><span>Votar</span></a></td>
                         </tr>
                     {% endfor %} 
                 </tbody>
@@ -42,6 +38,28 @@
         </div>
     {% endif %}
 {% endblock content %}
+
+{% block css %}
+    <style>
+        .alert .card-content span {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right:4px;
+        }
+        
+        .alert .card-content .material-icons {
+            font-size: 1.5em;
+            position: relative;
+            top: 5px;
+            margin-right: 0.5em;
+        }
+
+        .format-form{
+            margin-top: 3%; 
+            padding: 5px;
+        }
+    </style>
+{% endblock %}
 
 {% block javascript %}
 {% endblock %}

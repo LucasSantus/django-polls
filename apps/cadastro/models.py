@@ -1,6 +1,11 @@
 from django.db import models
 
 class Pessoa(models.Model):
+    CHOICE_MODE = [
+        ("MAIN", "Claro"),
+        ("DARK", "Escuro"),
+    ]
+
     nome = models.CharField(
         verbose_name = "Nome Completo:",
         max_length=194,
@@ -22,6 +27,13 @@ class Pessoa(models.Model):
         max_length=254,
         verbose_name = "E-mail:",
         unique=True,
+    )
+
+    mode = models.CharField(
+        verbose_name = "Color:",
+        max_length = 11,
+        choices = CHOICE_MODE,
+        default = "MAIN",
     )
 
     def get_cpf(self):

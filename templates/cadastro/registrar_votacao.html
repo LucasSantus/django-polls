@@ -15,7 +15,7 @@
         {% endfor %}
     {% endif %}
 
-    <div class="container" style="margin-top: 3%; padding: 5px;">
+    <div class="container format-form">
         <form method="POST" onsubmit="return validacao_data()">
             {% csrf_token %}
             <div class="container">
@@ -43,7 +43,7 @@
                                 {{ form.data_fim|materializecss:'icon=watch_later' }}
                             </div> 
                         </div>
-                    </div>
+                    </div>                  
                     <div class="center format-buttons">
                         <a href="{% url 'index' %}" class="waves-effect waves-light btn btn-secondary text-white {{colors.primary_class}}" type="button">
                             <span class="text">CANCELAR</span>
@@ -53,6 +53,17 @@
                         </button>
                     </div>
                 </div>
+            </div>
+        </form>
+
+        <form method="post" mode="{% url 'mode' %}">
+            <div class="switch">
+                <label>
+                    Off
+                    <input id="switch-check" type="checkbox" name="switch-check">
+                    <span class="lever"></span>
+                    On
+                </label>
             </div>
         </form>
     </div>
@@ -71,17 +82,46 @@
         .format-buttons .btn{
             margin-top: 5px;
         }
+
+        .format-form{
+            margin-top: 3%; 
+            padding: 5px;
+        }
     </style>
 {% endblock %}
 
 {% block javascript %}
     <script>
         $(document).ready(function(){
+            if("{{ pessoa.mode }}" == "DARK"){
+                alert("OI")
+                $('#switch-check').val("on");
+                
+            }
+            else if("{{ pessoa.mode }}" == "MAIN"){
+                $('#switch-check').val("");
+                alert("ola")
+            }
+            
             M.AutoInit();
             $("#id_data_inicio").attr("type","text"); 
             $("#id_data_fim").attr("type","text"); 
             var DateField = MaterialDateTimePicker.create($('#id_data_inicio'));
             var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
         }); 
+
+        $('#switch-check').click(function () {
+            var form = $(this).closest("form");
+            $.ajax({
+                url: form.attr("mode"),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function (data) {
+                    if(data.mode){
+                        // location.reload();
+                    }
+                }
+            });
+        })
     </script>
 {% endblock %}

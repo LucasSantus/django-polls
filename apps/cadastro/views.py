@@ -30,6 +30,7 @@ def registrar_pessoa(request):
 def registrar_votacao(request):
 
     form = VotacaoForm()
+    pessoa = Pessoa.objects.get(id=1)
 
     if request.method == "POST":
         form = VotacaoForm(request.POST)
@@ -42,6 +43,7 @@ def registrar_votacao(request):
     context = {
         "nome_pagina": "Registrar Votação",
         "form": form,
+        "pessoa": pessoa,
     }
 
     return render(request, "cadastro/registrar_votacao.html", context)
