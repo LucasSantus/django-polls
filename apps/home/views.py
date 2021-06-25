@@ -37,7 +37,7 @@ def mode(request):
         mode = request.GET.get('switch-check', False)
     except:
         mode = {}
-        
+    
     if mode == "on":
         pessoa.mode = "DARK"
     else: 

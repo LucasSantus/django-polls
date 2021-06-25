@@ -1,3 +1,57 @@
 from django.db import models
 
-# Create your models here.
+class Pessoa(models.Model):
+    CHOICE_MODE = [
+        ("MAIN", "Claro"),
+        ("DARK", "Escuro"),
+    ]
+
+    nome = models.CharField(
+        verbose_name = "Nome Completo:",
+        max_length=194,
+    )
+
+    cpf = models.CharField(
+        verbose_name = "CPF:",
+        max_length=11,
+        unique=True,
+    )
+
+    data_nascimento = models.DateField(
+        verbose_name = "Data de Nascimento:",
+        auto_now_add=False,
+        auto_now=False,
+    )
+
+    email = models.EmailField(
+        max_length=254,
+        verbose_name = "E-mail:",
+        unique=True,
+    )
+
+    mode = models.CharField(
+        verbose_name = "Color:",
+        max_length = 11,
+        choices = CHOICE_MODE,
+        default = "MAIN",
+    )
+
+    def get_cpf(self):
+        if self.cpf:
+            cpf = str(self.cpf)
+
+            cpf_parte_um = cpf[0:3]
+            cpf_parte_dois = cpf[3:6]
+            cpf_parte_tres = cpf[6:9]
+            cpf_parte_quatro = cpf[9:]
+
+            cpf_formatado = f"{cpf_parte_um}.{cpf_parte_dois}.{cpf_parte_tres}-{cpf_parte_quatro}"
+
+            return cpf_formatado
+            
+    class Meta:
+        verbose_name = "Pessoa"
+        verbose_name_plural = "Pessoas"
+
+    def __str__(self):
+        return self.nome
