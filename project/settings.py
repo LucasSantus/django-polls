@@ -35,7 +35,6 @@ INSTALLED_APPS += [
     'home',
     'usuarios',
     'votacao',
-    'cadastro',
     'administracao',
 ]
 

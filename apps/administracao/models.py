@@ -1,5 +1,6 @@
 from django.db import models
-from cadastro.models import *
+from votacao.models import *
+from usuarios.models import *
 
 class Pessoa_Voto(models.Model):
     pessoa = models.ForeignKey(

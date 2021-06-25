@@ -27,11 +27,12 @@ var MaterialDateTimePicker = {
                     selectMonths: true,
                     selectYears: 15,
                     },
-                format:  'yyyy-mm-dd',
-                yearRange:80,
+                format: 'yyyy-mm-dd',
+                yearRange: 5,
                 selectMonths: true,
                 dismissable: false,
                 autoClose: true,
+                minDate: new Date(),
                 onClose: function(){
                     element.datepicker('destroy');
                     element.timepicker({
@@ -41,8 +42,8 @@ var MaterialDateTimePicker = {
                             element.attr('selectedTime', (hr + ":" + min).toString());
                         },
                         onCloseEnd: function(){
-                           element.blur();
-                       }
+                            element.blur();
+                        }
                     });
                     $('button.btn-flat.timepicker-close.waves-effect')[0].remove();
                     

@@ -17,31 +17,6 @@
         <!-- Let browser know website is optimized for mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
-        <!-- Import Font's -->  
-        <script type="text/javascript" script-name="alex-brush" src="http://use.edgefonts.net/alex-brush.js"></script>
-        <script type="text/javascript" script-name="carter-one" src="http://use.edgefonts.net/carter-one.js"></script>
-
-        <!-- Import JQuery -->
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-        
-        <!-- Import Java Script Personalizado -->
-        <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
-        
-        <!-- Import Java Script Materialize -->
-        <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
-        
-        <!-- Footer na Posição Inferior -->
-        <style>
-            body {
-                display: flex;
-                min-height: 100vh;
-                flex-direction: column;
-            }
-            main {
-                flex: 1 0 auto;
-            }
-        </style>
-
         <!-- Estilização da Página -->
         {% block css %}
         {% endblock %}
@@ -81,6 +56,52 @@
         </header>
 
         <main>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                        <div class="container">
+                            <div class="row">
+                                <div class="alert card green lighten-4 green-text text-darken-4">
+                                    <div class="card-content">
+                                        <p><i class="material-icons">check_circle</i>{{ message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% elif message.tags == 'info' %}
+                        <div class="container">
+                            <div class="row">
+                                <div class="alert card blue lighten-4 blue-text text-darken-3">
+                                    <div class="card-content">
+                                        <p><i class="material-icons">info</i>{{ message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% elif message.tags == 'warning' %}
+                        <div class="container">
+                            <div class="row">
+                                <div class="alert card amber lighten-4 brown-text">
+                                    <div class="card-content">
+                                        <p><i class="material-icons">report_problem</i>{{ message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% elif message.tags == 'error' %}
+                        <div class="container">
+                            <div class="row">
+                                <div class="alert card red lighten-4 red-text text-darken-4">
+                                    <div class="card-content">
+                                        <p><i class="material-icons">report</i>{{ message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
             {% block content %}
             {% endblock %}
         </main>
@@ -93,10 +114,56 @@
             </div>
         </footer>
 
+        <!-- Import JQuery -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        
+        <!-- Import Java Script Personalizado -->
+        <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
+        
+        <!-- Import Java Script Materialize -->
+        <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
+
+        <!-- Import Java Script DateTimePicker -->
+        <script type="text/javascript" src="{% static 'js/datetimepicker.js' %}" defer></script>
+
+        <style>
+            /* Footer na Posição Inferior */
+            body {
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+            }
+            main {
+                flex: 1 0 auto;
+            }
+
+            /* Estilização dos Alert's */
+            .alert{
+                margin-top: 2%;
+                margin-bottom: 2%;
+            }
+            .alert .card-content span{
+                font-weight: bold;
+                font-size: 2em;
+                margin-right:4px;
+            }
+            .alert .card-content .material-icons {
+                font-size: 1.5em;
+                position: relative;
+                top: 5px;
+                margin-right: 0.5em;
+            } 
+        </style>
+
         <script>
             $(document).ready(function(){
+                /* Inicialização do sidenav */
                 $('.sidenav').sidenav();
+
+                /* Inicialização do select */
                 $('select').formSelect();
+
+                /* Inicialização do datepicker */
                 $('.datepicker').datepicker({
                     i18n: {
                         months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],

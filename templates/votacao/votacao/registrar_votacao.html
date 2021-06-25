@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% load materializecss %}
+
+{% block title %}
+    Register | System Votation
+{% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="container format-form">
+        <form method="POST" onsubmit="return validacao_data()">
+            {% csrf_token %}
+            <div class="container">
+                <div class="card z-depth-5">
+                    <div class='container center grey-text text-darken-3'>
+                        <h4>
+                            Registrar Votação
+                        </h4>
+                    </div>
+                    <div class="container style-form">
+                        <div class="row">
+                            <div class="input-field col s12 m12 l12 xl12">
+                                {{ form.titulo|materializecss:'icon=person' }}
+                            </div>
+                            <div class="input-field col s12 m12 l12 xl12">
+                                {{ form.descricao|materializecss:'icon=description' }}
+                            </div> 
+                            <div class="input-field center col s12 m12 l12 xl12">
+                                {{ form.anonimo|materializecss }}
+                            </div>
+                            <div class="input-field col s12 m6 l6 xl6">
+                                {{ form.data_inicio|materializecss:'icon=watch_later' }}
+                            </div> 
+                            <div class="input-field col s12 m6 l6 xl6">
+                                {{ form.data_fim|materializecss:'icon=watch_later' }}
+                            </div> 
+                        </div>
+                    </div>                  
+                    <div class="center format-buttons">
+                        <a href="{% url 'index' %}" class="waves-effect waves-light btn btn-secondary text-white {{colors.primary_class}}" type="button">
+                            <span class="text">CANCELAR</span>
+                        </a>
+                        <button class="waves-effect waves-light btn btn-primary {{colors.primary_class}}" type="submit">
+                            <span class="text">REGISTRAR</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form method="post" mode="{% url 'mode' %}">
+            <div class="switch">
+                <label>
+                    Off
+                    <input id="switch-check" type="checkbox" name="switch-check">
+                    <span class="lever"></span>
+                    On
+                </label>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+
+{% block css %}
+    <style>
+        .card {
+            border: 1px solid #e0e0e0;
+        }
+
+        .format-buttons{
+            margin-bottom: 5px;
+        }
+
+        .format-buttons .btn{
+            margin-top: 5px;
+        }
+
+        .format-form{
+            margin-top: 3%; 
+            padding: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function(){
+            M.AutoInit();
+            $("#id_data_inicio").attr("type","text"); 
+            $("#id_data_fim").attr("type","text"); 
+            var DateField = MaterialDateTimePicker.create($('#id_data_inicio'));
+            var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
+        }); 
+
+        $('#switch-check').click(function () {
+            var form = $(this).closest("form");
+            $.ajax({
+                url: form.attr("mode"),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function (data) {
+                    if(data.mode){
+                        // location.reload();
+                    }
+                }
+            });
+        })
+    </script>
+{% endblock %}
