@@ -4,9 +4,8 @@ from django.utils import timezone
 from datetime import date
 
 def base(request):
-
     colors = {
-        'primary_class': "red",
+        'primary_class': "pink",
         'primary_style': "deep-purple accent-2",
     }
 
