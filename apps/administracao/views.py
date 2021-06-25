@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
-from cadastro.models import *
+from usuarios.models import *
+from votacao.models import *
 
 def validacao(request, id_votacao):
     if request.POST:
@@ -14,7 +15,7 @@ def validacao(request, id_votacao):
             
         except Pessoa.DoesNotExist: 
             messages.error(request, "CPF não cadastrado!")
-         
+        
     return render(request, "administracao/validacao.html")
 
 def votar(request, id_votacao, id_pessoa):

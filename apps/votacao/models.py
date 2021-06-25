@@ -1,4 +1,5 @@
-
+from django.db import models
+from .models import *
 
 class Votacao(models.Model):
     titulo = models.CharField(
@@ -61,12 +62,3 @@ class OpcaoVoto(models.Model):
 
     def __str__(self):
         return self.nome
-
-    
-    votacao = Votacao.objects.get(pk=id_votacao)
-
-    context = {
-        "votacao": votacao,
-    }
-
-    return render(request, "cadastro/detalhe_votacao.html", context)

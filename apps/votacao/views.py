@@ -71,3 +71,11 @@ def listar_opcoes(request):
     return render(request, "cadastro/listar_opcoes.html", context)
 
 def detalhe_votacao(request, id_votacao):
+
+    votacao = Votacao.objects.get(pk=id_votacao)
+
+    context = {
+        "votacao": votacao,
+    }
+
+    return render(request, "votacao/votacao/detalhe_votacao.html", context)

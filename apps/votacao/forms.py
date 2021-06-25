@@ -1,5 +1,5 @@
 from django import forms
-from cadastro.models import *
+from .models import *
 
 class VotacaoForm(forms.ModelForm):
     class Meta:

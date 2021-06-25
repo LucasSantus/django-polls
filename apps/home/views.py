@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.utils import timezone
 from datetime import date
 from django.http import JsonResponse
-from cadastro.models import Votacao, Pessoa
+from votacao.models import Votacao
+from usuarios.models import Pessoa
 from .colors import Color
 from django.contrib import messages
 

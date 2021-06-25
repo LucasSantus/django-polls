@@ -1,10 +1,13 @@
 from django.contrib import admin
 from django.urls import path, include
-from cadastro.views import *
 
 urlpatterns = [
+    # Admin
     path('admin/', admin.site.urls),
+
+    # Include URL APP's
     path('', include('home.urls')),
-    path('cadastro/', include('cadastro.urls')),
+    path('user/', include('usuarios.urls')),
+    path('votacao/', include('votacao.urls')),
     path('administracao/', include('administracao.urls')),
 ]
