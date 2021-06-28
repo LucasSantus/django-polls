@@ -13,7 +13,10 @@
 
         <!-- Import CSS Personalizado -->
         <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}">
-        
+
+        <!-- Import Colors CSS -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/colors.css' %}">
+
         <!-- Let browser know website is optimized for mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
@@ -31,7 +34,7 @@
 
     <body>
         <header>
-            <nav class="{{colors.primary_class}} accent-3">
+            <nav class="{{colors.primary_class}}">
                 <div class="nav-wrapper container">
                     <a href="/" class="brand-logo">System Votation</a>
                     <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -40,8 +43,8 @@
                         <li><a href="{% url 'listar_pessoas' %}">Pessoas</a></li>
                         <li><a href="{% url 'listar_votacoes' %}">Votações</a></li>
                         <li><a href="{% url 'listar_opcoes' %}">Opções de Votos</a></li>
-                        <!-- <li><a href="/">About Us</a></li>
-                        <li><a href="/">Contact Us</a></li> -->
+                        <li><a href="{% url 'perfil_usuario' %}">Perfil</a></li>
+                        <!-- <li><a href="/">Contact Us</a></li> -->
                     </ul>
                 </div>
             </nav>
@@ -56,6 +59,15 @@
         </header>
 
         <main>
+            <!-- <div class="center">
+                <form method="POST">
+                    <p>
+                        <input id="switch" type="checkbox"/>
+                        <label for="switch" style="margin-bottom: 7px;">Show Password</label>
+                    </p>
+                </form>
+            </div> -->
+
             {% if messages %}
                 {% for message in messages %}
                     {% if message.tags == 'success' %}
@@ -162,6 +174,14 @@
 
                 /* Inicialização do select */
                 $('select').formSelect();
+                alert("{{mode}}");
+                
+                if("{{mode}}"){
+                    $html.classList.add('dark-mode')
+                }
+                else{
+                    $html.classList.remove("dark-mode");
+                }
 
                 /* Inicialização do datepicker */
                 $('.datepicker').datepicker({
@@ -188,6 +208,21 @@
                     maxDate: new Date(),
                 }); 
             });
+
+            const $html = document.querySelector("html");
+            // const $checkbox = document.querySelector("#switch");
+
+            // $checkbox.addEventListener("change", function () {
+            //     $html.classList.toggle("dark-mode");
+            // });
+            // $('#id_mode').click(function () {
+            //     if($(this).is(':checked')){
+            //         $html.classList.add('dark-mode')
+            //     }
+            //     else{
+            //         $html.classList.remove("dark-mode");
+            //     }
+            // })
         </script>
 
         <!-- Script da Página -->

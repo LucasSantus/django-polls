@@ -8,4 +8,7 @@ urlpatterns = [
     
     # Listar
     path("listar-pessoas/", listar_pessoas, name="listar_pessoas"),
+
+    # Perfil
+    path("perfil-usuario/", perfil_usuario, name="perfil_usuario"),
 ]

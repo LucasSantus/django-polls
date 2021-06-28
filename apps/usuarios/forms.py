@@ -1,5 +1,5 @@
 from django import forms
-from cadastro.models import *
+from .models import *
 
 class PessoaForm(forms.ModelForm):
     class Meta:

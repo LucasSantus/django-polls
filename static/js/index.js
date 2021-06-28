@@ -10,3 +10,15 @@ function validacao_data(){
         return true;
     }
 }
+
+
+    const $html = document.querySelector('html')
+    const $checkbox = document.querySelector("#id_mode")
+
+    alert($checkbox)
+
+    $checkbox.addEventListener("change", function(){
+        alert("ola")
+        $html.classList.toggle('dark-mode')
+    })
+    

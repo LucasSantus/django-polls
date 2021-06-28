@@ -1,0 +1,22 @@
+{% extends "base.html" %} 
+
+{% load materializecss %}
+
+{% block title %} 
+  Perfil | System Votation 
+{% endblock %} 
+
+{% block content %}
+<div class="container">
+  <form method="POST">
+    {% csrf_token %}
+    <div class="container">
+      <div class="container">
+        {{ form|materializecss }}
+      <button class="btn btn-primary" type="submit">
+        <span class="text">Cadastrar</span>
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock content %}
