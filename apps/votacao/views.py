@@ -1,12 +1,10 @@
-
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
+from usuarios.models import Pessoa
 from django.contrib import messages
 
-
 def registrar_votacao(request):
-
     form = VotacaoForm()
     pessoa = Pessoa.objects.get(id=1)
 
@@ -27,20 +25,15 @@ def registrar_votacao(request):
         "pessoa": pessoa,
     }
 
-    return render(request, "cadastro/registrar_votacao.html", context)
+    return render(request, "votacao/votacao/registrar_votacao.html", context)
 
 def registrar_opcao(request):
-
     form = OpcaoVotoForm()
-
     if request.method == "POST":
         form = OpcaoVotoForm(request.POST)
-
         if form.is_valid():
             opcao_voto = form.save()
-
             opcao_voto.save()
-
             return redirect("index")
 
     context = {
@@ -48,17 +41,16 @@ def registrar_opcao(request):
         "form": form,
     }
 
-    return render(request, "cadastro/registrar_opcao.html", context)
+    return render(request, "votacao/opcao/registrar_opcao.html", context)
 
 def listar_votacoes(request):
-    
     votacoes = Votacao.objects.all()
 
     context = {
         "votacoes": votacoes,
     }
 
-    return render(request, "cadastro/listar_votacao.html", context)
+    return render(request, "votacao/votacao/listar_votacao.html", context)
 
 def listar_opcoes(request):
     

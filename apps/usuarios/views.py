@@ -1,7 +1,7 @@
 from django.shortcuts import render
+from .models import Pessoa
 
 def registrar_pessoa(request):
-
     form = PessoaForm()
 
     if request.method == "POST":
@@ -22,7 +22,7 @@ def registrar_pessoa(request):
         "form": form,
     }
 
-    return render(request, "cadastro/registrar_pessoa.html", context)
+    return render(request, "usuarios/registrar_pessoa.html", context)
 
 def listar_pessoas(request):
 
@@ -32,4 +32,4 @@ def listar_pessoas(request):
         "pessoas": pessoas,
     }
 
-    return render(request, "cadastro/listar_pessoa.html", context)
+    return render(request, "usuarios/listar_pessoas.html", context)

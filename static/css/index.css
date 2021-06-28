@@ -7,10 +7,8 @@
     font-size: large;
 }
 
-
-
-/* Texto de ínicio */
+/* Texto de ínicio
 .text-theme{
     width: 100%;
-    font-size: 60px;
-}
+    /* font-size: 60px; */
+} */
