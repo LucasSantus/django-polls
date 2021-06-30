@@ -8,25 +8,8 @@ from .colors import Color
 from django.contrib import messages
 
 def base(request):
-    # get_colors = Color.get_colors()
-    # pessoa = Pessoa.objects.get(id=1)
-    # if pessoa.mode == "MAIN":
-    #     colors = get_colors["main"]
-
-    # elif pessoa.mode == "DARK":
-    #     colors = get_colors["dark"]
-
-    # context = { 
-    #     'date': date.today(),
-    #     'colors': colors,
-    # }
-    # return context
-
-    pessoa = Pessoa.objects.get(id=1)
     context = { 
         'date': date.today(),
-        # 'colors': colors,
-        'mode': pessoa.mode, 
     }
     return context
 

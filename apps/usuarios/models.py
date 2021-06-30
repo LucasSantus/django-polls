@@ -24,12 +24,6 @@ class Pessoa(models.Model):
         unique=True,
     )
 
-    mode = models.BooleanField(
-        verbose_name = "Color:",
-        max_length = 11,
-        default = False,
-    )
-
     def get_cpf(self):
         if self.cpf:
             cpf = str(self.cpf)

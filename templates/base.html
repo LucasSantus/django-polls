@@ -34,7 +34,7 @@
 
     <body>
         <header>
-            <nav class="{{colors.primary_class}}">
+            <nav class="deep-purple">
                 <div class="nav-wrapper container">
                     <a href="/" class="brand-logo">System Votation</a>
                     <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -113,14 +113,14 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
-
+            
             {% block content %}
             {% endblock %}
         </main>
 
         <footer class="page-footer transparent">
             <div class="row" style="width: 80%;">
-                <div class="col s12 center {{colors.primary_class}}-text text-{{colors.primary_hue_class}}">
+                <div class="col s12 center deep-purple-text">
                     <span>&copy; 2020 - {{date.year}} Copyright System Votation, All rights reserved.</span>
                 </div>
             </div>
@@ -137,6 +137,8 @@
 
         <!-- Import Java Script DateTimePicker -->
         <script type="text/javascript" src="{% static 'js/datetimepicker.js' %}" defer></script>
+
+        <script src="{% static 'js/scripts.js' %}"></script>
 
         <style>
             /* Footer na Posição Inferior */
@@ -174,8 +176,8 @@
 
                 /* Inicialização do select */
                 $('select').formSelect();
-                alert("{{mode}}");
                 
+
                 if("{{mode}}"){
                     $html.classList.add('dark-mode')
                 }
@@ -210,19 +212,19 @@
             });
 
             const $html = document.querySelector("html");
-            // const $checkbox = document.querySelector("#switch");
+            const $checkbox = document.querySelector("#switch");
 
-            // $checkbox.addEventListener("change", function () {
-            //     $html.classList.toggle("dark-mode");
-            // });
-            // $('#id_mode').click(function () {
-            //     if($(this).is(':checked')){
-            //         $html.classList.add('dark-mode')
-            //     }
-            //     else{
-            //         $html.classList.remove("dark-mode");
-            //     }
-            // })
+            $checkbox.addEventListener("change", function () {
+                $html.classList.toggle("dark-mode");
+            });
+            $('#id_mode').click(function () {
+                if($(this).is(':checked')){
+                    $html.classList.add('dark-mode')
+                }
+                else{
+                    $html.classList.remove("dark-mode");
+                }
+            })
         </script>
 
         <!-- Script da Página -->
