@@ -9,16 +9,12 @@ class UsuarioManager(BaseUserManager):
         usuario = self.model(
             email=self.normalize_email(email),
         )
-
         usuario.is_active = True
         usuario.is_staff = False
         usuario.is_superuser = False
-
         if password:
             usuario.set_password(password)
-
         usuario.save()
-
         return usuario
 
     def create_superuser(self, email, password):
@@ -26,15 +22,11 @@ class UsuarioManager(BaseUserManager):
             email=self.normalize_email(email),
             password=password,
         )
-
         usuario.is_active = True
         usuario.is_staff = True
         usuario.is_superuser = True
-
         usuario.set_password(password)
-
         usuario.save()
-
         return usuario
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
@@ -47,18 +39,21 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     nome = models.CharField(
         verbose_name = "Nome Completo:",
         max_length=194,
+        null=True,
     )
 
     cpf = models.CharField(
         verbose_name = "CPF:",
         max_length=11,
         unique=True,
+        null=True,
     )
 
     data_nascimento = models.DateField(
         verbose_name = "Data de Nascimento:",
         auto_now_add=False,
         auto_now=False,
+        null=True,
     )
 
     is_active = models.BooleanField(

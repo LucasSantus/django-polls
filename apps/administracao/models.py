@@ -4,7 +4,7 @@ from usuarios.models import *
 
 class Pessoa_Voto(models.Model):
     pessoa = models.ForeignKey(
-        Pessoa, 
+        Usuario, 
         on_delete=models.CASCADE
     )
     votacao = models.ForeignKey(

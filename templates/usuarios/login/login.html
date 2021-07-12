@@ -1,0 +1,134 @@
+{% extends 'usuarios/base_login.html' %}
+
+{% load static %}
+
+{% load materializecss %}
+
+{% block title %}
+  Login | Sistema de Votação
+{% endblock %}
+
+{% block content %}
+  <div class="container center" style="margin-top: 8%;">
+    <div class="container">
+      <div class="container">
+          <div class="row">
+            <div class="col s12 m12	l12	xl12">
+              <div class="card">
+                <span class="card-title">
+                  <h5 style="font-weight:bold">ENTRAR</h5>
+                </span>
+                <div class="card-content">
+                  <div class="row">
+                    <form method="POST" class="user" validate="{% url 'validate_user' %}">
+                      {% csrf_token %}
+                      {{form|materializecss}}
+                      <p>
+                        <label style="margin-bottom: 7px;">
+                          <input id="check_login" type="checkbox" />
+                          <span>Show Password</span>
+                        </label>
+                      </p>
+                      <div class="container center">
+                        <button id="btn-login" class="btn btn-primary" type="submit">
+                          <span class="text">ENTRAR</span>
+                        </button>
+                      </div>
+                      <div class="center">
+                        <span>
+                          Não tem cadastro no sistema?
+                          <a id="inscrever" href="{% url 'signup' %}">
+                            Inscrever-se
+                          </a>
+                        </span>
+                        <div class="container">
+                          <div id="divider-rp" class="divider grey darken-2"></div>
+                          <a id="esqueceu" href="{% url 'reset_password' %}">
+                            Esqueceu a senha
+                          </a>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block css %}
+  <style>
+    #btn-login{
+      background-color: black;
+      color: white;
+      margin-top: 7px;
+      margin-bottom: 10px;
+    }
+
+    #btn-login:hover{
+        background-color: #424242;
+        color: white;
+    }
+
+    #divider-rp{
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+
+    #inscrever{
+        color: #039be5;
+        margin-top: 7px;
+    }
+
+    #inscrever:hover{
+        color: #81d4fa;
+    }
+
+    #esqueceu{
+        color: #039be5;
+        margin-top: 7px;
+    }
+
+    #esqueceu:hover{
+        color: #81d4fa;
+    }
+  </style>
+{% endblock %}
+
+{% block javascript %}
+  <!-- Função Ajax - Validar Usuário -->
+  <script>
+    $("#id_username").change(function () {
+      var form = $(this).closest("form");
+      $.ajax({
+        url: form.attr("validate"),
+        data: form.serialize(),
+        dataType: 'json',
+        success: function (data) {
+          if(!data.is_user){
+            M.toast({html: data.error_message})
+            $("#btn-login").attr("disabled", true);
+          }
+          else{
+            $("#btn-login").attr("disabled", false);
+          }
+        }
+      });
+    });
+  </script>
+
+  <!-- Mostrar/Ocultar Senha -->
+  <script>
+    $('#check_login').click(function () {
+      if($(this).is(':checked')){
+        $("#id_password").attr("type", "text");
+      } 
+      else {
+        $("#id_password").attr("type", "password");
+      }
+    })
+  </script>
+{% endblock %}

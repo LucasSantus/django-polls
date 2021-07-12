@@ -7,12 +7,6 @@
     font-size: large;
 }
 
-/* Texto de ínicio
-.text-theme{
-    width: 100%;
-    /* font-size: 60px; */
-} */
-
 body {
     display: flex;
     min-height: 100vh;
@@ -45,40 +39,4 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {   
     background-color: darkgrey;   
-}
-
-/* LOGIN */
-#btn-login{
-    background-color: black;
-    color: white;
-    margin-top: 7px;
-    margin-bottom: 10px;
-}
-
-#btn-login:hover{
-    background-color: #424242;
-    color: white;
-}
-
-#divider-rp{
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
-#inscrever{
-    color: #039be5;
-    margin-top: 7px;
-}
-
-#inscrever:hover{
-    color: #81d4fa;
-}
-
-#esqueceu{
-    color: #039be5;
-    margin-top: 7px;
-}
-
-#esqueceu:hover{
-    color: #81d4fa;
 }

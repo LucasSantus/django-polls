@@ -71,7 +71,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -81,21 +80,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-AUTH_USER_MODEL = "usuarios.Usuario"
 
-LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = "index"
-
-#SMTP
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'lucayasiltos@gmail.com'
-EMAIL_HOST_PASSWORD = 'iykuzqxmxiawdjtg'
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Sign Up <lucayasiltos@gmail.com>'
-
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+AUTH_PASSWORD_VALIDATORS = [
+    {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
@@ -109,7 +96,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -122,7 +108,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
