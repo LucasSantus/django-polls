@@ -53,21 +53,13 @@
                 <li><a href="{% url 'listar_pessoas' %}">Pessoas</a></li>
                 <li><a href="{% url 'listar_votacoes' %}">Votações</a></li>
                 <li><a href="{% url 'listar_opcoes' %}">Opções de Votos</a></li>
+                <li><a href="{% url 'perfil_usuario' %}">Perfil</a></li>
                 <!-- <li><a href="/">About Us</a></li>
                 <li><a href="/">Contact Us</a></li> -->
             </ul>
         </header>
 
         <main>
-            <!-- <div class="center">
-                <form method="POST">
-                    <p>
-                        <input id="switch" type="checkbox"/>
-                        <label for="switch" style="margin-bottom: 7px;">Show Password</label>
-                    </p>
-                </form>
-            </div> -->
-
             {% if messages %}
                 {% for message in messages %}
                     {% if message.tags == 'success' %}
