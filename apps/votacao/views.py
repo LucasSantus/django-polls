@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
-from usuarios.models import Pessoa
+from usuarios.models import Usuario
 from django.contrib import messages
 
 def registrar_votacao(request):
     form = VotacaoForm()
-    pessoa = Pessoa.objects.get(id=1)
+    usuario = Usuario.objects.get(id=1)
 
     if request.method == "POST":
         form = VotacaoForm(request.POST)
@@ -22,7 +22,7 @@ def registrar_votacao(request):
     context = {
         "nome_pagina": "Registrar Votação",
         "form": form,
-        "pessoa": pessoa,
+        "usuario": usuario,
     }
 
     return render(request, "votacao/votacao/registrar_votacao.html", context)

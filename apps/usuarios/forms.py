@@ -1,9 +1,16 @@
 from django import forms
 from .models import *
 
-class PessoaForm(forms.ModelForm):
+class UsuarioForm(forms.ModelForm):
+    def save(self, commit=True):
+        user = super(UsuarioForm, self).save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+        return user
+
     class Meta:
-        model = Pessoa
+        model = Usuario
         fields = ('__all__')
 
         error_messages = {
