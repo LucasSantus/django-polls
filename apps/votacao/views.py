@@ -60,7 +60,7 @@ def listar_opcoes(request):
         "opcoes": opcoes,
     }
 
-    return render(request, "cadastro/listar_opcoes.html", context)
+    return render(request, "votacao/opcao_voto/listar_opcoes.html", context)
 
 def detalhe_votacao(request, id_votacao):
 

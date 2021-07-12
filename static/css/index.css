@@ -1,12 +1,4 @@
-/* CARD's */
-.container .container .card{
-    padding: 2%;
-}
-
-.container .container .card .container h2 span{
-    font-size: large;
-}
-
+/* FOOTER INFERIOR */
 body {
     display: flex;
     min-height: 100vh;
@@ -17,18 +9,7 @@ main {
     flex: 1 0 auto;
 }
 
-#privacy{
-color: #616161;
-}
-
-#privacy:hover{
-color: #9e9e9e;
-}
-
-#id_btn_privacy{
-background-color: black;
-}
-
+/* BARRA ROLAGEM PERSONALIZADA */
 html {
     scroll-behavior: smooth;
 }
@@ -39,4 +20,10 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {   
     background-color: darkgrey;   
+}
+
+/* COLOR LINK NAVBAR */
+.nav-wrapper a,
+.sidenav a{
+    color: white,
 }

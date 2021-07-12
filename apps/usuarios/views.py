@@ -34,26 +34,25 @@ def registrar_pessoa(request):
     return render(request, "usuarios/registrar_pessoa.html", context)
 
 def listar_pessoas(request):
-    pessoas = Pessoa.objects.all()
+    usuarios = Usuario.objects.all()
     context = {
-        "pessoas": pessoas,
+        "pessoas": usuarios,
     }
     return render(request, "usuarios/listar_pessoas.html", context)
 
 def perfil_usuario(request):
-    pessoa = Pessoa.objects.get(id=1)
+    usuario = Usuario.objects.get(id=request.user.id)
     if request.method == "POST":
-        form = PessoaForm(request.POST, instance=pessoa)
+        form = UsuarioForm(request.POST, instance=usuario)
         if form.is_valid():
             form.save()
             return redirect('index')
     else:
-        form = PessoaForm(instance=pessoa)
+        form = UsuarioForm(instance=usuario)
     
     context = {
         'form': form,
     }
-
     return render(request, "usuarios/perfil_usuario.html", context)
 
 # Validar se o usuário está cadastrado.
@@ -69,30 +68,22 @@ def validate_user(request):
 
 def validate_email(request):
     email = request.GET.get('email', None)
-
     data = {
         'is_email': Usuario.objects.filter(email__iexact=email).exists(),
     }
-
     if data['is_email']:
         data['error_message'] = 'Este e-mail já está cadastrado!'
-
     return JsonResponse(data)
 
 def validate_email_registered(request):
     email = request.GET.get('email', None)
-    
     data = {
         'is_email_registered': Usuario.objects.filter(email__iexact=email).exists(),
     }
-
     print(data["is_email_registered"])
-
     if not data['is_email_registered']:
         data['error_message'] = 'Este e-mail não está cadastrado no sistema!'
-
     return JsonResponse(data)
-
 
 def edit_user(request, pk):
     user = get_object_or_404(Usuario, pk=pk)
@@ -102,9 +93,7 @@ def edit_user(request, pk):
             return redirect('post_detail', pk=user.pk)
     else:
         form = UsuarioForm(instance=user)
-
     context = {
         "form": form,
     }
-
     return render(request, 'administracao/post_edit.html', context)

@@ -6,13 +6,13 @@
 
 {% block content %}
     {% if votacoes %}
-        <div class="container format-form">
+        <div class="container format-table">
             <table class="responsive-table centered highlight striped z-depth-3">
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Horário Ínicio</th>
-                        <th>Horário Término</th>
+                        <th>Título</th>
+                        <th>Horário de Ínicio</th>
+                        <th>Horário de Término</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -22,7 +22,7 @@
                             <td>{{votacao.titulo}}</td>
                             <td>{{votacao.data_inicio}}</td>
                             <td>{{votacao.data_fim}}</td>
-                            <td><a href="{% url 'validacao' votacao.id %}" class="{{colors.primary_class}} btn"><span>Votar</span></a></td>
+                            <td><a id="btn_index" href="{% url 'validacao' votacao.id %}" class="btn"><span>Votar</span></a></td>
                         </tr>
                     {% endfor %} 
                 </tbody>
@@ -33,9 +33,20 @@
 
 {% block css %}
     <style>
-        .format-form{
-            margin-top: 3%; 
-            padding: 5px;
+        .format-table{
+            margin-top: 3%;
+
+        }
+
+        #btn_index{
+            background-color: #673ab7;
+            color: white;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        #btn_index:hover{
+            background-color: #9575cd;
         }
     </style>
 {% endblock %}

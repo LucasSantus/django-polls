@@ -19,7 +19,7 @@ def validacao(request, id_votacao):
     return render(request, "administracao/validacao.html")
 
 def votar(request, id_votacao, id_pessoa):
-    pessoa = Pessoa.objects.get(pk=id_pessoa)
+    pessoa = Usuario.objects.get(pk=id_pessoa)
     votacao = Votacao.objects.get(pk=id_votacao)
     listOpcaoVoto = OpcaoVoto.objects.filter(votacao=votacao)
 
