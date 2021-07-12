@@ -1,0 +1,42 @@
+{% extends 'base_login.html' %}
+
+{% load static %}
+
+{% load materializecss %}
+
+{% block title %}
+    Edit | Sign UP
+{% endblock %}
+
+{% block content %}
+    <div class="container center" style="margin-top: 4%;">
+        <div class="container">
+            <div class="container">
+                <img src="{% static 'images/signin.svg' %}" width="65px" height="65px">
+
+                <div>
+                    <h5 style="font-weight:bold">Edit</h5>
+                </div>
+
+                <form method="POST" class="user" validate-user="{% url 'validate_user' %}">
+                    {% csrf_token %}
+                    {{ form|materializecss }}
+
+                    <div class="container center">
+                        <button id="btn-login" class="btn btn-primary" type="submit">
+                            <span class="text">CONFIRM</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function(){
+            $("#id_password").attr("required", false);
+        });
+    </script>
+{% endblock %}
