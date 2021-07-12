@@ -3,7 +3,6 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-
     # Registrar
     path("registrar-votacao/", registrar_votacao, name="registrar_votacao"),
     path("registrar-opcao-voto/", registrar_opcao, name="registrar_opcao"),

@@ -30,7 +30,9 @@
     </head>
 
     <body>
+        <!-- HEADER -->
         <header>
+            <!-- NAVBAR -->
             <nav class="deep-purple">
                 <div class="nav-wrapper container">
                     <a href="/" class="brand-logo">Sistema de Votação</a>
@@ -45,6 +47,8 @@
                     </ul>
                 </div>
             </nav>
+
+            <!-- SIDENAV -->
             <ul class="sidenav" id="mobile-demo">
                 <li><a href="/">Dashboard</a></li>
                 <li><a href="{% url 'listar_pessoas' %}">Pessoas</a></li>
@@ -55,6 +59,7 @@
             </ul>
         </header>
 
+        <!-- MAIN -->
         <main>
             {% if messages %}
                 {% for message in messages %}
@@ -101,11 +106,12 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
-            
+
             {% block content %}
             {% endblock %}
         </main>
 
+        <!-- FOOTER -->
         <footer class="page-footer transparent">
             <div class="row" style="width: 80%;">
                 <div class="col s12 center deep-purple-text">
@@ -116,10 +122,10 @@
 
         <!-- Import JQuery -->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-        
+
         <!-- Import Java Script Personalizado -->
         <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
-        
+
         <!-- Import Java Script Materialize -->
         <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
 
@@ -128,35 +134,6 @@
 
         <script src="{% static 'js/scripts.js' %}"></script>
 
-        <style>
-            /* Footer na Posição Inferior */
-            body {
-                display: flex;
-                min-height: 100vh;
-                flex-direction: column;
-            }
-            main {
-                flex: 1 0 auto;
-            }
-
-            /* Estilização dos Alert's */
-            .alert{
-                margin-top: 2%;
-                margin-bottom: 2%;
-            }
-            .alert .card-content span{
-                font-weight: bold;
-                font-size: 2em;
-                margin-right:4px;
-            }
-            .alert .card-content .material-icons {
-                font-size: 1.5em;
-                position: relative;
-                top: 5px;
-                margin-right: 0.5em;
-            } 
-        </style>
-
         <script>
             $(document).ready(function(){
                 /* Inicialização do sidenav */
@@ -164,14 +141,6 @@
 
                 /* Inicialização do select */
                 $('select').formSelect();
-                
-
-                if("{{mode}}"){
-                    $html.classList.add('dark-mode')
-                }
-                else{
-                    $html.classList.remove("dark-mode");
-                }
 
                 /* Inicialização do datepicker */
                 $('.datepicker').datepicker({
@@ -198,21 +167,6 @@
                     maxDate: new Date(),
                 }); 
             });
-
-            const $html = document.querySelector("html");
-            const $checkbox = document.querySelector("#switch");
-
-            $checkbox.addEventListener("change", function () {
-                $html.classList.toggle("dark-mode");
-            });
-            $('#id_mode').click(function () {
-                if($(this).is(':checked')){
-                    $html.classList.add('dark-mode')
-                }
-                else{
-                    $html.classList.remove("dark-mode");
-                }
-            })
         </script>
 
         <!-- Script da Página -->

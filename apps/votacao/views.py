@@ -6,21 +6,17 @@ from django.contrib import messages
 
 def registrar_votacao(request):
     form = VotacaoForm()
-    usuario = Usuario.objects.get(id=1)
+    usuario = Usuario.objects.get(id=request.user.id)
 
     if request.method == "POST":
         form = VotacaoForm(request.POST)
-
         if form.is_valid():
             votacao = form.save()
             votacao.save()
-
-            messages.success(request,"HIHIIH")
-
+            messages.success(request,"A nova votação foi inserida com sucesso!")
             return redirect("index")
 
     context = {
-        "nome_pagina": "Registrar Votação",
         "form": form,
         "usuario": usuario,
     }
@@ -45,10 +41,12 @@ def registrar_opcao(request):
 
 def listar_votacoes(request):
     votacoes = Votacao.objects.all()
-
     context = {
         "votacoes": votacoes,
     }
+
+    if not votacoes:
+        messages.info(request,"Não existem votações registradas!")
 
     return render(request, "votacao/votacao/listar_votacao.html", context)
 
