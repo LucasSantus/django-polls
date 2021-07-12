@@ -9,46 +9,119 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container" style="margin-top: 1%;">
+
+
+  <div class="container center" style="margin-top: 6%;">
     <div class="container">
-      <div class="container">
-        <div class="text-left mb-5 center">
-          <img src="{% static 'images/signup.svg' %}" width="20%" height="20%">
-          <h5 style="font-weight:bold">SIGN UP</h5>
-        </div>
-        <form method="POST" class="user" validate="{% url 'validate_email' %}">
-          {% csrf_token %}
-            <div class="row center">
-              {{form|materializecss}}
-              <span class="helper-text center" data-error="wrong" data-success="right">
-                Your password must contain at least 8 characters.<br>
-                Your password must contain at least one lowercase and uppercase letter.<br>
-                Your password must contain special characters.<br>
-                Your password cannot be entirely numeric.
-              </span>
-              <div class="input-field col s12">
-                <input type="password" name="confirm_password" class="validate" required="" id="id_confirm_password">
-                <label for="id_confirm_password">Confirm password</label> 
-              </div>
-          </div>
-
-          <div class="col s12">
-            <input id="check" type="checkbox"/>
-            <label for="check">Show Password</label>
-          </div>
-
           <div class="row">
-            <div class="container center">
-              <a id="btn_back_signup" href="#modal-back" class="waves-effect waves-light btn modal-trigger">
-                <span class="text">BACK</span>
-              </a>
-              <button id="btn_signup_signup" class="btn btn-primary" type="submit">
-                <span class="text">SIGN UP</span>
-              </button>
+            <div class="col s12 m12	l12	xl12">
+              <div class="card">
+                <span class="card-title">
+                  <h5 style="font-weight:bold">CADASTRAR-SE</h5>
+                </span>
+                <div class="card-content">
+                  <div class="row">
+                    <form method="POST" class="user" validate="{% url 'validate_email' %}">
+                      {% csrf_token %}
+                        <div class="row center">
+                          
+                            <div class="input-field col s12 m6 x6 xl6">
+                              <input type="text" name="nome" maxlength="194" class=" validate" required="" id="id_nome">
+                              <label class="" for="id_nome">Nome Completo:</label>
+                            </div>
+
+                            <div class="input-field col s12 m6 x6 xl6">
+                                <input type="email" name="email" maxlength="194" class=" validate" required="" id="id_email">
+                              <label class="" for="id_email">E-mail</label>
+                            </div>
+
+                            <div class="input-field col s12 m6 x6 xl6">
+                              <input type="text" name="cpf" maxlength="11" class=" validate" required="" id="id_cpf">
+                              <label class="" for="id_cpf">CPF:</label>
+                            </div>
+
+                            <div class="input-field col s12 m6 x6 xl6">
+                                <input type="date" id="id_data_nascimento" name="data_nascimento" class="datepicker" value="">
+                                <label for="id_data_nascimento" class="">Data de Nascimento:</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                              <input type="password" name="password" maxlength="128" class=" validate" required="" id="id_password">
+                              <label class="" for="id_password">Senha</label>
+                            </div>
+
+                            <!-- <div class="input-field col s12">
+                                <input type="datetime-local" id="id_last_login" name="last_login" value="" class=" validate">
+                                <label for="id_last_login">Último login</label>
+                            </div>
+
+                            <div class="col s12">
+                                <div class="">
+                                    <label>
+                                      <input type="checkbox" name="is_active" id="id_is_active" checked="">
+                                      <span>Usuário está ativo</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col s12">
+                                <div class="">
+                                    <label>
+                                            <input type="checkbox" name="is_staff" id="id_is_staff">
+                                                <span>Usuário é da equipe de desenvolvimento</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col s12">
+                                <div class="">
+                                    <label>
+                                            <input type="checkbox" name="is_superuser" id="id_is_superuser">
+                                                <span>Usuário é um superusuário</span>
+                                    </label>
+                                </div>
+                            </div>
+                            </div> -->
+                          <!-- {{form|materializecss}} -->
+
+                          <span class="helper-text center" data-error="wrong" data-success="right">
+                            A senha deve conter pelo menos 8 caracteres. <br>
+                            A senha deve conter pelo menos uma letra maiúscula e minúscula. <br>
+                            A senha deve conter caracteres especiais. <br>
+                            A senha não pode ser totalmente numérica.
+                          </span>
+
+                          
+                          <div class="input-field col s12">
+                            <input type="password" name="confirm_password" class="validate" required="" id="id_confirm_password">
+                            <label for="id_confirm_password">Confirm password</label> 
+                          </div>
+                        
+                      
+                      <p>
+                        <label style="margin-bottom: 7px;">
+                          <input id="check" type="checkbox" />
+                          <span>Show Password</span>
+                        </label>
+                      </p>
+
+                      <div class="row">
+                        <div class="container center">
+                          <a id="btn_back_signup" href="#modal-back" class="waves-effect waves-light btn modal-trigger">
+                            <span class="text">BACK</span>
+                          </a>
+                          <button id="btn_signup_signup" class="btn btn-primary" type="submit">
+                            <span class="text">SIGN UP</span>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </form>
-      </div>
+      
     </div>
   </div>
 
