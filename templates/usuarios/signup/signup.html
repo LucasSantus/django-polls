@@ -9,131 +9,93 @@
 {% endblock %}
 
 {% block content %}
-
-
   <div class="container center" style="margin-top: 6%;">
     <div class="container">
-          <div class="row">
-            <div class="col s12 m12	l12	xl12">
-              <div class="card">
-                <span class="card-title">
-                  <h5 style="font-weight:bold">CADASTRAR-SE</h5>
-                </span>
-                <div class="card-content">
-                  <div class="row">
-                    <form method="POST" class="user" validate="{% url 'validate_email' %}">
-                      {% csrf_token %}
-                        <div class="row center">
-                          
-                            <div class="input-field col s12 m6 x6 xl6">
-                              <input type="text" name="nome" maxlength="194" class=" validate" required="" id="id_nome">
-                              <label class="" for="id_nome">Nome Completo:</label>
-                            </div>
+      <div class="row">
+        <div class="col s12 m12	l12	xl12">
+          <div class="card">
+            <span class="card-title">
+              <h5 style="font-weight:bold">CADASTRAR-SE</h5>
+            </span>
+            <div class="card-content">
+              <div class="row">
+                <form method="POST" class="user" validate="{% url 'validate_email' %}">
+                  {% csrf_token %}
+                  <div class="row center">
+                    <div class="input-field col s12 m6 x6 xl6">
+                      <input type="text" name="nome" maxlength="194" class=" validate" required="" id="id_nome">
+                      <label class="" for="id_nome">Nome Completo:</label>
+                    </div>
 
-                            <div class="input-field col s12 m6 x6 xl6">
-                                <input type="email" name="email" maxlength="194" class=" validate" required="" id="id_email">
-                              <label class="" for="id_email">E-mail</label>
-                            </div>
+                    <div class="input-field col s12 m6 x6 xl6">
+                        <input type="email" name="email" maxlength="194" class=" validate" required="" id="id_email">
+                      <label class="" for="id_email">E-mail</label>
+                    </div>
 
-                            <div class="input-field col s12 m6 x6 xl6">
-                              <input type="text" name="cpf" maxlength="11" class=" validate" required="" id="id_cpf">
-                              <label class="" for="id_cpf">CPF:</label>
-                            </div>
+                    <div class="input-field col s12 m6 x6 xl6">
+                      <input type="text" name="cpf" maxlength="11" class=" validate" required="" id="id_cpf">
+                      <label class="" for="id_cpf">CPF:</label>
+                    </div>
 
-                            <div class="input-field col s12 m6 x6 xl6">
-                                <input type="date" id="id_data_nascimento" name="data_nascimento" class="datepicker" value="">
-                                <label for="id_data_nascimento" class="">Data de Nascimento:</label>
-                            </div>
+                    <div class="input-field col s12 m6 x6 xl6">
+                        <input type="date" id="id_data_nascimento" name="data_nascimento" class="datepicker" value="">
+                        <label for="id_data_nascimento" class="">Data de Nascimento:</label>
+                    </div>
 
-                            <div class="input-field col s12">
-                              <input type="password" name="password" maxlength="128" class=" validate" required="" id="id_password">
-                              <label class="" for="id_password">Senha</label>
-                            </div>
+                    <div class="input-field col s12">
+                      <input type="password" name="password" maxlength="128" class=" validate" required="" id="id_password">
+                      <label class="" for="id_password">Senha</label>
+                    </div>
 
-                            <!-- <div class="input-field col s12">
-                                <input type="datetime-local" id="id_last_login" name="last_login" value="" class=" validate">
-                                <label for="id_last_login">Último login</label>
-                            </div>
+                    <span class="helper-text center" data-error="wrong" data-success="right">
+                      A senha deve conter pelo menos 8 caracteres. <br>
+                      A senha deve conter pelo menos uma letra maiúscula e minúscula. <br>
+                      A senha deve conter caracteres especiais. <br>
+                      A senha não pode ser totalmente numérica.
+                    </span>
 
-                            <div class="col s12">
-                                <div class="">
-                                    <label>
-                                      <input type="checkbox" name="is_active" id="id_is_active" checked="">
-                                      <span>Usuário está ativo</span>
-                                    </label>
-                                </div>
-                            </div>
+                    <div class="input-field col s12">
+                      <input type="password" name="confirm_password" class="validate" required="" id="id_confirm_password">
+                      <label for="id_confirm_password">Confirm password</label> 
+                    </div>
 
-                            <div class="col s12">
-                                <div class="">
-                                    <label>
-                                            <input type="checkbox" name="is_staff" id="id_is_staff">
-                                                <span>Usuário é da equipe de desenvolvimento</span>
-                                    </label>
-                                </div>
-                            </div>
+                    <p>
+                      <label>
+                        <input id="check" type="checkbox" />
+                        <span>Show Password</span>
+                      </label>
+                    </p>
 
-                            <div class="col s12">
-                                <div class="">
-                                    <label>
-                                            <input type="checkbox" name="is_superuser" id="id_is_superuser">
-                                                <span>Usuário é um superusuário</span>
-                                    </label>
-                                </div>
-                            </div>
-                            </div> -->
-                          <!-- {{form|materializecss}} -->
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="container center">
+                        <a id="btn_back_signup" href="#modal-back" class="waves-effect waves-light btn modal-trigger">
+                          <span class="text">VOLTAR</span>
+                        </a>
 
-                          <span class="helper-text center" data-error="wrong" data-success="right">
-                            A senha deve conter pelo menos 8 caracteres. <br>
-                            A senha deve conter pelo menos uma letra maiúscula e minúscula. <br>
-                            A senha deve conter caracteres especiais. <br>
-                            A senha não pode ser totalmente numérica.
-                          </span>
-
-                          
-                          <div class="input-field col s12">
-                            <input type="password" name="confirm_password" class="validate" required="" id="id_confirm_password">
-                            <label for="id_confirm_password">Confirm password</label> 
-                          </div>
-                        
-                      
-                      <p>
-                        <label style="margin-bottom: 7px;">
-                          <input id="check" type="checkbox" />
-                          <span>Show Password</span>
-                        </label>
-                      </p>
-
-                      <div class="row">
-                        <div class="container center">
-                          <a id="btn_back_signup" href="#modal-back" class="waves-effect waves-light btn modal-trigger">
-                            <span class="text">BACK</span>
-                          </a>
-                          <button id="btn_signup_signup" class="btn btn-primary" type="submit">
-                            <span class="text">SIGN UP</span>
-                          </button>
-                        </div>
+                        <button id="btn_signup_signup" class="btn btn-primary" type="submit">
+                          <span class="text">SALVAR</span>
+                        </button>
                       </div>
-                    </form>
+                    </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
-      
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Modal Structure -->
   <div id="modal-back" class="modal">
     <div class="modal-content">
-      <h4>Back to Dashboard</h4>
-      <p>Do you really want to continue this action?</p>
+      <h4>Voltar para Login</h4>
+      <p>Você realmente deseja continuar esta ação?</p>
     </div>
     <div class="modal-footer">
-      <a id="btn_modal_exit_signup" href="" class="modal-close btn btn-flat">EXIT</a>
-      <a id="btn_modal_confirm_signup" href="{% url 'login' %}" class="modal-close btn btn-flat">CONFIRM</a>
+      <a id="btn_modal_exit_signup" href="" class="modal-close btn btn-flat">SAIR</a>
+      <a id="btn_modal_confirm_signup" href="{% url 'login' %}" class="modal-close btn btn-flat">CONTINUAR</a>
     </div>
   </div>
 {% endblock %}
@@ -142,21 +104,21 @@
   <style>
     #btn_back_signup{
       margin-top: 5px;
-      background-color: black;
+      background-color: #673ab7;
       color: white;
     }
     #btn_back_signup:hover{
-      background-color: #424242;
+      background-color: #9575cd;
       color: white;
     }
 
     #btn_signup_signup{
       margin-top: 5px;
-      background-color: black;
+      background-color: #673ab7;
       color: white;
     }
     #btn_signup_signup:hover{
-      background-color: #424242;
+      background-color: #9575cd;
       color: white;
     }
 
