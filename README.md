@@ -1,14 +1,20 @@
-## Sistema de Votação
+<h1 align="center">Sistema de Votação</h1>
 
-![License](https://img.shields.io/github/license/LucasSantus/sistema-votacao)
-![Languages](https://img.shields.io/github/languages/count/LucasSantus/sistema-votacao)
-![GitHub repo size](https://img.shields.io/github/repo-size/LucasSantus/sistema-votacao)
+<p align="center">
+ <a href="#sobre">Sobre</a> •
+ <a href="#porque">Por Que</a> •
+ <a href="#tecnologias">Tecnologias</a> •
+ <a href="#autor">Autor</a> •
+ <a href="#license">Licença</a>
+</p>
 
-Se você quiser dar uma olhada em todas as telas do aplicativo, elas estão [aqui] (link).
+<h6 align="center"> 
+	Se você quiser visualizar as imagens do aplicativo, clique <a href="#autor">aqui</a>.
+</h6>
 
---------------------------------------------------------------------------------------
+### Sobre
 
-### Sobre o Projeto
+Este projeto foi desenvolvido baseado utilizando o django framework no back-end, a construção d 
 
 A ideia é:
 
@@ -20,11 +26,19 @@ Este repositório tem foco, na criação de um Sistema de Votacao, interligado a
 
 ### Por Que?
 
-Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso você fornecer algum feedback sobre o mesmo, código, estrutura, funcionalidade ou qualquer coisa que você possa relatar para melhora-lo.
+Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso você forneça algum feedback, código, estrutura, funcionalidade ou qualquer funcionalidade&melhoria que você possa relatar para melhora-lo.
 
 Você pode usar este projeto como quiser, seja para estudar, fazer melhorias, você que manda!
 
 Este é um projeto totalmente grátis!
+
+--------------------------------------------------------------------------------------
+
+### Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [Materialize](https://materializecss.com/)
 
 --------------------------------------------------------------------------------------
 
@@ -85,13 +99,18 @@ http://127.0.0.1:8000/admin/
 
 --------------------------------------------------------------------------------------
 
-### Autor(es)
- 
-- **Lucas Santos:** [GitHub](https://github.com/LucasSantus)
- 
-Siga-me no github!
+### Autor
 
-Obrigado por me visitar e boa codificação!
+<div align="left"> 
+	<a href="https://github.com/LucasSantus">
+		<img style="border-radius: 50%;" src="https://github.com/LucasSantus.png" width="100px;" alt=""/>
+		<br />
+		Lucas Santus
+	</a>
+</div>
+<br />
+Feito com ❤️ por Lucas Santus!<br />
+Obrigado por visitar e boa codificação!<br />
 
 --------------------------------------------------------------------------------------
 
