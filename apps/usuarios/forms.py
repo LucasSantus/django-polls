@@ -16,6 +16,7 @@ class UsuarioForm(forms.ModelForm):
         error_messages = {
             "nome":{
                 "required": "O nome completo da pessoa é obrigatório para o registro",
+                "invalid": "Por favor, insira um CPF válido!",
             },
 
             "cpf":{

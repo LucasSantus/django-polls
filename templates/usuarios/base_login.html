@@ -82,6 +82,20 @@
       });
     </script>
 
+    <!-- Mostrar e Ocultar Senha -->
+    <script>
+        $('#check_login').click(function () {
+          if($(this).is(':checked')){
+              $("#id_new_password1").attr("type", "text");
+              $("#id_new_password2").attr("type", "text");
+          }
+          else {
+              $("#id_new_password1").attr("type", "password");
+              $("#id_new_password2").attr("type", "password");
+          }
+        })
+    </script>
+
     {% block javascript %}
     {% endblock %}
   </body>
