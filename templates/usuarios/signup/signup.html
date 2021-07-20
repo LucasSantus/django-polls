@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="input-field col s12 m6 x6 xl6">
-                      <input type="text" id="id_data_nascimento" name="data_nascimento" class="datepickerrr" value="">
+                      <input type="text" id="id_data_nascimento" name="data_nascimento" class="" value="">
                       <label for="id_data_nascimento" class="">Data de Nascimento:</label>
                     </div>
 
@@ -98,25 +98,40 @@
       <a id="btn_modal_confirm_signup" href="{% url 'login' %}" class="modal-close bt-primary btn btn-flat z-depth-4">CONTINUAR</a>
     </div>
   </div>
+
+      <!-- Import JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+
+    <!-- Import JQuery -->
+    <!-- <script type="text/javascript" src="{% static 'js/jquery.min.js' %}" defer></script> -->
+
+    <!-- Import JQuery Slim -->
+    <!-- <script type="text/javascript" src="{% static 'js/jquery.slim.min.js' %}" defer></script> -->
+
+    <!-- Import JQuery Mask -->
+    <script type="text/javascript" src="{% static 'js/jquery.mask.js' %}" defer></script>
+
+    <!-- Import Java Script Materialize -->
+    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
+
+    <!-- Import Java Script Personalizado -->
+    <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
+
 {% endblock %}
 
 {% block css %}
 {% endblock %}
 
 {% block javascript %}
-  <script>
-    $(document).ready(function(){
-      
-    }); 
-  </script>
-
   <!-- Inicialização da Página -->
   <script>
     $(document).ready(function(){
-      $("#id_data_nascimento").addClass('datepicker').attr("type","text"); 
+      $("#id_data_nascimento").addClass('datepickera').attr("type","text"); 
+      $("#id_cpf").mask("999.999.999-99");
 
       $("#id_password").attr("type", "password");
       $("#id_confirm_password").attr("type", "password");
+      
     });
   </script>
 

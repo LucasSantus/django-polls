@@ -51,16 +51,22 @@
     </footer>
 
     <!-- Import JQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script> -->
+
+    <!-- Import JQuery -->
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Import JQuery Slim -->
+    <script type="text/javascript" src="{% static 'js/jquery.slim.min.js' %}" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Import JQuery Mask -->
+    <script type="text/javascript" src="{% static 'js/jquery.mask.js' %}" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
     <!-- Import Java Script Materialize -->
-    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
-
-    <!-- Import JQueryMask -->
-    <script type="text/javascript" src="{% static 'js/jquery_mask.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
 
     <!-- Import Java Script Personalizado -->
-    <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 
     <script>
       $(document).ready(function(){
