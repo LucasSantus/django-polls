@@ -19,6 +19,7 @@ Este projeto foi desenvolvido utilizando o django framework como back-end o fram
 A ideia é:
 
 _"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado utilizando o Django framework"_
+
 --------------------------------------------------------------------------------------
 
 <h3 id="porque"> Por Que?</h3>
