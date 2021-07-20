@@ -9,14 +9,14 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container center" style="margin-top: 6%;">
+  <div class="container center mt-6">
     <div class="container">
       <div class="container">
           <div class="row">
             <div class="col s12 m12	l12	xl12">
-              <div class="card">
+              <div class="card p-2">
                 <span class="card-title">
-                  <h5 style="font-weight:bold">LOGAR</h5>
+                  <h5 class="fw-bold">LOGIN</h5>
                 </span>
                 <div class="card-content">
                   <div class="row">
@@ -25,30 +25,29 @@
                       <div class="container">
                         {{form|materializecss}}
                       </div>
-                      <p>
-                        <label style="margin-bottom: 7px;">
+
+                      <p class="mb-2">
+                        <label>
                           <input id="check_login" type="checkbox" />
                           <span>Show Password</span>
                         </label>
                       </p>
 
-                      <div class="container center">
-                        <button id="btn-login" class="btn btn-primary" type="submit">
-                          <span class="text">ENTRAR</span>
-                        </button>
-                      </div>
+                      <div class="row center">
+                          <button id="btn-login" class="center waves-effect waves-light btn bt-primary z-depth-4" type="submit">
+                            ENTRAR
+                          </button>
+
+                          <a class="center waves-effect waves-light btn bt-secondary z-depth-4 btn-small" href="{% url 'signup' %}">
+                            REGISTRAR
+                          </a>
+                        </div>
 
                       <div class="center">
-                        <span>
-                          Não tem cadastro no sistema?
-                          <a id="cadastrar" href="{% url 'signup' %}">
-                            Cadastrar
-                          </a>
-                        </span>
                         <div class="container">
-                          <div id="divider-rp" class="divider grey darken-2"></div>
+                          Esqueceu a senha?
                           <a id="esqueceu" href="{% url 'reset_password' %}">
-                            Esqueceu a senha
+                            Recuperar
                           </a>
                         </div>
                       </div>
@@ -66,26 +65,6 @@
 
 {% block css %}
   <style>
-    #btn-login{
-      background-color: #673ab7;
-      color: white;
-      margin-top: 15px;
-      margin-bottom: 10px;
-    }
-
-    #btn-login:hover{
-      background-color: #9575cd;
-    }
-
-    #cadastrar{
-        color: #039be5;
-        margin-top: 7px;
-    }
-
-    #cadastrar:hover{
-        color: #81d4fa;
-    }
-
     #esqueceu{
         color: #039be5;
         margin-top: 7px;

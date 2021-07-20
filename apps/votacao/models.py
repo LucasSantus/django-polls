@@ -40,7 +40,7 @@ class Votacao(models.Model):
 
 class OpcaoVoto(models.Model):
     nome = models.CharField(
-        verbose_name = "Nome",
+        verbose_name = "Nome:",
         max_length=194,
     )
 
