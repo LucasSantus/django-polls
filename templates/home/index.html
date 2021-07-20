@@ -22,7 +22,7 @@
                             <td>{{votacao.titulo}}</td>
                             <td>{{votacao.data_inicio}}</td>
                             <td>{{votacao.data_fim}}</td>
-                            <td><a id="btn_index" href="{% url 'validacao' votacao.id %}" class="btn"><span>Votar</span></a></td>
+                            <td><a id="btn_index" href="{% url 'votar' votacao.id %}" class="btn"><span>Votar</span></a></td>
                         </tr>
                     {% endfor %} 
                 </tbody>

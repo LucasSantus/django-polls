@@ -39,11 +39,11 @@ Este é um projeto totalmente grátis!
 Dentro da pasta onde o projeto irá ficar armazenado, abra o terminal PowerShell (opcional, qualquer terminal funcionará), {Shift + Botão Direito Mouse}
 
 ```
-$ git init
+git init
 
-$ git clone git@github.com:LucasSantus/sistema-votacao.git
+git clone git@github.com:LucasSantus/sistema-votacao.git
 
-$ cd sistema-votacao
+cd sistema-votacao
 ```
 
 **Preparando Ambiente Virtual**
@@ -51,29 +51,28 @@ $ cd sistema-votacao
 Com o terminal aberto, digite:
 
 ```
-$ sudo apt-get install python3-venv
-
-$ python3 -m venv env
-
-$ source env/bin/activate
-
-$ python -m pip install --upgrade pip
-
-$ pip install -r requirements.txt
+python3 -m venv env
+source env/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+python manage.py makemigrations usuarios
+python manage.py makemigrations votacao
+python manage.py migrate
+python manage.py runserver
 ```
 
 **Preparando o Projeto**
 
 ```
-$ python manage.py migrate
+python manage.py migrate
 
-$ python manage.py createsuperuser
+python manage.py createsuperuser
 ```
 
 **Rodando o Projeto**
 
 ```
-$ python manage.py runserver
+python manage.py runserver
 ```
 para visualizar o projeto: http://127.0.0.1:8000/
 

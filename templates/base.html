@@ -39,21 +39,18 @@
                     <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="ul-sidenav" class="right hide-on-med-and-down">
                         <li><a href="/">Dashboard</a></li>
-                        <!-- <li><a href="{% url 'listar_pessoas' %}">Pessoas</a></li> -->
                         <li><a href="{% url 'listar_votacoes' %}">Votações</a></li>
-                        <li><a href="{% url 'listar_opcoes' %}">Opções de Votos</a></li>
                         <li><a href="{% url 'perfil_usuario' %}"><i class="material-icons right">account_circle</i>Perfil</a></li>
                         <li><a href="{% url 'logout' %}"><i class="material-icons right">logout</i>Sair</a></li>
                     </ul>
                 </div>
             </nav>
-
+            
+            
             <!-- SIDENAV -->
             <ul class="sidenav" id="mobile-demo">
                 <li><a href="/">Dashboard</a></li>
-                <!-- <li><a href="{% url 'listar_pessoas' %}">Pessoas</a></li> -->
                 <li><a href="{% url 'listar_votacoes' %}">Votações</a></li>
-                <li><a href="{% url 'listar_opcoes' %}">Opções de Votos</a></li>
                 <li><a href="{% url 'perfil_usuario' %}"><i class="material-icons right">account_circle</i>Perfil</a></li>
                 <li><a href="{% url 'logout' %}"><i class="material-icons right">logout</i>Sair</a></li>
             </ul>
@@ -147,6 +144,12 @@
 
                 /* Inicialização do select */
                 $('select').formSelect();
+
+                /* Inicialização do dropdown */
+                $('.dropdown-trigger').dropdown({
+                    coverTrigger: false,
+                    hover: true,
+                });
 
                 /* Inicialização do datepicker */
                 $('.datepicker').datepicker({
