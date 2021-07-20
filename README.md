@@ -51,29 +51,28 @@ $ cd sistema-votacao
 Com o terminal aberto, digite:
 
 ```
-$ sudo apt-get install python3-venv
-
-$ python3 -m venv env
-
-$ source env/bin/activate
-
-$ python -m pip install --upgrade pip
-
-$ pip install -r requirements.txt
+sudo apt-get install python3-venv
+python3 -m venv env
+source env/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
 ```
 
 **Preparando o Projeto**
 
 ```
-$ python manage.py migrate
+python manage.py migrate
 
-$ python manage.py createsuperuser
+python manage.py createsuperuser
 ```
 
 **Rodando o Projeto**
 
 ```
-$ python manage.py runserver
+python manage.py runserver
 ```
 para visualizar o projeto: http://127.0.0.1:8000/
 
