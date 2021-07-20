@@ -12,19 +12,16 @@
 	Se você quiser visualizar as imagens do aplicativo, clique <a href="#autor">aqui</a>.
 </h6>
 
-### Sobre
+<h3 id="sobre">Sobre</h3>
 
-Este projeto foi desenvolvido baseado utilizando o django framework no back-end, a construção d 
+Este projeto foi desenvolvido utilizando o django framework como back-end o framework Materialize como front-end. 
 
 A ideia é:
 
 _"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado utilizando o Django framework"_
-
-Este repositório tem foco, na criação de um Sistema de Votacao, interligado a um banco de dados provido pelo próprio Django Framework facilitando dessa forma a manipulação de dados.
-
 --------------------------------------------------------------------------------------
 
-### Por Que?
+<h3 id="porque"> Por Que?</h3>
 
 Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso você forneça algum feedback, código, estrutura, funcionalidade ou qualquer funcionalidade&melhoria que você possa relatar para melhora-lo.
 
