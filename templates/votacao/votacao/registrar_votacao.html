@@ -15,6 +15,7 @@
         {% endfor %}
     {% endif %}
 
+    <div class="container">
     <div class="container format-form">
         <form method="POST" onsubmit="return validacao_data()">
             {% csrf_token %}
@@ -36,37 +37,27 @@
                             <div class="input-field center col s12 m12 l12 xl12">
                                 {{ form.anonimo|materializecss }}
                             </div>
-                            <div class="input-field col s12 m6 l6 xl6">
+                            <div class="input-field col s12 m12 l12 xl12">
                                 {{ form.data_inicio|materializecss:'icon=watch_later' }}
                             </div> 
-                            <div class="input-field col s12 m6 l6 xl6">
+                            <div class="input-field col s12 m12 l12 xl12">
                                 {{ form.data_fim|materializecss:'icon=watch_later' }}
                             </div> 
                         </div>
                     </div>                  
                     <div class="center format-buttons">
-                        <a href="{% url 'index' %}" class="waves-effect waves-light btn btn-secondary text-white {{colors.primary_class}}" type="button">
+                        <a href="{% url 'index' %}" class="waves-effect deep-purple waves-light btn btn-secondary text-white" type="button">
                             <span class="text">CANCELAR</span>
                         </a>
-                        <button class="waves-effect waves-light btn btn-primary {{colors.primary_class}}" type="submit">
+                        <button class="waves-effect waves-light deep-purple btn btn-primary" type="submit">
                             <span class="text">REGISTRAR</span>
                         </button>
                     </div>
                 </div>
             </div>
         </form>
-
-        <!-- <form method="post" mode="{% url 'mode' %}">
-            <div class="switch">
-                <label>
-                    Off
-                    <input id="switch-check" type="checkbox" name="switch-check">
-                    <span class="lever"></span>
-                    On
-                </label>
-            </div>
-        </form> -->
     </div>
+</div>
 {% endblock content %}
 
 {% block css %}
@@ -99,19 +90,5 @@
             var DateField = MaterialDateTimePicker.create($('#id_data_inicio'));
             var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
         }); 
-
-        $('#switch-check').click(function () {
-            var form = $(this).closest("form");
-            $.ajax({
-                url: form.attr("mode"),
-                data: form.serialize(),
-                dataType: 'json',
-                success: function (data) {
-                    if(data.mode){
-                        // location.reload();
-                    }
-                }
-            });
-        })
     </script>
 {% endblock %}
