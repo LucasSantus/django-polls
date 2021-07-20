@@ -51,7 +51,6 @@ $ cd sistema-votacao
 Com o terminal aberto, digite:
 
 ```
-sudo apt-get install python3-venv
 python3 -m venv env
 source env/bin/activate
 python -m pip install --upgrade pip
