@@ -6,8 +6,8 @@
 
 {% block content %}
     {% if votacoes %}
-        <div class="container format-table">
-            <table class="responsive-table centered highlight striped z-depth-3">
+        <div class="container mt-3">
+            <table class=" centered highlight striped z-depth-3">
                 <thead>
                     <tr>
                         <th>Título</th>
@@ -22,7 +22,7 @@
                             <td>{{votacao.titulo}}</td>
                             <td>{{votacao.data_inicio}}</td>
                             <td>{{votacao.data_fim}}</td>
-                            <td><a id="btn_index" href="{% url 'votar' votacao.id %}" class="btn"><span>Votar</span></a></td>
+                            <td><a id="btn_votar" href="{% url 'votar' votacao.id %}" class="waves-effect waves-light btn bt-primary z-depth-4">Votar</a></td>
                         </tr>
                     {% endfor %} 
                 </tbody>
@@ -32,23 +32,6 @@
 {% endblock content %}
 
 {% block css %}
-    <style>
-        .format-table{
-            margin-top: 3%;
-
-        }
-
-        #btn_index{
-            background-color: #673ab7;
-            color: white;
-            margin-top: 15px;
-            margin-bottom: 10px;
-        }
-
-        #btn_index:hover{
-            background-color: #9575cd;
-        }
-    </style>
 {% endblock %}
 
 {% block javascript %}

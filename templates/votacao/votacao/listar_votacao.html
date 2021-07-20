@@ -7,8 +7,8 @@
 {% block content %}
     <main>
         {% if votacoes %}
-            <div class="col s12 m6 l10 center">
-                <h4 class="truncate" >
+            <div class="col s12 m6 l10 m-4 center">
+                <h4 class="truncate fs-2">
                     Votações Cadastradas
                 </h4>
             </div>
@@ -18,8 +18,8 @@
                     <thead>
                         <tr>
                             <th>Nome</th>
-                            <th>Horário de Inicio</th>
-                            <th>Horário de Término</th>
+                            <th>Inicio</th>
+                            <th>Término</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -30,8 +30,8 @@
                                 <td>{{votacao.titulo}}</td>
                                 <td>{{votacao.data_inicio}}</td>
                                 <td>{{votacao.data_fim}}</td>
-                                <td><a href="{% url 'detalhe_votacao' votacao.id %}" class="purple btn"><span class='color-button-table'>DETALHES</span></a></td>
-                                <td><a href="{% url 'apuracao' votacao.id %}" class="purple lighten-1 btn"><span class='color-button-table'>APURAÇÃO</span></a></td>
+                                <td><a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">DETALHES</a></td>
+                                <td><a href="{% url 'apuracao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">APURAÇÃO</a></td>
                             </tr>
                         {% endfor %} 
                     </tbody>
@@ -40,7 +40,7 @@
         {% endif %}
 
         <div class="fixed-action-btn">
-            <a href="{% url 'registrar_votacao' %}" class="btn-floating purple lighten-2 btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+            <a href="{% url 'registrar_votacao' %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
         </div>
     </main>
 {% endblock content %}
