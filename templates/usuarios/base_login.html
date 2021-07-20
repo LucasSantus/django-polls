@@ -50,23 +50,29 @@
       </div>
     </footer>
 
-    <!-- Import JQuery -->
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script> -->
+    <!-- Modal Structure -->
+    <div id="modal-back" class="modal">
+      <div class="modal-content">
+        <h4>Voltar para Login</h4>
+        <p>Você realmente deseja continuar esta ação?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="" class="modal-close bt-secondary btn btn-flat z-depth-4">SAIR</a>
+        <a href="{% url 'login' %}" class="modal-close bt-primary btn btn-flat z-depth-4">CONTINUAR</a>
+      </div>
+    </div>
 
     <!-- Import JQuery -->
-    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-    <!-- Import JQuery Slim -->
-    <script type="text/javascript" src="{% static 'js/jquery.slim.min.js' %}" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
 
     <!-- Import JQuery Mask -->
-    <script type="text/javascript" src="{% static 'js/jquery.mask.js' %}" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery/jquery.mask.js' %}"></script>
 
     <!-- Import Java Script Materialize -->
-    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}" defer></script>
 
     <!-- Import Java Script Personalizado -->
-    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
 
     <script>
       $(document).ready(function(){

@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="input-field col s12 m6 x6 xl6">
-                      <input type="text" id="id_data_nascimento" name="data_nascimento" class="" value="">
+                      <input type="text" id="id_data_nascimento" name="data_nascimento" class="datepicker" value="">
                       <label for="id_data_nascimento" class="">Data de Nascimento:</label>
                     </div>
 
@@ -86,47 +86,44 @@
       </div>
     </div>
   </div>
-
-  <!-- Modal Structure -->
-  <div id="modal-back" class="modal">
-    <div class="modal-content">
-      <h4>Voltar para Login</h4>
-      <p>Você realmente deseja continuar esta ação?</p>
-    </div>
-    <div class="modal-footer">
-      <a id="btn_modal_exit_signup" href="" class="modal-close bt-secondary btn btn-flat z-depth-4">SAIR</a>
-      <a id="btn_modal_confirm_signup" href="{% url 'login' %}" class="modal-close bt-primary btn btn-flat z-depth-4">CONTINUAR</a>
-    </div>
-  </div>
-
-      <!-- Import JQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
-
-    <!-- Import JQuery -->
-    <!-- <script type="text/javascript" src="{% static 'js/jquery.min.js' %}" defer></script> -->
-
-    <!-- Import JQuery Slim -->
-    <!-- <script type="text/javascript" src="{% static 'js/jquery.slim.min.js' %}" defer></script> -->
-
-    <!-- Import JQuery Mask -->
-    <script type="text/javascript" src="{% static 'js/jquery.mask.js' %}" defer></script>
-
-    <!-- Import Java Script Materialize -->
-    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
-
-    <!-- Import Java Script Personalizado -->
-    <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
-
 {% endblock %}
 
 {% block css %}
 {% endblock %}
 
 {% block javascript %}
+
   <!-- Inicialização da Página -->
   <script>
+    /* Inicialização do datepicker */
     $(document).ready(function(){
-      $("#id_data_nascimento").addClass('datepickera').attr("type","text"); 
+      $('.datepicker').datepicker({
+        i18n: {
+          months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+          monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+          weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+          weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+          weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+          today: 'Hoje',
+          clear: 'LIMPAR',
+          cancel: 'SAIR',
+          done: 'CONTINUAR',
+          labelMonthNext: 'Próximo mês',
+          labelMonthPrev: 'Mês anterior',
+          labelMonthSelect: 'Selecione um mês',
+          labelYearSelect: 'Selecione um ano',
+          selectMonths: true,
+          selectYears: 15,
+        },
+        format: 'yyyy-mm-dd',
+        container: 'body',
+        yearRange: 10,
+        maxDate: new Date(),
+      }); 
+
+
+      $("#id_data_nascimento").addClass('datepicker').attr("type","text"); 
+
       $("#id_cpf").mask("999.999.999-99");
 
       $("#id_password").attr("type", "password");

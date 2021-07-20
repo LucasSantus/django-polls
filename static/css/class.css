@@ -21,15 +21,19 @@
 /* Color Button's */
 .bt-primary{
     background-color: var(--bs-primary) !important;
+    color: var(--bs-white) !important;
 }
 .bt-primary:hover{
     background-color: var(--bs-primary-hover) !important;
+    color: var(--bs-white) !important;
 }
 .bt-secondary{
     background-color: var(--bs-secondary) !important;
+    color: var(--bs-white) !important;
 }
 .bt-secondary:hover{
     background-color: var(--bs-secondary-hover) !important;
+    color: var(--bs-white) !important;
 }
 
 /* Color background's */

@@ -126,19 +126,22 @@
         </footer>
 
         <!-- Import JQuery -->
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+
+        <!-- Import JQuery Mask -->
+        <script src="{% static 'js/jquery/jquery.mask.js' %}"></script>
+
+        <!-- Import Java Script Materialize -->
+        <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}" defer></script>
 
         <!-- Import Java Script Personalizado -->
         <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
 
-        <!-- Import Java Script Materialize -->
-        <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
-
-        <!-- Import JQueryMask -->
-        <script type="text/javascript" src="{% static 'js/jquery_mask.js' %}" defer></script>
-
         <!-- Import Java Script DateTimePicker -->
         <script type="text/javascript" src="{% static 'js/datetimepicker.js' %}" defer></script>
+
+        <!-- Import Java Script Personalizado -->
+        <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
 
         <!-- Script da Página -->
         {% block javascript %}
