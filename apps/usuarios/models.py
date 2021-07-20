@@ -44,7 +44,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     cpf = models.CharField(
         verbose_name = "CPF:",
-        max_length = 11,
+        max_length = 14,
         unique = True,
         null = True,
     )

@@ -33,7 +33,7 @@
                         </label>
                       </p>
 
-                      <div class="row center">
+                      <div class="row center mt-2">
                           <button id="btn-login" class="center waves-effect waves-light btn bt-primary z-depth-4" type="submit">
                             ENTRAR
                           </button>
@@ -44,7 +44,7 @@
                         </div>
 
                       <div class="center">
-                        <div class="container">
+                        <div class="container mt-2">
                           Esqueceu a senha?
                           <a id="esqueceu" href="{% url 'reset_password' %}">
                             Recuperar
@@ -52,7 +52,6 @@
                         </div>
                       </div>
                     </form>
-                    
                   </div>
                 </div>
               </div>
@@ -66,12 +65,11 @@
 {% block css %}
   <style>
     #esqueceu{
-        color: #039be5;
-        margin-top: 7px;
+      color: #039be5;
     }
 
     #esqueceu:hover{
-        color: #81d4fa;
+      color: #81d4fa;
     }
   </style>
 {% endblock %}

@@ -134,51 +134,11 @@
         <!-- Import Java Script Materialize -->
         <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
 
+        <!-- Import JQueryMask -->
+        <script type="text/javascript" src="{% static 'js/jquery_mask.js' %}" defer></script>
+
         <!-- Import Java Script DateTimePicker -->
         <script type="text/javascript" src="{% static 'js/datetimepicker.js' %}" defer></script>
-
-        <script src="{% static 'js/scripts.js' %}"></script>
-
-        <script>
-            $(document).ready(function(){
-                /* Inicialização do sidenav */
-                $('.sidenav').sidenav();
-
-                /* Inicialização do select */
-                $('select').formSelect();
-
-                /* Inicialização do dropdown */
-                $('.dropdown-trigger').dropdown({
-                    coverTrigger: false,
-                    hover: true,
-                });
-
-                /* Inicialização do datepicker */
-                $('.datepicker').datepicker({
-                    i18n: {
-                        months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                        monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                        weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
-                        weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-                        weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-                        today: 'Hoje',
-                        clear: 'Limpar',
-                        cancel: 'Sair',
-                        done: 'Confirmar',
-                        labelMonthNext: 'Próximo mês',
-                        labelMonthPrev: 'Mês anterior',
-                        labelMonthSelect: 'Selecione um mês',
-                        labelYearSelect: 'Selecione um ano',
-                        selectMonths: true,
-                        selectYears: 15,
-                    },
-                    format: 'yyyy-mm-dd',
-                    container: 'body',
-                    yearRange: 80,
-                    maxDate: new Date(),
-                }); 
-            });
-        </script>
 
         <!-- Script da Página -->
         {% block javascript %}

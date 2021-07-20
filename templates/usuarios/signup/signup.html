@@ -15,7 +15,7 @@
         <div class="col s12 m12	l12	xl12">
           <div class="card p-3">
             <span class="card-title">
-              <h5 class="fw-bold">CADASTRAR-SE</h5>
+              <h5 class="fw-bold fs-4">CADASTRAR-SE</h5>
             </span>
             <div class="card-content">
               <div class="row">
@@ -29,7 +29,7 @@
 
                     <div class="input-field col s12 m6 x6 xl6">
                       <input type="email" name="email" maxlength="194" class=" validate" required="" id="id_email">
-                      <label class="" for="id_email">E-mail</label>
+                      <label class="" for="id_email">E-mail:</label>
                     </div>
 
                     <div class="input-field col s12 m6 x6 xl6">
@@ -38,13 +38,13 @@
                     </div>
 
                     <div class="input-field col s12 m6 x6 xl6">
-                      <input type="date" id="id_data_nascimento" name="data_nascimento" class="datepicker" value="">
+                      <input type="text" id="id_data_nascimento" name="data_nascimento" class="datepickerrr" value="">
                       <label for="id_data_nascimento" class="">Data de Nascimento:</label>
                     </div>
 
                     <div class="input-field col s12">
                       <input type="password" name="password" maxlength="128" class="validate" required="" id="id_password">
-                      <label class="" for="id_password">Senha</label>
+                      <label class="" for="id_password">Senha:</label>
                     </div>
 
                     <span class="helper-text center" data-error="wrong" data-success="right">
@@ -56,23 +56,23 @@
 
                     <div class="input-field col s12">
                       <input type="password" name="confirm_password" class="validate" required="" id="id_confirm_password">
-                      <label for="id_confirm_password">Confirm password</label> 
+                      <label for="id_confirm_password">Confirm password:</label> 
                     </div>
 
                     <p>
                       <label>
                         <input id="check" type="checkbox" />
-                        <span>Show Password</span>
+                        <span>Mostrar/Ocultar Senha</span>
                       </label>
                     </p>
 
                     <div class="row" style="margin-top: 10px;">
                       <div class="container center">
-                        <a id="btn_back_signup" href="#modal-back" class="waves-effect waves-light btn modal-trigger">
+                        <a  href="#modal-back" class="waves-effect waves-light bt-secondary z-depth-4 btn modal-trigger">
                           <span class="text">VOLTAR</span>
                         </a>
 
-                        <button id="btn_signup_signup" class="btn btn-primary" type="submit">
+                        <button  class="waves-effect waves-light bt-primary z-depth-4 btn" type="submit">
                           <span class="text">SALVAR</span>
                         </button>
                       </div>
@@ -94,54 +94,29 @@
       <p>Você realmente deseja continuar esta ação?</p>
     </div>
     <div class="modal-footer">
-      <a id="btn_modal_exit_signup" href="" class="modal-close btn btn-flat">SAIR</a>
-      <a id="btn_modal_confirm_signup" href="{% url 'login' %}" class="modal-close btn btn-flat">CONTINUAR</a>
+      <a id="btn_modal_exit_signup" href="" class="modal-close bt-secondary btn btn-flat z-depth-4">SAIR</a>
+      <a id="btn_modal_confirm_signup" href="{% url 'login' %}" class="modal-close bt-primary btn btn-flat z-depth-4">CONTINUAR</a>
     </div>
   </div>
 {% endblock %}
 
 {% block css %}
-  <style>
-    #btn_back_signup{
-      margin-top: 5px;
-      background-color: #673ab7;
-      color: white;
-    }
-    #btn_back_signup:hover{
-      background-color: #9575cd;
-      color: white;
-    }
-
-    #btn_signup_signup{
-      margin-top: 5px;
-      background-color: #673ab7;
-      color: white;
-    }
-    #btn_signup_signup:hover{
-      background-color: #9575cd;
-      color: white;
-    }
-
-    #btn_modal_exit_signup:hover{
-      background-color: #e0e0e0;
-      color: #616161;
-    }
-
-    #btn_modal_confirm_signup:hover{
-      background-color: #e0e0e0;
-      color: #616161;
-    }
-  </style>
 {% endblock %}
 
 {% block javascript %}
+  <script>
+    $(document).ready(function(){
+      
+    }); 
+  </script>
+
   <!-- Inicialização da Página -->
   <script>
     $(document).ready(function(){
+      $("#id_data_nascimento").addClass('datepicker').attr("type","text"); 
+
       $("#id_password").attr("type", "password");
       $("#id_confirm_password").attr("type", "password");
-
-      $('.modal').modal();
     });
   </script>
 

@@ -52,9 +52,12 @@
 
     <!-- Import JQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
-    
+
     <!-- Import Java Script Materialize -->
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
+
+    <!-- Import JQueryMask -->
+    <script type="text/javascript" src="{% static 'js/jquery_mask.js' %}" defer></script>
 
     <!-- Import Java Script Personalizado -->
     <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
@@ -64,9 +67,6 @@
         $("#btn_reset_password").attr("disabled", true);
         $("#btn_signup_signup").attr("disabled", true);
         $("#btn-login").attr("disabled", true);
-
-        $('.tooltipped').tooltip({delay: 50});
-        $('.chips').material_chip();
       });
     </script>
 
