@@ -1,0 +1,53 @@
+{% extends 'usuarios/base_login.html' %}
+
+{% load static %}
+
+{% load materializecss %}
+
+{% block title %}
+  Logout | Sign UP
+{% endblock %}
+
+{% block content %}
+  <div class="container format_logout">
+    <div class="container">
+      <div class="container">
+        <div class="text-left mb-5 center">
+          <img src="{% static 'images/exit.svg' %}" width="20%" height="20%">
+          <h5 id="text_title_logout">To the next!</h5>
+        </div>
+        <div class="center">
+            <p>You have chosen to withdraw from the dashboard, if you prefer to log in again, just click the button below to return to the login page.</p>
+            <a id="btn_logout" href="{% url 'login' %}" class="btn btn-primary">
+                <span class="text">SIGN IN</span>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block css %}
+  <style>
+    .format_logout{
+      margin-top: 8%;
+    }
+
+    #text_title_logout{
+      font-weight:bold;
+    }
+
+    #btn_logout{
+      background-color: black;
+      color: white;
+    }
+
+    #btn_logout:hover{
+      background-color: #424242;
+      color: white;
+    }
+  </style>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

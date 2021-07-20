@@ -1,28 +1,24 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
-from usuarios.models import Pessoa
+from usuarios.models import Usuario
 from django.contrib import messages
 
 def registrar_votacao(request):
     form = VotacaoForm()
-    pessoa = Pessoa.objects.get(id=1)
+    usuario = Usuario.objects.get(id=request.user.id)
 
     if request.method == "POST":
         form = VotacaoForm(request.POST)
-
         if form.is_valid():
             votacao = form.save()
             votacao.save()
-
-            messages.success(request,"HIHIIH")
-
+            messages.success(request,"A nova votação foi inserida com sucesso!")
             return redirect("index")
 
     context = {
-        "nome_pagina": "Registrar Votação",
         "form": form,
-        "pessoa": pessoa,
+        "usuario": usuario,
     }
 
     return render(request, "votacao/votacao/registrar_votacao.html", context)
@@ -45,10 +41,12 @@ def registrar_opcao(request):
 
 def listar_votacoes(request):
     votacoes = Votacao.objects.all()
-
     context = {
         "votacoes": votacoes,
     }
+
+    if not votacoes:
+        messages.info(request,"Não existem votações registradas!")
 
     return render(request, "votacao/votacao/listar_votacao.html", context)
 
@@ -60,7 +58,7 @@ def listar_opcoes(request):
         "opcoes": opcoes,
     }
 
-    return render(request, "cadastro/listar_opcoes.html", context)
+    return render(request, "votacao/opcao_voto/listar_opcoes.html", context)
 
 def detalhe_votacao(request, id_votacao):
 

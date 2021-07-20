@@ -4,5 +4,4 @@ from .views import *
 
 urlpatterns = [
     path("", index, name="index"),
-    path("mode/", mode, name="mode"),
 ]

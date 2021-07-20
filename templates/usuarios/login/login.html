@@ -1,0 +1,110 @@
+{% extends 'usuarios/base_login.html' %}
+
+{% load static %}
+
+{% load materializecss %}
+
+{% block title %}
+  Login | Sistema de Votação
+{% endblock %}
+
+{% block content %}
+  <div class="container center mt-6">
+    <div class="container">
+      <div class="container">
+          <div class="row">
+            <div class="col s12 m12	l12	xl12">
+              <div class="card p-2">
+                <span class="card-title">
+                  <h5 class="fw-bold">LOGIN</h5>
+                </span>
+                <div class="card-content">
+                  <div class="row">
+                    <form method="POST" class="user" validate="{% url 'validate_user' %}">
+                      {% csrf_token %}
+                      <div class="container">
+                        {{form|materializecss}}
+                      </div>
+
+                      <p class="mb-2">
+                        <label>
+                          <input id="check_login" type="checkbox"/>
+                          <span>Mostrar/Ocultar Senha</span>
+                        </label>
+                      </p>
+
+                      <div class="row center mt-2">
+                          <a class="center waves-effect waves-light btn bt-secondary z-depth-4" href="{% url 'signup' %}">
+                            REGISTRAR
+                          </a>
+                          
+                          <button id="btn-login" class="center waves-effect waves-light btn bt-primary z-depth-4" type="submit">
+                            ENTRAR
+                          </button>
+                        </div>
+
+                      <div class="center">
+                        <div class="container mt-2">
+                          Esqueceu a senha?
+                          <a id="esqueceu" href="{% url 'reset_password' %}">
+                            Recuperar
+                          </a>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block css %}
+  <style>
+    #esqueceu{
+      color: #039be5;
+    }
+
+    #esqueceu:hover{
+      color: #81d4fa;
+    }
+  </style>
+{% endblock %}
+
+{% block javascript %}
+  <!-- Função Ajax - Validar Usuário -->
+  <script>
+    $("#id_username").change(function () {
+      var form = $(this).closest("form");
+      $.ajax({
+        url: form.attr("validate"),
+        data: form.serialize(),
+        dataType: 'json',
+        success: function (data) {
+          if(!data.is_user){
+            M.toast({html: data.error_message})
+            $("#btn-login").attr("disabled", true);
+          }
+          else{
+            $("#btn-login").attr("disabled", false);
+          }
+        }
+      });
+    });
+  </script>
+
+  <!-- Mostrar/Ocultar Senha -->
+  <script>
+    $('#check_login').click(function () {
+      if($(this).is(':checked')){
+        $("#id_password").attr("type", "text");
+      } 
+      else {
+        $("#id_password").attr("type", "password");
+      }
+    })
+  </script>
+{% endblock %}

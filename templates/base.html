@@ -14,8 +14,8 @@
         <!-- Import CSS Personalizado -->
         <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}">
 
-        <!-- Import Colors CSS -->
-        <link type="text/css" rel="stylesheet" href="{% static 'css/colors.css' %}">
+        <!-- Import Classes Personalizadas -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/class.css' %}">
 
         <!-- Let browser know website is optimized for mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
@@ -32,37 +32,43 @@
         </title>
     </head>
 
-    <body>
+    <body class="bg-body">
+        <!-- HEADER -->
         <header>
-            <nav class="deep-purple">
+
+            <!-- NAVBAR -->
+            <nav class="bg-primary">
                 <div class="nav-wrapper container">
-                    <a href="/" class="brand-logo">System Votation</a>
+                    <a href="/" class="brand-logo fs-3">Votation</a>
                     <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="ul-sidenav" class="right hide-on-med-and-down">
                         <li><a href="/">Dashboard</a></li>
-                        <li><a href="{% url 'listar_pessoas' %}">Pessoas</a></li>
                         <li><a href="{% url 'listar_votacoes' %}">Votações</a></li>
-                        <li><a href="{% url 'listar_opcoes' %}">Opções de Votos</a></li>
-                        <li><a href="{% url 'perfil_usuario' %}">Perfil</a></li>
-                        <!-- <li><a href="/">Contact Us</a></li> -->
+                        <li><a href="{% url 'perfil_usuario' %}"><i class="material-icons right">account_circle</i>Perfil</a></li>
+                        <li><a href="{% url 'logout' %}"><i class="material-icons right">logout</i>Sair</a></li>
                     </ul>
                 </div>
             </nav>
+            
+            <!-- SIDENAV -->
             <ul class="sidenav" id="mobile-demo">
                 <li><a href="/">Dashboard</a></li>
-                <li><a href="{% url 'listar_pessoas' %}">Pessoas</a></li>
                 <li><a href="{% url 'listar_votacoes' %}">Votações</a></li>
-                <li><a href="{% url 'listar_opcoes' %}">Opções de Votos</a></li>
-                <li><a href="{% url 'perfil_usuario' %}">Perfil</a></li>
-                <!-- <li><a href="/">About Us</a></li>
-                <li><a href="/">Contact Us</a></li> -->
+                <li><a href="{% url 'perfil_usuario' %}"><i class="material-icons right">account_circle</i>Perfil</a></li>
+                <li><a href="{% url 'logout' %}"><i class="material-icons right">logout</i>Sair</a></li>
             </ul>
         </header>
 
+        <!-- MAIN -->
         <main>
             {% if messages %}
                 {% for message in messages %}
                     {% if message.tags == 'success' %}
+                        <script type="text/javascript">
+                            var toastHTML = '<h5>{{ message }}</h5>';
+                            M.toast({html: toastHTML, displayLength:6000, classes:'green'});
+                        </script>
+
                         <div class="container">
                             <div class="row">
                                 <div class="alert card green lighten-4 green-text text-darken-4">
@@ -105,119 +111,37 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
-            
+
             {% block content %}
             {% endblock %}
         </main>
 
+        <!-- FOOTER -->
         <footer class="page-footer transparent">
             <div class="row" style="width: 80%;">
-                <div class="col s12 center deep-purple-text">
-                    <span>&copy; 2020 - {{date.year}} Copyright System Votation, All rights reserved.</span>
+                <div class="col s12 center text-primary">
+                    <span>&copy; 2020 - {{date.year}} Copyright Sistema de Votação, Todos os direitos reservados.</span>
                 </div>
             </div>
         </footer>
 
         <!-- Import JQuery -->
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-        
+        <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+
+        <!-- Import JQuery Mask -->
+        <script src="{% static 'js/jquery/jquery.mask.js' %}"></script>
+
+        <!-- Import Java Script Materialize -->
+        <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}" defer></script>
+
         <!-- Import Java Script Personalizado -->
         <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
-        
-        <!-- Import Java Script Materialize -->
-        <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
 
         <!-- Import Java Script DateTimePicker -->
         <script type="text/javascript" src="{% static 'js/datetimepicker.js' %}" defer></script>
 
-        <script src="{% static 'js/scripts.js' %}"></script>
-
-        <style>
-            /* Footer na Posição Inferior */
-            body {
-                display: flex;
-                min-height: 100vh;
-                flex-direction: column;
-            }
-            main {
-                flex: 1 0 auto;
-            }
-
-            /* Estilização dos Alert's */
-            .alert{
-                margin-top: 2%;
-                margin-bottom: 2%;
-            }
-            .alert .card-content span{
-                font-weight: bold;
-                font-size: 2em;
-                margin-right:4px;
-            }
-            .alert .card-content .material-icons {
-                font-size: 1.5em;
-                position: relative;
-                top: 5px;
-                margin-right: 0.5em;
-            } 
-        </style>
-
-        <script>
-            $(document).ready(function(){
-                /* Inicialização do sidenav */
-                $('.sidenav').sidenav();
-
-                /* Inicialização do select */
-                $('select').formSelect();
-                
-
-                if("{{mode}}"){
-                    $html.classList.add('dark-mode')
-                }
-                else{
-                    $html.classList.remove("dark-mode");
-                }
-
-                /* Inicialização do datepicker */
-                $('.datepicker').datepicker({
-                    i18n: {
-                        months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                        monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                        weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
-                        weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-                        weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-                        today: 'Hoje',
-                        clear: 'Limpar',
-                        cancel: 'Sair',
-                        done: 'Confirmar',
-                        labelMonthNext: 'Próximo mês',
-                        labelMonthPrev: 'Mês anterior',
-                        labelMonthSelect: 'Selecione um mês',
-                        labelYearSelect: 'Selecione um ano',
-                        selectMonths: true,
-                        selectYears: 15,
-                    },
-                    format: 'yyyy-mm-dd',
-                    container: 'body',
-                    yearRange: 80,
-                    maxDate: new Date(),
-                }); 
-            });
-
-            const $html = document.querySelector("html");
-            const $checkbox = document.querySelector("#switch");
-
-            $checkbox.addEventListener("change", function () {
-                $html.classList.toggle("dark-mode");
-            });
-            $('#id_mode').click(function () {
-                if($(this).is(':checked')){
-                    $html.classList.add('dark-mode')
-                }
-                else{
-                    $html.classList.remove("dark-mode");
-                }
-            })
-        </script>
+        <!-- Import Java Script Personalizado -->
+        <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
 
         <!-- Script da Página -->
         {% block javascript %}

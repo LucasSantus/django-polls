@@ -1,67 +1,52 @@
 {% extends "base.html" %}
 
+{% block title %}
+    Listar Votações | Sistema de Votação
+{% endblock %}
+
 {% block content %}
-
-<main>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <div class="container">
-                    <div class="alert alert-success card z-depth-5">
-                        <div class="card-content">
-                            <li{% if message.tags %} class="{{ message.tags }} text-purple"{% endif %}>{{ message }}</li>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-    {% if votacoes %}
-        <div class="col s12 m6 l10 center">
-            <h2 class="text-theme truncate" >
-                Votações Cadastradas
-            </h2>
-        </div>
-        
-        <div class="container">
-            <table class="responsive-table centered highlight striped z-depth-3">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Horário Inicio</th>
-                        <th>Horário Término</th>
-                        <th>Informações</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for votacao in votacoes %}
-                        <tr>
-                            <td>{{votacao.nome}}</td>
-                            <td>{{votacao.data_inicio}}</td>
-                            <td>{{votacao.data_fim}}</td>
-                            <td><a href="{% url 'detalhe_votacao' votacao.id %}" class="purple btn"><span class='color-button-table'>Ver Informações</span></a></td>
-                            <td><a href="{% url 'apuracao' votacao.id %}" class="purple lighten-1 btn"><span class='color-button-table'>Apuração</span></a></td>
-                       
-                        </tr>
-                    {% endfor %} 
-                </tbody>
-            </table>
-        </div>
-    {% else %}
-        <div class="container">
-            <div class="alert card z-depth-5">
-                <div class="card-content">
-                    <p><i class="material-icons">info</i><span>No momento, não existem Votações cadastradas!</span></p>
-                </div>
+    <main>
+        {% if votacoes %}
+            <div class="col s12 m6 l10 m-4 center">
+                <h4 class="truncate fs-2">
+                    Votações Cadastradas
+                </h4>
             </div>
+
+            <div class="container">
+                <table class="responsive-table centered highlight striped z-depth-3">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Inicio</th>
+                            <th>Término</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for votacao in votacoes %}
+                            <tr>
+                                <td>{{votacao.titulo}}</td>
+                                <td>{{votacao.data_inicio}}</td>
+                                <td>{{votacao.data_fim}}</td>
+                                <td><a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">DETALHES</a></td>
+                                <td><a href="{% url 'apuracao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">APURAÇÃO</a></td>
+                            </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        <div class="fixed-action-btn">
+            <a href="{% url 'registrar_votacao' %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
         </div>
-    {% endif %}
-
-    <div class="fixed-action-btn">
-        <a href="{% url 'registrar_votacao' %}" class="btn-floating purple lighten-2 btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
-    </div>
-</main>
-
+    </main>
 {% endblock content %}
+
+{% block css %}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

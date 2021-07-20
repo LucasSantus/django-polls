@@ -4,22 +4,8 @@ from django.contrib import messages
 from usuarios.models import *
 from votacao.models import *
 
-def validacao(request, id_votacao):
-    if request.POST:
-        try: 
-            cpf = request.POST.get('cpf', None)
-            votacao = Votacao.objects.get(pk=id_votacao)
-            pessoa = Pessoa.objects.get(cpf=cpf)
-            
-            return redirect("votar", votacao.id, pessoa.id)
-            
-        except Pessoa.DoesNotExist: 
-            messages.error(request, "CPF não cadastrado!")
-        
-    return render(request, "administracao/validacao.html")
-
-def votar(request, id_votacao, id_pessoa):
-    pessoa = Pessoa.objects.get(pk=id_pessoa)
+def votar(request, id_votacao):
+    pessoa = Usuario.objects.get(pk=request.user.id)
     votacao = Votacao.objects.get(pk=id_votacao)
     listOpcaoVoto = OpcaoVoto.objects.filter(votacao=votacao)
 

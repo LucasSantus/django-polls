@@ -1,0 +1,200 @@
+{% extends 'usuarios/base_login.html' %}
+
+{% load materializecss %}
+
+{% load static %}
+
+{% block title %}
+  Cadastrar | Sign UP
+{% endblock %}
+
+{% block content %}
+  <div class="container center mt-6">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m12	l12	xl12">
+          <div class="card p-3">
+            <span class="card-title">
+              <h5 class="fw-bold fs-4">CADASTRAR-SE</h5>
+            </span>
+            <div class="card-content">
+              <div class="row">
+                <form method="POST" class="user" validate="{% url 'validate_email' %}">
+                  {% csrf_token %}
+                  <div class="row center">
+                    <div class="input-field col s12 m6 x6 xl6">
+                      <input type="text" name="nome" maxlength="194" class=" validate" required="" id="id_nome">
+                      <label class="" for="id_nome">Nome Completo:</label>
+                    </div>
+
+                    <div class="input-field col s12 m6 x6 xl6">
+                      <input type="email" name="email" maxlength="194" class=" validate" required="" id="id_email">
+                      <label class="" for="id_email">E-mail:</label>
+                    </div>
+
+                    <div class="input-field col s12 m6 x6 xl6">
+                      <input type="text" name="cpf" maxlength="11" class=" validate" required="" id="id_cpf">
+                      <label class="" for="id_cpf">CPF:</label>
+                    </div>
+
+                    <div class="input-field col s12 m6 x6 xl6">
+                      <input type="text" id="id_data_nascimento" name="data_nascimento" class="datepicker" value="">
+                      <label for="id_data_nascimento" class="">Data de Nascimento:</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                      <input type="password" name="password" maxlength="128" class="validate" required="" id="id_password">
+                      <label class="" for="id_password">Senha:</label>
+                    </div>
+
+                    <span class="helper-text center" data-error="wrong" data-success="right">
+                      A senha deve conter pelo menos 8 caracteres. <br>
+                      A senha deve conter pelo menos uma letra maiúscula e minúscula. <br>
+                      A senha deve conter caracteres especiais. <br>
+                      A senha não pode ser totalmente numérica.
+                    </span>
+
+                    <div class="input-field col s12">
+                      <input type="password" name="confirm_password" class="validate" required="" id="id_confirm_password">
+                      <label for="id_confirm_password">Confirm password:</label> 
+                    </div>
+
+                    <p>
+                      <label>
+                        <input id="check" type="checkbox" />
+                        <span>Mostrar/Ocultar Senha</span>
+                      </label>
+                    </p>
+
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="container center">
+                        <a  href="#modal-back" class="waves-effect waves-light bt-secondary z-depth-4 btn modal-trigger">
+                          <span class="text">VOLTAR</span>
+                        </a>
+
+                        <button  class="waves-effect waves-light bt-primary z-depth-4 btn" type="submit">
+                          <span class="text">SALVAR</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block javascript %}
+
+  <!-- Inicialização da Página -->
+  <script>
+    /* Inicialização do datepicker */
+    $(document).ready(function(){
+      $('.datepicker').datepicker({
+        i18n: {
+          months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+          monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+          weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+          weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+          weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+          today: 'Hoje',
+          clear: 'LIMPAR',
+          cancel: 'SAIR',
+          done: 'CONTINUAR',
+          labelMonthNext: 'Próximo mês',
+          labelMonthPrev: 'Mês anterior',
+          labelMonthSelect: 'Selecione um mês',
+          labelYearSelect: 'Selecione um ano',
+          selectMonths: true,
+          selectYears: 15,
+        },
+        format: 'yyyy-mm-dd',
+        container: 'body',
+        yearRange: 10,
+        maxDate: new Date(),
+      }); 
+
+
+      $("#id_data_nascimento").addClass('datepicker').attr("type","text"); 
+
+      $("#id_cpf").mask("999.999.999-99");
+
+      $("#id_password").attr("type", "password");
+      $("#id_confirm_password").attr("type", "password");
+      
+    });
+  </script>
+
+  <!-- Mostrar/Ocultar Senha -->
+  <script>
+    $('#check').click(function () {
+      if($(this).is(':checked')){
+        $("#id_password").attr("type", "text");
+        $("#id_confirm_password").attr("type", "text");
+      } 
+      else {
+        $("#id_password").attr("type", "password");
+        $("#id_confirm_password").attr("type", "password");
+      }
+    })
+  </script>
+
+  <!-- Validar a Confirmação de Senha -->
+  <script>
+    $("#id_confirm_password").change(function () {
+      var password = $("#id_password").val();
+      var confirm_password = $("#id_confirm_password").val();
+      var password_size = password.length;
+
+      let regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]{8,16}$/;
+
+      if (password != "" && confirm_password != "" && password === confirm_password){
+          if(!regex.test(password)){
+            $("#btn_signup_signup").attr("disabled", true);
+          }
+
+          if(password_size < 8){
+            M.toast({html: "Quantidade mínima de caracteres: 8"})
+          }
+          else if(password_size > 16){
+            M.toast({html: "Quantidade máxima de caracteres: 16"})
+          }
+          else if(regex.test(password)){
+            $("#btn_signup_signup").attr("disabled", false);
+          }
+      }
+      else{
+        M.toast({html: "Os campos não se identificam!"})
+        $('#id_password').val('');
+        $('#id_confirm_password').val('');
+        $('#id_password').focus();
+      }
+    });
+  </script>
+
+  <!-- Validação do E-mail -->
+  <script>
+    $("#id_email").change(function () {
+      var form = $(this).closest("form");
+      $.ajax({
+        url: form.attr("validate"),
+        data: form.serialize(),
+        dataType: 'json',
+        success: function (data) {
+          if(data.is_email){
+            M.toast({html: data.error_message})
+            $('#id_email').val("");
+            $('#id_email').focus();
+          }
+        }
+      });
+    });
+  </script>
+{% endblock %}
