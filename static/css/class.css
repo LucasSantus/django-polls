@@ -634,3 +634,14 @@
 .h-auto{
     height: auto !important;
 }
+
+/* Align */
+.item-center{
+    height: auto;
+    min-height: 100%;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}

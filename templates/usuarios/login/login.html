@@ -9,54 +9,51 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container center mt-6">
-    <div class="container">
+  <div class="container center">
+    <div class="item-center container">
       <div class="container">
-          <div class="row">
-            <div class="col s12 m12	l12	xl12">
-              <div class="card p-2">
-                <span class="card-title">
-                  <h5 class="fw-bold">LOGIN</h5>
-                </span>
-                <div class="card-content">
-                  <div class="row">
-                    <form method="POST" class="user" validate="{% url 'validate_user' %}">
-                      {% csrf_token %}
-                      <div class="container">
-                        {{form|materializecss}}
-                      </div>
+        <div class="card p-2 z-depth-4">
+          <span class="card-title">
+            <h5 class="fw-bold">LOGIN</h5>
+          </span>
 
-                      <p class="mb-2">
-                        <label>
-                          <input id="check_login" type="checkbox"/>
-                          <span>Mostrar/Ocultar Senha</span>
-                        </label>
-                      </p>
+          <div class="card-content">
+            <div class="row">
+              <form method="POST" class="user" validate="{% url 'validate_user' %}">
+                {% csrf_token %}
+                <div class="container">
+                  {{form|materializecss}}
+                </div>
 
-                      <div class="row center mt-2">
-                          <a class="center waves-effect waves-light btn bt-secondary z-depth-4" href="{% url 'signup' %}">
-                            REGISTRAR
-                          </a>
-                          
-                          <button id="btn-login" class="center waves-effect waves-light btn bt-primary z-depth-4" type="submit">
-                            ENTRAR
-                          </button>
-                        </div>
+                <p class="mb-3">
+                  <label>
+                    <input id="check_login" type="checkbox"/>
+                    <span>Ocultar Senha</span>
+                  </label>
+                </p>
 
-                      <div class="center">
-                        <div class="container mt-2">
-                          Esqueceu a senha?
-                          <a id="esqueceu" href="{% url 'reset_password' %}">
-                            Recuperar
-                          </a>
-                        </div>
-                      </div>
-                    </form>
+                <div class="row center mt-2">
+                    <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'signup' %}">
+                      REGISTRAR
+                    </a>
+                    
+                    <button id="btn-login" class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" type="submit">
+                      ENTRAR
+                    </button>
+                  </div>
+
+                <div class="center">
+                  <div class="container mt-2">
+                    Esqueceu a senha?
+                    <a id="esqueceu" href="{% url 'reset_password' %}">
+                      Recuperar
+                    </a>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>

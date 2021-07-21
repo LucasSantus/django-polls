@@ -43,15 +43,4 @@ body::-webkit-scrollbar-thumb {
     position: relative;
     top: 6px;
     margin-right: 0.5em;
-} 
-
-/* centralizando card */
-.center-card{
-    height: auto;
-    min-height: 100%;
-    display: flex;
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-justify-content: center;
-    justify-content: center;
 }

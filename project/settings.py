@@ -130,6 +130,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'lucayasiltos@gmail.com'
 EMAIL_HOST_PASSWORD = 'iykuzqxmxiawdjtg'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Sign Up <lucayasiltos@gmail.com>'
+DEFAULT_FROM_EMAIL = 'Votation <lucayasiltos@gmail.com>'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
