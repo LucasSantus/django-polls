@@ -1,10 +1,10 @@
 <h1 align="center">Sistema de Votação</h1>
 
 <p align="center">
- <a href="#sobre">Sobre</a> •
- <a href="#porque">Por Que</a> •
- <a href="#tecnologias">Tecnologias</a> •
- <a href="#autor">Autor</a> •
+ <a href="#sobre">Sobre</a> &nbsp;|&nbsp;
+ <a href="#porque">Por Que</a> &nbsp;|&nbsp;
+ <a href="#tecnologias">Tecnologias</a> &nbsp;|&nbsp;
+ <a href="#autor">Autor</a> &nbsp;|&nbsp;
  <a href="#license">Licença</a>
 </p>
 
@@ -12,9 +12,9 @@
 	Se você quiser visualizar as imagens do aplicativo, clique <a href="#autor">aqui</a>.
 </h6>
 
-<h3 id="sobre">Sobre</h3>
+<h3 id="sobre">:information_source: Sobre</h3>
 
-Este projeto foi desenvolvido utilizando o django framework como back-end o framework Materialize como front-end. 
+> Este projeto foi desenvolvido utilizando o django framework como back-end o framework Materialize como front-end. 
 
 A ideia é:
 
@@ -22,7 +22,7 @@ _"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com
 
 --------------------------------------------------------------------------------------
 
-<h3 id="porque"> Por Que?</h3>
+<h3 id="porque">:information_source: Por Que?</h3>
 
 Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso você forneça algum feedback, código, estrutura, funcionalidade ou qualquer funcionalidade&melhoria que você possa relatar para melhora-lo.
 
@@ -32,7 +32,7 @@ Este é um projeto totalmente grátis!
 
 --------------------------------------------------------------------------------------
 
-### Tecnologias
+<h3 id="tecnologias">:rocket: Tecnologias</h3>
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
@@ -40,7 +40,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 --------------------------------------------------------------------------------------
 
-### Instalando o Projeto
+<h3 id="instalando">:information_source: Instalando o Projeto</h3>
 
 #### Linux
 
@@ -97,7 +97,7 @@ http://127.0.0.1:8000/admin/
 
 --------------------------------------------------------------------------------------
 
-### Autor
+<h3 id="autor">:information_source: Autor</h3>
 
 <div align="left"> 
 	<a href="https://github.com/LucasSantus">
@@ -112,6 +112,6 @@ Obrigado por visitar e boa codificação!<br />
 
 --------------------------------------------------------------------------------------
 
-### License
+<h3 id="license">:memo: License</h3>
 
 Este projeto está licenciado sob a Licença MIT License - veja o [LICENSE.md](https://github.com/LucasSantus/sistema-votacao/blob/master/LICENSE) para melhores detalhes.
