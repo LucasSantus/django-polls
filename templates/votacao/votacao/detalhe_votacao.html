@@ -2,24 +2,54 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container mt-6">
     <div class="container">
         <div class="container">  
-            <div class="card z-depth-4">
-                <div class="container">
-                    Título da Votação: {{votacao.titulo}}<br>
-                    Descrição: {{votacao.descricao}}<br>
-                    Votos Anônimos: {% if votacao.anonimo %}
-                        <i class="material-icons">check</i> <br>
-                    {% else %}
-                        <i class="material-icons">cancel</i>
-                        <br>
-                    {% endif %}
-                    Horário Inicio: {{votacao.data_inicio}}<br>
-                    Horário Término: {{votacao.data_fim}}<br>
+            <div class="card z-depth-4 p-5">
+                <h4 class="center fs-3 m-0 mb-4">Detalhes</h4>
+                <div class="row container">
+                    <div class="col s12 m12 x12 xl12">
+                        <div class="chip w-100 fs-7 bg-secondary text-white">
+                            <span class="fw-bold">Título:</span> {{votacao.titulo}}
+                        </div>
+                    </div>
+                    <div class="col s12 m12 x12 xl12">
+                        <div class="chip w-100 fs-7 bg-secondary text-white">
+                            <span class="fw-bold">Descrição:</span> {{votacao.descricao}}
+                        </div>
+                    </div>
+                    <div class="col s12 m12 x12 xl12">
+                        <div class="chip w-100 fs-7 bg-secondary text-white">
+                            <span class="fw-bold">Voto Anônimo:</span> 
+                            {% if votacao.anonimo %}
+                                hihi
+                            {% else %}
+                                hoho
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="col s12 m12 x12 xl12">
+                        <div class="chip w-100 fs-7 bg-secondary text-white">
+                            <span class="fw-bold">Inicio:</span> {{votacao.data_inicio}}
+                        </div>
+                    </div>
+                    <div class="col s12 m12 x12 xl12">
+                        <div class="chip w-100 fs-7 bg-secondary text-white">
+                            <span class="fw-bold">Término:</span> {{votacao.data_fim}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock content %}
+
+{% block css %}
+    <style>
+        .chip{
+            border-radius: 2px;
+        }
+    </style>
+{% endblock %}
