@@ -48,8 +48,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 **Clonando o Repositório**
 
-Dentro da pasta onde o projeto irá ficar armazenado, abra o terminal PowerShell (opcional, qualquer terminal funcionará), {Shift + Botão Direito Mouse}
-
 ```
 git init
 
@@ -64,28 +62,36 @@ Com o terminal aberto, digite:
 
 ```
 python3 -m venv env
+
 source env/bin/activate
+
 python -m pip install --upgrade pip
+
 pip install -r requirements.txt
+```
+
+**Iniciando o Projeto**
+
+```
+python manage.py makemigrations home
+
 python manage.py makemigrations usuarios
+
 python manage.py makemigrations votacao
+
+python manage.py makemigrations usuarios
+
 python manage.py migrate
+
 python manage.py runserver
 ```
 
-**Preparando o Projeto**
+**Criando Super Usuário**
 
 ```
-python manage.py migrate
-
 python manage.py createsuperuser
 ```
 
-**Rodando o Projeto**
-
-```
-python manage.py runserver
-```
 para visualizar o projeto: http://127.0.0.1:8000/
 
 
