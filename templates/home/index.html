@@ -9,79 +9,40 @@
     <div class="fixed-action-btn">
         <a href="{% url 'registrar_votacao' %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
     </div>
-    
     <div class="container mt-4">
-        <ul class="collapsible m-5 z-depth-3">
-            <li class="active">
-                <div class="collapsible-header bt-secondary fs-6"><i class="material-icons">filter_drama</i>Votações Disponíveis</div>
-                <div class="collapsible-body p-4">
-                    {% if votacoes %}
-                        <table class="centered highlight striped responsive-table highlight z-depth-1">
-                            <thead>
-                                <tr>
-                                    <th>Título</th>
-                                    <th>Ínicio</th>
-                                    <th>Término</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody class="divider">
-                                {% for votacao in votacoes %}
-                                    <tr>
-                                        <td>{{votacao.titulo}}</td>
-                                        <td>{{votacao.data_inicio}}</td>
-                                        <td>{{votacao.data_fim}}</td>
-                                        <td><a id="btn_votar" href="{% url 'votar' votacao.id %}" class="waves-effect waves-light btn bt-primary z-depth-4">Votar</a></td>
-                                    </tr>
-                                {% endfor %} 
-                            </tbody>
-                        </table>
-                    {% else %}
-                        <div class="container center">
-                            <div class="chip w-auto px-4 py-1 h-auto fs-6">
-                                <span>Não contém votações disponíveis no momento!</span>
-                            </div>
-                        </div>
-                    {% endif %}
+        <div class="card bg-secondary w-100 h-auto p-3 text-white fs-6 z-depth-2">
+            <i class="material-icons">filter_drama</i>
+            <span>Votações Disponíveis</span>
+        </div>
+        {% if votacoes %}
+            <table class="centered h-auto responsive-table z-depth-2">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Ínicio</th>
+                        <th>Término</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="divider">
+                    {% for votacao in votacoes %}
+                        <tr>
+                            <td>{{votacao.titulo}}</td>
+                            <td>{{votacao.data_inicio}}</td>
+                            <td>{{votacao.data_fim}}</td>
+                            <td><a id="btn_votar" href="{% url 'votar' votacao.id %}" class="waves-effect waves-light btn bt-primary z-depth-4">Votar</a></td>
+                        </tr>
+                    {% endfor %} 
+                </tbody>
+            </table>
+        {% else %}
+            <div class="container center">
+                <div class="chip w-auto px-4 py-1 h-auto fs-6">
+                    <span>Não contém votações disponíveis no momento!</span>
                 </div>
-            </li>
-        </ul>
+            </div>
+        {% endif %}
 
-        <ul class="collapsible m-5 z-depth-3">
-            <li class="active">
-                <div class="collapsible-header bt-secondary fs-6"><i class="material-icons">filter_drama</i>Votações Realizadas</div>
-                <div class="collapsible-body">
-                    {% if votacoes %}
-                        <table class="centered highlight striped responsive-table highlight z-depth-1">
-                            <thead>
-                                <tr>
-                                    <th>Título</th>
-                                    <th>Ínicio</th>
-                                    <th>Término</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody class="divider">
-                                {% for votacao in votacoes %}
-                                    <tr>
-                                        <td>{{votacao.titulo}}</td>
-                                        <td>{{votacao.data_inicio}}</td>
-                                        <td>{{votacao.data_fim}}</td>
-                                        <td><a id="btn_votar" href="{% url 'votar' votacao.id %}" class="waves-effect waves-light btn bt-primary z-depth-4">Votar</a></td>
-                                    </tr>
-                                {% endfor %} 
-                            </tbody>
-                        </table>
-                    {% else %}
-                        <div class="container center">
-                            <div class="chip w-auto px-4 py-1 h-auto fs-6">
-                                <span>Ainda não foi realizado votações!</span>
-                            </div>
-                        </div>                    
-                    {% endif %}
-                </div>
-            </li>
-        </ul>
     </div>
     
 {% endblock content %}
