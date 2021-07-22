@@ -14,8 +14,43 @@
     --bs-light: #f8f9fa;
     --bs-dark: #212529;
     --bs-white: #fff;
-    --bs-body: #e0e0e0;
+    --bs-body: #f5f5f5;
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Totalmente opaco */
+
+.c-100{
+    opacity: 1.0;
+}
+
+.c-90{
+    opacity: 0.9;
+}
+
+.c-80{
+   
+    opacity: 0.8;
+}
+
+.c-70{
+    opacity: 0.7;
+}
+
+.c-60{
+    opacity: 0.6;
+}
+
+.c-50{
+    opacity: 0.5;
+}
+
+.c-40{
+    opacity: 0.4;
+}
+
+.c-30{
+    opacity: 0.3;
 }
 
 /* Color Button's */

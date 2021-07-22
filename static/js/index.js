@@ -20,6 +20,14 @@ $(document).ready(function(){
         coverTrigger: false,
         hover: true,
     });
+
+    // Menu flutuante 
+    $('.fixed-action-btn').floatingActionButton({
+        direction: 'left'
+    }); 
+    
+    //Collapsible
+    $('.collapsible').collapsible();
 });
 
 function validacao_data(){
