@@ -40,7 +40,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 --------------------------------------------------------------------------------------
 
-<h3 id="instalando">:information_source: Instalando o Projeto</h3>
+<h3 id="instalando">:computer: Instalando o Projeto</h3>
 
 #### Linux
 
@@ -97,7 +97,7 @@ http://127.0.0.1:8000/admin/
 
 --------------------------------------------------------------------------------------
 
-<h3 id="autor">:information_source: Autor</h3>
+<h3 id="autor">:bust_in_silhouette: Autor</h3>
 
 <div align="left"> 
 	<a href="https://github.com/LucasSantus">
