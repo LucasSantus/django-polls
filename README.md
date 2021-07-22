@@ -36,6 +36,7 @@ Este é um projeto totalmente grátis!
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
+- [Django Framework](https://www.djangoproject.com/)
 - [Materialize](https://materializecss.com/)
 
 --------------------------------------------------------------------------------------
