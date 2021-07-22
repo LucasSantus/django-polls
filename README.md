@@ -22,7 +22,7 @@ _"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com
 
 --------------------------------------------------------------------------------------
 
-<h3 id="porque">:information_source: Por Que?</h3>
+<h3 id="porque">:question: Por Que?</h3>
 
 Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso você forneça algum feedback, código, estrutura, funcionalidade ou qualquer funcionalidade&melhoria que você possa relatar para melhora-lo.
 
