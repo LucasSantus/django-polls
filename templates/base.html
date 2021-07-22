@@ -30,7 +30,7 @@
         <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
 
         <!-- Import Java Script Personalizado -->
-        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+        <!-- <script type="text/javascript" src="{% static 'js/index.js' %}"></script> -->
 
         <!-- Import Java Script DateTimePicker -->
         <script type="text/javascript" src="{% static 'js/datetimepicker.js' %}"></script>
@@ -113,6 +113,41 @@
                 </div>
             </div>
         </footer>
+
+        <script>
+            $(document).ready(function(){
+                $('.tabs').tabs();
+
+                /* Inicialização do modal */
+                $('.modal').modal();
+
+                /* Inicialização do tooltipped */
+                $('.tooltipped').tooltip({delay: 50});
+
+                /* Inicialização do chip */
+                $('.chips').material_chip();
+
+                /* Inicialização do sidenav */
+                $('.sidenav').sidenav();
+
+                /* Inicialização do select */
+                $('select').formSelect();
+
+                /* Inicialização do dropdown */
+                $('.dropdown-trigger').dropdown({
+                    coverTrigger: false,
+                    hover: true,
+                });
+
+                // Menu flutuante 
+                $('.fixed-action-btn').floatingActionButton({
+                    direction: 'left'
+                }); 
+                
+                //Collapsible
+                $('.collapsible').collapsible();
+            });
+        </script>
 
         <!-- Script da Página -->
         {% block javascript %}

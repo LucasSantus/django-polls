@@ -1,6 +1,8 @@
-/* Arquivo personalizado contendo classes criadas de acordo com o projeto. */
-
-/* Classes Personalizadas */
+/* 
+    Arquivo personalizado contendo classes criadas de acordo com o projeto.
+    
+    Classes Personalizadas
+ */
 
 :root {
     --bs-primary: #512da8;
@@ -18,38 +20,36 @@
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-/* Totalmente opaco */
-
-.c-100{
+/* Opacity's */
+.op-100{
     opacity: 1.0;
 }
 
-.c-90{
+.op-90{
     opacity: 0.9;
 }
 
-.c-80{
-   
+.op-80{
     opacity: 0.8;
 }
 
-.c-70{
+.op-70{
     opacity: 0.7;
 }
 
-.c-60{
+.op-60{
     opacity: 0.6;
 }
 
-.c-50{
+.op-50{
     opacity: 0.5;
 }
 
-.c-40{
+.op-40{
     opacity: 0.4;
 }
 
-.c-30{
+.op-30{
     opacity: 0.3;
 }
 
