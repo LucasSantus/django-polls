@@ -4,6 +4,7 @@
  <a href="#sobre">Sobre</a> &nbsp;|&nbsp;
  <a href="#porque">Por Que</a> &nbsp;|&nbsp;
  <a href="#tecnologias">Tecnologias</a> &nbsp;|&nbsp;
+ <a href="#funcionalidades">Funcionalidades</a> &nbsp;|&nbsp;
  <a href="#autor">Autor</a> &nbsp;|&nbsp;
  <a href="#license">Licença</a>
 </p>
@@ -33,6 +34,15 @@ Este é um projeto totalmente grátis!
 --------------------------------------------------------------------------------------
 
 <h3 id="tecnologias">:rocket: Tecnologias</h3>
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [Django Framework](https://www.djangoproject.com/)
+- [Materialize](https://materializecss.com/)
+
+--------------------------------------------------------------------------------------
+
+<h3 id="funcionalidades">:sparkles: Funcionalidades</h3>
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
