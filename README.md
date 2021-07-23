@@ -44,7 +44,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <h3 id="funcionalidades">:sparkles: Funcionalidades</h3>
 
--[] CRUD de votações
+:construction: - Em construção...
 
 --------------------------------------------------------------------------------------
 
