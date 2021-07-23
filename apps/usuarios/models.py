@@ -1,11 +1,12 @@
 from django.db import models
-
-from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.urls import reverse
 
 class UsuarioManager(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self, email, password=None, **kwargs):
+        if not email:
+            raise ValueError('Insira um e-mail válido para continuar!')
+
         usuario = self.model(
             email=self.normalize_email(email),
         )
@@ -17,10 +18,11 @@ class UsuarioManager(BaseUserManager):
         usuario.save()
         return usuario
 
-    def create_superuser(self, email, password):
+    def create_superuser(self, email,  password, **kwargs):
         usuario = self.create_user(
             email=self.normalize_email(email),
             password=password,
+            **kwargs
         )
         usuario.is_active = True
         usuario.is_staff = True
@@ -39,7 +41,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     nome = models.CharField(
         verbose_name = "Nome Completo:",
         max_length = 194,
-        null = True,
+        null = False,
     )
 
     cpf = models.CharField(

@@ -19,7 +19,7 @@
             <li class="tab text-white"><a href="#tab_one" class="active text-white">Disponíveis</a></li>
             <li class="tab text-white"><a href="#tab_two" class="text-white">Realizadas</a></li>
         </ul>
-        <div id="tab_one" class="col s12 m12 x12 xl12">
+        <div id="tab_one" class="col s12 m12 x12 xl12 bg-secondary">
             {% if votacoes %}
                 <table class="centered responsive-table z-depth-3">
                     <thead>
@@ -50,7 +50,34 @@
             {% endif %}
         </div>
         <div id="tab_two" class="col s12 m12 x12 xl12">
-            oi
+            {% if votacoes %}
+                <table class="centered responsive-table z-depth-3">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Ínicio</th>
+                            <th>Término</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for votacao in votacoes %}
+                            <tr>
+                                <td>{{votacao.titulo}}</td>
+                                <td>{{votacao.data_inicio}}</td>
+                                <td>{{votacao.data_fim}}</td>
+                                <td><a id="btn_votar" href="{% url 'votar' votacao.id %}" class="waves-effect waves-light btn bt-primary z-depth-4">Votar</a></td>
+                            </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="container center">
+                    <div class="chip w-auto px-4 py-1 h-auto fs-6">
+                        <span>Não contém votações disponíveis no momento!</span>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
     

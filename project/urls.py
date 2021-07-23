@@ -9,5 +9,4 @@ urlpatterns = [
     path('', include('home.urls')),
     path('user/', include('usuarios.urls')),
     path('votacao/', include('votacao.urls')),
-    path('administracao/', include('administracao.urls')),
 ]
