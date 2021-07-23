@@ -44,10 +44,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <h3 id="funcionalidades">:sparkles: Funcionalidades</h3>
 
-As seguintes ferramentas foram usadas na construção do projeto:
-
-- [Django Framework](https://www.djangoproject.com/)
-- [Materialize](https://materializecss.com/)
+-[] CRUD de votações
 
 --------------------------------------------------------------------------------------
 
