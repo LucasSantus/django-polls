@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Listar Grupos | Sistema de Votação
+{% endblock %}
+
+{% block content %}
+    <div class="fixed-action-btn">
+        <a href="{% url 'listar_votacoes' %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+    </div>
+    {% if grupos %}
+        <div class="container">
+            <div class="row">
+                {% for grupo in grupos %}
+                    <a href="{% url 'listar_votacoes' %}">
+                        <div class="col s12 m6 x4 xl3">
+                            <div class="card bg-secondary h-auto text-white p-2">
+                                {{grupo}}
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}
+
+{% block css %}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
