@@ -4,6 +4,23 @@ from .models import *
 from usuarios.models import Usuario
 from django.contrib import messages
 
+# import string
+# import random
+# number_of_strings = 5
+# length_of_string = 8
+# for x in range(number_of_strings):
+#     print(''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(length_of_string)))
+# PEQBU72q
+# xuwUInGo
+# asVWVywB
+# SAsMRjka
+# CrbIpuR6
+
+
+# import uuid
+# print(uuid.uuid4())
+# 440a93fe-45d7-4ccc-a6ee-baf10ce7388a
+
 def registrar_votacao(request):
     form = VotacaoForm()
     usuario = Usuario.objects.get(id=request.user.id)

@@ -33,7 +33,4 @@ urlpatterns = [
     url('validate/email/', validate_email, name='validate_email'),
     url('validate/user/', validate_user, name='validate_user'),
     url('validate/email-registered/', validate_email_registered, name='validate_email_registered'),
-
-    #EDIT
-    # path("edit/<int:pk>", edit_user, name="edit_user"),
 ]
