@@ -23,6 +23,26 @@ def registrar_votacao(request):
 
     return render(request, "votacao/votacao/registrar_votacao.html", context)
 
+def registrar_grupo_votacao(request):
+    form = GrupoVotacao()
+    usuario = Usuario.objects.get(id=request.user.id)
+
+    if request.method == "POST":
+        form = GrupoVotacaoForm(request.POST)
+        if form.is_valid():
+            grupo = form.save(commit = False)
+            grupo.usuario = usuario
+            grupo.save()
+            messages.success(request,"O novo grupo foi inserido com sucesso!")
+            return redirect("index")
+
+    context = {
+        "form": form,
+        "usuario": usuario,
+    }
+
+    return render(request, "votacao/votacao/registrar_votacao.html", context)
+
 def registrar_opcao(request):
     form = OpcaoVotoForm()
     if request.method == "POST":
@@ -38,6 +58,17 @@ def registrar_opcao(request):
     }
 
     return render(request, "votacao/opcao/registrar_opcao.html", context)
+
+def listar_grupos(request):
+    grupos = GrupoVotacao.objects.all()
+    context = {
+        "grupos": grupos,
+    }
+
+    if not grupos:
+        messages.info(request,"Não existem votações registradas!")
+
+    return render(request, "votacao/grupo/listar_grupos.html", context)
 
 def listar_votacoes(request):
     votacoes = Votacao.objects.all()
@@ -69,7 +100,6 @@ def detalhe_votacao(request, id_votacao):
     }
 
     return render(request, "votacao/votacao/detalhe_votacao.html", context)
-
 
 def votar(request, id_votacao):
     pessoa = Usuario.objects.get(pk=request.user.id)

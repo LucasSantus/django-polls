@@ -30,6 +30,11 @@ class VotacaoForm(forms.ModelForm):
             },
         }
 
+class GrupoVotacaoForm(forms.ModelForm):
+    class Meta:
+        model = GrupoVotacao
+        fields = ('__all__')
+
 class OpcaoVotoForm(forms.ModelForm):
     class Meta:
         model = OpcaoVoto

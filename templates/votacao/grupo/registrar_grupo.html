@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% load materializecss %}
+
+{% block title %}
+    Registrar | System Votation
+{% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="container">
+        <div class="container">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="container">
+                    <div class="card z-depth-5">
+                        <div class='container center grey-text text-darken-3'>
+                            <h4>
+                                Registrar Grupo
+                            </h4>
+                        </div>
+
+                        {{ form|materializecss}}
+
+                        <div class="center format-buttons">
+                            <a href="{% url 'index' %}" class="waves-effect deep-purple waves-light btn btn-secondary text-white" type="button">
+                                <span class="text">CANCELAR</span>
+                            </a>
+                            <button class="waves-effect waves-light deep-purple btn btn-primary" type="submit">
+                                <span class="text">REGISTRAR</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block css %}
+    <style>
+        .card {
+            border: 1px solid #e0e0e0;
+        }
+
+        .format-buttons{
+            margin-bottom: 5px;
+        }
+
+        .format-buttons .btn{
+            margin-top: 5px;
+        }
+
+        .format-form{
+            margin-top: 3%; 
+            padding: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function(){
+
+        }); 
+    </script>
+{% endblock %}
