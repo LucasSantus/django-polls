@@ -136,21 +136,3 @@ class Pessoa_Voto(models.Model):
 
     def __str__(self):
         return self.votacao.nome
-
-class GrupoVotacao(models.Model):
-    titulo = models.CharField(
-        verbose_name = "Título:",
-        max_length=194,
-    )
-
-    codigo = models.TextField(
-        verbose_name = "Código:",
-        max_length=340,
-    )
-
-    class Meta:
-        verbose_name = "Votação"
-        verbose_name_plural = "Votações"
-
-    def __str__(self):
-        return self.titulo
