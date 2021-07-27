@@ -11,17 +11,22 @@ class GrupoVotacao(models.Model):
     codigo = models.CharField(
         verbose_name = "Código:",
         max_length = 194,
+        unique = True,
+        null = True,
+        blank = True,
     )
-    
+
     usuario = models.ForeignKey(
         Usuario,
         verbose_name = "Usuario:",
-        on_delete = models.CASCADE
+        on_delete = models.CASCADE,
+        null = True,
+        blank = True,
     )
 
     data_registrado = models.DateTimeField(
         verbose_name = "Data da Criação:",
-        auto_now = True,
+        auto_now_add = True,
     )
 
     class Meta:

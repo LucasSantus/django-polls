@@ -1,5 +1,8 @@
+@import "class";
+
 /* FOOTER */
 body {
+    background-color: --bs-primary;
     display: flex;
     min-height: 100vh;
     flex-direction: column;

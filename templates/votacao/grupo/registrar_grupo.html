@@ -7,39 +7,34 @@
 {% endblock %}
 
 {% block content %}
-    {% if form.errors %}
-        {% for error in form.non_field_errors %}
-            <div class="alert alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endif %}
+    <div class="container center">
+        <div class="item-center container">
+            <div class="container">
+                <div class="card p-2 z-depth-4">
+                    <span class="card-title">
+                        <h5 class="fw-bold">REGISTRAR GRUPO</h5>
+                    </span>
 
-    <div class="container">
-        <div class="container">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="container">
-                    <div class="card z-depth-5">
-                        <div class='container center grey-text text-darken-3'>
-                            <h4>
-                                Registrar Grupo
-                            </h4>
-                        </div>
+                    <div class="card-content">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="container">
+                                {{ form.titulo|materializecss}}
 
-                        {{ form|materializecss}}
-
-                        <div class="center format-buttons">
-                            <a href="{% url 'index' %}" class="waves-effect deep-purple waves-light btn btn-secondary text-white" type="button">
-                                <span class="text">CANCELAR</span>
-                            </a>
-                            <button class="waves-effect waves-light deep-purple btn btn-primary" type="submit">
-                                <span class="text">REGISTRAR</span>
-                            </button>
-                        </div>
+                                <div class="row center mt-2">
+                                    <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'listar_grupos' %}">
+                                    VOLTAR
+                                    </a>
+                                    
+                                    <button id="btn-login" class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" type="submit">
+                                    SALVAR
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 {% endblock content %}

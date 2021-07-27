@@ -4,22 +4,21 @@ from .models import *
 from usuarios.models import Usuario
 from django.contrib import messages
 
-# import string
-# import random
-# number_of_strings = 5
-# length_of_string = 8
-# for x in range(number_of_strings):
-#     print(''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(length_of_string)))
-# PEQBU72q
-# xuwUInGo
-# asVWVywB
-# SAsMRjka
-# CrbIpuR6
+import string
+import random
 
+def code_generated(size=15, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
 
-# import uuid
-# print(uuid.uuid4())
-# 440a93fe-45d7-4ccc-a6ee-baf10ce7388a
+def code():
+    valid = True
+    while valid == True:
+        try:
+            codigo = code_generated()
+            GrupoVotacao.objects.get(codigo=codigo)
+        except GrupoVotacao.DoesNotExist:
+            valid = False
+            return codigo
 
 def registrar_votacao(request):
     form = VotacaoForm()
@@ -41,7 +40,7 @@ def registrar_votacao(request):
     return render(request, "votacao/votacao/registrar_votacao.html", context)
 
 def registrar_grupo_votacao(request):
-    form = GrupoVotacao()
+    form = GrupoVotacaoForm()
     usuario = Usuario.objects.get(id=request.user.id)
 
     if request.method == "POST":
@@ -49,16 +48,19 @@ def registrar_grupo_votacao(request):
         if form.is_valid():
             grupo = form.save(commit = False)
             grupo.usuario = usuario
+            grupo.codigo = code()
             grupo.save()
+
             messages.success(request,"O novo grupo foi inserido com sucesso!")
-            return redirect("index")
+
+            return redirect("listar_grupos")
 
     context = {
         "form": form,
         "usuario": usuario,
     }
 
-    return render(request, "votacao/votacao/registrar_votacao.html", context)
+    return render(request, "votacao/grupo/registrar_grupo.html", context)
 
 def registrar_opcao(request):
     form = OpcaoVotoForm()
@@ -77,13 +79,26 @@ def registrar_opcao(request):
     return render(request, "votacao/opcao/registrar_opcao.html", context)
 
 def listar_grupos(request):
-    grupos = GrupoVotacao.objects.all()
+    user = request.user
+    list_grupos = GrupoVotacao.objects.all().order_by('-data_registrado')
+
+    if request.POST:
+        pesquisa = request.POST.get("pesquisa", False)
+        try:
+            list_grupos = GrupoVotacao.objects.filter(titulo__icontains=pesquisa, usuario=user).order_by("-data_registrado")
+            if not list_grupos:
+                list_grupos = GrupoVotacao.objects.filter(codigo__icontains=pesquisa, usuario=user).order_by("-data_registrado")
+                if not list_grupos:
+                    messages.error(request, "Grupo não encontrado.")
+        except:
+            messages.error(request, "Grupo não encontrado.")
+
     context = {
-        "grupos": grupos,
+        "grupos": list_grupos,
     }
 
-    if not grupos:
-        messages.info(request,"Não existem votações registradas!")
+    if not list_grupos:
+        messages.info(request,"Não existem grupos registrados!")
 
     return render(request, "votacao/grupo/listar_grupos.html", context)
 

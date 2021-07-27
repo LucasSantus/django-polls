@@ -6,15 +6,32 @@
 
 {% block content %}
     <div class="fixed-action-btn">
-        <a href="{% url 'listar_votacoes' %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+        <a href="{% url 'registrar_grupo_votacao' %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
     </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            
+                <div class="input-field col s12">
+                    <i class="material-icons prefix" type="submit">search</i>
+                    <input type="text" name="pesquisa" id="pesquisa">
+                    <label for="pesquisa">Pesquisar:</label>
+                    <div class="center">
+                        <span class="help-block fs-7"><strong>Título e Código</strong></span>
+                    </div>
+                </div>
+            
+        </div>
+    </form>
+
     {% if grupos %}
         <div class="container">
             <div class="row">
                 {% for grupo in grupos %}
-                    <a href="{% url 'listar_votacoes' %}">
-                        <div class="col s12 m6 x4 xl3">
-                            <div class="card bg-secondary h-auto text-white p-2">
+                    <a href="#">
+                        <div class="col s12 m6 x4 xl4">
+                            <div class="card bg-secondary text-white p-2 fs-6 center truncate">
                                 {{grupo}}
                             </div>
                         </div>
