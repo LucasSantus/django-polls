@@ -11,7 +11,6 @@ urlpatterns = [
     # Listar
     path("listar-votacoes/", listar_votacoes, name="listar_votacoes"),
     path("listar-opcoes/", listar_opcoes, name="listar_opcoes"),
-    path("listar-grupos/", listar_grupos, name="listar_grupos"),
     
     # Detalhes
     path("detalhe-votacao/<int:id_votacao>", detalhe_votacao, name="detalhe_votacao"),
