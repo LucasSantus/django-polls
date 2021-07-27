@@ -37,7 +37,7 @@ def index(request):
     if not list_grupos:
         messages.info(request,"Não existem grupos registrados!")
 
-    return render(request, "votacao/grupo/listar_grupos.html", context)
+    return render(request, "home/index.html", context)
 
 def votacoes(request):
     votacoes = Votacao.objects.filter(data_inicio__lte=timezone.now(), data_fim__gte=timezone.now())

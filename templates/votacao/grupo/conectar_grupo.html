@@ -12,14 +12,17 @@
             <div class="container">
                 <div class="card p-2 z-depth-4">
                     <span class="card-title">
-                        <h5 class="fw-bold">REGISTRAR GRUPO</h5>
+                        <h5 class="fw-bold">ENTRAR EM UM GRUPO</h5>
                     </span>
 
                     <div class="card-content">
                         <form method="POST">
                             {% csrf_token %}
                             <div class="container">
-                                {{ form.titulo|materializecss}}
+                                <div class="input-field col s12">
+                                    <input type="text" name="grupo" maxlength="194" class="validate invalid" required="" id="id_grupo">
+                                    <label class="" for="id_grupo">Nome do Grupo:</label>
+                                </div>
 
                                 <div class="row center mt-2">
                                     <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="/">
@@ -40,30 +43,7 @@
 {% endblock content %}
 
 {% block css %}
-    <style>
-        .card {
-            border: 1px solid #e0e0e0;
-        }
-
-        .format-buttons{
-            margin-bottom: 5px;
-        }
-
-        .format-buttons .btn{
-            margin-top: 5px;
-        }
-
-        .format-form{
-            margin-top: 3%; 
-            padding: 5px;
-        }
-    </style>
 {% endblock %}
 
 {% block javascript %}
-    <script>
-        $(document).ready(function(){
-
-        }); 
-    </script>
 {% endblock %}

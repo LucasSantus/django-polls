@@ -1,98 +1,62 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block title %}
-    Dashboard | System Votation
+    Listar Grupos | Sistema de Votação
 {% endblock %}
 
 {% block content %}
-
+    <!-- Botão Flutuante -->
     <div class="fixed-action-btn">
-        <a href="{% url 'registrar_votacao' %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
-    </div>
-    <div class="container mt-4">
-        <!-- <div class="card bg-secondary w-100 h-auto p-3 text-white fs-6 z-depth-2">
-            <i class="material-icons">filter_drama</i>
-            <span>Votações Disponíveis</span>
-        </div> -->
-
-        <ul class="tabs tabs-fixed-width z-depth-1 bg-primary">
-            <li class="tab text-white"><a href="#tab_one" class="active text-white">Disponíveis</a></li>
-            <li class="tab text-white"><a href="#tab_two" class="text-white">Realizadas</a></li>
+        <a href="#" class="btn-floating bt-primary btn-large waves-effect waves-light">
+            <i class="material-icons">menu</i>
+        </a>
+        <ul>
+            <li><a href='{% url "registrar_grupo" %}' class="btn-floating bt-secondary tooltipped" data-position="top" data-tooltip="Criar Novo Grupo"><i class="material-icons">group_add</i></a></li>
+            <li><a href='{% url "conectar_grupo" %}' class="btn-floating bt-primary tooltipped" data-position="top" data-tooltip="Entrar em Algum Grupo"><i class="material-icons">login</i></a></li>
         </ul>
-        <div id="tab_one" class="col s12 m12 x12 xl12 bg-secondary">
-            {% if votacoes %}
-                <table class="centered responsive-table z-depth-3">
-                    <thead>
-                        <tr>
-                            <th>Título</th>
-                            <th>Ínicio</th>
-                            <th>Término</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for votacao in votacoes %}
-                            <tr>
-                                <td>{{votacao.titulo}}</td>
-                                <td>{{votacao.data_inicio}}</td>
-                                <td>{{votacao.data_fim}}</td>
-                                <td><a id="btn_votar" href="{% url 'votar' votacao.id %}" class="waves-effect waves-light btn bt-primary z-depth-4">Votar</a></td>
-                            </tr>
-                        {% endfor %} 
-                    </tbody>
-                </table>
-            {% else %}
-                <div class="container center">
-                    <div class="chip w-auto px-4 py-1 h-auto fs-6">
-                        <span>Não contém votações disponíveis no momento!</span>
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-        <div id="tab_two" class="col s12 m12 x12 xl12">
-            {% if votacoes %}
-                <table class="centered responsive-table z-depth-3">
-                    <thead>
-                        <tr>
-                            <th>Título</th>
-                            <th>Ínicio</th>
-                            <th>Término</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for votacao in votacoes %}
-                            <tr>
-                                <td>{{votacao.titulo}}</td>
-                                <td>{{votacao.data_inicio}}</td>
-                                <td>{{votacao.data_fim}}</td>
-                                <td><a id="btn_votar" href="{% url 'votar' votacao.id %}" class="waves-effect waves-light btn bt-primary z-depth-4">Votar</a></td>
-                            </tr>
-                        {% endfor %} 
-                    </tbody>
-                </table>
-            {% else %}
-                <div class="container center">
-                    <div class="chip w-auto px-4 py-1 h-auto fs-6">
-                        <span>Não contém votações disponíveis no momento!</span>
-                    </div>
-                </div>
-            {% endif %}
-        </div>
     </div>
-    
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <div class="input-field col s12">
+                <i class="material-icons prefix" type="submit">search</i>
+                <input type="text" name="pesquisa" id="pesquisa">
+                <label for="pesquisa">Pesquisar:</label>
+                <div class="center">
+                    <span class="help-block fs-7"><strong>Título e Código</strong></span>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% if grupos %}
+        <div class="container">
+            <div class="row">
+                {% for grupo in grupos %}
+                    <a href="#">
+                        <div class="col s12 m6 x4 xl4">
+                            <div class="card bg-secondary text-white p-2 fs-6 center truncate">
+                                {{grupo}}
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 {% endblock content %}
 
 {% block css %}
-    <style>
-        .chip{
-            border-radius: 4px;
-        }
-    </style>
 {% endblock %}
 
 {% block javascript %}
-    <script>
-        
-    </script>
+        <script>
+            $(document).ready(function(){              
+                // Menu flutuante 
+                $('.fixed-action-btn').floatingActionButton({
+                    direction: 'left'
+                });
+            });
+        </script>
 {% endblock %}
