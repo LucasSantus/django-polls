@@ -62,7 +62,7 @@ def detalhe_votacao(request, id_votacao):
     return render(request, "votacao/votacao/detalhe_votacao.html", context)
 
 # GRUPO
-def registrar_grupo_votacao(request):
+def registrar_grupo(request):
     form = GrupoVotacaoForm()
     usuario = Usuario.objects.get(id=request.user.id)
 
@@ -100,6 +100,20 @@ def registrar_opcao(request):
     }
 
     return render(request, "votacao/opcao/registrar_opcao.html", context)
+
+def conectar_grupo(request):
+    form = OpcaoVotoForm()
+    if request.method == "POST":
+        form = OpcaoVotoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("index")
+
+    context = {
+        "form": form,
+    }
+
+    return render(request, "votacao/grupo/conectar_grupo.html", context)
 
 # OPÇÕES DE VOTO
 def listar_opcoes(request):
