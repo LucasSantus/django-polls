@@ -16,21 +16,21 @@
                     </span>
 
                     <div class="card-content">
-                        <form method="POST">
+                        <form method="POST" validate="{% url 'validate_group' %}">
                             {% csrf_token %}
                             <div class="container">
                                 <div class="input-field col s12">
                                     <input type="text" name="grupo" maxlength="194" class="validate invalid" required="" id="id_grupo">
-                                    <label class="" for="id_grupo">Nome do Grupo:</label>
+                                    <label class="" for="id_grupo">Código do Grupo:</label>
                                 </div>
 
                                 <div class="row center mt-2">
-                                    <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="/">
+                                    <a id="btn-voltar-conectar" class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="/">
                                     VOLTAR
                                     </a>
                                     
-                                    <button id="btn-login" class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" type="submit">
-                                    SALVAR
+                                    <button id="btn-entrar-conectar" class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" type="submit">
+                                    ENTRAR
                                     </button>
                                 </div>
                             </div>
@@ -46,4 +46,31 @@
 {% endblock %}
 
 {% block javascript %}
+    <!-- Inicialização JavaScript -->
+    <script>
+        $(document).ready(function(){
+            $("#btn-entrar-conectar").attr("disabled", true);
+        });
+    </script>
+
+    <!-- Função Ajax - Validar Grupo -->
+    <script>
+        $("#id_grupo").change(function () {
+            var form = $(this).closest("form");
+            $.ajax({
+                url: form.attr("validate"),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function (data) {
+                    if(!data.is_group){
+                        M.toast({html: data.error_message})
+                        $("#btn-entrar-conectar").attr("disabled", true);
+                    }
+                    else{
+                        $("#btn-entrar-conectar").attr("disabled", false);
+                    }
+                }
+            });
+        });
+    </script>
 {% endblock %}

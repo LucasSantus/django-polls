@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path
 from .views import *
-from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -26,9 +25,4 @@ urlpatterns = [
     path('password/reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name="usuarios/reset_password/reset-password-confirm.html"), name="password_reset_confirm"),
     path('password/reset/complete/', auth_views.PasswordResetCompleteView.as_view(template_name="usuarios/reset_password/reset-password-complete.html"), name="password_reset_complete"),
     path('password/reset/', auth_views.PasswordResetView.as_view(template_name="usuarios/reset_password/reset-password.html"), name="reset_password"),
-    
-    #VALIDATE
-    url('validate/email/', validate_email, name='validate_email'),
-    url('validate/user/', validate_user, name='validate_user'),
-    url('validate/email-registered/', validate_email_registered, name='validate_email_registered'),
 ]

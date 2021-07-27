@@ -102,28 +102,32 @@ def registrar_opcao(request):
     return render(request, "votacao/opcao/registrar_opcao.html", context)
 
 def conectar_grupo(request):
-    form = OpcaoVotoForm()
-    if request.method == "POST":
-        form = OpcaoVotoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("index")
+    user = request.user.id
 
-    context = {
-        "form": form,
-    }
+    if request.POST: 
+        codigo = request.POST.get("grupo", False)
 
-    return render(request, "votacao/grupo/conectar_grupo.html", context)
+        try:
+            grupo = GrupoVotacao.objects.get(codigo__icontains=codigo, usuarios=user)
+            if grupo:
+                messages.error(request, "Você já está nesse grupo.")
+        
+        except:
+            grupo = GrupoVotacao.objects.get(codigo__icontains=codigo)
+            if grupo:
+                messages.success(request,"Entrou para novo grupo.")
+                grupo.usuarios.add(user)
+
+        return redirect("index")
+
+    return render(request, "votacao/grupo/conectar_grupo.html")
 
 # OPÇÕES DE VOTO
 def listar_opcoes(request):
-    
     opcoes = OpcaoVoto.objects.all()
-
     context = {
         "opcoes": opcoes,
     }
-
     return render(request, "votacao/opcao_voto/listar_opcoes.html", context)
 
 def votar(request, id_votacao):

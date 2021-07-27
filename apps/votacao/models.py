@@ -16,12 +16,9 @@ class GrupoVotacao(models.Model):
         blank = True,
     )
 
-    usuario = models.ForeignKey(
+    usuarios = models.ManyToManyField(
         Usuario,
-        verbose_name = "Usuario:",
-        on_delete = models.CASCADE,
-        null = True,
-        blank = True,
+        verbose_name = "Usuarios:",
     )
 
     data_registrado = models.DateTimeField(
