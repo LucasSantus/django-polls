@@ -19,6 +19,8 @@ class GrupoVotacao(models.Model):
     usuarios = models.ManyToManyField(
         Usuario,
         verbose_name = "Usuarios:",
+        null = True,
+        blank = True,
     )
 
     data_registrado = models.DateTimeField(

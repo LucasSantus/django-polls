@@ -70,13 +70,13 @@ def registrar_grupo(request):
         form = GrupoVotacaoForm(request.POST)
         if form.is_valid():
             grupo = form.save(commit = False)
-            grupo.usuario = usuario
             grupo.codigo = code()
             grupo.save()
+            grupo.usuarios.add(usuario)
 
             messages.success(request,"O novo grupo foi inserido com sucesso!")
 
-            return redirect("listar_grupos")
+            return redirect("index")
 
     context = {
         "form": form,
