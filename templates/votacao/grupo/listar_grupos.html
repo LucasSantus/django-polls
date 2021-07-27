@@ -5,23 +5,28 @@
 {% endblock %}
 
 {% block content %}
+    <!-- Botão Flutuante -->
     <div class="fixed-action-btn">
-        <a href="{% url 'registrar_grupo_votacao' %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+        <a href="#" class="btn-floating bt-primary btn-large waves-effect waves-light">
+            <i class="material-icons">menu</i>
+        </a>
+        <ul>
+            <li><a href='{% url "registrar_grupo_votacao" %}' class="btn-floating bt-secondary tooltipped" data-position="top" data-tooltip="Criar Novo Grupo"><i class="material-icons">group_add</i></a></li>
+            <li><a class="btn-floating bt-primary tooltipped" data-position="top" data-tooltip="Entrar em Algum Grupo"><i class="material-icons">login</i></a></li>
+        </ul>
     </div>
 
     <form method="POST">
         {% csrf_token %}
         <div class="container">
-            
-                <div class="input-field col s12">
-                    <i class="material-icons prefix" type="submit">search</i>
-                    <input type="text" name="pesquisa" id="pesquisa">
-                    <label for="pesquisa">Pesquisar:</label>
-                    <div class="center">
-                        <span class="help-block fs-7"><strong>Título e Código</strong></span>
-                    </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix" type="submit">search</i>
+                <input type="text" name="pesquisa" id="pesquisa">
+                <label for="pesquisa">Pesquisar:</label>
+                <div class="center">
+                    <span class="help-block fs-7"><strong>Título e Código</strong></span>
                 </div>
-            
+            </div>
         </div>
     </form>
 
@@ -46,4 +51,12 @@
 {% endblock %}
 
 {% block javascript %}
+        <script>
+            $(document).ready(function(){              
+                // Menu flutuante 
+                $('.fixed-action-btn').floatingActionButton({
+                    direction: 'left'
+                });
+            });
+        </script>
 {% endblock %}

@@ -20,6 +20,7 @@ def code():
             valid = False
             return codigo
 
+# VOTAÇÃO
 def registrar_votacao(request):
     form = VotacaoForm()
     usuario = Usuario.objects.get(id=request.user.id)
@@ -39,6 +40,28 @@ def registrar_votacao(request):
 
     return render(request, "votacao/votacao/registrar_votacao.html", context)
 
+def listar_votacoes(request):
+    votacoes = Votacao.objects.all()
+    context = {
+        "votacoes": votacoes,
+    }
+
+    if not votacoes:
+        messages.info(request,"Não existem votações registradas!")
+
+    return render(request, "votacao/votacao/listar_votacao.html", context)
+
+def detalhe_votacao(request, id_votacao):
+
+    votacao = Votacao.objects.get(pk=id_votacao)
+
+    context = {
+        "votacao": votacao,
+    }
+
+    return render(request, "votacao/votacao/detalhe_votacao.html", context)
+
+# GRUPO
 def registrar_grupo_votacao(request):
     form = GrupoVotacaoForm()
     usuario = Usuario.objects.get(id=request.user.id)
@@ -78,17 +101,7 @@ def registrar_opcao(request):
 
     return render(request, "votacao/opcao/registrar_opcao.html", context)
 
-def listar_votacoes(request):
-    votacoes = Votacao.objects.all()
-    context = {
-        "votacoes": votacoes,
-    }
-
-    if not votacoes:
-        messages.info(request,"Não existem votações registradas!")
-
-    return render(request, "votacao/votacao/listar_votacao.html", context)
-
+# OPÇÕES DE VOTO
 def listar_opcoes(request):
     
     opcoes = OpcaoVoto.objects.all()
@@ -98,16 +111,6 @@ def listar_opcoes(request):
     }
 
     return render(request, "votacao/opcao_voto/listar_opcoes.html", context)
-
-def detalhe_votacao(request, id_votacao):
-
-    votacao = Votacao.objects.get(pk=id_votacao)
-
-    context = {
-        "votacao": votacao,
-    }
-
-    return render(request, "votacao/votacao/detalhe_votacao.html", context)
 
 def votar(request, id_votacao):
     pessoa = Usuario.objects.get(pk=request.user.id)
@@ -148,6 +151,7 @@ def votar(request, id_votacao):
 
     return render(request, "administracao/votar.html", context)
 
+# APURAÇÃO
 def apuracao(request, id_votacao):
     
     votacao = Votacao.objects.get(pk=id_votacao)

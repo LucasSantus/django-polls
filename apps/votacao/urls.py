@@ -6,7 +6,7 @@ urlpatterns = [
     # Registrar
     path("registrar-votacao/", registrar_votacao, name="registrar_votacao"),
     path("registrar-opcao-voto/", registrar_opcao, name="registrar_opcao"),
-    path("registrar-grupos/", registrar_grupo_votacao, name="registrar_grupo_votacao"),
+    path("registrar-grupo/", registrar_grupo_votacao, name="registrar_grupo_votacao"),
 
     # Listar
     path("listar-votacoes/", listar_votacoes, name="listar_votacoes"),
