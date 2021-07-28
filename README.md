@@ -57,8 +57,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 **Clonando o Repositório**
 
 ```
-git init
-
 git clone git@github.com:LucasSantus/votation.git
 
 cd votation
