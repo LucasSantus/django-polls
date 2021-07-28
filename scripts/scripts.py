@@ -17,8 +17,8 @@ def code():
     valid = True
     while valid == True:
         try:
-            GrupoVotacao.objects.get(codigo=codigo)
+            SalaVotacao.objects.get(codigo=codigo)
             codigo = code_generated()
-        except GrupoVotacao.DoesNotExist:
+        except SalaVotacao.DoesNotExist:
             valid = False
             return codigo

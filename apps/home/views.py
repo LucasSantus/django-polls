@@ -47,7 +47,7 @@ def validate_group(request):
     print("hihihh")
     group = request.GET.get('grupo', None)
     data = {
-        'is_group': GrupoVotacao.objects.filter(codigo__iexact=group).exists(),
+        'is_group': SalaVotacao.objects.filter(codigo__iexact=group).exists(),
     }
     if not data['is_group']:
         data['error_message'] = 'Este grupo não está cadastrado!'
@@ -56,14 +56,14 @@ def validate_group(request):
 @login_required
 def index(request):
     user = request.user
-    list_grupos = GrupoVotacao.objects.filter(usuarios=user)
+    list_grupos = SalaVotacao.objects.filter(usuarios=user)
 
     if request.POST: 
         pesquisa = request.POST.get("pesquisa", False)
         try:
-            list_grupos = GrupoVotacao.objects.filter(titulo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
+            list_grupos = SalaVotacao.objects.filter(titulo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
             if not list_grupos:
-                list_grupos = GrupoVotacao.objects.filter(codigo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
+                list_grupos = SalaVotacao.objects.filter(codigo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
                 if not list_grupos:
                     messages.error(request, "Grupo não encontrado.")
         except:

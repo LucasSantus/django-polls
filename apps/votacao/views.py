@@ -15,8 +15,8 @@ def code():
     while valid == True:
         try:
             codigo = code_generated()
-            GrupoVotacao.objects.get(codigo=codigo)
-        except GrupoVotacao.DoesNotExist:
+            SalaVotacao.objects.get(codigo=codigo)
+        except SalaVotacao.DoesNotExist:
             valid = False
             return codigo
 
@@ -63,11 +63,11 @@ def detalhe_votacao(request, id_votacao):
 
 # GRUPO
 def registrar_grupo(request):
-    form = GrupoVotacaoForm()
+    form = SalaVotacaoForm()
     usuario = Usuario.objects.get(id=request.user.id)
 
     if request.method == "POST":
-        form = GrupoVotacaoForm(request.POST)
+        form = SalaVotacaoForm(request.POST)
         if form.is_valid():
             grupo = form.save(commit = False)
             grupo.codigo = code()
@@ -108,12 +108,12 @@ def conectar_grupo(request):
         codigo = request.POST.get("grupo", False)
 
         try:
-            grupo = GrupoVotacao.objects.get(codigo__icontains=codigo, usuarios=user)
+            grupo = SalaVotacao.objects.get(codigo__icontains=codigo, usuarios=user)
             if grupo:
                 messages.error(request, "Você já está nesse grupo.")
         
         except:
-            grupo = GrupoVotacao.objects.get(codigo__icontains=codigo)
+            grupo = SalaVotacao.objects.get(codigo__icontains=codigo)
             if grupo:
                 messages.success(request,"Entrou para novo grupo.")
                 grupo.usuarios.add(user)
