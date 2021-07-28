@@ -62,9 +62,17 @@ git clone git@github.com:LucasSantus/votation.git
 cd votation
 ```
 
+**Instalando Ambiente Virtual**
+
+Caso não tenha um ambiente virtual instalado, digite no terminal:
+
+```
+sudo apt-get install python3-venv
+```
+
 **Preparando Ambiente Virtual**
 
-Com o terminal aberto, digite:
+Com o terminal aberto, digite no terminal:
 
 ```
 python3 -m venv env
@@ -76,7 +84,7 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-**Iniciando o Projeto**
+**Iniciando e Rodando o Projeto**
 
 ```
 python manage.py makemigrations home
@@ -95,6 +103,7 @@ python manage.py runserver
 ```
 python manage.py createsuperuser
 ```
+**Acessando o Projeto**
 
 para visualizar o projeto: http://127.0.0.1:8000/
 
