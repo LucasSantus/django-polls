@@ -59,9 +59,9 @@ As seguintes ferramentas foram usadas na construção do projeto:
 ```
 git init
 
-git clone git@github.com:LucasSantus/sistema-votacao.git
+git clone git@github.com:LucasSantus/votation.git
 
-cd sistema-votacao
+cd votation
 ```
 
 **Preparando Ambiente Virtual**
@@ -86,8 +86,6 @@ python manage.py makemigrations home
 python manage.py makemigrations usuarios
 
 python manage.py makemigrations votacao
-
-python manage.py makemigrations usuarios
 
 python manage.py migrate
 
