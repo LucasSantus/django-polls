@@ -13,13 +13,11 @@ class SalaVotacao(models.Model):
         max_length = 194,
         unique = True,
         null = True,
-        blank = True,
     )
 
     usuarios = models.ManyToManyField(
         Usuario,
         verbose_name = "Usuarios:",
-        null = True,
         blank = True,
     )
 
@@ -80,7 +78,7 @@ class Votacao(models.Model):
     
     data_registrado = models.DateTimeField(
         verbose_name = "Data da Criação:",
-        auto_now = True,
+        auto_now_add = True,
     )
 
     class Meta:

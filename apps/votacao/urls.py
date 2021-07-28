@@ -4,8 +4,8 @@ from .views import *
 
 urlpatterns = [
     # VOTAÇÃO
-    path("votacao/registrar/", registrar_votacao, name="registrar_votacao"),
-    path("votacao/listar/", listar_votacoes, name="listar_votacoes"),
+    path("votacao/registrar/<int:id_sala>/", registrar_votacao, name="registrar_votacao"),
+    path("votacao/listar/<int:id_sala>/", listar_votacoes, name="listar_votacoes"),
     path("votacao/detalhe/<int:id_votacao>/", detalhe_votacao, name="detalhe_votacao"),
 
     # OPÇÃO DE VOTO

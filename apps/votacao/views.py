@@ -21,14 +21,16 @@ def code():
             return codigo
 
 # VOTAÇÃO
-def registrar_votacao(request):
+def registrar_votacao(request, id_sala):
     form = VotacaoForm()
-    usuario = Usuario.objects.get(id=request.user.id)
+    usuario = Usuario.objects.get(id = request.user.id)
+    sala = SalaVotacao.objects.get(id = id_sala)
 
     if request.method == "POST":
         form = VotacaoForm(request.POST)
         if form.is_valid():
-            votacao = form.save()
+            votacao = form.save(commit = False)
+            votacao.sala = sala
             votacao.save()
             messages.success(request,"A nova votação foi inserida com sucesso!")
             return redirect("index")
@@ -40,16 +42,19 @@ def registrar_votacao(request):
 
     return render(request, "votacao/votacao/registrar_votacao.html", context)
 
-def listar_votacoes(request):
-    votacoes = Votacao.objects.all()
+def listar_votacoes(request, id_sala):
+    list_votacoes = Votacao.objects.filter(sala_id=id_sala).order_by("-data_registrado")
+    # list_votacoes = Votacao.objects.all()
+
     context = {
-        "votacoes": votacoes,
+        "list_votacoes": list_votacoes,
+        "id_sala": id_sala,
     }
 
-    if not votacoes:
+    if not list_votacoes:
         messages.info(request,"Não existem votações registradas!")
 
-    return render(request, "votacao/votacao/listar_votacao.html", context)
+    return render(request, "votacao/votacao/listar_votacoes.html", context)
 
 def detalhe_votacao(request, id_votacao):
 
@@ -61,7 +66,7 @@ def detalhe_votacao(request, id_votacao):
 
     return render(request, "votacao/votacao/detalhe_votacao.html", context)
 
-# sala
+# SALA DE VOTAÇÃO
 def registrar_sala(request):
     form = SalaVotacaoForm()
     usuario = Usuario.objects.get(id=request.user.id)

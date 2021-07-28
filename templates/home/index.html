@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row">
                 {% for sala in salas %}
-                    <a href="#">
+                    <a href="{% url 'listar_votacoes' sala.id %}">
                         <div class="col s12 m6 x4 xl4">
                             <div class="card bt-secondary text-white p-2 fs-6 center truncate">
                                 {{sala}}
