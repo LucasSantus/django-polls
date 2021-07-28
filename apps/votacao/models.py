@@ -23,6 +23,13 @@ class SalaVotacao(models.Model):
         blank = True,
     )
 
+    admin = models.ForeignKey(
+        Usuario, 
+        on_delete = models.CASCADE,
+        verbose_name = "Administrador da Sala:",
+        related_name = "admin",
+    )
+
     data_registrado = models.DateTimeField(
         verbose_name = "Data da Criação:",
         auto_now_add = True,

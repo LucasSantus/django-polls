@@ -66,11 +66,12 @@ def registrar_sala(request):
     form = SalaVotacaoForm()
     usuario = Usuario.objects.get(id=request.user.id)
 
-    if request.method == "POST":
+    if request.POST:
         form = SalaVotacaoForm(request.POST)
         if form.is_valid():
             sala = form.save(commit = False)
             sala.codigo = code()
+            sala.admin = usuario
             sala.save()
             sala.usuarios.add(usuario)
 
@@ -87,7 +88,7 @@ def registrar_sala(request):
 
 def registrar_opcao(request):
     form = OpcaoVotoForm()
-    if request.method == "POST":
+    if request.POST:
         form = OpcaoVotoForm(request.POST)
         if form.is_valid():
             opcao_voto = form.save()

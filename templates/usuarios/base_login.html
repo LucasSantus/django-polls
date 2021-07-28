@@ -40,6 +40,18 @@
     <main>
       {% block content %}
       {% endblock %}
+
+      <!-- Modal Structure -->
+      <div id="modal-back" class="modal">
+        <div class="modal-content">
+          <h4>Voltar para Login</h4>
+          <p>Você realmente deseja continuar esta ação?</p>
+        </div>
+        <div class="modal-footer">
+          <a href="" class="modal-close bt-secondary btn btn-flat z-depth-4">SAIR</a>
+          <a href="{% url 'login' %}" class="modal-close bt-primary btn btn-flat z-depth-4">CONTINUAR</a>
+        </div>
+      </div>
     </main>
 
     <footer class="page-footer transparent">
@@ -49,18 +61,6 @@
         </div>
       </div>
     </footer>
-
-    <!-- Modal Structure -->
-    <div id="modal-back" class="modal">
-      <div class="modal-content">
-        <h4>Voltar para Login</h4>
-        <p>Você realmente deseja continuar esta ação?</p>
-      </div>
-      <div class="modal-footer">
-        <a href="" class="modal-close bt-secondary btn btn-flat z-depth-4">SAIR</a>
-        <a href="{% url 'login' %}" class="modal-close bt-primary btn btn-flat z-depth-4">CONTINUAR</a>
-      </div>
-    </div>
 
     <!-- Import JQuery -->
     <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
@@ -74,11 +74,15 @@
     <!-- Import Java Script Personalizado -->
     <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
 
+    <!-- Inicialização -->
     <script>
       $(document).ready(function(){
         $("#btn_reset_password").attr("disabled", true);
         $("#btn_signup_signup").attr("disabled", true);
         $("#btn-login").attr("disabled", true);
+        
+        /* Inicialização do modal */
+        $('.modal').modal();
       });
     </script>
 

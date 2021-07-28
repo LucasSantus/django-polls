@@ -108,6 +108,18 @@
 
             {% block content %}
             {% endblock %}
+
+            <!-- Modal Structure -->
+            <div id="modal-back" class="modal">
+                <div class="modal-content">
+                    <h4>Voltar para Login</h4>
+                    <p>Você realmente deseja continuar esta ação?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="" class="modal-close bt-secondary btn btn-flat z-depth-4">SAIR</a>
+                    <a href="{% url 'login' %}" class="modal-close bt-primary btn btn-flat z-depth-4">CONTINUAR</a>
+                </div>
+            </div>
         </main>
 
         <!-- FOOTER -->
@@ -118,6 +130,8 @@
                 </div>
             </div>
         </footer>
+
+
 
         <!-- Inicialização -->
         <script>

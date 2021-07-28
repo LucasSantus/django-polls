@@ -4,19 +4,20 @@
  */
 
 :root {
-    --bs-primary: #512da8;
-    --bs-primary-hover: #9575cd;
-    --bs-secondary: #757575;
-    --bs-secondary-hover: #bdbdbd;
-    --bs-success: #198754;
-    --bs-info: #0dcaf0;
-    --bs-warning: #ffc107;
-    --bs-danger: #dc3545;
-    --bs-light: #f8f9fa;
-    --bs-dark: #212529;
-    --bs-white: #fff;
-    --bs-body: #e0e0e0;
-    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+    /* Cores do Projeto */
+    --primary: #512da8;
+    --primary-hover: #9575cd;
+    --secondary: #757575;
+    --secondary-hover: #bdbdbd;
+    --success: #198754;
+    --info: #0dcaf0;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --body: #e0e0e0;
+    --font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 /* Opacity's */
@@ -62,86 +63,86 @@
 
 /* Color Button's */
 .bt-primary{
-    background-color: var(--bs-primary) !important;
-    color: var(--bs-white) !important;
+    background-color: var(--primary) !important;
+    color: var(--light) !important;
 }
 .bt-primary:hover{
     opacity: 0.5;
-    background-color: var(--bs-primary-hover) !important;
-    color: var(--bs-white) !important;
+    background-color: var(--primary-hover) !important;
+    color: var(--light) !important;
 }
 .bt-secondary{
-    background-color: var(--bs-secondary) !important;
-    color: var(--bs-white) !important;
+    background-color: var(--secondary) !important;
+    color: var(--light) !important;
 }
 .bt-secondary:hover{
     opacity: 0.5;
-    background-color: var(--bs-secondary-hover) !important;
-    color: var(--bs-white) !important;
+    background-color: var(--secondary-hover) !important;
+    color: var(--light) !important;
 }
 
 /* Color background's */
 .bg-primary {
-    background-color: var(--bs-primary) !important;
+    background-color: var(--primary) !important;
 }
 .bg-secondary {
-    background-color: var(--bs-secondary) !important;
+    background-color: var(--secondary) !important;
 }
 .bg-success {
-    background-color: var(--bs-success) !important;
+    background-color: var(--success) !important;
 }
 .bg-info {
-    background-color: var(--bs-info) !important;
+    background-color: var(--info) !important;
 }
 .bg-warning {
-    background-color: var(--bs-warning) !important;
+    background-color: var(--warning) !important;
 }
 .bg-danger {
-    background-color: var(--bs-danger) !important;
+    background-color: var(--danger) !important;
 }
 .bg-light {
-    background-color: var(--bs-light) !important;
+    background-color: var(--light) !important;
 }
 .bg-dark {
-    background-color: var(--bs-dark) !important;
+    background-color: var(--dark) !important;
 }
 .bg-white {
-    background-color: var(--bs-white) !important;
+    background-color: var(--light) !important;
 }
 .bg-body {
-    background-color: var(--bs-body) !important;
+    background-color: var(--body) !important;
 }
 
 /* Color Text's */
 .text-primary {
-    color: var(--bs-primary) !important;
+    color: var(--primary) !important;
 }
 .text-secondary {
-    color: var(--bs-secondary) !important;
+    color: var(--secondary) !important;
 }
 .text-success {
-    color: var(--bs-success) !important;
+    color: var(--success) !important;
 }
 .text-info {
-    color: var(--bs-info) !important;
+    color: var(--info) !important;
 }
 .text-warning {
-    color: var(--bs-warning) !important;
+    color: var(--warning) !important;
 }
 .text-danger {
-    color: var(--bs-danger) !important;
+    color: var(--danger) !important;
 }
 .text-light {
-    color: var(--bs-light) !important;
+    color: var(--light) !important;
 }
 .text-dark {
-    color: var(--bs-dark) !important;
+    color: var(--dark) !important;
 }
 .text-white {
-    color: var(--bs-white) !important;
+    color: var(--light) !important;
 }
 .text-body {
-    color: var(--bs-body) !important;
+    color: var(--body) !important;
 }
 
 /* Margin's */
@@ -553,7 +554,7 @@
 
 /* Font's */
 .font-monospace {
-    font-family: var(--bs-font-monospace) !important;
+    font-family: var(--font-monospace) !important;
 }
 
 /* FontSize's */
