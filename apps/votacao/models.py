@@ -2,7 +2,7 @@ from django.db import models
 from .models import *
 from usuarios.models import *
 
-class GrupoVotacao(models.Model):
+class SalaVotacao(models.Model):
     titulo = models.CharField(
         verbose_name = "Título:",
         max_length = 194,
@@ -29,8 +29,8 @@ class GrupoVotacao(models.Model):
     )
 
     class Meta:
-        verbose_name = "Grupo de Votação"
-        verbose_name_plural = "Grupos de Votações"
+        verbose_name = "Sala de Votação"
+        verbose_name_plural = "Salas de Votações"
 
     def __str__(self):
         return self.titulo
@@ -65,9 +65,9 @@ class Votacao(models.Model):
         null = True,
     )
     
-    grupo = models.ForeignKey(
-        GrupoVotacao,
-        verbose_name = "Grupo de Votação:",
+    sala = models.ForeignKey(
+        SalaVotacao,
+        verbose_name = "Sala de Votação:",
         on_delete = models.CASCADE
     )
     
