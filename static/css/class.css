@@ -1,6 +1,5 @@
 /* 
     Arquivo personalizado contendo classes criadas de acordo com o projeto.
-    
     Classes Personalizadas
  */
 
@@ -53,12 +52,21 @@
     opacity: 0.3;
 }
 
+.op-20{
+    opacity: 0.2;
+}
+
+.op-10{
+    opacity: 0.1;
+}
+
 /* Color Button's */
 .bt-primary{
     background-color: var(--bs-primary) !important;
     color: var(--bs-white) !important;
 }
 .bt-primary:hover{
+    opacity: 0.5;
     background-color: var(--bs-primary-hover) !important;
     color: var(--bs-white) !important;
 }
@@ -67,6 +75,7 @@
     color: var(--bs-white) !important;
 }
 .bt-secondary:hover{
+    opacity: 0.5;
     background-color: var(--bs-secondary-hover) !important;
     color: var(--bs-white) !important;
 }

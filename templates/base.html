@@ -22,15 +22,15 @@
 
         <!-- Import JQuery -->
         <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+        
+        <!-- Import Java Script Personalizado -->
+        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 
         <!-- Import JQuery Mask -->
         <script src="{% static 'js/jquery/jquery.mask.js' %}"></script>
 
         <!-- Import Java Script Materialize -->
         <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
-
-        <!-- Import Java Script Personalizado -->
-        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 
         <!-- Import Java Script DateTimePicker -->
         <script type="text/javascript" src="{% static 'js/datetimepicker.js' %}"></script>
@@ -49,6 +49,7 @@
 
     <body class="bg-body">
         <!-- HEADER -->
+
         <header>
             <!-- NAVBAR -->
             <nav class="bg-primary">
@@ -57,7 +58,7 @@
                     <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="ul-sidenav" class="right hide-on-med-and-down">
                         <li>
-                            {% block search %}
+                            {% block search_nav %}
                             {% endblock %}
                         </li>
                         <li><a href="{% url 'perfil_usuario' %}" class="bt-primary"><i class="material-icons right">account_circle</i>Perfil</a></li>
@@ -68,6 +69,10 @@
             
             <!-- SIDENAV -->
             <ul class="sidenav" id="mobile-demo">
+                <li>
+                    {% block search_sidenav %}
+                    {% endblock %}
+                </li>
                 <li><a href="{% url 'perfil_usuario' %}"><i class="material-icons right">account_circle</i>Perfil</a></li>
                 <li><a href="{% url 'logout' %}"><i class="material-icons right">logout</i>Sair</a></li>
             </ul>
@@ -114,7 +119,7 @@
             </div>
         </footer>
 
-        <!-- Inicialização JavaScript -->
+        <!-- Inicialização -->
         <script>
             $(document).ready(function(){
                 /* Inicialização da tab */
@@ -125,9 +130,6 @@
 
                 /* Inicialização do tooltipped */
                 $('.tooltipped').tooltip({delay: 50});
-
-                /* Inicialização do chip */
-                $('.chips').material_chip();
 
                 /* Inicialização do sidenav */
                 $('.sidenav').sidenav();
@@ -140,7 +142,7 @@
                     coverTrigger: false,
                     hover: true,
                 });
-                
+
                 // Menu flutuante 
                 $('.fixed-action-btn').floatingActionButton({
                     direction: 'left'
@@ -148,6 +150,9 @@
 
                 /* Inicialização do collapsible */
                 $('.collapsible').collapsible();
+
+                /* Inicialização do chip */
+                // $('.chips').material_chip();
             });
         </script>
 

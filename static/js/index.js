@@ -1,3 +1,5 @@
+
+
 function validacao_data(){
     var data_inicial = new Date($("input[name='data_inicio']").val());
     var data_final = new Date($("input[name='data_fim']").val());
