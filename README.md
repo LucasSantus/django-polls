@@ -10,7 +10,7 @@
 </p>
 
 <h6 align="center"> 
-	Se você quiser visualizar as imagens do aplicativo, clique <a href="#autor">aqui</a>.
+	Se você quiser visualizar as imagens do aplicativo, clique <a href="github/images/README.md">aqui</a>.
 </h6>
 
 <h3 id="sobre">:information_source: Sobre</h3>
