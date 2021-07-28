@@ -45,36 +45,36 @@ def validate_email_registered(request):
 
 def validate_group(request):
     print("hihihh")
-    group = request.GET.get('grupo', None)
+    group = request.GET.get('sala', None)
     data = {
         'is_group': SalaVotacao.objects.filter(codigo__iexact=group).exists(),
     }
     if not data['is_group']:
-        data['error_message'] = 'Este grupo não está cadastrado!'
+        data['error_message'] = 'Este sala não está cadastrado!'
     return JsonResponse(data)
 
 @login_required
 def index(request):
     user = request.user
-    list_grupos = SalaVotacao.objects.filter(usuarios=user)
+    list_salas = SalaVotacao.objects.filter(usuarios=user)
+    if not list_salas:
+        messages.info(request,"Não existem salas registrados!")
 
-    if request.POST: 
-        pesquisa = request.POST.get("pesquisa", False)
+    if request.GET: 
+        pesquisa = request.GET.get("pesquisa", False)
+        print(pesquisa)
         try:
-            list_grupos = SalaVotacao.objects.filter(titulo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
-            if not list_grupos:
-                list_grupos = SalaVotacao.objects.filter(codigo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
-                if not list_grupos:
-                    messages.error(request, "Grupo não encontrado.")
+            list_salas = SalaVotacao.objects.filter(titulo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
+            if not list_salas:
+                list_salas = SalaVotacao.objects.filter(codigo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
+                if not list_salas:
+                    messages.error(request, "sala não encontrado.")
         except:
-            messages.error(request, "Grupo não encontrado.")
+            messages.error(request, "sala não encontrado.")
 
     context = {
-        "grupos": list_grupos,
+        "salas": list_salas,
     }
-
-    if not list_grupos:
-        messages.info(request,"Não existem grupos registrados!")
 
     return render(request, "home/index.html", context)
 

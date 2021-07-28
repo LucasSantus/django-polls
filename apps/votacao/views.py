@@ -61,20 +61,20 @@ def detalhe_votacao(request, id_votacao):
 
     return render(request, "votacao/votacao/detalhe_votacao.html", context)
 
-# GRUPO
-def registrar_grupo(request):
+# sala
+def registrar_sala(request):
     form = SalaVotacaoForm()
     usuario = Usuario.objects.get(id=request.user.id)
 
     if request.method == "POST":
         form = SalaVotacaoForm(request.POST)
         if form.is_valid():
-            grupo = form.save(commit = False)
-            grupo.codigo = code()
-            grupo.save()
-            grupo.usuarios.add(usuario)
+            sala = form.save(commit = False)
+            sala.codigo = code()
+            sala.save()
+            sala.usuarios.add(usuario)
 
-            messages.success(request,"O novo grupo foi inserido com sucesso!")
+            messages.success(request,"O novo sala foi inserido com sucesso!")
 
             return redirect("index")
 
@@ -83,7 +83,7 @@ def registrar_grupo(request):
         "usuario": usuario,
     }
 
-    return render(request, "votacao/grupo/registrar_grupo.html", context)
+    return render(request, "votacao/sala/registrar_sala.html", context)
 
 def registrar_opcao(request):
     form = OpcaoVotoForm()
@@ -101,26 +101,26 @@ def registrar_opcao(request):
 
     return render(request, "votacao/opcao/registrar_opcao.html", context)
 
-def conectar_grupo(request):
+def conectar_sala(request):
     user = request.user.id
 
     if request.POST: 
-        codigo = request.POST.get("grupo", False)
+        codigo = request.POST.get("sala", False)
 
         try:
-            grupo = SalaVotacao.objects.get(codigo__icontains=codigo, usuarios=user)
-            if grupo:
-                messages.error(request, "Você já está nesse grupo.")
+            sala = SalaVotacao.objects.get(codigo__icontains=codigo, usuarios=user)
+            if sala:
+                messages.error(request, "Você já está nesse sala.")
         
         except:
-            grupo = SalaVotacao.objects.get(codigo__icontains=codigo)
-            if grupo:
-                messages.success(request,"Entrou para novo grupo.")
-                grupo.usuarios.add(user)
+            sala = SalaVotacao.objects.get(codigo__icontains=codigo)
+            if sala:
+                messages.success(request,"Entrou para novo sala.")
+                sala.usuarios.add(user)
 
         return redirect("index")
 
-    return render(request, "votacao/grupo/conectar_grupo.html")
+    return render(request, "votacao/sala/conectar_sala.html")
 
 # OPÇÕES DE VOTO
 def listar_opcoes(request):
@@ -183,7 +183,7 @@ def apuracao(request, id_votacao):
     return render(request, "administracao/apuracao.html", context)
 
 def detalhe_apuracao(request, id_votacao):
-        
+    
     opcao = OpcaoVoto.objects.get(pk=id_votacao)
 
     opcoes = Pessoa_Voto.objects.filter(opcao=opcao)

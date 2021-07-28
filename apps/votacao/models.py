@@ -30,7 +30,7 @@ class SalaVotacao(models.Model):
 
     class Meta:
         verbose_name = "Sala de Votação"
-        verbose_name_plural = "Grupos de Votações"
+        verbose_name_plural = "Salas de Votações"
 
     def __str__(self):
         return self.titulo
@@ -65,7 +65,7 @@ class Votacao(models.Model):
         null = True,
     )
     
-    grupo = models.ForeignKey(
+    sala = models.ForeignKey(
         SalaVotacao,
         verbose_name = "Sala de Votação:",
         on_delete = models.CASCADE

@@ -56,8 +56,12 @@
                     <a href="/" class="brand-logo fs-3">Votation</a>
                     <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="ul-sidenav" class="right hide-on-med-and-down">
-                        <li><a href="{% url 'perfil_usuario' %}"><i class="material-icons right">account_circle</i>Perfil</a></li>
-                        <li><a href="{% url 'logout' %}"><i class="material-icons right">logout</i>Sair</a></li>
+                        <li>
+                            {% block search %}
+                            {% endblock %}
+                        </li>
+                        <li><a href="{% url 'perfil_usuario' %}" class="bt-primary"><i class="material-icons right">account_circle</i>Perfil</a></li>
+                        <li><a href="{% url 'logout' %}" class="bt-primary"><i class="material-icons right">logout</i>Sair</a></li>
                     </ul>
                 </div>
             </nav>

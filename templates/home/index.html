@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Listar Grupos | Sistema de Votação
+    Listar salas | Sistema de Votação
 {% endblock %}
 
 {% block content %}
@@ -11,33 +11,19 @@
             <i class="material-icons">menu</i>
         </a>
         <ul>
-            <li><a href='{% url "registrar_grupo" %}' class="btn-floating bt-secondary tooltipped" data-position="top" data-tooltip="Criar Novo Grupo"><i class="material-icons">group_add</i></a></li>
-            <li><a href='{% url "conectar_grupo" %}' class="btn-floating bt-primary tooltipped" data-position="top" data-tooltip="Entrar em Algum Grupo"><i class="material-icons">login</i></a></li>
+            <li><a href='{% url "registrar_sala" %}' class="btn-floating bt-secondary tooltipped" data-position="top" data-tooltip="Criar"><i class="material-icons">group_add</i></a></li>
+            <li><a href='{% url "conectar_sala" %}' class="btn-floating bt-primary tooltipped" data-position="top" data-tooltip="Conectar"><i class="material-icons">login</i></a></li>
         </ul>
     </div>
 
-    <form method="POST">
-        {% csrf_token %}
-        <div class="container">
-            <div class="input-field col s12">
-                <i class="material-icons prefix" type="submit">search</i>
-                <input type="text" name="pesquisa" id="pesquisa">
-                <label for="pesquisa">Pesquisar:</label>
-                <div class="center">
-                    <span class="help-block fs-7"><strong>Título e Código</strong></span>
-                </div>
-            </div>
-        </div>
-    </form>
-
-    {% if grupos %}
+    {% if salas %}
         <div class="container">
             <div class="row">
-                {% for grupo in grupos %}
+                {% for sala in salas %}
                     <a href="#">
                         <div class="col s12 m6 x4 xl4">
                             <div class="card bg-secondary text-white p-2 fs-6 center truncate">
-                                {{grupo}}
+                                {{sala}}
                             </div>
                         </div>
                     </a>
@@ -46,6 +32,25 @@
         </div>
     {% endif %}
 {% endblock content %}
+
+{% block search %}
+    <!-- <form method="GET">
+        {% csrf_token %}
+        <div class="input-field">
+            <input id="pesquisa" type="search" placeholder="Pesquisar:" required>
+            <label class="label-icon" for="pesquisa"><i class="material-icons left" type="submit">search</i></label>
+            <i class="material-icons">close</i>
+        </div>
+    </form> -->
+    <form method="GET">
+        {% csrf_token %}
+            <div class="input-field bt-primary">
+                <input type="search" name="pesquisa" id="pesquisa" placeholder="Pesquisar:" required>
+                <label class="label-icon" for="pesquisa"><i class="material-icons">search</i></label>
+                <!-- <i class="material-icons">close</i> -->
+            </div>
+    </form>
+{% endblock %}
 
 {% block css %}
 {% endblock %}
