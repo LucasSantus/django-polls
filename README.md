@@ -15,17 +15,17 @@
 
 <h3 id="sobre">:information_source: Sobre</h3>
 
-> Este projeto foi desenvolvido utilizando o django framework como back-end o framework Materialize como front-end. 
+> Este projeto foi desenvolvido utilizando o Django como framework back-end e o Materialize como framework front-end. 
 
 A ideia é:
 
-_"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado utilizando o Django framework"_
+_"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado e gerar um projeto completo utilizando o Django framework."_
 
 --------------------------------------------------------------------------------------
 
 <h3 id="porque">:question: Por Que</h3>
 
-Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso você forneça algum feedback, código, estrutura, funcionalidade ou qualquer funcionalidade&melhoria que você possa relatar para melhora-lo.
+Este projeto faz parte do meu portfólio pessoal, ficarei feliz caso você forneça algum feedback, código, estrutura, funcionalidade ou qualquer funcionalidade&melhoria que você possa relatar para melhora-lo.
 
 Você pode usar este projeto como quiser, seja para estudar, fazer melhorias, você que manda!
 
@@ -44,7 +44,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <h3 id="funcionalidades">:sparkles: Funcionalidades</h3>
 
-:construction: - Em construção...
+:construction: - As Funcionalidades será construída em breve...
 
 --------------------------------------------------------------------------------------
 
