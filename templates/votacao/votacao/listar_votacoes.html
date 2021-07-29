@@ -5,7 +5,9 @@
         <a href="{% url 'registrar_votacao' sala.id %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
     </div>
 
-    {{sala.codigo}}
+    <div class="m-4 text-light">
+        <a id="btn_copy" class="chip btn bt-primary m-1 tooltipped z-depth-5" onclick="M.toast({html: 'código copiado!', displayLength: 600, classes:'bg-success fs-6'});" data-position="right" data-tooltip="copy">{{sala.codigo}}</a>
+    </div>
     
     {% if list_votacoes %}
         <div class="col s12 m6 l10 m-4 center">
@@ -49,4 +51,14 @@
 {% endblock %}
 
 {% block javascript %}
+<script>
+    $("#btn_copy").click(function(event){
+        var range = document.createRange();
+        range.selectNode(this);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+    });
+</script>
 {% endblock %}
