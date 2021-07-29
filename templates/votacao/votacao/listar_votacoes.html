@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <!-- BREADCUMB -->
+    <div class="nav-wrapper transparent">
+        <div class="col s12 fs-5 p-3 m-2 pt-0 text-primary">
+            <a href="/" class="breadcrumb text-primary">Dashboard</a>
+            <a href="" class="breadcrumb text-secondary">{{sala}}</a>
+
+            <!-- CÓDIGO DA SALA -->
+            <a id="btn_copy" class="chip btn bt-primary m-1 tooltipped z-depth-5 right" onclick="M.toast({html: 'código copiado!', displayLength: 600, classes:'bg-success fs-6'});" data-position="left" data-tooltip="copy">{{sala.codigo}}</a>
+        </div>
+    </div>
+      
+    <!-- BOTÃO FLUTUANTE -->
     <div class="fixed-action-btn">
         <a href="{% url 'registrar_votacao' sala.id %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
     </div>
 
-    <div class="m-4 text-light">
-        <a id="btn_copy" class="chip btn bt-primary m-1 tooltipped z-depth-5" onclick="M.toast({html: 'código copiado!', displayLength: 600, classes:'bg-success fs-6'});" data-position="right" data-tooltip="copy">{{sala.codigo}}</a>
-    </div>
-    
     {% if list_votacoes %}
         <div class="col s12 m6 l10 m-4 center">
             <h4 class="truncate fs-2">
@@ -48,17 +56,26 @@
 {% endblock %}
 
 {% block css %}
+    <style>
+        .breadcrumb:hover{
+            opacity: 0.5;
+        }
+        .breadcrumb:before {
+            font-size: 20px;
+        }
+    </style>
 {% endblock %}
 
 {% block javascript %}
-<script>
-    $("#btn_copy").click(function(event){
-        var range = document.createRange();
-        range.selectNode(this);
-        window.getSelection().removeAllRanges();
-        window.getSelection().addRange(range);
-        document.execCommand("copy");
-        window.getSelection().removeAllRanges();
-    });
-</script>
+    <!-- COPY CODE SALA DE VOTAÇÃO -->
+    <script>
+        $("#btn_copy").click(function(event){
+            var range = document.createRange();
+            range.selectNode(this);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();
+        });
+    </script>
 {% endblock %}
