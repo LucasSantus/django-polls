@@ -1,9 +1,5 @@
 {% extends "base.html" %}
 
-{% block title %}
-    Listar Votações | Sistema de Votação
-{% endblock %}
-
 {% block content %}
     <div class="fixed-action-btn">
         <a href="{% url 'registrar_votacao' sala.id %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
@@ -44,6 +40,10 @@
         </div>
     {% endif %}
 {% endblock content %}
+
+{% block title %}
+    Listar Votações | Sistema de Votação
+{% endblock %}
 
 {% block css %}
 {% endblock %}

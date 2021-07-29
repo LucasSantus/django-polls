@@ -13,6 +13,7 @@ class SalaVotacao(models.Model):
         max_length = 194,
         unique = True,
         null = True,
+        blank = True,
     )
 
     usuarios = models.ManyToManyField(
@@ -26,6 +27,8 @@ class SalaVotacao(models.Model):
         on_delete = models.CASCADE,
         verbose_name = "Administrador da Sala:",
         related_name = "admin",
+        null = True,
+        blank = True,
     )
 
     data_registrado = models.DateTimeField(
