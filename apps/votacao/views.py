@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
 from usuarios.models import Usuario
+from votacao.models import SalaVotacao
 from django.contrib import messages
 
 import string
@@ -43,12 +44,12 @@ def registrar_votacao(request, id_sala):
     return render(request, "votacao/votacao/registrar_votacao.html", context)
 
 def listar_votacoes(request, id_sala):
-    list_votacoes = Votacao.objects.filter(sala_id=id_sala).order_by("-data_registrado")
-    # list_votacoes = Votacao.objects.all()
+    sala = SalaVotacao.objects.get(id=id_sala)
+    list_votacoes = Votacao.objects.filter(sala_id=sala.id).order_by("-data_registrado")
 
     context = {
         "list_votacoes": list_votacoes,
-        "id_sala": id_sala,
+        "sala": sala,
     }
 
     if not list_votacoes:
