@@ -30,20 +30,6 @@
                 System Votation
             {% endblock %}
         </title>
-        <!-- Import JQuery -->
-        <script src="{% static 'js/jquery/jquery.min.js' %}" ></script>
-
-        <!-- Import Java Script Personalizado -->
-        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
-
-        <!-- Import JQuery Mask -->
-        <script src="{% static 'js/jquery/jquery.mask.min.js' %}"></script>
-
-        <!-- Import Java Script Materialize -->
-        <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
-
-        <!-- Import Java Script DateTimePicker -->
-        <script type="text/javascript" src="{% static 'js/datetimepicker.min.js' %}"></script>
     </head>
 
     <body class="bg-body">
@@ -86,22 +72,22 @@
                     {% if message.tags == 'success' %}
                         <script type="text/javascript">
                             var toastHTML = '<span>{{ message }}</span>';
-                            M.toast({html: toastHTML, displayLength: 6000, classes:'bg-success fs-6'});
+                            M.toast({html: toastHTML, displayLength: 4000, classes:'bg-success fs-6'});
                         </script>
                     {% elif message.tags == 'info' %}
                         <script type="text/javascript">
                             var toastHTML = '<span>{{ message }}</span>';
-                            M.toast({html: toastHTML, displayLength: 6000, classes:'bg-info fs-6'});
+                            M.toast({html: toastHTML, displayLength: 4000, classes:'bg-info fs-6'});
                         </script>
                     {% elif message.tags == 'warning' %}
                         <script type="text/javascript">
                             var toastHTML = '<span>{{ message }}</span>';
-                            M.toast({html: toastHTML, displayLength: 6000, classes:'bg-warning fs-6'});
+                            M.toast({html: toastHTML, displayLength: 4000, classes:'bg-warning fs-6'});
                         </script>
                     {% elif message.tags == 'error' %}
                         <script type="text/javascript">
                             var toastHTML = '<span>{{ message }}</span>';
-                            M.toast({html: toastHTML, displayLength: 6000, classes:'bg-danger fs-6'});
+                            M.toast({html: toastHTML, displayLength: 4000, classes:'bg-danger fs-6'});
                         </script>
                     {% endif %}
                 {% endfor %}
@@ -132,7 +118,20 @@
             </div>
         </footer>
 
+        <!-- Import JQuery -->
+        <script src="{% static 'js/jquery/jquery.js' %}"></script>
+
+        <!-- Import Java Script DateTimePicker -->
+        <script type="text/javascript" src="{% static 'js/materialize/datetimepicker.js' %}"></script>
         
+        <!-- Import Java Script Personalizado -->
+        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+
+        <!-- Import JQuery Mask -->
+        <script src="{% static 'js/jquery/jquery.mask.min.js' %}"></script>
+
+        <!-- Import Java Script Materialize -->
+        <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
 
         <!-- Inicialização -->
         <script>
@@ -162,7 +161,9 @@
                 $('.fixed-action-btn').floatingActionButton({
                     direction: 'left'
                 }); 
-
+                
+                // $('.datepicker').datepicker();
+                
                 /* Inicialização do collapsible */
                 $('.collapsible').collapsible();
             });

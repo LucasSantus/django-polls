@@ -2,7 +2,6 @@
 
 /* FOOTER */
 body {
-    background-color: --bs-primary;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -47,45 +46,6 @@ body::-webkit-scrollbar-thumb {
     top: 6px;
     margin-right: 0.5em;
 }
-
-/* datepicker
-.datepicker-date-display {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 auto;
-    -ms-flex: 1 auto;
-    flex: 1 auto;
-    background-color: #512da8;
-    color: #fff;
-    padding: 20px 22px;
-    font-weight: 500;
-}
-.datepicker-table td.is-today {
-    color: #512da8;
-}
-.timepicker-digital-display {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 auto;
-    -ms-flex: 1 auto;
-    flex: 1 auto;
-    background-color: #512da8;
-    padding: 10px;
-    font-weight: 300;
-}
-.datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done {
-    color: #512da8;
-    padding: 0 1rem;
-}
-.datepicker-table td.is-selected {
-    background-color: #512da8;
-    color: #fff;
-}
-.dropdown-content li > a, .dropdown-content li>span {
-    font-size: 16px;
-    color: #512da8;
-    display: block;
-    line-height: 22px;
-    padding: 14px 16px;
-} */
 
 /* datepicker */
 .datepicker-date-display {

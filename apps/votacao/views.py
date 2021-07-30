@@ -188,7 +188,7 @@ def apuracao(request, id_votacao):
         "votos": votos,
     }
 
-    return render(request, "administracao/apuracao.html", context)
+    return render(request, "votacao/voto/apuracao.html", context)
 
 def detalhe_apuracao(request, id_votacao):
     

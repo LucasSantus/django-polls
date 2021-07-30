@@ -8,10 +8,10 @@
             <a href="" class="breadcrumb text-secondary">{{sala}}</a>
 
             <!-- CÓDIGO DA SALA -->
-            <a id="btn_copy" class="chip btn bt-primary m-1 tooltipped z-depth-5 right" onclick="M.toast({html: 'código copiado!', displayLength: 900, classes:'bg-success fs-6'});" data-position="left" data-tooltip="copy">{{sala.codigo}}</a>
+            <a id="btn_copy" class="waves-effect waves-light chip btn bt-primary m-1 tooltipped z-depth-5 right" data-position="left" data-tooltip="copy">{{sala.codigo}}</a>
         </div>
     </div>
-      
+
     <!-- BOTÃO FLUTUANTE -->
     <div class="fixed-action-btn">
         <a href="{% url 'registrar_votacao' sala.id %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
