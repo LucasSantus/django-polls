@@ -76,7 +76,8 @@ class Votacao(models.Model):
     sala = models.ForeignKey(
         SalaVotacao,
         verbose_name = "Sala de Votação:",
-        on_delete = models.CASCADE
+        on_delete = models.CASCADE,
+        null = True,
     )
     
     data_registrado = models.DateTimeField(

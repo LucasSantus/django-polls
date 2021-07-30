@@ -108,3 +108,14 @@ body::-webkit-scrollbar-thumb {
 .dropdown-content li > a, .dropdown-content li>span {
     color: #512da8;
 }
+
+.breadcrumb:hover{
+    opacity: 0.5;
+}
+.breadcrumb:before {
+    font-size: 20px;
+    color: #757575;
+}
+.toast {
+    margin-top: 25px;
+}

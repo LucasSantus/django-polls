@@ -3,12 +3,12 @@
 {% block content %}
     <!-- BREADCUMB -->
     <div class="nav-wrapper transparent">
-        <div class="col s12 fs-5 p-3 m-2 pt-0 text-primary">
-            <a href="/" class="breadcrumb text-primary">Dashboard</a>
+        <div class="col s12 fs-5 p-3 m-2 pt-0">
+            <a href="/" class="breadcrumb text-primary"><span>Dashboard</span></a>
             <a href="" class="breadcrumb text-secondary">{{sala}}</a>
 
             <!-- CÓDIGO DA SALA -->
-            <a id="btn_copy" class="chip btn bt-primary m-1 tooltipped z-depth-5 right" onclick="M.toast({html: 'código copiado!', displayLength: 600, classes:'bg-success fs-6'});" data-position="left" data-tooltip="copy">{{sala.codigo}}</a>
+            <a id="btn_copy" class="chip btn bt-primary m-1 tooltipped z-depth-5 right" onclick="M.toast({html: 'código copiado!', displayLength: 900, classes:'bg-success fs-6'});" data-position="left" data-tooltip="copy">{{sala.codigo}}</a>
         </div>
     </div>
       
@@ -48,22 +48,17 @@
                 </tbody>
             </table>
         </div>
+    {% else %}
+        <div class="container item-center">
+            <div class="fs-4 text-secondary">
+                No momento não existem votações cadastradas.
+            </div>
+        </div>
     {% endif %}
 {% endblock content %}
 
 {% block title %}
     Listar Votações | Sistema de Votação
-{% endblock %}
-
-{% block css %}
-    <style>
-        .breadcrumb:hover{
-            opacity: 0.5;
-        }
-        .breadcrumb:before {
-            font-size: 20px;
-        }
-    </style>
 {% endblock %}
 
 {% block javascript %}

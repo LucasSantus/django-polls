@@ -39,6 +39,7 @@ def registrar_votacao(request, id_sala):
     context = {
         "form": form,
         "usuario": usuario,
+        "sala": sala,
     }
 
     return render(request, "votacao/votacao/registrar_votacao.html", context)

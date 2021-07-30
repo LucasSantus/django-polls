@@ -3,6 +3,7 @@
 <!-- Block Conteúdo da Página -->
 {% block content %}
 
+
     <!-- Botão Flutuante -->
     <div class="fixed-action-btn">
         <a href="#" class="btn-floating bt-primary btn-large waves-effect waves-light">
@@ -41,8 +42,9 @@
     <form method="GET">
         {% csrf_token %}
         <div class="input-field bt-primary">
-            <input type="search" name="pesquisa" id="pesquisa" placeholder="Pesquisar:" required>
+            <input type="search" name="pesquisa" id="pesquisa" placeholder="Pesquisar:">
             <label class="label-icon" for="pesquisa"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
         </div>
     </form>
 {% endblock %}
