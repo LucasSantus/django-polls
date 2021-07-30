@@ -78,6 +78,7 @@ class Votacao(models.Model):
         verbose_name = "Sala de Votação:",
         on_delete = models.CASCADE,
         null = True,
+        blank = True
     )
     
     data_registrado = models.DateTimeField(
