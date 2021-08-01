@@ -40,4 +40,4 @@ class SalaVotacaoForm(forms.ModelForm):
 class OpcaoVotoForm(forms.ModelForm):
     class Meta:
         model = OpcaoVoto
-        fields = ('__all__')
+        exclude = ('votacao', 'numero_votos')

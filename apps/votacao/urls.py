@@ -17,7 +17,8 @@ urlpatterns = [
     path("sala/conectar/", conectar_sala, name="conectar_sala"),
 
     # APURAÇÃO
-    path("votar/<int:id_votacao>/", votar, name="votar"),
     path("apuracao/<int:id_votacao>/", apuracao, name="apuracao"),
     path("apuracao/detalhe/<int:id_votacao>/", detalhe_apuracao, name="detalhe_apuracao"),
+    path("votar/<int:id_votacao>/", votar, name="votar"),
+
 ]

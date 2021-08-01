@@ -93,21 +93,24 @@ def registrar_sala(request):
 
     return render(request, "votacao/sala/registrar_sala.html", context)
 
-def registrar_opcao(request):
+def registrar_opcao(request, id_votacao):
     form = OpcaoVotoForm()
+    votacao = Votacao.objects.get(id=id_votacao)
+    
     if request.POST:
         form = OpcaoVotoForm(request.POST)
         if form.is_valid():
-            opcao_voto = form.save()
+            opcao_voto = form.save(commit = False)
+            opcao_voto.votacao = votacao
             opcao_voto.save()
+
             return redirect("index")
 
     context = {
-        "nome_pagina": "Registrar Opção de Voto",
         "form": form,
     }
 
-    return render(request, "votacao/opcao/registrar_opcao.html", context)
+    return render(request, "votacao/opcao_voto/registrar_opcao.html", context)
 
 def conectar_sala(request):
     user = request.user.id
@@ -175,17 +178,17 @@ def votar(request, id_votacao):
         "listOpcaoVoto": listOpcaoVoto,
     }
 
-    return render(request, "administracao/votar.html", context)
+    return render(request, "votacao/voto/votar.html", context)
 
 # APURAÇÃO
 def apuracao(request, id_votacao):
+    votacao = Votacao.objects.get(id = id_votacao)
     
-    votacao = Votacao.objects.get(pk=id_votacao)
-    
-    votos = OpcaoVoto.objects.filter(votacao=votacao)
+    votos = OpcaoVoto.objects.filter(votacao = votacao)
 
     context = {
         "votos": votos,
+        "votacao": votacao,
     }
 
     return render(request, "votacao/voto/apuracao.html", context)

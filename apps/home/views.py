@@ -22,9 +22,7 @@ def index(request):
         messages.info(request,"Não existem salas registrados!")
 
     if request.GET: 
-        pesquisa = request.GET.get("pesquisa", False)
-        print('\n\n')
-        print(pesquisa)
+        pesquisa = request.GET.get("search", None)
         try:
             list_salas = SalaVotacao.objects.filter(titulo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
             if not list_salas:

@@ -102,7 +102,9 @@ class OpcaoVoto(models.Model):
     votacao = models.ForeignKey(
         Votacao,
         verbose_name = "Votação:",
-        on_delete = models.CASCADE
+        on_delete = models.CASCADE,
+        null = True,
+        blank = True,
     )
 
     codigo = models.CharField(
@@ -113,6 +115,8 @@ class OpcaoVoto(models.Model):
     numero_votos = models.PositiveSmallIntegerField(
         verbose_name = "Número de Voto:",
         default = 0,
+        null = True,
+        blank = True,
     )
 
     class Meta:
