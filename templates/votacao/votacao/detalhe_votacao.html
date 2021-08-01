@@ -4,12 +4,11 @@
     <!-- BREADCUMB -->
     <div class="nav-wrapper transparent">
         <div class="col s12 fs-5 p-3 m-2 pt-0">
-            <a href="/" class="breadcrumb text-primary"><span>Dashboard</span></a>
-            <a href="{% url 'listar_votacoes' votacao.sala.id %}" class="breadcrumb text-primary">{{votacao.sala}}</a>
-            <a href="" class="breadcrumb text-secondary">{{votacao}}</a>
+            <a href="/" class="breadcrumb"><span class="text-primary">Dashboard</span></a>
+            <a href="{% url 'listar_votacoes' votacao.sala.id %}" class="breadcrumb"><span class="text-primary">{{votacao.sala}}</span></a>
+            <a class="breadcrumb"><span class="text-secondary">{{votacao}}</span></a>
         </div>
     </div>
-
 
     <div class="item-center container center">
         <div class="container">

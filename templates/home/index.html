@@ -2,17 +2,34 @@
 
 <!-- Block Conteúdo da Página -->
 {% block content %}
+    <!-- BREADCUMB -->
+    <div class="nav-wrapper transparent">
+        <div class="col s12 fs-5 p-3 m-2 pt-0">
+            <a class="breadcrumb"><span class="text-secondary">Dashboard</span></a>
+            
+            <div class="right">
+                <a class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" href='{% url "registrar_sala" %}'>
+                    CRIAR
+                </a>
+                <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href='{% url "conectar_sala" %}'>
+                    ENTRAR
+                </a>
+            </div> 
+        </div>
+    </div>
 
-
-    <!-- Botão Flutuante -->
-    <div class="fixed-action-btn">
-        <a href="#" class="btn-floating bt-primary btn-large waves-effect waves-light">
-            <i class="material-icons">menu</i>
-        </a>
-        <ul>
-            <li><a href='{% url "registrar_sala" %}' class="btn-floating bt-secondary tooltipped" data-position="top" data-tooltip="Criar"><i class="material-icons">group_add</i></a></li>
-            <li><a href='{% url "conectar_sala" %}' class="btn-floating bt-primary tooltipped" data-position="top" data-tooltip="Conectar"><i class="material-icons">login</i></a></li>
-        </ul>
+    <!-- Barra de Pesquisa -->
+    <div class="container">
+        <div class="container">
+            <form method="GET">
+                {% csrf_token %}
+                <div class="input-field">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" name="search" id="search">
+                    <label for="search">Pesquisar Sala:</label>    
+                </div>
+            </form>
+        </div>
     </div>
 
     {% if salas %}
@@ -34,27 +51,5 @@
 
 <!-- Block Título da Página -->
 {% block title %}
-    Listar salas | Sistema de Votação
-{% endblock %}
-
-<!-- Block Barra de Pesquisa Nav da Página | Salas de Votações -->
-{% block search_nav %}
-    <form method="GET">
-        {% csrf_token %}
-        <div class="input-field bt-primary">
-            <input type="search" name="pesquisa" id="pesquisa" placeholder="Pesquisar:">
-            <label class="label-icon" for="pesquisa"><i class="material-icons">search</i></label>
-            <i class="material-icons">close</i>
-        </div>
-    </form>
-{% endblock %}
-
-<!-- Block Barra de Pesquisa Sidenav da Página | Salas de Votações -->
-{% block search_sidenav %}
-    <form method="GET">
-        {% csrf_token %}
-        <div class="input-field m-0 bt-primary">
-            <input class="m-0 p-2" type="search" name="pesquisa" id="pesquisa" placeholder="Pesquisar:" required>
-        </div>
-    </form>
+    Dashboard | Votation
 {% endblock %}

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+
 {% load static %}
+
 {% load materializecss %}
 
 {% block content %}
@@ -14,7 +16,7 @@
                     <div class="card-content">
                         <form id="form_registro_votacao" method="POST">
                             {% csrf_token %}
-                            <!-- <div class="row">
+                            <div class="row">
                                 <div class="input-field col s12 m12 l12 xl12">
                                     {{ form.titulo|materializecss:'icon=person' }}
                                 </div>
@@ -30,9 +32,9 @@
                                 <div class="input-field col s12 m6 l6 xl6">
                                     {{ form.data_fim|materializecss:'icon=watch_later' }}
                                 </div> 
-                            </div>  -->
+                            </div> 
 
-                            {{form|materializecss}}
+                            <!-- {{form|materializecss}} -->
 
                             <div class="row center mt-2">
                                 <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'listar_votacoes' sala.id %}">

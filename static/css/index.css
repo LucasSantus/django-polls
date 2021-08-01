@@ -69,9 +69,6 @@ body::-webkit-scrollbar-thumb {
     color: #512da8;
 }
 
-.breadcrumb:hover{
-    opacity: 0.5;
-}
 .breadcrumb:before {
     font-size: 20px;
     color: #757575;

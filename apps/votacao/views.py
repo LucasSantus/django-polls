@@ -34,7 +34,7 @@ def registrar_votacao(request, id_sala):
             votacao.sala = sala
             votacao.save()
             messages.success(request,"A nova votação foi inserida com sucesso!")
-            return redirect("index")
+            return redirect('listar_votacoes', sala.id)
 
     context = {
         "form": form,
@@ -60,7 +60,7 @@ def listar_votacoes(request, id_sala):
 
 def detalhe_votacao(request, id_votacao):
 
-    votacao = Votacao.objects.get(pk=id_votacao)
+    votacao = Votacao.objects.get(id=id_votacao)
 
     context = {
         "votacao": votacao,

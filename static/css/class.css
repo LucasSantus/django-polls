@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Open+Sans:ital,wght@0,700;1,300&family=Palette+Mosaic&display=swap');
+
 /* 
     Arquivo personalizado contendo classes criadas de acordo com o projeto.
     Classes Personalizadas
  */
 
 :root {
+    /* Pallete Colors */
+    --blue: blue;
 
-    /* Cores do Projeto */
+
+    /* Colors Default Project */
     --primary: #512da8;
     --primary-hover: #9575cd;
     --secondary: #757575;
@@ -32,6 +36,10 @@
 
 .font-palette{
     font-family: 'Palette Mosaic', cursive;
+}
+
+.font-monospace {
+    font-family: var(--font-monospace) !important;
 }
 
 /* Opacity's */
@@ -80,17 +88,16 @@
     background-color: var(--primary) !important;
     color: var(--light) !important;
 }
-.bt-primary:hover{
-    opacity: 0.7;
-}
 .bt-secondary{
     background-color: var(--secondary) !important;
     color: var(--light) !important;
 }
+.bt-primary:hover,
 .bt-secondary:hover{
-    opacity: 0.5;
+    opacity: 0.7 !important;
+    /* opacity: 0.5;
     background-color: var(--secondary-hover) !important;
-    color: var(--light) !important;
+    color: var(--light) !important; */
 }
 
 /* Color background's */
@@ -157,6 +164,11 @@
     color: var(--body) !important;
 }
 
+.text-primary:hover,
+.text-secondary:hover{
+    opacity: 0.2;
+}
+
 /* Margin's */
 .m-0 {
     margin: 0 !important;
@@ -177,14 +189,28 @@
     margin: 3rem !important;
 }
 .m-6 {
-    margin: 4.25rem !important;
+    margin: 3.25rem !important;
 }
 .m-7 {
-    margin: 5.50rem !important;
+    margin: 4.5rem !important;
+}
+.m-8 {
+    margin: 5rem !important;
+}
+.m-9 {
+    margin: 5.5rem !important;
+}
+.m-10 {
+    margin: 6.5rem !important;
 }
 .m-auto {
     margin: auto !important;
 }
+
+
+
+
+
 
 .mx-0 {
     margin-right: 0 !important;
@@ -564,10 +590,7 @@
     padding-left: 5.5rem !important;
 }
 
-/* Font's */
-.font-monospace {
-    font-family: var(--font-monospace) !important;
-}
+
 
 /* FontSize's */
 .fs-1 {

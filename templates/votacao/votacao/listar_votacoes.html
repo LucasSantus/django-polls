@@ -4,17 +4,28 @@
     <!-- BREADCUMB -->
     <div class="nav-wrapper transparent">
         <div class="col s12 fs-5 p-3 m-2 pt-0">
-            <a href="/" class="breadcrumb text-primary"><span>Dashboard</span></a>
-            <a href="" class="breadcrumb text-secondary">{{sala}}</a>
+            <a href="/" class="breadcrumb"><span class="text-primary">Dashboard</span></a>
+            <a class="breadcrumb"><span class="text-secondary">{{sala}}</span></a>
 
-            <!-- CÓDIGO DA SALA -->
-            <a id="btn_copy" class="waves-effect waves-light chip btn bt-primary m-1 tooltipped z-depth-5 right" data-position="left" data-tooltip="copy">{{sala.codigo}}</a>
+            <div class="right">
+                <a href="{% url 'registrar_votacao' sala.id %}" class="bt-primary btn waves-effect waves-light">ADICIONAR</a>
+            </div>
+
         </div>
     </div>
 
-    <!-- BOTÃO FLUTUANTE -->
-    <div class="fixed-action-btn">
-        <a href="{% url 'registrar_votacao' sala.id %}" class="btn-floating bt-primary btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+    <!-- Barra de Pesquisa -->
+    <div class="container">
+        <div class="container">
+            <form method="GET">
+                {% csrf_token %}
+                <div class="input-field">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" name="search" id="search">
+                    <label for="search">Pesquisar Votações:</label>    
+                </div>
+            </form>
+        </div>
     </div>
 
     {% if list_votacoes %}
@@ -31,8 +42,10 @@
                         <th>Nome</th>
                         <th>Inicio</th>
                         <th>Término</th>
-                        <th></th>
-                        <th></th>
+                        <th>
+                            <!-- CÓDIGO DA SALA -->
+                            <a id="btn_copy" class="waves-effect waves-light tooltipped right" data-position="top" data-tooltip="Copiar">{{sala.codigo}}</a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,8 +54,10 @@
                             <td>{{votacao.titulo}}</td>
                             <td>{{votacao.data_inicio}}</td>
                             <td>{{votacao.data_fim}}</td>
-                            <td><a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">DETALHES</a></td>
-                            <td><a href="{% url 'apuracao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">APURAÇÃO</a></td>
+                            <td>
+                                <a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">DETALHES</a>
+                                <a href="{% url 'apuracao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">APURAÇÃO</a>
+                            </td>
                         </tr>
                     {% endfor %} 
                 </tbody>
@@ -51,10 +66,11 @@
     {% else %}
         <div class="container item-center">
             <div class="fs-4 text-secondary">
-                No momento não existem votações cadastradas.
+                Votações Indisponíveis.
             </div>
         </div>
     {% endif %}
+
 {% endblock content %}
 
 {% block title %}
