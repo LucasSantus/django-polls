@@ -4,11 +4,13 @@ from .models import *
 class VotacaoForm(forms.ModelForm):
     class Meta:
         model = Votacao
-        fields = ('titulo', 'descricao','anonimo', 'data_inicio', 'data_fim')
+        fields = ('__all__')
 
         error_messages = {
             "titulo":{
                 "required": "O nome é obrigatório para o registro",
+                "invalid": "oi",
+                'blank' : 'preenche isso aí seu bosta'
             },
 
             "descricao":{
@@ -30,12 +32,12 @@ class VotacaoForm(forms.ModelForm):
             },
         }
 
-class GrupoVotacaoForm(forms.ModelForm):
+class SalaVotacaoForm(forms.ModelForm):
     class Meta:
-        model = GrupoVotacao
+        model = SalaVotacao
         fields = ('__all__')
 
 class OpcaoVotoForm(forms.ModelForm):
     class Meta:
         model = OpcaoVoto
-        fields = ('__all__')
+        exclude = ('votacao', 'numero_votos')

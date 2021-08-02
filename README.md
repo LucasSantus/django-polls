@@ -10,22 +10,22 @@
 </p>
 
 <h6 align="center"> 
-	Se você quiser visualizar as imagens do aplicativo, clique <a href="#autor">aqui</a>.
+	Se você quiser visualizar as imagens do aplicativo, clique <a href="github/images/README.md">aqui</a>.
 </h6>
 
 <h3 id="sobre">:information_source: Sobre</h3>
 
-> Este projeto foi desenvolvido utilizando o django framework como back-end o framework Materialize como front-end. 
+> Este projeto foi desenvolvido utilizando o Django como framework back-end e o Materialize como framework front-end. 
 
 A ideia é:
 
-_"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado utilizando o Django framework"_
+_"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado e gerar um projeto completo utilizando o Django framework."_
 
 --------------------------------------------------------------------------------------
 
 <h3 id="porque">:question: Por Que</h3>
 
-Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso você forneça algum feedback, código, estrutura, funcionalidade ou qualquer funcionalidade&melhoria que você possa relatar para melhora-lo.
+Este projeto faz parte do meu portfólio pessoal, ficarei feliz caso você forneça algum feedback, código, estrutura, funcionalidade ou qualquer funcionalidade&melhoria que você possa relatar para melhora-lo.
 
 Você pode usar este projeto como quiser, seja para estudar, fazer melhorias, você que manda!
 
@@ -44,7 +44,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <h3 id="funcionalidades">:sparkles: Funcionalidades</h3>
 
-:construction: - Em construção...
+:construction: - As Funcionalidades será construída em breve...
 
 --------------------------------------------------------------------------------------
 
@@ -62,9 +62,17 @@ git clone git@github.com:LucasSantus/votation.git
 cd votation
 ```
 
+**Instalando Ambiente Virtual**
+
+Caso não tenha um ambiente virtual instalado, digite no terminal:
+
+```
+sudo apt-get install python3-venv
+```
+
 **Preparando Ambiente Virtual**
 
-Com o terminal aberto, digite:
+Com o terminal aberto, digite no terminal:
 
 ```
 python3 -m venv env
@@ -76,7 +84,7 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-**Iniciando o Projeto**
+**Iniciando e Rodando o Projeto**
 
 ```
 python manage.py makemigrations home
@@ -95,6 +103,7 @@ python manage.py runserver
 ```
 python manage.py createsuperuser
 ```
+**Acessando o Projeto**
 
 para visualizar o projeto: http://127.0.0.1:8000/
 

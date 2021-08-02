@@ -4,6 +4,40 @@
 
 {% block content %}
 
+    <div class="container center mt-6">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12	l12	xl12">
+                    <div class="card p-5">
+                        <span class="card-title">
+                            <h5 class="fw-bold fs-4">CADASTRAR OPÇÃO DE VOTO</h5>
+                        </span>
+
+                        <div class="card-content">
+                            <div class="row">
+                                <form method="POST" class="user" validate="{% url 'validate_email' %}">
+                                    {% csrf_token %}
+                                    {{form|materializecss}}
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="container center">
+                                            <a  href="#modal-back" class="waves-effect waves-light bt-secondary z-depth-4 btn modal-trigger">
+                                                <span class="text">VOLTAR</span>
+                                            </a>
+
+                                            <button  class="waves-effect waves-light bt-primary z-depth-4 btn" type="submit">
+                                                <span class="text">SALVAR</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <script>
     $(document).ready(function(){
         $("#id_data_inicio").attr("type","text"); 
@@ -15,30 +49,5 @@
         var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
     }); 
 </script>
-
-<body class="blue lighten-5">
-    <section>
-        <div class="container">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="container">
-                    <div class="card teste">
-                        <div class="container style-form">                       
-                            {{ form|materializecss }} 
-                        </div>
-                        <div class="center text-right">
-                            <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
-                                <span class="text">Cancelar</span>
-                            </a>
-                            <button class="btn btn-primary" type="submit">
-                                <span class="text">Cadastrar</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </section>
-</body>
 
 {% endblock content %}

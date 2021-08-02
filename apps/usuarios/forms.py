@@ -5,6 +5,9 @@ class UsuarioForm(forms.ModelForm):
     def save(self, commit=True):
         user = super(UsuarioForm, self).save(commit=False)
         user.set_password(self.cleaned_data['password'])
+        user.is_active = True
+        user.is_staff = False
+        user.is_superuser = False
         if commit:
             user.save()
         return user

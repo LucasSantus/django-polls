@@ -1,94 +1,86 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% load materializecss %}
 
-{% block title %}
-    Register | System Votation
-{% endblock %}
-
 {% block content %}
-    {% if form.errors %}
-        {% for error in form.non_field_errors %}
-            <div class="alert alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endif %}
-
-    <div class="container">
-    <div class="container format-form">
-        <form method="POST" onsubmit="return validacao_data()">
-            {% csrf_token %}
+    <div class="container center">
+        <div class="item-center container">
             <div class="container">
-                <div class="card z-depth-5">
-                    <div class='container center grey-text text-darken-3'>
-                        <h4>
-                            Registrar Votação
-                        </h4>
-                    </div>
-                    <div class="container style-form">
-                        <div class="row">
-                            <div class="input-field col s12 m12 l12 xl12">
-                                {{ form.titulo|materializecss:'icon=person' }}
+                <div class="card p-2 z-depth-4">
+                    <span class="card-title">
+                        <h5 class="fw-bold">REGISTRAR VOTAÇÃO</h5>
+                    </span>
+
+                    <div class="card-content">
+                        <form id="form_registro_votacao" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="input-field col s12 m12 l12 xl12">
+                                    {{ form.titulo|materializecss:'icon=person' }}
+                                </div>
+                                <div class="input-field col s12 m12 l12 xl12">
+                                    {{ form.descricao|materializecss:'icon=description' }}
+                                </div> 
+                                <div class="input-field center col s12 m12 l12 xl12">
+                                    {{ form.anonimo|materializecss }}
+                                </div>
+                                <div class="input-field col s12 m6 l6 xl6">
+                                    {{ form.data_inicio|materializecss:'icon=watch_later' }}
+                                </div> 
+                                <div class="input-field col s12 m6 l6 xl6">
+                                    {{ form.data_fim|materializecss:'icon=watch_later' }}
+                                </div> 
+                            </div> 
+
+                            <!-- {{form|materializecss}} -->
+
+                            <div class="row center mt-2">
+                                <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'listar_votacoes' sala.id %}">
+                                    VOLTAR
+                                </a>
+                                
+                                <button id="btn-login" class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" type="submit">
+                                    SALVAR
+                                </button>
                             </div>
-                            <div class="input-field col s12 m12 l12 xl12">
-                                {{ form.descricao|materializecss:'icon=description' }}
-                            </div> 
-                            <div class="input-field center col s12 m12 l12 xl12">
-                                {{ form.anonimo|materializecss }}
-                            </div>
-                            <div class="input-field col s12 m12 l12 xl12">
-                                {{ form.data_inicio|materializecss:'icon=watch_later' }}
-                            </div> 
-                            <div class="input-field col s12 m12 l12 xl12">
-                                {{ form.data_fim|materializecss:'icon=watch_later' }}
-                            </div> 
-                        </div>
-                    </div>                  
-                    <div class="center format-buttons">
-                        <a href="{% url 'index' %}" class="waves-effect deep-purple waves-light btn btn-secondary text-white" type="button">
-                            <span class="text">CANCELAR</span>
-                        </a>
-                        <button class="waves-effect waves-light deep-purple btn btn-primary" type="submit">
-                            <span class="text">REGISTRAR</span>
-                        </button>
+                        </form>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
 {% endblock content %}
 
-{% block css %}
-    <style>
-        .card {
-            border: 1px solid #e0e0e0;
-        }
-
-        .format-buttons{
-            margin-bottom: 5px;
-        }
-
-        .format-buttons .btn{
-            margin-top: 5px;
-        }
-
-        .format-form{
-            margin-top: 3%; 
-            padding: 5px;
-        }
-    </style>
+{% block title %}
+    Registrar Sala | System Votation
 {% endblock %}
 
 {% block javascript %}
     <script>
         $(document).ready(function(){
-            M.AutoInit();
             $("#id_data_inicio").attr("type","text"); 
             $("#id_data_fim").attr("type","text"); 
+            
             var DateField = MaterialDateTimePicker.create($('#id_data_inicio'));
             var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
         }); 
+    </script>
+
+    <script>
+        $("#form_registro_votacao").submit(function( event ) {
+            var data_inicial = new Date($("input[name='data_inicio']").val());
+            var data_final = new Date($("input[name='data_fim']").val());
+            if (!data_inicial || !data_final) return false;
+
+            if(data_inicial >= data_final){
+                var toastHTML = '<span>Insira datas corretamente!</span>';
+                M.toast({html: toastHTML});
+                return false;
+            }else{
+                return true;
+            }
+        });
     </script>
 {% endblock %}

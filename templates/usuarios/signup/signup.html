@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block content %}
+
   {% if form.errors %}
     {% for error in form.non_field_errors %}
       <div class="container">
@@ -76,7 +77,7 @@
                     <p>
                       <label>
                         <input id="check" type="checkbox" />
-                        <span>Mostrar/Ocultar Senha</span>
+                        <span>Mostrar Senha</span>
                       </label>
                     </p>
 
@@ -102,13 +103,10 @@
   </div>
 {% endblock %}
 
-{% block css %}
-{% endblock %}
-
 {% block javascript %}
-
   <!-- Inicialização da Página -->
   <script>
+
     /* Inicialização do datepicker */
     $(document).ready(function(){
       $('.datepicker').datepicker({
@@ -135,9 +133,7 @@
         maxDate: new Date(),
       }); 
 
-
       $("#id_data_nascimento").addClass('datepicker').attr("type","text"); 
-
       $("#id_cpf").mask("999.999.999-99");
 
       $("#id_password").attr("type", "password");

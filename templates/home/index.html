@@ -1,62 +1,62 @@
 {% extends "base.html" %}
 
-{% block title %}
-    Listar Grupos | Sistema de Votação
-{% endblock %}
-
+<!-- Block Conteúdo da Página -->
 {% block content %}
-    <!-- Botão Flutuante -->
-    <div class="fixed-action-btn">
-        <a href="#" class="btn-floating bt-primary btn-large waves-effect waves-light">
-            <i class="material-icons">menu</i>
-        </a>
-        <ul>
-            <li><a href='{% url "registrar_grupo" %}' class="btn-floating bt-secondary tooltipped" data-position="top" data-tooltip="Criar Novo Grupo"><i class="material-icons">group_add</i></a></li>
-            <li><a href='{% url "conectar_grupo" %}' class="btn-floating bt-primary tooltipped" data-position="top" data-tooltip="Entrar em Algum Grupo"><i class="material-icons">login</i></a></li>
-        </ul>
+    <!-- BREADCUMB -->
+    <div class="nav-wrapper transparent">
+        <div class="col s12 fs-5 p-3 m-2 pt-0">
+            <a class="breadcrumb"><span class="text-secondary">Dashboard</span></a>
+            
+            <div class="right">
+                <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href='{% url "conectar_sala" %}'>
+                    ENTRAR
+                </a>
+                <a class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" href='{% url "registrar_sala" %}'>
+                    ADICIONAR
+                </a>
+            </div> 
+        </div>
     </div>
 
-    <form method="POST">
-        {% csrf_token %}
+    <!-- Barra de Pesquisa -->
+    <div class="container">
         <div class="container">
-            <div class="input-field col s12">
-                <i class="material-icons prefix" type="submit">search</i>
-                <input type="text" name="pesquisa" id="pesquisa">
-                <label for="pesquisa">Pesquisar:</label>
-                <div class="center">
-                    <span class="help-block fs-7"><strong>Título e Código</strong></span>
+            <form method="GET">
+                {% csrf_token %}
+                <div class="input-field">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" name="search" id="search">
+                    <label for="search">Pesquisar Sala:</label>    
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
 
-    {% if grupos %}
+    {% if salas %}
         <div class="container">
             <div class="row">
-                {% for grupo in grupos %}
-                    <a href="#">
+                {% for sala in salas %}
+                    <a href="{% url 'listar_votacoes' sala.id %}">
                         <div class="col s12 m6 x4 xl4">
-                            <div class="card bg-secondary text-white p-2 fs-6 center truncate">
-                                {{grupo}}
+                            <div class="card bt-secondary text-white p-2 fs-6 center truncate">
+                                {{sala}}
                             </div>
                         </div>
                     </a>
                 {% endfor %}
             </div>
         </div>
+    {% else %}
+        <div class="container center mt-10">
+            <div class="fs-4 text-secondary">
+                Não há salas disponíveis.
+            </div>
+        </div>
     {% endif %}
+
 {% endblock content %}
 
-{% block css %}
-{% endblock %}
-
-{% block javascript %}
-        <script>
-            $(document).ready(function(){              
-                // Menu flutuante 
-                $('.fixed-action-btn').floatingActionButton({
-                    direction: 'left'
-                });
-            });
-        </script>
+<!-- Block Título da Página -->
+{% block title %}
+    Dashboard | Votation
 {% endblock %}

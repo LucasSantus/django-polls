@@ -12,7 +12,7 @@
             <div class="container">
                 <div class="card p-2 z-depth-4">
                     <span class="card-title">
-                        <h5 class="fw-bold">ENTRAR EM UM GRUPO</h5>
+                        <h5 class="fw-bold">ENTRAR EM UM sala</h5>
                     </span>
 
                     <div class="card-content">
@@ -20,8 +20,8 @@
                             {% csrf_token %}
                             <div class="container">
                                 <div class="input-field col s12">
-                                    <input type="text" name="grupo" maxlength="194" class="validate invalid" required="" id="id_grupo">
-                                    <label class="" for="id_grupo">Código do Grupo:</label>
+                                    <input type="text" name="sala" maxlength="194" class="validate invalid" required="" id="id_sala">
+                                    <label class="" for="id_sala">Código do sala:</label>
                                 </div>
 
                                 <div class="row center mt-2">
@@ -53,9 +53,9 @@
         });
     </script>
 
-    <!-- Função Ajax - Validar Grupo -->
+    <!-- Função Ajax - Validar sala -->
     <script>
-        $("#id_grupo").change(function () {
+        $("#id_sala").change(function () {
             var form = $(this).closest("form");
             $.ajax({
                 url: form.attr("validate"),

@@ -14,6 +14,42 @@ def base(request):
     }
     return context
 
+@login_required
+def index(request):
+    user = request.user
+    list_salas = SalaVotacao.objects.filter(usuarios=user)
+    if not list_salas:
+        messages.info(request,"Não existem salas registrados!")
+
+    if request.GET: 
+        pesquisa = request.GET.get("search", None)
+        try:
+            list_salas = SalaVotacao.objects.filter(titulo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
+            if not list_salas:
+                list_salas = SalaVotacao.objects.filter(codigo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
+                if not list_salas:
+                    messages.error(request, "sala não encontrado.")
+        except:
+            messages.error(request, "sala não encontrado.")
+
+    context = {
+        "salas": list_salas,
+    }
+
+    return render(request, "home/index.html", context)
+
+def votacoes(request):
+    votacoes = Votacao.objects.filter(data_inicio__lte=timezone.now(), data_fim__gte=timezone.now())
+    
+    if not votacoes:
+        messages.info(request,"No momento não existem votações disponiveis")
+
+    context = {
+        "votacoes": votacoes,
+    }
+    return render(request, "home/index.html", context)
+
+
 # Validar se o usuário está cadastrado.
 def validate_user(request):
     user = request.GET.get('username', None)
@@ -45,46 +81,10 @@ def validate_email_registered(request):
 
 def validate_group(request):
     print("hihihh")
-    group = request.GET.get('grupo', None)
+    group = request.GET.get('sala', None)
     data = {
-        'is_group': GrupoVotacao.objects.filter(codigo__iexact=group).exists(),
+        'is_group': SalaVotacao.objects.filter(codigo__iexact=group).exists(),
     }
     if not data['is_group']:
-        data['error_message'] = 'Este grupo não está cadastrado!'
+        data['error_message'] = 'Este sala não está cadastrado!'
     return JsonResponse(data)
-
-@login_required
-def index(request):
-    user = request.user
-    list_grupos = GrupoVotacao.objects.filter(usuarios=user)
-
-    if request.POST: 
-        pesquisa = request.POST.get("pesquisa", False)
-        try:
-            list_grupos = GrupoVotacao.objects.filter(titulo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
-            if not list_grupos:
-                list_grupos = GrupoVotacao.objects.filter(codigo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
-                if not list_grupos:
-                    messages.error(request, "Grupo não encontrado.")
-        except:
-            messages.error(request, "Grupo não encontrado.")
-
-    context = {
-        "grupos": list_grupos,
-    }
-
-    if not list_grupos:
-        messages.info(request,"Não existem grupos registrados!")
-
-    return render(request, "home/index.html", context)
-
-def votacoes(request):
-    votacoes = Votacao.objects.filter(data_inicio__lte=timezone.now(), data_fim__gte=timezone.now())
-    
-    if not votacoes:
-        messages.info(request,"No momento não existem votações disponiveis")
-
-    context = {
-        "votacoes": votacoes,
-    }
-    return render(request, "home/index.html", context)

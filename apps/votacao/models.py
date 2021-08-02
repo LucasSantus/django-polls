@@ -2,7 +2,7 @@ from django.db import models
 from .models import *
 from usuarios.models import *
 
-class GrupoVotacao(models.Model):
+class SalaVotacao(models.Model):
     titulo = models.CharField(
         verbose_name = "Título:",
         max_length = 194,
@@ -19,6 +19,14 @@ class GrupoVotacao(models.Model):
     usuarios = models.ManyToManyField(
         Usuario,
         verbose_name = "Usuarios:",
+        blank = True,
+    )
+
+    admin = models.ForeignKey(
+        Usuario, 
+        on_delete = models.CASCADE,
+        verbose_name = "Administrador da Sala:",
+        related_name = "admin",
         null = True,
         blank = True,
     )
@@ -29,8 +37,8 @@ class GrupoVotacao(models.Model):
     )
 
     class Meta:
-        verbose_name = "Grupo de Votação"
-        verbose_name_plural = "Grupos de Votações"
+        verbose_name = "Sala de Votação"
+        verbose_name_plural = "Salas de Votações"
 
     def __str__(self):
         return self.titulo
@@ -65,15 +73,17 @@ class Votacao(models.Model):
         null = True,
     )
     
-    grupo = models.ForeignKey(
-        GrupoVotacao,
-        verbose_name = "Grupo de Votação:",
-        on_delete = models.CASCADE
+    sala = models.ForeignKey(
+        SalaVotacao,
+        verbose_name = "Sala de Votação:",
+        on_delete = models.CASCADE,
+        null = True,
+        blank = True
     )
     
     data_registrado = models.DateTimeField(
         verbose_name = "Data da Criação:",
-        auto_now = True,
+        auto_now_add = True,
     )
 
     class Meta:
@@ -92,7 +102,9 @@ class OpcaoVoto(models.Model):
     votacao = models.ForeignKey(
         Votacao,
         verbose_name = "Votação:",
-        on_delete = models.CASCADE
+        on_delete = models.CASCADE,
+        null = True,
+        blank = True,
     )
 
     codigo = models.CharField(
@@ -103,6 +115,8 @@ class OpcaoVoto(models.Model):
     numero_votos = models.PositiveSmallIntegerField(
         verbose_name = "Número de Voto:",
         default = 0,
+        null = True,
+        blank = True,
     )
 
     class Meta:

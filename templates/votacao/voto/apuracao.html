@@ -1,11 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <!-- BREADCUMB -->
+    <div class="nav-wrapper transparent">
+        <div class="col s12 fs-5 p-3 m-2 pt-0">
+            <a href="/" class="breadcrumb"><span class="text-primary">Dashboard</span></a>
+            <a href="{% url 'listar_votacoes' votacao.sala.id %}" class="breadcrumb"><span class="text-primary">{{votacao.sala}}</span></a>
+            <a class="breadcrumb"><span class="text-secondary">Informações</span></a>
 
-    <div class="container center">
-        <h2 class="text-theme truncate" >
-            Apuração
-        </h2>
+            {% if votacao.sala.admin == request.user %}
+                <div class="right">
+                    <a href="{% url 'registrar_opcao' %}" class="bt-primary btn waves-effect waves-light">ADICIONAR</a>
+                </div>
+            {% endif %}
+        </div>
     </div>
 
     {% if votos %}
@@ -34,11 +42,9 @@
             </table>
         </div>
     {% else %}
-        <div class="container">
-            <div class="alert card z-depth-5">
-                <div class="card-content">
-                    <p><i class="material-icons">info</i><span>No momento, não existem apurações disponíveis!</span></p>
-                </div>
+        <div class="container center mt-10">
+            <div class="fs-4 text-secondary">
+                Não há apurações disponíveis.
             </div>
         </div>
     {% endif %}

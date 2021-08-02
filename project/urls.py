@@ -8,5 +8,5 @@ urlpatterns = [
     # Include URL APP's
     path('', include('home.urls')),
     path('user/', include('usuarios.urls')),
-    path('votacao/', include('votacao.urls')),
+    path('', include('votacao.urls')),
 ]

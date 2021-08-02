@@ -60,7 +60,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     is_active = models.BooleanField(
         verbose_name="Usuário está ativo",
-        default=True,
+        default = True,
     )
 
     is_staff = models.BooleanField(
