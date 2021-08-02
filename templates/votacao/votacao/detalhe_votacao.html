@@ -7,10 +7,18 @@
             <a href="/" class="breadcrumb"><span class="text-primary">Dashboard</span></a>
             <a href="{% url 'listar_votacoes' votacao.sala.id %}" class="breadcrumb"><span class="text-primary">{{votacao.sala}}</span></a>
             <a class="breadcrumb"><span class="text-secondary">{{votacao}}</span></a>
+
+            {% if votacao.sala.admin == request.user %}
+                <div class="right">
+                    <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'editar_votacao' votacao.id %}">
+                        EDITAR
+                    </a>
+                </div>
+            {% endif %}
         </div>
     </div>
 
-    <div class="item-center container center">
+    <div class="container center">
         <div class="container">
             <div class="card p-3 z-depth-4">
                 <h4 class="center fs-3 m-0 mb-4">Detalhes</h4>

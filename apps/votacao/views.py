@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from .forms import *
 from .models import *
 from usuarios.models import Usuario
@@ -43,6 +43,23 @@ def registrar_votacao(request, id_sala):
     }
 
     return render(request, "votacao/votacao/registrar_votacao.html", context)
+
+def editar_votacao(request, id_votacao):
+    obj_votacao = get_object_or_404(Votacao, id=id_votacao)
+    if request.POST:
+        form = VotacaoForm(request.POST, instance=obj_votacao)
+        if form.is_valid():
+            votacao = form.save(commit=False)
+            votacao.save()
+            return redirect('listar_votacoes', obj_votacao.id)
+    else:
+        form = VotacaoForm(instance=obj_votacao)
+        
+    context = {
+        "form": form,
+    }
+    return render(request, 'votacao/votacao/editar.html', context)
+
 
 def listar_votacoes(request, id_sala):
     sala = SalaVotacao.objects.get(id=id_sala)
@@ -92,6 +109,27 @@ def registrar_sala(request):
     }
 
     return render(request, "votacao/sala/registrar_sala.html", context)
+
+def editar_sala(request, id_sala):
+    obj_sala = get_object_or_404(SalaVotacao, id=id_sala)
+    codigo = obj_sala.codigo
+    usuario = request.user
+    
+    if request.POST:
+        form = SalaVotacaoForm(request.POST, instance=obj_sala)
+        if form.is_valid():
+            sala = form.save(commit=False)
+            sala.codigo = codigo
+            sala.admin = usuario
+            sala.save()
+            return redirect('listar_votacoes', obj_sala.id)
+    else:
+        form = SalaVotacaoForm(instance=obj_sala)
+        
+    context = {
+        "form": form,
+    }
+    return render(request, 'votacao/sala/editar.html', context)
 
 def registrar_opcao(request, id_votacao):
     form = OpcaoVotoForm()

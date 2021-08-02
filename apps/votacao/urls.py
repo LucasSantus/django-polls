@@ -5,6 +5,7 @@ from .views import *
 urlpatterns = [
     # VOTAÇÃO
     path("votacao/registrar/<int:id_sala>/", registrar_votacao, name="registrar_votacao"),
+    path("votacao/editar/<int:id_votacao>/", editar_votacao, name="editar_votacao"),
     path("votacao/listar/<int:id_sala>/", listar_votacoes, name="listar_votacoes"),
     path("votacao/detalhe/<int:id_votacao>/", detalhe_votacao, name="detalhe_votacao"),
 
@@ -15,6 +16,7 @@ urlpatterns = [
     # sala
     path("sala/registrar/", registrar_sala, name="registrar_sala"),
     path("sala/conectar/", conectar_sala, name="conectar_sala"),
+    path("sala/editar/<int:id_sala>/", editar_sala, name="editar_sala"),
 
     # APURAÇÃO
     path("apuracao/<int:id_votacao>/", apuracao, name="apuracao"),

@@ -8,7 +8,12 @@
             <a class="breadcrumb"><span class="text-secondary">{{sala}}</span></a>
             {% if sala.admin == request.user %}
                 <div class="right">
-                    <a href="{% url 'registrar_votacao' sala.id %}" class="bt-primary btn waves-effect waves-light">ADICIONAR</a>
+                    <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'editar_sala' sala.id %}">
+                        EDITAR
+                    </a>
+                    <a class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" href="{% url 'registrar_votacao' sala.id %}">
+                        ADICIONAR
+                    </a>
                 </div>
             {% endif %}
         </div>
@@ -49,9 +54,10 @@
                             <td>{{votacao.data_inicio}}</td>
                             <td>{{votacao.data_fim}}</td>
                             <td>
-                                <a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">DETALHES</a>
-                                <a href="{% url 'apuracao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">APURAÇÃO</a>
+                                <!-- <a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">DETALHES</a>
+                                <a href="{% url 'apuracao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">APURAÇÃO</a> -->
                                 <a href="{% url 'votar' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">VOTAR</a>
+                                <a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">DETALHES</a>
                             </td>
                         </tr>
                     {% endfor %} 
