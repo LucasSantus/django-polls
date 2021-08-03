@@ -68,6 +68,9 @@
         
         var DateField = MaterialDateTimePicker.create($('#id_data_inicio'));
         var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
+
+        $('#id_data_inicio').val("{{data_inicio}}");
+        $('#id_data_fim').val("{{data_fim}}");
     }); 
 </script>
 {% endblock %}

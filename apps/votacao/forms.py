@@ -4,7 +4,7 @@ from .models import *
 class VotacaoForm(forms.ModelForm):
     class Meta:
         model = Votacao
-        fields = ('__all__')
+        exclude = ['sala']
 
         error_messages = {
             "titulo":{

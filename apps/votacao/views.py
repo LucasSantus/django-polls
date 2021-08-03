@@ -46,6 +46,32 @@ def registrar_votacao(request, id_sala):
 
 def editar_votacao(request, id_votacao):
     obj_votacao = get_object_or_404(Votacao, id=id_votacao)
+    print()
+    data_inicio = str(obj_votacao.data_inicio)
+    data_fim = str(obj_votacao.data_fim)
+    
+    t = []
+    v = []
+    
+    for a in range(16):
+        if data_inicio[a] != '+' or data_inicio[a] != ' ':
+            t.append(data_inicio[a])
+        else:
+            break
+        
+    data = "".join(t)
+    
+    for a in range(16):
+        if data_fim[a] != '+' or data_fim[a] != ' ':
+            v.append(data_fim[a])
+        else:
+            break
+        
+    data2 = "".join(v)
+    
+    print(data)
+    print(data2)
+    
     if request.POST:
         form = VotacaoForm(request.POST, instance=obj_votacao)
         if form.is_valid():
@@ -57,6 +83,8 @@ def editar_votacao(request, id_votacao):
         
     context = {
         "form": form,
+        "data_inicio": data,
+        "data_fim": data2,
     }
     return render(request, 'votacao/votacao/editar.html', context)
 
