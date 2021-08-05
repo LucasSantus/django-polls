@@ -18,8 +18,23 @@ def base(request):
 def index(request):
     user = request.user
     list_salas = SalaVotacao.objects.filter(usuarios=user)
-    if not list_salas:
-        messages.info(request,"Não existem salas registrados!")
+    list_votacoes = Votacao.objects.filter(sala__in=list_salas)
+    lista_ = []
+    
+    if list_salas:
+        qtd_votacoes = 0
+        for sala in list_salas:
+            qtd_votacoes = len(list_votacoes.filter(sala=sala))
+            obj = {
+                "sala": sala,
+                "qtd_votacoes": qtd_votacoes,
+            }
+            lista_.append(obj)
+            print("\n\n")
+            print(lista_)
+            print("\n\n")
+    else:
+        messages.info(request,"Não existem salas registradas!")
 
     if request.GET: 
         pesquisa = request.GET.get("search", None)
@@ -33,7 +48,7 @@ def index(request):
             messages.error(request, "sala não encontrado.")
 
     context = {
-        "salas": list_salas,
+        "salas": lista_,
     }
 
     return render(request, "home/index.html", context)
@@ -48,7 +63,6 @@ def votacoes(request):
         "votacoes": votacoes,
     }
     return render(request, "home/index.html", context)
-
 
 # Validar se o usuário está cadastrado.
 def validate_user(request):

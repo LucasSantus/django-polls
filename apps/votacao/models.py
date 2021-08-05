@@ -72,7 +72,7 @@ class Votacao(models.Model):
         blank = True,
         null = True,
     )
-    
+
     sala = models.ForeignKey(
         SalaVotacao,
         verbose_name = "Sala de Votação:",
@@ -80,7 +80,7 @@ class Votacao(models.Model):
         null = True,
         blank = True
     )
-    
+
     data_registrado = models.DateTimeField(
         verbose_name = "Data da Criação:",
         auto_now_add = True,

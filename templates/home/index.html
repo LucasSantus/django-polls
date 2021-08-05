@@ -34,17 +34,28 @@
 
     {% if salas %}
         <div class="container">
-            <div class="row">
-                {% for sala in salas %}
-                    <a href="{% url 'listar_votacoes' sala.id %}">
-                        <div class="col s12 m6 x4 xl4">
-                            <div class="card bt-secondary text-white p-2 fs-6 center truncate">
-                                {{sala}}
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
-            </div>
+            <table class="highlight centered responsive-table">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Código</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for sala in salas %}
+                        <tr>
+                            <td>{{sala.sala.titulo}}</td>
+                            <td>{{sala.sala.codigo}}</td>
+                            <td class="right">
+                                <a href="{% url 'editar_sala' sala.sala.id %}" class="waves-effect waves-light btn m-1 bt-secondary">DETALHES</a>
+                                <a href="{% url 'listar_votacoes' sala.sala.id %}" class="waves-effect waves-light btn m-1 bt-primary pe-0"><span class="new badge bg-secondary right ms-2 h-100" data-badge-caption="">{{sala.qtd_votacoes}}</span>VOTAÇÕES</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     {% else %}
         <div class="container center mt-10">
@@ -53,8 +64,19 @@
             </div>
         </div>
     {% endif %}
-
 {% endblock content %}
+
+{% block css %}
+    <style>
+        span.badge{
+            min-width: 2rem; 
+            line-height: 36px;
+        }
+        span.badge.new{
+            border-radius: 0px;
+        }
+    </style>
+{% endblock %}
 
 <!-- Block Título da Página -->
 {% block title %}
