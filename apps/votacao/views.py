@@ -2,24 +2,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from .forms import *
 from .models import *
 from usuarios.models import Usuario
-from votacao.models import SalaVotacao
+from votacao.models import SalaVotacao, Votacao
 from django.contrib import messages
-
-import string
-import random
-
-def code_generated(size=15, chars=string.ascii_uppercase + string.digits):
-    return ''.join(random.choice(chars) for _ in range(size))
-
-def code():
-    valid = True
-    while valid == True:
-        try:
-            codigo = code_generated()
-            SalaVotacao.objects.get(codigo=codigo)
-        except SalaVotacao.DoesNotExist:
-            valid = False
-            return codigo
 
 # VOTAÇÃO
 def registrar_votacao(request, id_sala):
@@ -60,7 +44,6 @@ def editar_votacao(request, id_votacao):
     }
     return render(request, 'votacao/votacao/editar.html', context)
 
-
 def listar_votacoes(request, id_sala):
     sala = SalaVotacao.objects.get(id=id_sala)
     list_votacoes = Votacao.objects.filter(sala_id=sala.id).order_by("-data_registrado")
@@ -94,12 +77,12 @@ def registrar_sala(request):
         form = SalaVotacaoForm(request.POST)
         if form.is_valid():
             sala = form.save(commit = False)
-            sala.codigo = code()
+            sala.codigo = Votacao.generated_code_random()
             sala.admin = usuario
             sala.save()
             sala.usuarios.add(usuario)
 
-            messages.success(request,"O novo sala foi inserido com sucesso!")
+            messages.success(request,"A nova sala de votação foi inserida com sucesso!")
 
             return redirect("index")
 
@@ -206,13 +189,12 @@ def votar(request, id_votacao):
         voto.votacao = votacao
         voto.quantidade_votos +=1
             
-
         voto.save()
         
         return redirect('index')
 
     context = {
-        "objVotacao": votacao,
+        "votacao": votacao,
         "listOpcaoVoto": listOpcaoVoto,
     }
 

@@ -2,6 +2,9 @@ from django.db import models
 from .models import *
 from usuarios.models import *
 
+import string
+import random
+
 class SalaVotacao(models.Model):
     titulo = models.CharField(
         verbose_name = "Título:",
@@ -89,6 +92,30 @@ class Votacao(models.Model):
     class Meta:
         verbose_name = "Votação"
         verbose_name_plural = "Votações"
+
+    def generated_code_random():
+        tamanho=15
+        valid = True
+        while valid == True:
+            try:
+                codigo = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(tamanho))
+                SalaVotacao.objects.get(codigo=codigo)
+            except SalaVotacao.DoesNotExist:
+                valid = False
+                return codigo
+
+    def get_qtd_votacoes(self, list_salas, list_votacoes):
+        vinculo = []
+        if list_salas:
+            qtd_votacoes = 0
+            for sala in list_salas:
+                qtd_votacoes = len(list_votacoes.filter(sala=sala))
+                obj = {
+                    "sala": sala,
+                    "qtd_votacoes": qtd_votacoes,
+                }
+                vinculo.append(obj)
+        return vinculo
 
     def __str__(self):
         return self.titulo

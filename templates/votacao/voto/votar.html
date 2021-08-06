@@ -10,7 +10,61 @@
     }); 
 </script>
 
-<main>
+    <!-- BREADCUMB -->
+    <div class="nav-wrapper transparent">
+        <div class="col s12 fs-5 p-3 m-2 pt-0">
+            <a href="/" class="breadcrumb"><span class="text-primary">Dashboard</span></a>
+            <a href="{% url 'listar_votacoes' votacao.sala.id %}" class="breadcrumb"><span class="text-primary">{{votacao.sala}}</span></a>
+            <a class="breadcrumb"><span class="text-secondary">{{votacao}}</span></a>
+            {% if votacao.sala.admin == request.user %}
+                <div class="right">
+                    <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'registrar_opcao' votacao.id %}">
+                        ADICIONAR
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if list_votacoes %}
+        <div class="container">
+            <table class="responsive-table centered highlight striped z-depth-3">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Inicio</th>
+                        <th>Término</th>
+                        <th>
+                            <!-- CÓDIGO DA SALA -->
+                            <a id="btn_copy" class="waves-effect waves-light tooltipped btn" data-position="top" data-tooltip="Copiar">{{sala.codigo}}</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for votacao in list_votacoes %}
+                        <tr>
+                            <td>{{votacao.titulo}}</td>
+                            <td>{{votacao.data_inicio}}</td>
+                            <td>{{votacao.data_fim}}</td>
+                            <td>
+                                <!-- <a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">DETALHES</a>
+                                <a href="{% url 'apuracao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">APURAÇÃO</a> -->
+                                <a href="{% url 'votar' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">VOTAR</a>
+                                <a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">DETALHES</a>
+                            </td>
+                        </tr>
+                    {% endfor %} 
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="container center mt-10">
+            <div class="fs-4 text-secondary">
+                Não há votações disponíveis.
+            </div>
+        </div>
+    {% endif %}
+
     <div class="container center">
         <h2 class="text-theme truncate" >
             {{ votacao.nome }}
@@ -40,15 +94,6 @@
                     </div>
                 </div>
             </div>
-    {% else %}
-        <div class="container">
-            <div class="alert card z-depth-5">
-                <div class="card-content">
-                    <p><i class="material-icons">info</i><span>No momento, não existem opções de voto disponíveis!</span></p>
-                </div>
-            </div>
-        </div>
     {% endif %}
-</main>
 
 {% endblock content %}

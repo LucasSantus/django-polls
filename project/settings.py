@@ -73,6 +73,9 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# Aumento TimeOut Database
+DATABASE_OPTIONS = {'timeout': 60}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

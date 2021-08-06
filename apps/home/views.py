@@ -17,38 +17,29 @@ def base(request):
 @login_required
 def index(request):
     user = request.user
-    list_salas = SalaVotacao.objects.filter(usuarios=user)
+    list_salas = SalaVotacao.objects.filter(usuarios=user).order_by("-data_registrado")
     list_votacoes = Votacao.objects.filter(sala__in=list_salas)
-    lista_ = []
-    
-    if list_salas:
-        qtd_votacoes = 0
-        for sala in list_salas:
-            qtd_votacoes = len(list_votacoes.filter(sala=sala))
-            obj = {
-                "sala": sala,
-                "qtd_votacoes": qtd_votacoes,
-            }
-            lista_.append(obj)
-            print("\n\n")
-            print(lista_)
-            print("\n\n")
-    else:
+
+    list_salas_vinculadas = []
+
+    if not list_salas:
         messages.info(request,"Não existem salas registradas!")
 
     if request.GET: 
         pesquisa = request.GET.get("search", None)
         try:
-            list_salas = SalaVotacao.objects.filter(titulo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
+            list_salas = list_salas.filter(titulo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
             if not list_salas:
-                list_salas = SalaVotacao.objects.filter(codigo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
+                list_salas = list_salas.filter(codigo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
                 if not list_salas:
                     messages.error(request, "sala não encontrado.")
         except:
             messages.error(request, "sala não encontrado.")
 
+    list_salas_vinculadas = Votacao.get_qtd_votacoes(request, list_salas, list_votacoes)
+
     context = {
-        "salas": lista_,
+        "salas": list_salas_vinculadas,
     }
 
     return render(request, "home/index.html", context)
@@ -88,13 +79,13 @@ def validate_email_registered(request):
     data = {
         'is_email_registered': Usuario.objects.filter(email__iexact=email).exists(),
     }
-    print(data["is_email_registered"])
+    
     if not data['is_email_registered']:
         data['error_message'] = 'Este e-mail não está cadastrado no sistema!'
     return JsonResponse(data)
 
 def validate_group(request):
-    print("hihihh")
+    
     group = request.GET.get('sala', None)
     data = {
         'is_group': SalaVotacao.objects.filter(codigo__iexact=group).exists(),
