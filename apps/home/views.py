@@ -43,11 +43,11 @@ def index(request):
 
     paginator = Paginator(list_salas_vinculadas, 4)
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    page = paginator.get_page(page_number)
 
     context = {
-        "count": list_salas_vinculadas.count,
-        "salas": page_obj,
+        "salas": page,
+        "end": page.paginator.num_pages - 1,
     }
 
     return render(request, "home/index.html", context)

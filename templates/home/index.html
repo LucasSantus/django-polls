@@ -56,40 +56,36 @@
                     {% endfor %}
                 </tbody>
             </table>
+            
             <ul class="pagination right">
-                <!-- <li class="waves-effect"><a href="#!"></a></li> -->
                 {% if salas.has_previous %}
-                    <!-- <li class="waves-effect"><a href="?page=1">&laquo; first</a></li> -->
                     <li class="waves-effect">
                         <a href="?page={{ salas.previous_page_number }}">
                             <i class="material-icons">chevron_left</i>
                         </a>
                     </li>
+                    <li class="waves-effect"><a href="?page=1">1</a></li>
+                {% endif %}
+                
+                {% if salas.previous_page_number > 1 %}
+                    .
+                    <li class="waves-effect"><a href="?page={{ salas.previous_page_number }}">{{ salas.previous_page_number }}</a></li>
                 {% endif %}
 
-                <!-- <li class="waves-effect"><a href="#!">2</a></li> -->
-                <li class="waves-effect"><a href="?page={{ salas.previous_page_number }}">{{ salas.previous_page_number }}</a></li>
-                <li class="waves-effect active"><a href="?page={{ salas.number }}">{{ salas.number }}</a></li>
-                <li class="waves-effect"><a href="?page={{ salas.next_page_number }}">{{ salas.next_page_number }}</a></li>
-                <!-- <li class="waves-effect"><a href="#!">{{ salas.number }}</a></li> -->
+                    <li class="waves-effect active bt-primary"><a href="?page={{ salas.number }}">{{ salas.number }}</a></li>
+                
 
-                <li class="waves-effect">
-                    <span class="current">
-                        Page {{ salas.number }} of {{ salas.paginator.num_pages }}.
-                    </span>
-                </li>
+                {% if salas.next_page_number < salas.paginator.num_pages %}
+                    <li class="waves-effect"><a href="?page={{ salas.next_page_number }}">{{ salas.next_page_number }}</a></li>
+                    .
+                {% endif %}
 
                 {% if salas.has_next %}
-                    <li class="waves-effect">
-                        <a href="?page={{ salas.next_page_number }}">
-                            <i class="material-icons">chevron_right</i>
-                        </a>
-                    </li>
-                    <!-- <li class="waves-effect"><a href="?page={{ salas.paginator.num_pages }}">last &raquo;</a></li> -->
+                    <li class="waves-effect"><a href="?page={{ salas.paginator.num_pages }}">{{ salas.paginator.num_pages }}</a></li>
+                    <li class="waves-effect"><a href="?page={{ salas.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
                 {% endif %}
-                <!-- <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li> -->
             </ul>
-        </div>
+    </div>
     {% else %}
         <div class="container center mt-10">
             <div class="fs-4 text-secondary">
