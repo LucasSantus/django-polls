@@ -9,22 +9,22 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!--Import CSS Materialize-->
-        <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{% static 'css/materialize/materialize.min.css' %}" media="screen,projection"/>
 
         <!-- Import CSS Personalizado -->
         <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}">
 
         <!-- Import Classes Personalizadas -->
-        <!-- <link type="text/css" rel="stylesheet" href="{% static 'css/class.css' %}"> -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/class.css' %}">
 
-        <!-- Import Classes Personalizadas -->
-        <!-- <link type="text/css" rel="stylesheet" href="{% static 'css/class.css' %}"> -->
+        <!-- Import CSS HoldON -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/holdon/HoldOn.min.css' %}">
 
         <!-- Import CDN Classes Personalizadas -->
-        <link type="text/css" rel="stylesheet" href="https://oondev.github.io/projects/custom_class/class.css">
+        <!-- <link type="text/css" rel="stylesheet" href="https://oondev.github.io/projects/custom_class/class.css"> -->
 
         <!-- Import CDN Colors Personalizadas -->
-        <link type="text/css" rel="stylesheet" href="https://oondev.github.io/projects/custom_class/colors.css">
+        <!-- <link type="text/css" rel="stylesheet" href="https://oondev.github.io/projects/custom_class/colors.css"> -->
 
         <!-- Let browser know website is optimized for mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
@@ -138,6 +138,9 @@
         <!-- Import JQuery Mask -->
         <script src="{% static 'js/jquery/jquery.mask.min.js' %}"></script>
 
+        <!-- Import HoldON -->
+        <script src="{% static 'js/holdon/HoldOn.min.js' %}"></script>
+
         <!-- Import Java Script Materialize -->
         <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
 
@@ -174,6 +177,20 @@
                 
                 /* Inicialização do collapsible */
                 $('.collapsible').collapsible();
+
+                $(window).bind('beforeunload', function() {
+                    var options = {
+                        theme: "sk-falding-circle",
+                        message: 'Aguarde...',
+                        backgroundColor: "bg-dark",
+                        textColor: "white"
+                    };
+                    HoldOn.open(options);
+                });
+
+                $(window).load(function() {
+                    HoldOn.close();
+                }); 
             });
         </script>
 

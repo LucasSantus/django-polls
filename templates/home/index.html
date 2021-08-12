@@ -56,35 +56,39 @@
                     {% endfor %}
                 </tbody>
             </table>
-            
-            <ul class="pagination right">
-                {% if salas.has_previous %}
-                    <li class="waves-effect">
-                        <a href="?page={{ salas.previous_page_number }}">
-                            <i class="material-icons">chevron_left</i>
-                        </a>
-                    </li>
-                    <li class="waves-effect"><a href="?page=1">1</a></li>
-                {% endif %}
-                
-                {% if salas.previous_page_number > 1 %}
-                    .
-                    <li class="waves-effect"><a href="?page={{ salas.previous_page_number }}">{{ salas.previous_page_number }}</a></li>
-                {% endif %}
+            {% if salas.paginator.num_pages > 1 %}
+                <ul class="pagination right">
+                    {% if salas.has_previous %}
+                        <li class="waves-effect"><a href="?page={{ salas.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+                        <li class="waves-effect"><a href="?page=1">1</a></li>
+                    {% endif %}
+                    
+                    {% if salas.previous_page_number > 1 %}
+                        .
+                        <li class="waves-effect"><a href="?page={{ salas.previous_page_number }}">{{ salas.previous_page_number }}</a></li>
+                    {% endif %}
+
+                    {% if salas.number == 1 %}
+                        <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
+                    {% endif %}
 
                     <li class="waves-effect active bt-primary"><a href="?page={{ salas.number }}">{{ salas.number }}</a></li>
-                
 
-                {% if salas.next_page_number < salas.paginator.num_pages %}
-                    <li class="waves-effect"><a href="?page={{ salas.next_page_number }}">{{ salas.next_page_number }}</a></li>
-                    .
-                {% endif %}
+                    {% if salas.next_page_number < salas.paginator.num_pages %}
+                        <li class="waves-effect"><a href="?page={{ salas.next_page_number }}">{{ salas.next_page_number }}</a></li>
+                        .
+                    {% endif %}
 
-                {% if salas.has_next %}
-                    <li class="waves-effect"><a href="?page={{ salas.paginator.num_pages }}">{{ salas.paginator.num_pages }}</a></li>
-                    <li class="waves-effect"><a href="?page={{ salas.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
-                {% endif %}
-            </ul>
+                    {% if salas.number == salas.paginator.num_pages %}
+                        <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+                    {% endif %}
+                    
+                    {% if salas.has_next %}
+                        <li class="waves-effect"><a href="?page={{ salas.paginator.num_pages }}">{{ salas.paginator.num_pages }}</a></li>
+                        <li class="waves-effect"><a href="?page={{ salas.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
     </div>
     {% else %}
         <div class="container center mt-10">

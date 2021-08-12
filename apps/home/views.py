@@ -9,7 +9,6 @@ from votacao.models import *
 
 from django.core.paginator import Paginator
 
-
 def base(request):
     data = timezone.now()
     context = { 
@@ -41,13 +40,13 @@ def index(request):
 
     list_salas_vinculadas = Votacao.get_qtd_votacoes(request, list_salas, list_votacoes)
 
-    paginator = Paginator(list_salas_vinculadas, 4)
+    paginator = Paginator(list_salas_vinculadas, 10)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
 
     context = {
         "salas": page,
-        "end": page.paginator.num_pages - 1,
+
     }
 
     return render(request, "home/index.html", context)
@@ -58,8 +57,12 @@ def votacoes(request):
     if not votacoes:
         messages.info(request,"No momento não existem votações disponiveis")
 
+    paginator = Paginator(votacoes, 10)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
+
     context = {
-        "votacoes": votacoes,
+        "votacoes": page,
     }
     return render(request, "home/index.html", context)
 

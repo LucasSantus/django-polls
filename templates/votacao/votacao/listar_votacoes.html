@@ -63,6 +63,37 @@
                     {% endfor %} 
                 </tbody>
             </table>
+
+            {% if list_votacoes.paginator.num_pages > 1 %}
+                <ul class="pagination right">
+                    {% if list_votacoes.has_previous %}
+                        <li class="waves-effect">
+                            <a href="?page={{ list_votacoes.previous_page_number }}">
+                                <i class="material-icons">chevron_left</i>
+                            </a>
+                        </li>
+                        <li class="waves-effect"><a href="?page=1">1</a></li>
+                    {% endif %}
+                    
+                    {% if list_votacoes.previous_page_number > 1 %}
+                        .
+                        <li class="waves-effect"><a href="?page={{ list_votacoes.previous_page_number }}">{{ list_votacoes.previous_page_number }}</a></li>
+                    {% endif %}
+
+                        <li class="waves-effect active bt-primary"><a href="?page={{ list_votacoes.number }}">{{ list_votacoes.number }}</a></li>
+                    
+
+                    {% if list_votacoes.next_page_number < list_votacoes.paginator.num_pages %}
+                        <li class="waves-effect"><a href="?page={{ list_votacoes.next_page_number }}">{{ list_votacoes.next_page_number }}</a></li>
+                        .
+                    {% endif %}
+
+                    {% if list_votacoes.has_next %}
+                        <li class="waves-effect"><a href="?page={{ list_votacoes.paginator.num_pages }}">{{ list_votacoes.paginator.num_pages }}</a></li>
+                        <li class="waves-effect"><a href="?page={{ list_votacoes.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
         </div>
     {% else %}
         <div class="container center mt-10">

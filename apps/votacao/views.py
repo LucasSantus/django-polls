@@ -4,6 +4,7 @@ from .models import *
 from usuarios.models import Usuario
 from votacao.models import SalaVotacao, Votacao
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 # VOTAÇÃO
 def registrar_votacao(request, id_sala):
@@ -48,8 +49,12 @@ def listar_votacoes(request, id_sala):
     sala = SalaVotacao.objects.get(id=id_sala)
     list_votacoes = Votacao.objects.filter(sala_id=sala.id).order_by("-data_registrado")
 
+    paginator = Paginator(list_votacoes, 5)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
+
     context = {
-        "list_votacoes": list_votacoes,
+        "list_votacoes": page,
         "sala": sala,
     }
 

@@ -6,7 +6,10 @@ python manage.py shell
 exec(open('scripts/sala.py').read())
 '''
 
-def registrar_salas(qtd = 50):
+def registrar_salas():
+    print("\n")
+    qtd = int(input("Insira a Quantidade de Salas para Registrar:"))
+
     usuario = Usuario.objects.get(email="admin@admin.com")
     for contador in range(qtd):
         try:
