@@ -1,8 +1,10 @@
 from votacao.models import *
 
-# CÓDIGO PARA EXECUTAR O SCRIPT
-# python manage.py shell
-# exec(open('scripts/sala.py').read())
+'''
+CÓDIGO PARA EXECUTAR O SCRIPT
+python manage.py shell
+exec(open('scripts/sala.py').read())
+'''
 
 def registrar_salas(qtd = 50):
     usuario = Usuario.objects.get(email="admin@admin.com")

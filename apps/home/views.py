@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from votacao.models import *
 
+from django.core.paginator import Paginator
+
+
 def base(request):
     data = timezone.now()
     context = { 
@@ -38,8 +41,13 @@ def index(request):
 
     list_salas_vinculadas = Votacao.get_qtd_votacoes(request, list_salas, list_votacoes)
 
+    paginator = Paginator(list_salas_vinculadas, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        "salas": list_salas_vinculadas,
+        "count": list_salas_vinculadas.count,
+        "salas": page_obj,
     }
 
     return render(request, "home/index.html", context)
