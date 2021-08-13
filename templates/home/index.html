@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base/base.html" %}
 
 <!-- Block Conteúdo da Página -->
 {% block content %}
@@ -30,11 +30,11 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div>  
 
     {% if salas %}
         <div class="container">
-            <table class="highlight centered responsive-table">
+            <table id="id_table" class="highlight centered responsive-table">
                 <thead>
                     <tr>
                         <th>Título</th>
