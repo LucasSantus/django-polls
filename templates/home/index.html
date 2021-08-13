@@ -33,8 +33,43 @@
     </div>  
 
     {% if salas %}
+        <!-- <div class="row">
+            <div id="man" class="col s12">
+                <div class="card material-table">
+                    <div class="table-header">
+                        <span class="table-title">Lista de Clientes</span>
+                        <div class="actions">
+                            <a href="#addClientes" class="modal-trigger waves-effect btn-flat nopadding"><i class="material-icons">person_add</i></a>
+                            <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                        </div>
+                    </div>
+                    <table id="datatable">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Código</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sala in salas %}
+                                <tr>
+                                    <td>{{sala.sala.titulo}}</td>
+                                    <td>{{sala.sala.codigo}}</td>
+                                    <td class="right">
+                                        <a href="{% url 'editar_sala' sala.sala.id %}" class="waves-effect waves-light btn m-1 bt-secondary">DETALHES</a>
+                                        <a href="{% url 'listar_votacoes' sala.sala.id %}" class="waves-effect waves-light btn m-1 bt-primary pe-0"><span class="new badge bg-secondary right ms-2 h-100" data-badge-caption="">{{sala.qtd_votacoes}}</span>VOTAÇÕES</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> -->
+
         <div class="container">
-            <table id="id_table" class="highlight centered responsive-table">
+            <table id="datatable" class="highlight centered responsive-table">
                 <thead>
                     <tr>
                         <th>Título</th>
@@ -56,7 +91,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            {% if salas.paginator.num_pages > 1 %}
+            <!-- {% if salas.paginator.num_pages > 1 %}
                 <ul class="pagination right">
                     {% if salas.has_previous %}
                         <li class="waves-effect"><a href="?page={{ salas.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
@@ -88,7 +123,7 @@
                         <li class="waves-effect"><a href="?page={{ salas.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
                     {% endif %}
                 </ul>
-            {% endif %}
+            {% endif %} -->
     </div>
     {% else %}
         <div class="container center mt-10">
@@ -114,4 +149,12 @@
 <!-- Block Título da Página -->
 {% block title %}
     Dashboard | Votation
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+        } );
+    </script>
 {% endblock %}
