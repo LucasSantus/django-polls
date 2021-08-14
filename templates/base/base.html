@@ -22,6 +22,8 @@
 
         <link rel="stylesheet" href="{% static 'css/datatables.min.css' %}">
 
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"> -->
+
         <!-- Import CDN Classes Personalizadas -->
         <!-- <link type="text/css" rel="stylesheet" href="https://oondev.github.io/projects/custom_class/class.css"> -->
 
@@ -146,7 +148,11 @@
         <!-- Import Java Script Materialize -->
         <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
 
-        <script src="{% static 'js/datatables.min.js' %}"></script>
+        <!-- Import JQuery DataTable -->
+        <script src="{% static 'js/datatable/jquery-datatables.min.js' %}"></script>
+
+        <!-- Import Java Script DataTable -->
+        <script src="{% static 'js/datatable/datatables.min.js' %}"></script>
 
         <!-- Inicialização -->
         <script>
@@ -176,8 +182,6 @@
                 $('.fixed-action-btn').floatingActionButton({
                     direction: 'left'
                 }); 
-                
-                // $('.datepicker').datepicker();
                 
                 /* Inicialização do collapsible */
                 $('.collapsible').collapsible();
