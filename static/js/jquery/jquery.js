@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /*! 
+=======
+/*!
+>>>>>>> 3a32f17249342f06b6bf9a51e5ff751c2f5767e4
  * jQuery JavaScript Library v3.3.1
  * https://jquery.com/
  *

@@ -75,7 +75,6 @@ class Votacao(models.Model):
         blank = True,
         null = True,
     )
-
     sala = models.ForeignKey(
         SalaVotacao,
         verbose_name = "Sala de Votação:",
@@ -119,6 +118,18 @@ class Votacao(models.Model):
 
     def __str__(self):
         return self.titulo
+    
+    def format_date(data):
+        print(data)
+        print('\n\n\n')
+        date_list = []
+        for a in range(16):
+            if data[a] != '+' or data[a] != ' ':
+                date_list.append(data[a])
+            else:
+                break
+        
+        return "".join(date_list)
 
 class OpcaoVoto(models.Model):
     nome = models.CharField(

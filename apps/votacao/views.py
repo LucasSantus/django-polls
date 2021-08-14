@@ -4,7 +4,6 @@ from .models import *
 from usuarios.models import Usuario
 from votacao.models import SalaVotacao, Votacao
 from django.contrib import messages
-from django.core.paginator import Paginator
 
 # VOTAÇÃO
 def registrar_votacao(request, id_sala):
