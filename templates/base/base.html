@@ -17,11 +17,11 @@
         <!-- Import CSS Personalizado -->
         <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}">
 
-        <!-- Import Classes Personalizadas -->
-        <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/class.css' %}">
-        
         <!-- Import CSS DataTable -->
         <link rel="stylesheet" href="{% static 'css/datatable/datatables.min.css' %}">
+
+        <!-- Import Classes Personalizadas -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/class.css' %}">
 
         <!-- Let browser know website is optimized for mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
@@ -124,7 +124,7 @@
         </footer>
 
         <!-- Import JQuery -->
-        <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <!-- Import Java Script DateTimePicker -->
         <script type="text/javascript" src="{% static 'js/materialize/datetimepicker.js' %}"></script>
@@ -147,8 +147,7 @@
         <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
         
         <!-- Import Java Script DataTable -->
-        <script src="{% static 'js/datatable/datatables.min.js' %}"></script>
-        
+        <script src="{% static 'js/datatable/datatables.js' %}"></script>
 
         <!-- Inicialização -->
         <script>
@@ -196,6 +195,16 @@
                     HoldOn.close();
                 });
             });
+
+            $("#copy-code").click(function(event){
+                var range = document.createRange();
+                range.selectNode(this);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                document.execCommand("copy");
+                window.getSelection().removeAllRanges();
+            });
+          
         </script>
 
         <!-- Script da Página -->

@@ -46,14 +46,13 @@ def editar_votacao(request, id_votacao):
 
 def listar_votacoes(request, id_sala):
     sala = SalaVotacao.objects.get(id=id_sala)
-    list_votacoes = Votacao.objects.filter(sala_id=sala.id).order_by("-data_registrado")
-
-    paginator = Paginator(list_votacoes, 5)
-    page_number = request.GET.get('page')
-    page = paginator.get_page(page_number)
+    # list_votacoes = Votacao.objects.filter(sala_id=sala.id).order_by("-data_registrado")
+    # list_votacoes = Votacao.objects.filter(data_inicio__lte=timezone.now(), data_fim__gte=timezone.now())
+    
+    list_votacoes = Votacao.objects.select_related('sala').filter(sala_id=sala.id)
 
     context = {
-        "list_votacoes": page,
+        "list_votacoes": list_votacoes,
         "sala": sala,
     }
 

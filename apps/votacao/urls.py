@@ -13,7 +13,7 @@ urlpatterns = [
     path("opcao-voto/registrar/", registrar_opcao, name="registrar_opcao"),
     path("opcao-voto/listar/", listar_opcoes, name="listar_opcoes"),
     
-    # sala
+    # SALA
     path("sala/registrar/", registrar_sala, name="registrar_sala"),
     path("sala/conectar/", conectar_sala, name="conectar_sala"),
     path("sala/editar/<int:id_sala>/", editar_sala, name="editar_sala"),
@@ -21,6 +21,8 @@ urlpatterns = [
     # APURAÇÃO
     path("apuracao/<int:id_votacao>/", apuracao, name="apuracao"),
     path("apuracao/detalhe/<int:id_votacao>/", detalhe_apuracao, name="detalhe_apuracao"),
+    
+    # VOTAR
     path("votar/<int:id_votacao>/", votar, name="votar"),
 
 ]

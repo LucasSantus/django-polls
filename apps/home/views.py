@@ -18,51 +18,32 @@ def base(request):
 
 @login_required
 def index(request):
-    user = request.user
-    list_salas = SalaVotacao.objects.filter(usuarios=user).order_by("-data_registrado")
-    list_votacoes = Votacao.objects.filter(sala__in=list_salas)
+    usuario = request.user
+    
+    list_salas = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').filter(usuarios=usuario).order_by("-data_registrado")
+    list_votacoes = Votacao.objects.select_related('sala').filter(sala__in=list_salas)
 
     list_salas_vinculadas = []
 
     if not list_salas:
         messages.info(request,"Não existem salas registradas!")
 
-    if request.GET: 
-        pesquisa = request.GET.get("search", None)
-        try:
-            list_salas = list_salas.filter(titulo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
-            if not list_salas:
-                list_salas = list_salas.filter(codigo__icontains=pesquisa, usuarios=user).order_by("-data_registrado")
-                if not list_salas:
-                    messages.error(request, "sala não encontrado.")
-        except:
-            messages.error(request, "sala não encontrado.")
-
     list_salas_vinculadas = Votacao.get_qtd_votacoes(request, list_salas, list_votacoes)
 
-    paginator = Paginator(list_salas_vinculadas, 10)
-    page_number = request.GET.get('page')
-    page = paginator.get_page(page_number)
-
     context = {
-        "salas": page,
-
+        "salas": list_salas_vinculadas,
     }
 
     return render(request, "home/index.html", context)
 
 def votacoes(request):
-    votacoes = Votacao.objects.filter(data_inicio__lte=timezone.now(), data_fim__gte=timezone.now())
+    list_votacoes = Votacao.objects.filter(data_inicio__lte=timezone.now(), data_fim__gte=timezone.now())
     
     if not votacoes:
         messages.info(request,"No momento não existem votações disponiveis")
 
-    paginator = Paginator(votacoes, 10)
-    page_number = request.GET.get('page')
-    page = paginator.get_page(page_number)
-
     context = {
-        "votacoes": page,
+        "list_votacoes": list_votacoes,
     }
     return render(request, "home/index.html", context)
 
@@ -96,7 +77,6 @@ def validate_email_registered(request):
     return JsonResponse(data)
 
 def validate_group(request):
-    
     group = request.GET.get('sala', None)
     data = {
         'is_group': SalaVotacao.objects.filter(codigo__iexact=group).exists(),
