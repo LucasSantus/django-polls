@@ -36,17 +36,6 @@ def index(request):
 
     return render(request, "home/index.html", context)
 
-def votacoes(request):
-    list_votacoes = Votacao.objects.filter(data_inicio__lte=timezone.now(), data_fim__gte=timezone.now())
-    
-    if not votacoes:
-        messages.info(request,"No momento não existem votações disponiveis")
-
-    context = {
-        "list_votacoes": list_votacoes,
-    }
-    return render(request, "home/index.html", context)
-
 # Validar se o usuário está cadastrado.
 def validate_user(request):
     user = request.GET.get('username', None)

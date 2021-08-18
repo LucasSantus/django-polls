@@ -9,36 +9,6 @@ class SignUpView(CreateView):
     template_name = 'usuarios/signup/signup.html'
     form_class = UsuarioForm
 
-def registrar_pessoa(request):
-    form = PessoaForm()
-
-    if request.method == "POST":
-        form = PessoaForm(request.POST)
-
-        if form.is_valid():
-            pessoa = form.save()
-            pessoa.save()
-            
-            messages.success(
-                request, "Pessoa registrado com sucesso!"
-            )
-            
-            return redirect("listar_pessoas")
-
-    context = {
-        "nome_pagina": "Registrar pessoa",
-        "form": form,
-    }
-
-    return render(request, "usuarios/registrar_pessoa.html", context)
-
-def listar_pessoas(request):
-    usuarios = Usuario.objects.all()
-    context = {
-        "pessoas": usuarios,
-    }
-    return render(request, "usuarios/listar_pessoas.html", context)
-
 def perfil_usuario(request):
     usuario = Usuario.objects.get(id=request.user.id)
     if request.method == "POST":

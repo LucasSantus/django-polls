@@ -3,17 +3,30 @@
 {% load materializecss %}
 
 {% block content %}
+    <!-- BREADCUMB -->
+    <div class="nav-wrapper transparent">
+        <div class="col s12 fs-5 p-3 m-2 pt-0">
+            <a href="/" class="breadcrumb"><span class="text-primary">Dashboard</span></a>
+            <a href="/" class="breadcrumb"><span class="text-primary">{{votacao.sala.titulo}}</span></a>
+            <a class="breadcrumb"><span class="text-secondary">{{votacao.titulo}}</span></a>
 
-<script>
-    $(document).ready(function(){
-        $("#id_data_nascimento").addClass('datepicker').attr("type","text");         
-    }); 
-</script>
+            {% if votacao.sala.admin == request.user %}
+                <div class="right">
+                    <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'editar_opcao' votacao.id %}">
+                        EDITAR
+                    </a>
+                    <a class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" href="{% url 'registrar_opcao' votacao.id %}">
+                        ADICIONAR
+                    </a>
+                </div>
+            {% endif %}
 
-<main>
+        </div>
+    </div>
+
     <div class="container center">
         <h2 class="text-theme truncate" >
-            {{ votacao.nome }}
+            {{ votacao.titulo }}
         </h2>
     </div>
 
@@ -49,6 +62,12 @@
             </div>
         </div>
     {% endif %}
-</main>
-
 {% endblock content %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function(){
+            $("#id_data_nascimento").addClass('datepicker').attr("type","text");         
+        }); 
+    </script>
+{% endblock %}
