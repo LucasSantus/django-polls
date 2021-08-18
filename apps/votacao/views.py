@@ -172,11 +172,12 @@ def registrar_opcao(request, id_votacao):
 
     context = {
         "form": form,
+        "votacao": votacao,
     }
 
     return render(request, "votacao/opcao_voto/registrar.html", context)
 
-
+# *ORGANIZADO
 def editar_opcao(request, id_opcao):
     opcao_voto = OpcaoVoto.objects.select_related('votacao').get(id = id_opcao)
 
@@ -190,44 +191,42 @@ def editar_opcao(request, id_opcao):
 
     context = {
         "form": form,
+        "votacao": opcao_voto.votacao,
     }
 
     return render(request, 'votacao/opcao/editar.html', context)
 
+# VOTAR
 def votar(request, id_votacao):
-    pessoa = Usuario.objects.get(pk=request.user.id)
-    votacao = Votacao.objects.get(pk=id_votacao)
-    listOpcaoVoto = OpcaoVoto.objects.filter(votacao=votacao)
+    votacao = Votacao.objects.select_related('sala').get(id=id_votacao)
+    list_opcoes = OpcaoVoto.objects.select_related('votacao').filter(votacao=votacao)
 
-    if Pessoa_Voto.objects.filter(pessoa=pessoa, votacao=votacao) and votacao.voto_unico == True:
-        messages.error(request,"O voto é unico!")
-        return redirect("index") 
+    if PessoaVoto.objects.select_related('usuario','votacao','opcao_voto').filter(usuario=request.user, votacao=votacao):
+        messages.error(request,"Você ja votou!")
+        return redirect('listar_votacoes', votacao.sala.id) 
 
     if request.POST:
-        idOpcaoVoto = request.POST.get('voto', None)
-        objOpcaoVoto = OpcaoVoto.objects.get(pk=idOpcaoVoto)
+        id_opcao_voto = request.POST.get('voto', None)
+        opcao_voto = OpcaoVoto.objects.get(pk=id_opcao_voto)
     
         try:
-            voto = Pessoa_Voto.objects.get(votacao=votacao, pessoa=pessoa, opcao=objOpcaoVoto)
-            
-            objOpcaoVoto.numero_votos += 1
-            objOpcaoVoto.save()
-            
-        except Pessoa_Voto.DoesNotExist:
-            voto = Pessoa_Voto()
-            
-        voto.pessoa = pessoa
-        voto.opcao = objOpcaoVoto
-        voto.votacao = votacao
-        voto.quantidade_votos +=1
-            
-        voto.save()
-        
-        return redirect('index')
+            voto = PessoaVoto.objects.select_related('usuario','votacao','opcao_voto').get(votacao=votacao, usuario=request.user, opcao_voto=opcao_voto)
+            opcao_voto.numero_votos += 1
+            opcao_voto.save()
+
+        except PessoaVoto.DoesNotExist:
+            voto = PessoaVoto()
+            voto.usuario = request.user
+            voto.opcao_voto = opcao_voto
+            voto.votacao = votacao
+            voto.quantidade_votos +=1
+            voto.save()
+
+        return redirect('listar_votacoes', votacao.sala.id)
 
     context = {
         "votacao": votacao,
-        "listOpcaoVoto": listOpcaoVoto,
+        "list_opcoes": list_opcoes,
     }
 
     return render(request, "votacao/voto/votar.html", context)
@@ -249,7 +248,7 @@ def detalhe_apuracao(request, id_votacao):
     
     opcao = OpcaoVoto.objects.get(pk=id_votacao)
 
-    opcoes = Pessoa_Voto.objects.filter(opcao=opcao)
+    opcoes = PessoaVoto.objects.filter(opcao=opcao)
 
     context = {
         "opcoes": opcoes,

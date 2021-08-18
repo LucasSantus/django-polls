@@ -75,21 +75,29 @@
             {% if messages %}
                 {% for message in messages %}
                     {% if message.tags == 'success' %}
+
+                        sucesso
                         <script type="text/javascript">
                             var toastHTML = '<h5>{{ message }} </h5>';
                             M.toast({html: toastHTML, displayLength:6000, classes:'green'});
                         </script>
                     {% elif message.tags == 'error' %}
+                        
+                        erro
                         <script type="text/javascript">
                             var toastHTML = '<h5>{{ message }} </h5>';
                             M.toast({html: toastHTML, displayLength:6000, classes:'red'});
                         </script>
                     {% elif message.tags == 'info' %}
+
+                        info
                         <script type="text/javascript">
                             var toastHTML = '<h5>{{ message }} </h5>';
                             M.toast({html: toastHTML, displayLength:6000, classes:'blue'});
                         </script>
                     {% elif message.tags == 'warning' %}
+
+                        warning
                         <script type="text/javascript">
                             var toastHTML = '<h5>{{ message }} </h5>';
                             M.toast({html: toastHTML, displayLength:6000, classes:'orange'});

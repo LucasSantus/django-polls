@@ -30,14 +30,14 @@
         </h2>
     </div>
 
-    {% if listOpcaoVoto %}
+    {% if list_opcoes %}
         <div class="container">
                 <div class="container">
                     <div class="card z-depth-3">
                         <form method="POST">
                             {% csrf_token %}
                             <p>
-                                {% for opcao in listOpcaoVoto %}
+                                {% for opcao in list_opcoes %}
                                     <div class="col s12">
                                         <label>
                                             <input name="voto" type="radio" value="{{opcao.id}}" required />

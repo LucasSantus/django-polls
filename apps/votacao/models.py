@@ -164,8 +164,8 @@ class OpcaoVoto(models.Model):
     def __str__(self):
         return self.nome
 
-class Pessoa_Voto(models.Model):
-    pessoa = models.ForeignKey(
+class PessoaVoto(models.Model):
+    usuario = models.ForeignKey(
         Usuario, 
         on_delete = models.CASCADE
     )
@@ -175,7 +175,7 @@ class Pessoa_Voto(models.Model):
         on_delete = models.CASCADE
     )
 
-    opcao = models.ForeignKey(
+    opcao_voto = models.ForeignKey(
         OpcaoVoto, 
         on_delete = models.CASCADE
     )
@@ -188,7 +188,7 @@ class Pessoa_Voto(models.Model):
 
     class Meta:
         verbose_name = "Voto da Pessoa"
-        verbose_name_plural = "Voto das Pessoas"
+        verbose_name_plural = "Votos das Pessoas"
 
     def __str__(self):
         return self.votacao.nome
