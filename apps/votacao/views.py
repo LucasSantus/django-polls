@@ -4,19 +4,21 @@ from .models import *
 from usuarios.models import Usuario
 from votacao.models import SalaVotacao, Votacao
 from django.contrib import messages
+from django.utils import timezone
 
 # VOTAÇÃO
+# *ORGANIZADO
 def registrar_votacao(request, id_sala):
     sala = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').get(id = id_sala)
 
     form = VotacaoForm()
-    if request.method == "POST":
+    if request.POST:
         form = VotacaoForm(request.POST)
         if form.is_valid():
             votacao = form.save(commit = False)
             votacao.sala = sala
             votacao.save()
-            messages.success(request,"A nova votação foi inserida com sucesso!")
+            messages.success(request,"Votação registrada com sucesso!")
             return redirect('listar_votacoes', sala.id)
 
     context = {
@@ -25,8 +27,9 @@ def registrar_votacao(request, id_sala):
         "sala": sala,
     }
 
-    return render(request, "votacao/votacao/registrar_votacao.html", context)
+    return render(request, "votacao/votacao/registrar.html", context)
 
+# *ORGANIZADO
 def editar_votacao(request, id_votacao):
     votacao = Votacao.objects.select_related('sala').get(id=id_votacao)
 
@@ -34,8 +37,9 @@ def editar_votacao(request, id_votacao):
     if request.POST:
         form = VotacaoForm(request.POST, instance=votacao)
         if form.is_valid():
-            form.save(commit=False)
-            return redirect('listar_votacoes', votacao.id)
+            form.save()
+            messages.success(request,"Votação modificada com sucesso!")
+            return redirect('listar_votacoes', votacao.sala.id)
 
     context = {
         "form": form,
@@ -43,14 +47,12 @@ def editar_votacao(request, id_votacao):
 
     return render(request, 'votacao/votacao/editar.html', context)
 
+# *ORGANIZADO
 def listar_votacoes(request, id_sala):
-    # sala = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').get(id = id_sala)
+    # list_votacoes = Votacao.objects.filter(sala_id=sala.id, data_inicio__lte=timezone.now(), data_fim__gte=timezone.now()).order_by("-data_registrado")
     
-    # list_votacoes = Votacao.objects.filter(sala_id=sala.id).order_by("-data_registrado")
-    # list_votacoes = Votacao.objects.filter(data_inicio__lte=timezone.now(), data_fim__gte=timezone.now())
-    
-    list_votacoes = Votacao.objects.select_related('sala').filter(sala_id=id_sala)
-    votacao = list_votacoes.last() 
+    list_votacoes = Votacao.objects.select_related('sala').filter(sala_id=id_sala, data_inicio__lte=timezone.now(), data_fim__gte=timezone.now()).order_by("-data_registrado")
+    votacao = list_votacoes.last()
 
     context = {
         "list_votacoes": list_votacoes,
@@ -58,135 +60,139 @@ def listar_votacoes(request, id_sala):
     }
 
     if not list_votacoes:
-        messages.info(request,"Não existem votações registradas!")
+        messages.info(request,"Não há votações registradas!")
 
-    return render(request, "votacao/votacao/listar_votacoes.html", context)
+    return render(request, "votacao/votacao/listar.html", context)
 
+# *ORGANIZADO
 def detalhe_votacao(request, id_votacao):
-    votacao = Votacao.objects.get(id=id_votacao)
+    votacao = Votacao.objects.select_related('sala').get(id=id_votacao)
 
     context = {
         "votacao": votacao,
     }
 
-    return render(request, "votacao/votacao/detalhe_votacao.html", context)
+    return render(request, "votacao/votacao/detalhe.html", context)
 
 # def desativar_votacao(request, id_votacao):
+#     votacao = Votacao.objects.select_related('sala').get(id=id_votacao)
+
+#     form = VotacaoForm(instance=votacao)
+#     if request.POST:
+#         form = VotacaoForm(request.POST, instance=votacao)
+#         if form.is_valid():
+#             votacao = form.save(commit=False)
+#             votacao.is_active = False
+#             votacao.save()
+#             messages.success(request,"Votação desativada com sucesso!")
+#             return redirect('listar_votacoes', votacao.sala.id)
+
+#     context = {
+#         "form": form,
+#     }
+
+#     return render(request, 'votacao/votacao/desativar.html', context)
 
 # SALA DE VOTAÇÃO
+# *ORGANIZADO
 def registrar_sala(request):
     form = SalaVotacaoForm()
-    usuario = Usuario.objects.get(id=request.user.id)
-
     if request.POST:
         form = SalaVotacaoForm(request.POST)
         if form.is_valid():
             sala = form.save(commit = False)
             sala.codigo = Votacao.generated_code_random()
-            sala.admin = usuario
+            sala.admin = request.user
             sala.save()
             sala.usuarios.add(usuario)
-
-            messages.success(request,"A nova sala de votação foi inserida com sucesso!")
-
+            messages.success(request,"Sala de Votação registrada com sucesso!")
             return redirect("index")
 
     context = {
         "form": form,
-        "usuario": usuario,
+        "usuario": request.user,
     }
 
-    return render(request, "votacao/sala/registrar_sala.html", context)
+    return render(request, "votacao/sala/registrar.html", context)
 
+# *ORGANIZADO
 def editar_sala(request, id_sala):
-    obj_sala = get_object_or_404(SalaVotacao, id=id_sala)
-    codigo = obj_sala.codigo
-    usuario = request.user
-    
+    sala = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').get(id = id_sala)
+
+    form = SalaVotacaoForm(instance=sala)
     if request.POST:
-        form = SalaVotacaoForm(request.POST, instance=obj_sala)
+        form = SalaVotacaoForm(request.POST, instance=sala)
         if form.is_valid():
             sala = form.save(commit=False)
-            sala.codigo = codigo
-            sala.admin = usuario
+            sala.codigo = sala.codigo
+            sala.admin = request.user
             sala.save()
-            return redirect('listar_votacoes', obj_sala.id)
-    else:
-        form = SalaVotacaoForm(instance=obj_sala)
-        
+            messages.success(request,"Sala modificada com sucesso!")
+            return redirect('listar_votacoes', sala.id)
+
     context = {
         "form": form,
     }
+
     return render(request, 'votacao/sala/editar.html', context)
 
+# *ORGANIZADO
 def conectar_sala(request):
     user = request.user.id
 
     if request.POST: 
         codigo = request.POST.get("sala", False)
-
         try:
-            sala = SalaVotacao.objects.get(codigo__icontains=codigo, usuarios=user)
+            sala = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').get(codigo__icontains=codigo, usuarios=user)
             if sala:
-                messages.error(request, "Você já está nesse sala.")
-        
+                messages.error(request, f"Você já está conectado(a) a sala: {sala.titulo}!")
         except:
-            sala = SalaVotacao.objects.get(codigo__icontains=codigo)
+            sala = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').get(codigo__icontains=codigo)
             if sala:
-                messages.success(request,"Entrou para novo sala.")
+                messages.success(request, f"Você conectou a sala: {sala.titulo}!")
                 sala.usuarios.add(user)
-
         return redirect("index")
 
-    return render(request, "votacao/sala/conectar_sala.html")
+    return render(request, "votacao/sala/conectar.html")
 
 # OPÇÕES DE VOTO
+# *ORGANIZADO
 def registrar_opcao(request, id_votacao):
+    votacao = Votacao.objects.select_related('sala').get(id=id_votacao)
+
     form = OpcaoVotoForm()
-    votacao = Votacao.objects.get(id=id_votacao)
-    
     if request.POST:
         form = OpcaoVotoForm(request.POST)
         if form.is_valid():
             opcao_voto = form.save(commit = False)
             opcao_voto.votacao = votacao
             opcao_voto.save()
-
-            return redirect("votar", id_votacao)
+            messages.success(request,"Opção de Voto registrada com sucesso!")
+            return redirect("votar", votacao.id)
 
     context = {
         "form": form,
     }
 
-    return render(request, "votacao/opcao_voto/registrar_opcao.html", context)
+    return render(request, "votacao/opcao_voto/registrar.html", context)
+
 
 def editar_opcao(request, id_opcao):
-    obj_sala = get_object_or_404(SalaVotacao, id=id_sala)
-    codigo = obj_sala.codigo
-    usuario = request.user
-    
+    opcao_voto = OpcaoVoto.objects.select_related('votacao').get(id = id_opcao)
+
+    form = OpcaoVotoForm(instance=opcao_voto)
     if request.POST:
-        form = SalaVotacaoForm(request.POST, instance=obj_sala)
+        form = OpcaoVotoForm(request.POST, instance=opcao_voto)
         if form.is_valid():
-            sala = form.save(commit=False)
-            sala.codigo = codigo
-            sala.admin = usuario
-            sala.save()
-            return redirect('listar_votacoes', obj_sala.id)
-    else:
-        form = SalaVotacaoForm(instance=obj_sala)
-        
+            form.save()
+            messages.success(request,"Opção de Voto modificada com sucesso!")
+            return redirect('votar', opcao_voto.votacao.id)
+
     context = {
         "form": form,
     }
-    return render(request, 'votacao/sala/editar.html', context)
 
-def listar_opcoes(request):
-    opcoes = OpcaoVoto.objects.all()
-    context = {
-        "opcoes": opcoes,
-    }
-    return render(request, "votacao/opcao_voto/listar_opcoes.html", context)
+    return render(request, 'votacao/opcao/editar.html', context)
 
 def votar(request, id_votacao):
     pessoa = Usuario.objects.get(pk=request.user.id)

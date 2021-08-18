@@ -91,12 +91,10 @@
     background-color: var(--secondary) !important;
     color: var(--light) !important;
 }
+
 .bt-primary:hover,
 .bt-secondary:hover{
-    opacity: 0.7 !important;
-    /* opacity: 0.5;
-    background-color: var(--secondary-hover) !important;
-    color: var(--light) !important; */
+    opacity: 0.6 !important;
 }
 
 /* Color background's */
@@ -129,6 +127,49 @@
 }
 .bg-body {
     background-color: var(--body) !important;
+}
+
+/* Color Text's */
+.tc-primary {
+    color: var(--primary) !important;
+}
+.tc-secondary {
+    color: var(--secondary) !important;
+}
+.tc-success {
+    color: var(--success) !important;
+}
+.tc-info {
+    color: var(--info) !important;
+}
+.tc-warning {
+    color: var(--warning) !important;
+}
+.tc-danger {
+    color: var(--danger) !important;
+}
+.tc-light {
+    color: var(--light) !important;
+}
+.tc-dark {
+    color: var(--dark) !important;
+}
+.tc-white {
+    color: var(--light) !important;
+}
+.tc-body {
+    color: var(--body) !important;
+}
+
+.tc-primary:hover,
+.tc-secondary:hover,
+.tc-success:hover,
+.tc-info.tc-warning:hover,
+.tc-danger:hover,
+.tc-light:hover,
+.tc-dark.tc-white:hover,
+.tc-body:hover{
+    opacity: 0.6 !important;
 }
 
 /* Color Text's */

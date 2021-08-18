@@ -7,16 +7,16 @@
     <div class="nav-wrapper transparent">
         <div class="col s12 fs-5 p-3 m-2 pt-0">
             <a href="/" class="breadcrumb"><span class="text-primary">Dashboard</span></a>
-            <a href="/" class="breadcrumb"><span class="text-primary">{{votacao.sala.titulo}}</span></a>
+            <a href="{% url 'listar_votacoes' votacao.sala.id %}" class="breadcrumb"><span class="text-primary">{{votacao.sala.titulo}}</span></a>
             <a class="breadcrumb"><span class="text-secondary">{{votacao.titulo}}</span></a>
 
             {% if votacao.sala.admin == request.user %}
                 <div class="right">
                     <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'editar_opcao' votacao.id %}">
-                        EDITAR
+                        EDITAR OPÇÃO DE VOTO
                     </a>
                     <a class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" href="{% url 'registrar_opcao' votacao.id %}">
-                        ADICIONAR
+                        ADICIONAR OPÇÃO DE VOTO
                     </a>
                 </div>
             {% endif %}
