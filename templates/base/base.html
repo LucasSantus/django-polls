@@ -111,7 +111,11 @@
                     </div>
                     <div class="modal-footer">
                         <a href="" class="modal-close bt-secondary btn btn-flat z-depth-2">SAIR</a>
-                        <a href="{% url modal.url modal.url_id %}" class="modal-close bt-primary btn btn-flat z-depth-2">CONTINUAR</a>
+                        {% if modal.url_id %}
+                            <a href="{% url modal.url modal.url_id %}" class="modal-close bt-primary btn btn-flat z-depth-2">CONTINUAR</a>
+                        {% else %}
+                            <a href="{% url modal.url %}" class="modal-close bt-primary btn btn-flat z-depth-2">CONTINUAR</a>
+                        {% endif %}
                     </div>
                 </div>
             {% endif %}

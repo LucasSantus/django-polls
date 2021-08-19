@@ -1,5 +1,9 @@
 {% extends "base/base.html" %}
 
+{% block title %}
+    Listar Votações | Sistema de Votação
+{% endblock %}
+
 {% block content %}
     <!-- BREADCUMB -->
     <div class="nav-wrapper transparent">
@@ -67,12 +71,9 @@
     {% endif %}
 {% endblock %}
 
-{% block title %}
-    Listar Votações | Sistema de Votação
-{% endblock %}
+
 
 {% block javascript %}
-    <!-- COPY CODE SALA DE VOTAÇÃO -->
     <script>
         $(document).ready(function() {
             $('#datatable').DataTable();

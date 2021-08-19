@@ -3,71 +3,42 @@
 {% load materializecss %}
 
 {% block title %}
-    Registrar Sala | System Votation
+    Modificar Votação | System Votation
 {% endblock %}
 
 {% block content %}
-    <div class="container center">
-        <div class="item-center container">
+    <div class="item-center container center">
+        <div class="container">
             <div class="container">
-                <div class="card p-2 z-depth-4">
+                <div class="card p-5">
                     <span class="card-title">
-                        <h5 class="fw-bold">EDITAR VOTAÇÃO</h5>
+                        <h5 class="fw-bold">MODIFICAR VOTAÇÃO</h5>
                     </span>
-
-                    <div class="card-content">
-                        <form method="POST">
-                            {% csrf_token %}
-                            <div class="container">
-                                {{ form|materializecss}}
-
-                                <div class="row center mt-2">
-                                    <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="/">
-                                        VOLTAR
-                                    </a>
-                                    
-                                    <button id="btn-login" class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" type="submit">
-                                        SALVAR
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.titulo|materializecss}}
+                        
+                        <a href="#modal-back" class="waves-effect waves-light bt-secondary z-depth-2 btn modal-trigger m-1">
+                            <span class="text">VOLTAR</span>
+                        </a>
+                        <button class="waves-effect waves-light bt-primary z-depth-2 btn m-1" type="submit">
+                            <span class="text">SALVAR</span>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 {% endblock content %}
 
-{% block css %}
-    <style>
-        .card {
-            border: 1px solid #e0e0e0;
-        }
-
-        .format-buttons{
-            margin-bottom: 5px;
-        }
-
-        .format-buttons .btn{
-            margin-top: 5px;
-        }
-
-        .format-form{
-            margin-top: 3%; 
-            padding: 5px;
-        }
-    </style>
-{% endblock %}
-
 {% block javascript %}
-<script>
-    $(document).ready(function(){
-        $("#id_data_inicio").attr("type","text"); 
-        $("#id_data_fim").attr("type","text"); 
-        
-        var DateField = MaterialDateTimePicker.create($('#id_data_inicio'));
-        var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
-    }); 
-</script>
+    <script>
+        $(document).ready(function(){
+            $("#id_data_inicio").attr("type","text"); 
+            $("#id_data_fim").attr("type","text"); 
+            
+            var DateField = MaterialDateTimePicker.create($('#id_data_inicio'));
+            var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
+        }); 
+    </script>
 {% endblock %}
