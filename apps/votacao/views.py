@@ -104,7 +104,7 @@ def registrar_sala(request):
             sala.codigo = Votacao.generated_code_random()
             sala.admin = request.user
             sala.save()
-            sala.usuarios.add(usuario)
+            sala.usuarios.add(request.user)
             messages.success(request,"Sala de Votação registrada com sucesso!")
             return redirect("index")
 
@@ -138,19 +138,18 @@ def editar_sala(request, id_sala):
 
 # *ORGANIZADO
 def conectar_sala(request):
-    user = request.user.id
 
     if request.POST: 
         codigo = request.POST.get("sala", False)
         try:
-            sala = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').get(codigo__icontains=codigo, usuarios=user)
+            sala = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').get(codigo__icontains=codigo, usuarios=request.user)
             if sala:
                 messages.error(request, f"Você já está conectado(a) a sala: {sala.titulo}!")
         except:
             sala = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').get(codigo__icontains=codigo)
             if sala:
                 messages.success(request, f"Você conectou a sala: {sala.titulo}!")
-                sala.usuarios.add(user)
+                sala.usuarios.add(request.user)
         return redirect("index")
 
     return render(request, "votacao/sala/conectar.html")

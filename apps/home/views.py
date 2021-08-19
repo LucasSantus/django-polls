@@ -7,8 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from votacao.models import *
 
-from django.core.paginator import Paginator
-
 def base(request):
     data = timezone.now()
     context = { 
@@ -18,9 +16,7 @@ def base(request):
 
 @login_required
 def index(request):
-    usuario = request.user
-    
-    list_salas = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').filter(usuarios=usuario).order_by("-data_registrado")
+    list_salas = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').filter(usuarios=request.user).order_by("-data_registrado")
     list_votacoes = Votacao.objects.select_related('sala').filter(sala__in=list_salas)
 
     list_salas_vinculadas = []

@@ -91,9 +91,49 @@
     background-color: var(--secondary) !important;
     color: var(--light) !important;
 }
+.bt-success {
+    background-color: var(--success) !important;
+    color: var(--light) !important;
+}
+.bt-info {
+    background-color: var(--info) !important;
+    color: var(--light) !important;
+}
+.bt-warning {
+    background-color: var(--warning) !important;
+    color: var(--light) !important;
+}
+.bt-danger {
+    background-color: var(--danger) !important;
+    color: var(--light) !important;
+}
+.bt-light {
+    background-color: var(--light) !important;
+    color: var(--light) !important;
+}
+.bt-dark {
+    background-color: var(--dark) !important;
+    color: var(--light) !important;
+}
+.bt-white {
+    background-color: var(--light) !important;
+    color: var(--light) !important;
+}
+.bt-body {
+    background-color: var(--body) !important;
+    color: var(--light) !important;
+}
 
 .bt-primary:hover,
-.bt-secondary:hover{
+.bt-secondary:hover:hover,
+.bt-success:hover,
+.bt-info:hover,
+.bt-warning:hover,
+.bt-danger:hover,
+.bt-light:hover,
+.bt-dark:hover,
+.bt-white:hover,
+.bt-body:hover{
     opacity: 0.6 !important;
 }
 
