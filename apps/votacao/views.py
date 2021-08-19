@@ -6,7 +6,6 @@ from votacao.models import SalaVotacao, Votacao
 from django.contrib import messages
 from django.utils import timezone
 
-
 # SALA DE VOTAÇÃO
 # *ORGANIZADO
 def registrar_sala(request):
