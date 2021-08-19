@@ -17,7 +17,7 @@
                     <form method="POST">
                         {% csrf_token %}
                         {{ form|materializecss }}
-                        <a href="{% url 'votar' votacao.id' %}" class="waves-effect waves-light bt-secondary z-depth-2 btn modal-trigger m-1">
+                        <a href="#modal-back" class="waves-effect waves-light bt-secondary z-depth-2 btn modal-trigger m-1">
                             <span class="text">VOLTAR</span>
                         </a>
                         <button  class="waves-effect waves-light bt-primary z-depth-2 btn m-1" type="submit">

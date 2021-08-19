@@ -6,18 +6,20 @@
         <div class="col s12 fs-5 p-3 m-2 pt-0">
             <a href="/" class="breadcrumb"><span class="text-primary">Dashboard</span></a>
             <a class="breadcrumb"><span class="text-secondary">{{sala}}</span></a>
-            {% if sala.admin == request.user %}
-                <div class="right">
-                    <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'editar_sala' sala.id %}">
-                        EDITAR
-                    </a>
-                    <a class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" href="{% url 'registrar_votacao' sala.id %}">
-                        ADICIONAR
-                    </a>
-                </div>
-            {% endif %}
         </div>
     </div>
+
+    <!-- Floating Action Button -->
+    {% if sala.admin == request.user %}
+        <div class="fixed-action-btn horizontal click-to-toggle">
+            <a class="btn-floating btn-large bt-primary">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul>
+                <li><a href="{% url 'registrar_votacao' sala.id %}" class="btn-floating tooltipped bt-secondary" data-position="top" data-tooltip="Registrar | Votação"><i class="material-icons">person</i></a></li>
+            </ul>
+        </div>
+    {% endif %}
 
     {% if list_votacoes %}
         <div class="container mt-5">
@@ -37,6 +39,7 @@
                                     <th><span class="fs-6">Início</span></th>
                                     <th><span class="fs-6">Término</span></th>
                                     <th><span class="fs-6">Informações</span></th>
+                                    <th><span class="fs-6">Opções</span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,10 +48,8 @@
                                         <td>{{votacao.titulo}}</td>
                                         <td>{{votacao.data_inicio}}</td>
                                         <td>{{votacao.data_fim}}</td>
-                                        <td class="right">
-                                            <a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light btn m-1 bt-secondary">DETALHES</a>
-                                            <a href="{% url 'votar' votacao.id %}" class="waves-effect waves-light btn m-1 bt-primary">VOTAR</a>
-                                        </td>
+                                        <td><a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light btn m-1 bt-secondary">DETALHES</a></td>
+                                        <td><a href="{% url 'votar' votacao.id %}" class="waves-effect waves-light btn m-1 bt-primary">VOTAR</a></td>
                                     </tr>
                                 {% endfor %} 
                             </tbody>

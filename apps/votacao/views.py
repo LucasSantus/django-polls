@@ -49,14 +49,12 @@ def editar_votacao(request, id_votacao):
 
 # *ORGANIZADO
 def listar_votacoes(request, id_sala):
-    # list_votacoes = Votacao.objects.filter(sala_id=sala.id, data_inicio__lte=timezone.now(), data_fim__gte=timezone.now()).order_by("-data_registrado")
-    
-    list_votacoes = Votacao.objects.select_related('sala').filter(sala_id=id_sala, data_inicio__lte=timezone.now(), data_fim__gte=timezone.now()).order_by("-data_registrado")
-    votacao = list_votacoes.last()
+    sala = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').get(id = id_sala)
+    list_votacoes = Votacao.objects.select_related('sala').filter(sala_id=sala.id, data_inicio__lte=timezone.now(), data_fim__gte=timezone.now()).order_by("-data_registrado")
 
     context = {
         "list_votacoes": list_votacoes,
-        "sala": votacao.sala,
+        "sala": sala,
     }
 
     if not list_votacoes:
@@ -172,6 +170,12 @@ def registrar_opcao(request, id_votacao):
     context = {
         "form": form,
         "votacao": votacao,
+        "modal": {
+            "title": "Retornar para votação",
+            "content": "Deseja realmente continuar com essa ação?",
+            "url": "votar",
+            "url_id": votacao.id,
+        }
     }
 
     return render(request, "votacao/opcao_voto/registrar.html", context)
@@ -191,6 +195,12 @@ def editar_opcao(request, id_opcao):
     context = {
         "form": form,
         "votacao": opcao_voto.votacao,
+        "modal": {
+            "title": "Retornar para votação",
+            "content": "Deseja realmente continuar com essa ação?",
+            "url": "votar",
+            "url_id": opcao_voto.votacao.id,
+        }
     }
 
     return render(request, 'votacao/opcao/editar.html', context)

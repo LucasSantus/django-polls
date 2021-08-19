@@ -3,47 +3,35 @@
 {% load materializecss %}
 
 {% block title %}
-    Conectar | System Votation
+    Conectar Sala de Votação | System Votation
 {% endblock %}
 
 {% block content %}
-    <div class="container center">
-        <div class="item-center container">
+    <div class="item-center container center">
+        <div class="container">
             <div class="container">
-                <div class="card p-2 z-depth-4">
+                <div class="card p-5">
                     <span class="card-title">
-                        <h5 class="fw-bold">ENTRAR EM UM sala</h5>
+                        <h5 class="fw-bold fs-4">CONECTAR A UMA SALA DE VOTAÇÃO</h5>
                     </span>
-
-                    <div class="card-content">
-                        <form method="POST" validate="{% url 'validate_group' %}">
-                            {% csrf_token %}
-                            <div class="container">
-                                <div class="input-field col s12">
-                                    <input type="text" name="sala" maxlength="194" class="validate invalid" required="" id="id_sala">
-                                    <label class="" for="id_sala">Código do sala:</label>
-                                </div>
-
-                                <div class="row center mt-2">
-                                    <a id="btn-voltar-conectar" class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="/">
-                                    VOLTAR
-                                    </a>
-                                    
-                                    <button id="btn-entrar-conectar" class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" type="submit">
-                                    ENTRAR
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="input-field col s12">
+                            <input type="text" name="sala" maxlength="194" class="validate invalid" required="" id="id_sala">
+                            <label class="" for="id_sala">Código do sala:</label>
+                        </div>
+                        <a id="btn-voltar-conectar" href="#modal-back" class="waves-effect waves-light bt-secondary z-depth-2 btn modal-trigger m-1">
+                            <span class="text">VOLTAR</span>
+                        </a>
+                        <button id="btn-entrar-conectar" class="waves-effect waves-light bt-primary z-depth-2 btn m-1" type="submit">
+                            <span class="text">SALVAR</span>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 {% endblock content %}
-
-{% block css %}
-{% endblock %}
 
 {% block javascript %}
     <!-- Inicialização JavaScript -->
@@ -58,7 +46,7 @@
         $("#id_sala").change(function () {
             var form = $(this).closest("form");
             $.ajax({
-                url: form.attr("validate"),
+                url: "{% url 'validate_group' %}",
                 data: form.serialize(),
                 dataType: 'json',
                 success: function (data) {

@@ -48,10 +48,6 @@
                     <a href="/" class="brand-logo fs-3">Votation</a>
                     <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="ul-sidenav" class="right hide-on-med-and-down">
-                        <li>
-                            {% block search_nav %}
-                            {% endblock %}
-                        </li>
                         <li><a href="{% url 'perfil_usuario' %}" class="bt-primary"><i class="material-icons right">account_circle</i>Perfil</a></li>
                         <li><a href="{% url 'logout' %}" class="bt-primary"><i class="material-icons right">logout</i>Sair</a></li>
                     </ul>
@@ -60,10 +56,6 @@
             
             <!-- SIDENAV -->
             <ul class="sidenav" id="mobile-demo">
-                <li>
-                    {% block search_sidenav %}
-                    {% endblock %}
-                </li>
                 <li><a href="{% url 'perfil_usuario' %}"><i class="material-icons right">account_circle</i>Perfil</a></li>
                 <li><a href="{% url 'logout' %}"><i class="material-icons right">logout</i>Sair</a></li>
             </ul>
@@ -109,17 +101,20 @@
             {% block content %}
             {% endblock %}
 
+
             <!-- Modal Structure -->
-            <div id="modal-back" class="modal">
-                <div class="modal-content">
-                    <h4>Voltar para Login</h4>
-                    <p>Você realmente deseja continuar esta ação?</p>
+            {% if modal %}
+                <div id="modal-back" class="modal">
+                    <div class="modal-content">
+                        <h4>{{modal.title}}</h4>
+                        <p>{{modal.content}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="modal-close bt-secondary btn btn-flat z-depth-2">SAIR</a>
+                        <a href="{% url modal.url modal.url_id %}" class="modal-close bt-primary btn btn-flat z-depth-2">CONTINUAR</a>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <a href="" class="modal-close bt-secondary btn btn-flat z-depth-4">SAIR</a>
-                    <a href="{% url 'login' %}" class="modal-close bt-primary btn btn-flat z-depth-4">CONTINUAR</a>
-                </div>
-            </div>
+            {% endif %}
         </main>
 
         <!-- FOOTER -->
