@@ -63,41 +63,6 @@
 
         <!-- MAIN -->
         <main>
-            <!-- Mensagens -->
-            {% if messages %}
-                {% for message in messages %}
-                    {% if message.tags == 'success' %}
-
-                        sucesso
-                        <script type="text/javascript">
-                            var toastHTML = '<h5>{{ message }} </h5>';
-                            M.toast({html: toastHTML, displayLength:6000, classes:'green'});
-                        </script>
-                    {% elif message.tags == 'error' %}
-                        
-                        erro
-                        <script type="text/javascript">
-                            var toastHTML = '<h5>{{ message }} </h5>';
-                            M.toast({html: toastHTML, displayLength:6000, classes:'red'});
-                        </script>
-                    {% elif message.tags == 'info' %}
-
-                        info
-                        <script type="text/javascript">
-                            var toastHTML = '<h5>{{ message }} </h5>';
-                            M.toast({html: toastHTML, displayLength:6000, classes:'blue'});
-                        </script>
-                    {% elif message.tags == 'warning' %}
-
-                        warning
-                        <script type="text/javascript">
-                            var toastHTML = '<h5>{{ message }} </h5>';
-                            M.toast({html: toastHTML, displayLength:6000, classes:'orange'});
-                        </script>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-
             {% block content %}
             {% endblock %}
 
@@ -209,6 +174,29 @@
                 window.getSelection().removeAllRanges();
             });
         </script>
+
+        <!-- Mensagens -->
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                        <script>
+                            M.toast({html: '{{message}}', displayLength:4000, classes:'rounded bt-success'});
+                        </script>
+                    {% elif message.tags == 'error' %}
+                        <script>
+                            M.toast({html: '{{message}}', displayLength:4000, classes:'rounded bt-danger'});
+                        </script>
+                    {% elif message.tags == 'info' %}
+                        <script>
+                            M.toast({html: '{{message}}', displayLength:4000, classes:'rounded bt-info'});
+                        </script>
+                    {% elif message.tags == 'warning' %}
+                        <script>
+                            M.toast({html: '{{message}}', displayLength:4000, classes:'rounded bt-warning'});
+                        </script>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
 
         <!-- Script da Página -->
         {% block javascript %}

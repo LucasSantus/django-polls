@@ -9,20 +9,20 @@
             <a href="/" class="breadcrumb"><span class="text-primary">Dashboard</span></a>
             <a href="{% url 'listar_votacoes' votacao.sala.id %}" class="breadcrumb"><span class="text-primary">{{votacao.sala.titulo}}</span></a>
             <a class="breadcrumb"><span class="text-secondary">{{votacao.titulo}}</span></a>
-
-            {% if votacao.sala.admin == request.user %}
-                <div class="right">
-                    <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'editar_opcao' votacao.id %}">
-                        EDITAR OPÇÃO DE VOTO
-                    </a>
-                    <a class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" href="{% url 'registrar_opcao' votacao.id %}">
-                        ADICIONAR OPÇÃO DE VOTO
-                    </a>
-                </div>
-            {% endif %}
-
         </div>
     </div>
+
+    <!-- Floating Action Button -->
+    {% if votacao.sala.admin == request.user %}
+        <div class="fixed-action-btn horizontal click-to-toggle">
+            <a class="btn-floating btn-large bt-primary">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul>
+                <li><a href="{% url 'registrar_opcao' votacao.id %}" class="btn-floating tooltipped bt-secondary" data-position="top" data-tooltip="Registrar | Opção de Voto"><i class="material-icons">add</i></a></li>
+            </ul>
+        </div>
+    {% endif %}
 
     <div class="container center">
         <h2 class="text-theme truncate" >
