@@ -7,6 +7,6 @@ urlpatterns = [
 
     # Include URL APP's
     path('', include('home.urls')),
-    path('user/', include('usuarios.urls')),
+    path('usuario/', include('usuarios.urls')),
     path('', include('votacao.urls')),
 ]
