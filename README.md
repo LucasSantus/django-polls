@@ -50,6 +50,31 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <h3 id="instalando">:computer: Instalando o Projeto</h3>
 
+**Clonando o Repositório**
+
+```
+git clone git@github.com:LucasSantus/visitantes.git
+
+cd visitantes
+```
+#### Preparando Projeto
+
+#### Windows
+
+> **Observação:** Foi utilizado o Windows(versão 10), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
+
+**Preparando Ambiente Virtual**
+
+```
+$ python -m venv env
+
+$ env\Scripts\activate
+
+$ python -m pip install --upgrade pip
+
+$ pip install -r requirements.txt
+```
+
 #### Linux
 
 > **Observação:** Foi utilizado a distro Linux Mint(versão 20.1), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
@@ -84,7 +109,9 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-**Iniciando e Rodando o Projeto**
+#### Rodando o Projeto
+
+**Iniciando**
 
 ```
 python manage.py makemigrations home
