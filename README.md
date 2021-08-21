@@ -53,11 +53,12 @@ As seguintes ferramentas foram usadas na construção do projeto:
 **Clonando o Repositório**
 
 ```
-git clone git@github.com:LucasSantus/visitantes.git
+git clone git@github.com:LucasSantus/votation.git
 
-cd visitantes
+cd votation
 ```
-#### Preparando Projeto
+
+#### Preparando o Projeto
 
 #### Windows
 
@@ -66,13 +67,13 @@ cd visitantes
 **Preparando Ambiente Virtual**
 
 ```
-$ python -m venv env
+python -m venv env
 
-$ env\Scripts\activate
+env\Scripts\activate
 
-$ python -m pip install --upgrade pip
+python -m pip install --upgrade pip
 
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 #### Linux
