@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000 
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    command: mysqld --user=root
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./mysql-dump:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=votation
+      - MYSQL_PASSWORD=votation
+      - MYSQL_DATABASE=votation_db
+    ports:
+      - 3307:3306
+
+volumes:
+  mysql-data:
+  mysql-dump:

@@ -1,0 +1,38 @@
+from .settings import *
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = ['*']
+
+INTERNAL_IPS = ('127.0.0.1', 'localhost',)
+
+INSTALLED_APPS += [
+    'debug_toolbar',
+]
+
+MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+] + MIDDLEWARE
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'votation_db',
+        'USER': 'votation',
+        'PASSWORD': "votation",
+        'HOST': 'db',
+        'PORT': '3306',
+    }
+}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+AUTH_PASSWORD_VALIDATORS = []
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

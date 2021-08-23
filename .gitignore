@@ -1,4 +1,13 @@
-env/
+*.pyc
+*.log
+*~
+/__pycache__
+/env
 db.sqlite3
-__pycache__/
-migrations/
+.DS_Store
+.vscode
+settings_local.py
+/media
+/mysql-data
+/mysql-dump
+/migrations
