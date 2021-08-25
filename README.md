@@ -1,12 +1,13 @@
 <h1 align="center">Sistema de Votação</h1>
 
 <p align="center">
- <a href="#sobre">Sobre</a> &nbsp;|&nbsp;
- <a href="#porque">Por Que</a> &nbsp;|&nbsp;
- <a href="#tecnologias">Tecnologias</a> &nbsp;|&nbsp;
- <a href="#funcionalidades">Funcionalidades</a> &nbsp;|&nbsp;
- <a href="#autor">Autor</a> &nbsp;|&nbsp;
- <a href="#license">Licença</a>
+	<a href="#sobre">Sobre</a> &nbsp;|&nbsp;
+	<a href="#porque">Por Que</a> &nbsp;|&nbsp;
+	<a href="#tecnologias">Tecnologias</a> &nbsp;|&nbsp;
+	<a href="#funcionalidades">Funcionalidades</a> &nbsp;|&nbsp;
+	<a href="#instalando">Instalando</a> &nbsp;|&nbsp;
+	<a href="#autor">Autor</a> &nbsp;|&nbsp;
+	<a href="#license">Licença</a>
 </p>
 
 <h6 align="center"> 
@@ -19,7 +20,7 @@
 
 A ideia é:
 
-_"Criar um Sistema de Votação onde o mesma tenha um design simples e belo, com intuito de promover o aprendizado e gerar um projeto completo utilizando o Django framework."_
+_"Criar um Sistema de Votação onde o mesmo tenha um design simples e belo, com intuito de promover o aprendizado e gerar um projeto completo utilizando o Django framework."_
 
 --------------------------------------------------------------------------------------
 
@@ -79,14 +80,6 @@ pip install -r requirements.txt
 #### Linux
 
 > **Observação:** Foi utilizado a distro Linux Mint(versão 20.1), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
-
-**Clonando o Repositório**
-
-```
-git clone git@github.com:LucasSantus/votation.git
-
-cd votation
-```
 
 **Instalando Ambiente Virtual**
 
@@ -161,4 +154,4 @@ Obrigado por visitar e boa codificação!<br />
 
 <h3 id="license">:memo: License</h3>
 
-Este projeto está licenciado sob a Licença MIT License - veja o [LICENSE.md](https://github.com/LucasSantus/sistema-votacao/blob/master/LICENSE) para melhores detalhes.
+Este projeto está licenciado sob a Licença MIT License - veja o [LICENSE.md](https://github.com/LucasSantus/votation/blob/master/LICENSE) para melhores detalhes.
