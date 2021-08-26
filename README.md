@@ -6,6 +6,7 @@
 	<a href="#tecnologias">Tecnologias</a> &nbsp;|&nbsp;
 	<a href="#funcionalidades">Funcionalidades</a> &nbsp;|&nbsp;
 	<a href="#instalando">Instalando</a> &nbsp;|&nbsp;
+	<a href="#rodando">Rodando</a> &nbsp;|&nbsp;
 	<a href="#autor">Autor</a> &nbsp;|&nbsp;
 	<a href="#license">Licença</a>
 </p>
@@ -103,7 +104,7 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-#### Rodando o Projeto
+<h3 id="rodando">:zap: Rodando</h3>
 
 **Iniciando**
 
