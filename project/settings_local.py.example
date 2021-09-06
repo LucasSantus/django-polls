@@ -5,15 +5,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-INTERNAL_IPS = ('127.0.0.1', 'localhost',)
+INTERNAL_IPS = ('127.0.0.1', 'localhost')
 
-INSTALLED_APPS += [
-    'debug_toolbar',
-]
+if DEBUG:
+    INSTALLED_APPS += ['debug_toolbar']
 
-MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-] + MIDDLEWARE
+    MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware'] + MIDDLEWARE
+
+    DEBUG_TOOLBAR_CONFIG = {
+        'SHOW_TOOLBAR_CALLBACK': lambda request: False if request.is_ajax() else True,
+    }
 
 DATABASES = {
     'default': {
@@ -35,4 +36,5 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = []
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Print envio de e-mail no terminal.
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

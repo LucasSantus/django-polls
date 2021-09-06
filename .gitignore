@@ -1,13 +1,45 @@
+# Python
 *.pyc
 *.log
 *~
-/__pycache__
-/env
+__pycache__
+
+# Env
+.env
+env/
+myvenv/
+venv/
+
+# Database
 db.sqlite3
+
+# Static folder at project root
+/static/
+
+# macOS
+._*
 .DS_Store
-.vscode
-settings_local.py
+.fseventsd
+.Spotlight-V100
+
+# Windows
+Thumbs.db*
+ehthumbs*.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Visual Studio
+.vscode/
+.history/
+*.code-workspace
+
+# Docker
 /media
 /mysql-data
 /mysql-dump
 /migrations
+
+# Config's Location
+settings_local.py
+
+.DS_Store

@@ -9,6 +9,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV CRYPTOGRAPHY_DONT_BUILD_RUST 1
 
+# update pip
 RUN pip install --upgrade pip
 
 # install psycopg2 dependencies
