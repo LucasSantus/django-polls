@@ -1,0 +1,80 @@
+{% extends "base/base.html" %}
+
+<!-- Block Título da Página -->
+{% block title %}
+    Contato | Votation
+{% endblock %}
+
+<!-- Block Conteúdo da Página -->
+{% block content %}
+    <!-- BREADCUMB -->
+    <div class="nav-wrapper transparent">
+        <div class="col s12 fs-5 p-3 m-2 pt-0">
+            <a class="breadcrumb me-3"><span class="text-secondary">Dashboard</span></a>
+        </div>
+    </div>
+    <div class="container center">
+        <div class="item-center">
+            <div class="container">
+                <div class="card p-2 z-depth-4">
+                    <span class="card-title">
+                        <h5 class="fw-bold">Contato</h5>
+                    </span>
+
+                    <div class="card-content">  
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="name" type="text" name="name" class="validate">
+                                        <label for="name">Nome:</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="email" type="email" name="email" class="validate">
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <form class="col s12">
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <textarea id="assunto" class="materialize-textarea" name="assunto"></textarea>
+                                                <label for="assunto">Assunto</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="row">
+                                    <form class="col s12">
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <textarea id="message" class="materialize-textarea" name="message"></textarea>
+                                                <label for="message">Messagem</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <button class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" type="submit">
+                                    ENTRAR
+                                </button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+<!-- Block CSS da Página -->
+{% block css %}
+    <style>
+        
+    </style>
+{% endblock %}

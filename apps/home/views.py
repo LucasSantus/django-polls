@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils import timezone
 from votacao.models import Votacao
 from usuarios.models import *
@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from votacao.models import *
+
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
 
 def base(request):
     data = timezone.now()
@@ -31,6 +34,26 @@ def index(request):
     }
 
     return render(request, "home/index.html", context)
+
+@login_required
+def contato(request):
+    name = request.POST.get('name', '')
+    assunto = request.POST.get('assunto', '')
+    message = request.POST.get('message', '')
+    email = request.POST.get('email', '')
+
+    if assunto and message and email:
+        try:
+            send_mail(assunto, message, email, ['leos9877@gmail.com'])
+        except BadHeaderError:
+            print("faliceu")
+        
+        redirect('index')
+
+
+    return render(request, "contato/contato.html")
+
+
 
 # Validar se o usuário está cadastrado.
 def validate_user(request):
