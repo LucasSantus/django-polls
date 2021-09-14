@@ -1,3 +1,4 @@
+from apps.home.forms import ContatoForm
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from votacao.models import Votacao
@@ -37,21 +38,46 @@ def index(request):
 
 @login_required
 def contato(request):
-    name = request.POST.get('name', '')
-    assunto = request.POST.get('assunto', '')
-    message = request.POST.get('message', '')
-    email = request.POST.get('email', '')
+    form = ContatoForm()
+    if request.POST:
+        form = ContatoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Contato enviado com sucesso!")
+            return redirect("index")
 
-    if assunto and message and email:
-        try:
-            send_mail(assunto, message, email, ['leos9877@gmail.com'])
-        except BadHeaderError:
-            print("faliceu")
-        
-        redirect('index')
+    context = {
+        "form": form,
+    }
 
+    # send_mail(assunto, message, email, ['leos9877@gmail.com'])
 
-    return render(request, "contato/contato.html")
+    return render(request, "contato/contato.html", context)
+
+def registrar_sala(request):
+    form = SalaVotacaoForm()
+    if request.POST:
+        form = SalaVotacaoForm(request.POST)
+        if form.is_valid():
+            sala = form.save(commit = False)
+            sala.codigo = Votacao.generated_code_random()
+            sala.admin = request.user
+            sala.save()
+            sala.usuarios.add(request.user)
+            messages.success(request,"Sala de Votação registrada com sucesso!")
+            return redirect("index")
+
+    context = {
+        "form": form,
+        "usuario": request.user,
+        "modal": {
+            "title": "Retornar para Sala de Votações",
+            "content": "Deseja realmente continuar com essa ação?",
+            "url": "index",
+        },
+    }
+
+    return render(request, "votacao/sala/registrar.html", context)
 
 
 
