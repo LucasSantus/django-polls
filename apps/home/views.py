@@ -7,10 +7,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from votacao.models import *
+from project.settings import DEFAULT_FROM_EMAIL
 
-from django.core.mail import BadHeaderError, send_mail
-from django.http import HttpResponse, HttpResponseRedirect
-
+from django.core.mail import send_mail
 def base(request):
     data = timezone.now()
     context = { 
@@ -42,44 +41,39 @@ def contato(request):
     if request.POST:
         form = ContatoForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request,"Contato enviado com sucesso!")
+            nome = form.cleaned_data['nome']
+            sobrenome = form.cleaned_data['sobrenome']
+            email = form.cleaned_data['email']
+            titulo = form.cleaned_data['titulo']
+            messagem = form.cleaned_data['messagem']
+
+            text = ("{nome} {sobrenome} deixou uma mensagem," +
+                "para entrar em contato," +
+                "E-mail: {email}," +
+                "A messagem deixada por {nome} é:" +
+                "{messagem}")
+
+            try:
+                DEFAULT_FROM_EMAIL = 'Votation <lucayasiltos@gmail.com>'
+                send_mail(
+                    titulo, 
+                    text, 
+                    DEFAULT_FROM_EMAIL, 
+                    ['leos9877@gmail.com']
+                )
+            except:
+                messages.error(request,"Falha ao enviar contato!")
+
+            print(form.errors)
+
+            messages.success(request,"Contato enviado com sucesso!\nEntraremos em contato!")
             return redirect("index")
 
     context = {
         "form": form,
     }
-
-    # send_mail(assunto, message, email, ['leos9877@gmail.com'])
 
     return render(request, "contato/contato.html", context)
-
-def registrar_sala(request):
-    form = SalaVotacaoForm()
-    if request.POST:
-        form = SalaVotacaoForm(request.POST)
-        if form.is_valid():
-            sala = form.save(commit = False)
-            sala.codigo = Votacao.generated_code_random()
-            sala.admin = request.user
-            sala.save()
-            sala.usuarios.add(request.user)
-            messages.success(request,"Sala de Votação registrada com sucesso!")
-            return redirect("index")
-
-    context = {
-        "form": form,
-        "usuario": request.user,
-        "modal": {
-            "title": "Retornar para Sala de Votações",
-            "content": "Deseja realmente continuar com essa ação?",
-            "url": "index",
-        },
-    }
-
-    return render(request, "votacao/sala/registrar.html", context)
-
-
 
 # Validar se o usuário está cadastrado.
 def validate_user(request):

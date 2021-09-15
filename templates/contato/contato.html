@@ -15,54 +15,21 @@
             <a class="breadcrumb me-3"><span class="text-secondary">Dashboard</span></a>
         </div>
     </div>
+
     <div class="container center">
-        <div class="container item-center">
+        <div class="container">
             <div class="container">
-                <div class="card p-2 z-depth-4">
+                <div class="card p-2 z-depth-2">
                     <span class="card-title">
                         <h5 class="fw-bold">Contato</h5>
                     </span>
 
                     <div class="card-content">  
-                        <form method="POST">
+                        <form method="POST" class="px-3">
                             {% csrf_token %}
-
-                            {% form|materializecss %}
-
-                            <!-- <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="name" type="text" name="name" class="validate" required>
-                                    <label for="name">Nome:</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="email" type="email" name="email" class="validate" required>
-                                    <label for="email">Email:</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <textarea id="assunto" class="materialize-textarea" name="assunto" required></textarea>
-                                            <label for="assunto">Assunto:</label>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="row">
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <textarea id="message" class="materialize-textarea" name="message" required></textarea>
-                                            <label for="message">Messagem:</label>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div> -->
-
-                            <button class="center waves-effect waves-light btn bt-primary z-depth-4 m-1" type="submit">
-                                ENTRAR
+                            {{ form|materializecss }}
+                            <button class="center waves-effect waves-light btn bt-primary z-depth-2 m-1" type="submit">
+                                ENVIAR
                             </button>
                         </form>
                     </div>
@@ -74,8 +41,11 @@
 {% endblock %}
 
 <!-- Block CSS da Página -->
-{% block css %}
-    <style>
-        
-    </style>
+{% block javascript %}
+    <script>
+        $(document).ready(function(){
+            list_ids = ["#id_nome", "#id_sobrenome", "#id_email", "#id_titulo", "#id_messagem"];
+            for(id of list_ids) $(id).removeAttr("required");
+        });
+    </script>
 {% endblock %}
