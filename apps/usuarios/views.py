@@ -22,4 +22,5 @@ def perfil_usuario(request):
     context = {
         'form': form,
     }
-    return render(request, "usuarios/perfil_usuario.html", context)
+
+    return render(request, "usuarios/perfil/perfil.html", context)

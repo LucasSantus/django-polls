@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models.fields import BooleanField
 from .models import *
 from usuarios.models import *
 
@@ -9,7 +8,19 @@ import random
 class SalaVotacao(models.Model):
     titulo = models.CharField(
         verbose_name = "Título",
-        max_length = 150,
+        max_length = 50,
+    )
+
+    resumo = models.CharField(
+        verbose_name = "Resumo",
+        max_length = 10000,
+        null = True,
+        blank= True
+    )
+
+    descricao = models.TextField(
+        verbose_name = "Descrição",
+        max_length = 2000,
     )
 
     codigo = models.CharField(
@@ -34,8 +45,8 @@ class SalaVotacao(models.Model):
         null = True,
         blank = True,
     )
-    
-    is_active = BooleanField(
+
+    is_active = models.BooleanField(
         default=True
     )
 
@@ -50,6 +61,10 @@ class SalaVotacao(models.Model):
 
     def __str__(self):
         return self.titulo
+
+    def save(self, *args, **kwargs):
+        self.resumo = self.descricao.upper()
+        return super().save(*args, **kwargs)
 
 class Votacao(models.Model):
     titulo = models.CharField(
@@ -88,7 +103,7 @@ class Votacao(models.Model):
         blank = True
     )
     
-    is_active = BooleanField(
+    is_active = models.BooleanField(
         default=True
     )
 
@@ -162,7 +177,7 @@ class OpcaoVoto(models.Model):
         blank = True,
     )
     
-    is_active = BooleanField(
+    is_active = models.BooleanField(
         default=True
     )
 
@@ -200,7 +215,7 @@ class PessoaVoto(models.Model):
         default = 0,
     )
     
-    is_active = BooleanField(
+    is_active = models.BooleanField(
         default=True
     )
 
