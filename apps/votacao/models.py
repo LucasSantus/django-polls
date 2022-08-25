@@ -7,13 +7,25 @@ import random
 
 class SalaVotacao(models.Model):
     titulo = models.CharField(
-        verbose_name = "Título:",
-        max_length = 194,
+        verbose_name = "Título",
+        max_length = 50,
+    )
+
+    resumo = models.CharField(
+        verbose_name = "Resumo",
+        max_length = 10000,
+        null = True,
+        blank= True
+    )
+
+    descricao = models.TextField(
+        verbose_name = "Descrição",
+        max_length = 2000,
     )
 
     codigo = models.CharField(
-        verbose_name = "Código:",
-        max_length = 194,
+        verbose_name = "Código",
+        max_length = 30,
         unique = True,
         null = True,
         blank = True,
@@ -21,21 +33,25 @@ class SalaVotacao(models.Model):
 
     usuarios = models.ManyToManyField(
         Usuario,
-        verbose_name = "Usuarios:",
+        verbose_name = "Usuarios",
         blank = True,
     )
 
     admin = models.ForeignKey(
         Usuario, 
         on_delete = models.CASCADE,
-        verbose_name = "Administrador da Sala:",
+        verbose_name = "Administrador",
         related_name = "admin",
         null = True,
         blank = True,
     )
 
+    is_active = models.BooleanField(
+        default=True
+    )
+
     data_registrado = models.DateTimeField(
-        verbose_name = "Data da Criação:",
+        verbose_name = "Data da Criação",
         auto_now_add = True,
     )
 
@@ -46,46 +62,53 @@ class SalaVotacao(models.Model):
     def __str__(self):
         return self.titulo
 
+    def save(self, *args, **kwargs):
+        self.resumo = self.descricao.upper()
+        return super().save(*args, **kwargs)
+
 class Votacao(models.Model):
     titulo = models.CharField(
-        verbose_name = "Título:",
-        max_length = 194,
+        verbose_name = "Título",
+        max_length = 150,
     )
 
     descricao = models.TextField(
-        verbose_name = "Descrição:",
-        max_length = 340,
+        verbose_name = "Descrição",
+        max_length = 300,
     )
 
     anonimo = models.BooleanField(
-        verbose_name = "Usuário Anônimo:",
+        verbose_name = "Usuário Anônimo",
         default = False,
     )
 
     data_inicio = models.DateTimeField(
-        verbose_name = "Inicio:",
+        verbose_name = "Inicio",
         auto_now = False,
         blank = True,
         null = True,
     )
 
     data_fim = models.DateTimeField(
-        verbose_name = "Término:",
+        verbose_name = "Término",
         auto_now = False,
         blank = True,
         null = True,
     )
-
     sala = models.ForeignKey(
         SalaVotacao,
-        verbose_name = "Sala de Votação:",
+        verbose_name = "Sala de Votação",
         on_delete = models.CASCADE,
         null = True,
         blank = True
     )
+    
+    is_active = models.BooleanField(
+        default=True
+    )
 
     data_registrado = models.DateTimeField(
-        verbose_name = "Data da Criação:",
+        verbose_name = "Data da Criação",
         auto_now_add = True,
     )
 
@@ -94,7 +117,7 @@ class Votacao(models.Model):
         verbose_name_plural = "Votações"
 
     def generated_code_random():
-        tamanho=15
+        tamanho=16
         valid = True
         while valid == True:
             try:
@@ -117,33 +140,50 @@ class Votacao(models.Model):
                 vinculo.append(obj)
         return vinculo
 
+    def format_date(data):
+        date_list = []
+        for a in range(16):
+            if data[a] != '+' or data[a] != ' ':
+                date_list.append(data[a])
+            else:
+                break
+        return "".join(date_list)
     def __str__(self):
         return self.titulo
-
+    
 class OpcaoVoto(models.Model):
     nome = models.CharField(
-        verbose_name = "Nome:",
-        max_length = 194,
+        verbose_name = "Nome",
+        max_length = 150,
     )
 
     votacao = models.ForeignKey(
         Votacao,
-        verbose_name = "Votação:",
+        verbose_name = "Votação",
         on_delete = models.CASCADE,
         null = True,
         blank = True,
     )
 
     codigo = models.CharField(
-        verbose_name = "Código:",
-        max_length = 194,
+        verbose_name = "Código",
+        max_length = 10,
     )
 
     numero_votos = models.PositiveSmallIntegerField(
-        verbose_name = "Número de Voto:",
+        verbose_name = "Número de Voto",
         default = 0,
         null = True,
         blank = True,
+    )
+    
+    is_active = models.BooleanField(
+        default=True
+    )
+
+    data_registrado = models.DateTimeField(
+        verbose_name = "Data da Criação",
+        auto_now_add = True,
     )
 
     class Meta:
@@ -153,8 +193,8 @@ class OpcaoVoto(models.Model):
     def __str__(self):
         return self.nome
 
-class Pessoa_Voto(models.Model):
-    pessoa = models.ForeignKey(
+class PessoaVoto(models.Model):
+    usuario = models.ForeignKey(
         Usuario, 
         on_delete = models.CASCADE
     )
@@ -164,7 +204,7 @@ class Pessoa_Voto(models.Model):
         on_delete = models.CASCADE
     )
 
-    opcao = models.ForeignKey(
+    opcao_voto = models.ForeignKey(
         OpcaoVoto, 
         on_delete = models.CASCADE
     )
@@ -174,10 +214,19 @@ class Pessoa_Voto(models.Model):
         null = True,
         default = 0,
     )
+    
+    is_active = models.BooleanField(
+        default=True
+    )
+
+    data_registrado = models.DateTimeField(
+        verbose_name = "Data da Criação",
+        auto_now_add = True,
+    )
 
     class Meta:
         verbose_name = "Voto da Pessoa"
-        verbose_name_plural = "Voto das Pessoas"
+        verbose_name_plural = "Votos das Pessoas"
 
     def __str__(self):
         return self.votacao.nome

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% load materializecss %}
+
+<!-- Block Título da Página -->
+{% block title %}
+    Contato | Votation
+{% endblock %}
+
+<!-- Block Conteúdo da Página -->
+{% block content %}
+    <!-- BREADCUMB -->
+    <div class="nav-wrapper transparent">
+        <div class="col s12 fs-5 p-3 m-2 pt-0">
+            <a class="breadcrumb me-3"><span class="text-secondary">Dashboard</span></a>
+        </div>
+    </div>
+
+    <div class="container center">
+        <div class="container">
+            <div class="container">
+                <div class="card p-2 z-depth-2">
+                    <span class="card-title">
+                        <h5 class="fw-bold">Contato</h5>
+                    </span>
+
+                    <div class="card-content">  
+                        <form method="POST" class="px-3">
+                            {% csrf_token %}
+                            {{ form|materializecss }}
+                            <button class="center waves-effect waves-light btn bt-primary z-depth-2 m-1" type="submit">
+                                ENVIAR
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+<!-- Block CSS da Página -->
+{% block javascript %}
+    <script>
+        $(document).ready(function(){
+            list_ids = ["#id_nome", "#id_sobrenome", "#id_email", "#id_titulo", "#id_messagem"];
+            for(id of list_ids) $(id).removeAttr("required");
+        });
+    </script>
+{% endblock %}

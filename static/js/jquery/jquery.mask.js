@@ -1,4 +1,4 @@
-/** 
+/**
  * jquery.mask.js
  * @version: v1.14.16
  * @author: Igor Escobar
@@ -131,8 +131,8 @@
                 // clear the value if it not complete the mask
                 .on('focusout.mask', function() {
                     if (options.clearIfNotMatch && !regexMask.test(p.val())) {
-                        p.val('');
-                    }
+                       p.val('');
+                   }
                 });
             },
             getRegexMask: function() {
@@ -163,7 +163,7 @@
 
                 if (oRecursive) {
                     r = r.replace(new RegExp('(' + oRecursive.digit + '(.*' + oRecursive.digit + ')?)'), '($1)?')
-                        .replace(new RegExp(oRecursive.digit, 'g'), oRecursive.pattern);
+                         .replace(new RegExp(oRecursive.digit, 'g'), oRecursive.pattern);
                 }
 
                 return new RegExp(r);
@@ -231,12 +231,12 @@
                       caretPosNew = newValL * 10;
                     } else if (caretPosOld >= caretPosNew && caretPosOld !== oldValL) {
                         if (!p.maskDigitPosMapOld[caretPosNew])  {
-                            var caretPos = caretPosNew;
-                            caretPosNew -= maskDigitsBeforeCaretAllOld - maskDigitsBeforeCaretAll;
-                            caretPosNew -= maskDigitsBeforeCaret;
-                            if (p.maskDigitPosMap[caretPosNew])  {
-                                caretPosNew = caretPos;
-                            }
+                          var caretPos = caretPosNew;
+                          caretPosNew -= maskDigitsBeforeCaretAllOld - maskDigitsBeforeCaretAll;
+                          caretPosNew -= maskDigitsBeforeCaret;
+                          if (p.maskDigitPosMap[caretPosNew])  {
+                            caretPosNew = caretPos;
+                          }
                         }
                     }
                     else if (caretPosNew > caretPosOld) {
@@ -260,7 +260,7 @@
                     // this is a compensation to devices/browsers that don't compensate
                     // caret positioning the right way
                     setTimeout(function() {
-                        p.setCaret(p.calculateCaretPosition(oldVal));
+                      p.setCaret(p.calculateCaretPosition(oldVal));
                     }, $.jMaskGlobals.keyStrokeCompensation);
 
                     p.val(newVal);
@@ -305,7 +305,7 @@
                     if (translation) {
                         if (valDigit.match(translation.pattern)) {
                             buf[addMethod](valDigit);
-                            if (translation.recursive) {
+                             if (translation.recursive) {
                                 if (resetPos === -1) {
                                     resetPos = m;
                                 } else if (m === lastMaskChar && m !== resetPos) {
@@ -331,7 +331,7 @@
                             m += offset;
                             v -= offset;
                         } else {
-                            p.invalid.push({p: v, v: valDigit, e: translation.pattern});
+                          p.invalid.push({p: v, v: valDigit, e: translation.pattern});
                         }
                         v += offset;
                     } else {
@@ -362,11 +362,11 @@
                 return newVal;
             },
             mapMaskdigitPositions: function(newVal, maskDigitPosArr, valLen) {
-                var maskDiff = options.reverse ? newVal.length - valLen : 0;
-                p.maskDigitPosMap = {};
-                for (var i = 0; i < maskDigitPosArr.length; i++) {
-                    p.maskDigitPosMap[maskDigitPosArr[i] + maskDiff] = 1;
-                }
+              var maskDiff = options.reverse ? newVal.length - valLen : 0;
+              p.maskDigitPosMap = {};
+              for (var i = 0; i < maskDigitPosArr.length; i++) {
+                p.maskDigitPosMap[maskDigitPosArr[i] + maskDiff] = 1;
+              }
             },
             callbacks: function (e) {
                 var val = p.val(),
@@ -409,15 +409,15 @@
 
         // get value without mask
         jMask.getCleanVal = function() {
-            return p.getMasked(true);
+           return p.getMasked(true);
         };
 
         // get masked value without the value being in the input or element
         jMask.getMaskedVal = function(val) {
-            return p.getMasked(false, val);
+           return p.getMasked(false, val);
         };
 
-        jMask.init = function(onlyMask) {
+       jMask.init = function(onlyMask) {
             onlyMask = onlyMask || false;
             options = options || {};
 
@@ -441,7 +441,7 @@
                 // and then press the "back" button, the autocomplete will erase
                 // the data. Works fine on IE9+, FF, Opera, Safari.
                 if (el.data('mask')) {
-                    el.attr('autocomplete', 'off');
+                  el.attr('autocomplete', 'off');
                 }
 
                 // detect if is necessary let the user type freely.
@@ -486,7 +486,7 @@
         }
 
         if (input.attr(prefix + 'selectonfocus') === 'true') {
-            options.selectOnFocus = true;
+           options.selectOnFocus = true;
         }
 
         if (notSameMaskObject(input, mask, options)) {
@@ -570,7 +570,7 @@
 
     var globals = {
         maskElements: 'input,td,span,div',
-        dataMaskAttr: '[data-mask]',
+        dataMaskAttr: '*[data-mask]',
         dataMask: true,
         watchInterval: 300,
         watchInputs: true,

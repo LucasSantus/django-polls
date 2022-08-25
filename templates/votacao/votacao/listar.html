@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Listar Votações | Sistema de Votação
+{% endblock %}
+
+{% block content %}
+    <!-- BREADCUMB -->
+    <div class="nav-wrapper transparent">
+        <div class="col s12 fs-5 p-3 m-2 pt-0">
+            <a href="/" class="breadcrumb"><span class="text-primary">Dashboard</span></a>
+            <a class="breadcrumb"><span class="text-secondary">{{sala}}</span></a>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    {% if sala.admin == request.user %}
+        <div class="fixed-action-btn horizontal click-to-toggle">
+            <a class="btn-floating btn-large bt-primary">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul>
+                <li><a href="{% url 'registrar_votacao' sala.id %}" class="btn-floating tooltipped bt-secondary" data-position="top" data-tooltip="Registrar | Votação"><i class="material-icons">add</i></a></li>
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if list_votacoes %}
+        <div class="container mt-5">
+            <div class="row">
+                <div id="man" class="col s12">
+                    <div class="card material-table">
+                        <div class="table-header">
+                            <span class="table-title fs-4">Votações</span>
+                            <div class="actions">
+                                <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                            </div>
+                        </div>
+                        <table id="datatable" class="centered responsive-table">
+                            <thead>
+                                <tr>
+                                    <th><span class="fs-6">Título</span></th>
+                                    <th><span class="fs-6">Início</span></th>
+                                    <th><span class="fs-6">Término</span></th>
+                                    <th><span class="fs-6">Informações</span></th>
+                                    <th><span class="fs-6">Opções</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for votacao in list_votacoes %}
+                                    <tr>
+                                        <td>{{votacao.titulo}}</td>
+                                        <td class="tooltipped" data-position="right" data-tooltip="{{votacao.data_inicio}}">{{votacao.data_inicio}}</td>
+                                        <td class="tooltipped" data-position="left" data-tooltip="{{votacao.data_fim}}">{{votacao.data_fim}}</td>
+                                        <td><a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light btn m-1 bt-secondary">DETALHES</a></td>
+                                        <td><a href="{% url 'votar' votacao.id %}" class="waves-effect waves-light btn m-1 bt-primary">VOTAR</a></td>
+                                    </tr>
+                                {% endfor %} 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container center mt-10">
+            <div class="fs-4 text-secondary">
+                Não há votações disponíveis.
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+        });
+    </script>
+{% endblock %}

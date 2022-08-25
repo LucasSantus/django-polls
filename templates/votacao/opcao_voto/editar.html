@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load materializecss %}
+
+{% block title %}
+    Modificar Opção de Voto | System Votation
+{% endblock %}
+
+{% block content %}
+    <div class="item-center container center">
+        <div class="container">
+            <div class="container">
+                <div class="card p-5">
+                    <span class="card-title">
+                        <h5 class="fw-bold fs-4">MODIFICAR OPÇÃO DE VOTO</h5>
+                    </span>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|materializecss }}
+                        <a href="#modal-back" class="waves-effect waves-light bt-secondary z-depth-2 btn modal-trigger m-1">
+                            <span class="text">VOLTAR</span>
+                        </a>
+                        <button  class="waves-effect waves-light bt-primary z-depth-2 btn m-1" type="submit">
+                            <span class="text">SALVAR</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -33,43 +33,43 @@ class UsuarioManager(BaseUserManager):
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
-        verbose_name = "E-mail:",
+        verbose_name = "E-mail",
         max_length = 194,
         unique = True,
     )
 
     nome = models.CharField(
-        verbose_name = "Nome Completo:",
+        verbose_name = "Nome Completo",
         max_length = 194,
         null = False,
     )
 
     cpf = models.CharField(
-        verbose_name = "CPF:",
+        verbose_name = "CPF",
         max_length = 14,
         unique = True,
         null = True,
     )
 
     data_nascimento = models.DateField(
-        verbose_name = "Data de Nascimento:",
+        verbose_name = "Data de Nascimento",
         auto_now_add = False,
         auto_now = False,
         null = True,
     )
 
     is_active = models.BooleanField(
-        verbose_name="Usuário está ativo",
+        verbose_name="Usuário Ativo",
         default = True,
     )
 
     is_staff = models.BooleanField(
-        verbose_name = "Usuário é da equipe de desenvolvimento",
+        verbose_name = "Usuário Desenvolvedor",
         default = False,
     )
 
     is_superuser = models.BooleanField(
-        verbose_name = "Usuário é um superusuário",
+        verbose_name = "Super Usuário",
         default = False,
     )
 

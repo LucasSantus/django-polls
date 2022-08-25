@@ -9,11 +9,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'kjxy7yr7u6o93&gp_w)-*u++pskfeqwm+hrh-*p_4^yg%co&xo'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
 #Localização dos Aplicativos Internos
 sys.path.append(
     os.path.join(BASE_DIR, "apps")
@@ -76,13 +71,6 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Aumento TimeOut Database
 DATABASE_OPTIONS = {'timeout': 60}
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -135,3 +123,8 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Votation <lucayasiltos@gmail.com>'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+try:
+    from .settings_local import *
+except ImportError:
+    pass

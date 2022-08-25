@@ -1,84 +1,43 @@
-{% extends "base/base.html" %}
+{% extends "base.html" %}
 
 {% load materializecss %}
 
 {% block content %}
-
-<script>
-    $(document).ready(function(){
-        $("#id_data_nascimento").addClass('datepicker').attr("type","text");         
-    }); 
-</script>
-
     <!-- BREADCUMB -->
     <div class="nav-wrapper transparent">
         <div class="col s12 fs-5 p-3 m-2 pt-0">
             <a href="/" class="breadcrumb"><span class="text-primary">Dashboard</span></a>
-            <a href="{% url 'listar_votacoes' votacao.sala.id %}" class="breadcrumb"><span class="text-primary">{{votacao.sala}}</span></a>
-            <a class="breadcrumb"><span class="text-secondary">{{votacao}}</span></a>
-            {% if votacao.sala.admin == request.user %}
-                <div class="right">
-                    <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'registrar_opcao' votacao.id %}">
-                        ADICIONAR
-                    </a>
-                </div>
-            {% endif %}
+            <a href="{% url 'listar_votacoes' votacao.sala.id %}" class="breadcrumb"><span class="text-primary">{{votacao.sala.titulo}}</span></a>
+            <a class="breadcrumb"><span class="text-secondary">{{votacao.titulo}}</span></a>
         </div>
     </div>
 
-    {% if list_votacoes %}
-        <div class="container">
-            <table class="responsive-table centered highlight striped z-depth-3">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Inicio</th>
-                        <th>Término</th>
-                        <th>
-                            <!-- CÓDIGO DA SALA -->
-                            <a id="btn_copy" class="waves-effect waves-light tooltipped btn" data-position="top" data-tooltip="Copiar">{{sala.codigo}}</a>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for votacao in list_votacoes %}
-                        <tr>
-                            <td>{{votacao.titulo}}</td>
-                            <td>{{votacao.data_inicio}}</td>
-                            <td>{{votacao.data_fim}}</td>
-                            <td>
-                                <!-- <a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">DETALHES</a>
-                                <a href="{% url 'apuracao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">APURAÇÃO</a> -->
-                                <a href="{% url 'votar' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">VOTAR</a>
-                                <a href="{% url 'detalhe_votacao' votacao.id %}" class="waves-effect waves-light bt-primary btn z-depth-4">DETALHES</a>
-                            </td>
-                        </tr>
-                    {% endfor %} 
-                </tbody>
-            </table>
-        </div>
-    {% else %}
-        <div class="container center mt-10">
-            <div class="fs-4 text-secondary">
-                Não há votações disponíveis.
-            </div>
+    <!-- Floating Action Button -->
+    {% if votacao.sala.admin == request.user %}
+        <div class="fixed-action-btn horizontal click-to-toggle">
+            <a class="btn-floating btn-large bt-primary">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul>
+                <li><a href="{% url 'registrar_opcao' votacao.id %}" class="btn-floating tooltipped bt-secondary" data-position="top" data-tooltip="Registrar | Opção de Voto"><i class="material-icons">add</i></a></li>
+            </ul>
         </div>
     {% endif %}
 
     <div class="container center">
         <h2 class="text-theme truncate" >
-            {{ votacao.nome }}
+            {{ votacao.titulo }}
         </h2>
     </div>
 
-    {% if listOpcaoVoto %}
+    {% if list_opcoes %}
         <div class="container">
                 <div class="container">
                     <div class="card z-depth-3">
                         <form method="POST">
                             {% csrf_token %}
                             <p>
-                                {% for opcao in listOpcaoVoto %}
+                                {% for opcao in list_opcoes %}
                                     <div class="col s12">
                                         <label>
                                             <input name="voto" type="radio" value="{{opcao.id}}" required />
@@ -94,6 +53,21 @@
                     </div>
                 </div>
             </div>
+    {% else %}
+        <div class="container">
+            <div class="alert card z-depth-5">
+                <div class="card-content">
+                    <p><i class="material-icons">info</i><span>No momento, não existem opções de voto disponíveis!</span></p>
+                </div>
+            </div>
+        </div>
     {% endif %}
-
 {% endblock content %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function(){
+            $("#id_data_nascimento").addClass('datepicker').attr("type","text");         
+        }); 
+    </script>
+{% endblock %}

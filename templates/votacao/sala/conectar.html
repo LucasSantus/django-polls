@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load materializecss %}
+
+{% block title %}
+    Conectar Sala de Votação | System Votation
+{% endblock %}
+
+{% block content %}
+    <div class="item-center container center">
+        <div class="container">
+            <div class="container">
+                <div class="card p-5">
+                    <span class="card-title">
+                        <h5 class="fw-bold fs-4">CONECTAR A UMA SALA DE VOTAÇÃO</h5>
+                    </span>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="input-field col s12">
+                            <input type="text" name="sala" maxlength="194" class="validate invalid" required="" id="id_sala">
+                            <label class="" for="id_sala">Código do sala:</label>
+                        </div>
+                        <a id="btn-voltar-conectar" href="#modal-back" class="waves-effect waves-light bt-secondary z-depth-2 btn modal-trigger m-1">
+                            <span class="text">VOLTAR</span>
+                        </a>
+                        <button id="btn-entrar-conectar" class="waves-effect waves-light bt-primary z-depth-2 btn m-1" type="submit">
+                            <span class="text">SALVAR</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    <!-- Inicialização JavaScript -->
+    <script>
+        $(document).ready(function(){
+            $("#btn-entrar-conectar").attr("disabled", true);
+        });
+    </script>
+
+    <!-- Função Ajax - Validar sala -->
+    <script>
+        $("#id_sala").change(function () {
+            var form = $(this).closest("form");
+            $.ajax({
+                url: "{% url 'validate_group' %}",
+                data: form.serialize(),
+                dataType: 'json',
+                success: function (data) {
+                    if(!data.is_group){
+                        M.toast({html: data.error_message})
+                        $("#btn-entrar-conectar").attr("disabled", true);
+                    }
+                    else{
+                        $("#btn-entrar-conectar").attr("disabled", false);
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

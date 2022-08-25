@@ -4,12 +4,8 @@ from .views import *
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    # PESSOA
-    path("pessoa/registrar/", registrar_pessoa, name="registrar_pessoa"),
-    path("pessoa/listar/", listar_pessoas, name="listar_pessoas"),
-
     # Perfil
-    path("usuario/perfil/", perfil_usuario, name="perfil_usuario"),
+    path("perfil/", perfil_usuario, name="perfil_usuario"),
 
     #SIGN UP
     path('signup/', SignUpView.as_view(), name='signup'),
