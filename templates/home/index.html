@@ -3,92 +3,97 @@
 <!-- Block Conteúdo da Página -->
 {% block content %}
 
+  teste
+
+  {% include "components/list/items.html" with me="TOBIAS" sponsor="W3SCHOOLS" %}
+
+{% endblock %}
+
   <!-- BREADCUMB -->
   <div class="nav-wrapper transparent">
-      <div class="col s12 fs-5 p-3 m-2 pt-0">
-          <a class="breadcrumb me-3"><span class="text-secondary">Dashboard</span></a>
-      </div>
-  </div>
+    <div class="col s12 fs-5 p-3 m-2 pt-0">
+        <a class="breadcrumb me-3"><span class="text-secondary">Dashboard</span></a>
+    </div>
+</div>
 
-  <!-- Floating Action Button -->
-  <div class="fixed-action-btn horizontal click-to-toggle">
-    <a class="btn-floating btn-large bt-primary">
-      <i class="material-icons">menu</i>
-    </a>
-    <ul>
-      <li><a href="{% url 'conectar_sala' %}" class="btn-floating tooltipped bt-secondary" data-position="top" data-tooltip="Conectar | Sala de Votação"><i class="material-icons">cast_connected</i></a></li>
-      <li><a href="{% url 'registrar_sala' %}" class="btn-floating tooltipped bt-secondary" data-position="top" data-tooltip="Registrar | Sala de Votação"><i class="material-icons">add</i></a></li>
-    </ul>
-  </div>
+<!-- Floating Action Button -->
+<div class="fixed-action-btn horizontal click-to-toggle">
+  <a class="btn-floating btn-large bt-primary">
+    <i class="material-icons">menu</i>
+  </a>
+  <ul>
+    <li><a href="{% url 'conectar_sala' %}" class="btn-floating tooltipped bt-secondary" data-position="top" data-tooltip="Conectar | Sala de Votação"><i class="material-icons">cast_connected</i></a></li>
+    <li><a href="{% url 'registrar_sala' %}" class="btn-floating tooltipped bt-secondary" data-position="top" data-tooltip="Registrar | Sala de Votação"><i class="material-icons">add</i></a></li>
+  </ul>
+</div>
 
-  <!-- CONTEÚDO -->
-  {% if salas %}
-    <div class="container mt-5">
-      <div class="row">
-        {% for sala in salas %}
-        <!-- <div class="col s12 m4">
-            <div class="card " style="border-radius: 20px; border: 1px solid rgb(196, 194, 194);">
-                <div class="card-content mb-3">
-                    <span class="card-title activator">Card Title<i class="material-icons right">more_vert</i></span>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                    <div>
-                      <a href="#" class="right btn-flat">Detalhes</a>
-                      <a href="#" class="right btn-flat">Ver Mais</a>
-                    </div>
-                </div>
-                <div class="card-reveal p-1">
-                    <span class="card-title grey-text text-darken-4 p-3 pb-0">Card Title<i class="material-icons right">close</i></span>
-                    <p class="px-3 pt-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                </div>
-            </div>
-        </div> -->
-        {% endfor %}
-
-        
-        <div id="man" class="col s12">
-          <div class="card material-table">
-            <div class="table-header">
-              <span class="table-title fs-4">Salas de Votações</span>
-              <div class="actions">
-                <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+<!-- CONTEÚDO -->
+{% if salas %}
+  <div class="container mt-5">
+    <div class="row">
+      {% for sala in salas %}
+      <div class="col s12 m4">
+          <div class="card " style="border-radius: 20px; border: 1px solid rgb(196, 194, 194);">
+              <div class="card-content mb-3">
+                  <span class="card-title activator">Card Title<i class="material-icons right">more_vert</i></span>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                  <div>
+                    <a href="#" class="right btn-flat">Detalhes</a>
+                    <a href="#" class="right btn-flat">Ver Mais</a>
+                  </div>
               </div>
-            </div>
-              <table id="datatable" class="centered responsive-table">
-                <thead>
-                  <tr>
-                    <th><span class="fs-6">Título</span></th>
-                    <th><span class="fs-6">Código</span></th>
-                    <th><span class="fs-6">Informações</span></th>
-                    <th><span class="fs-6">Votações</span></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for sala in salas %}
-                    <tr>
-                        <td><span class="fs-6">{{sala.sala.titulo}}</span></td>
-                        <td><a id="copy-code" class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Copiar"><span class="fs-6 text">{{sala.sala.codigo}}</span></a></td>
-                        <td>
-                          <a href="{% url 'editar_sala' sala.sala.id %}" class="waves-effect waves-light btn m-1 bt-secondary">DETALHES</a>
-                        </td>
-                        <td>
-                          <a href="{% url 'listar_votacoes' sala.sala.id %}" class="waves-effect waves-light btn m-1 bt-primary pe-0"><span class="new badge bg-secondary right ms-2 h-100" data-badge-caption="">{{sala.qtd_votacoes}}</span>VOTAÇÕES</a>
-                        </td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            {% else %}
-              <div class="container center mt-10">
-                <div class="fs-4 text-secondary">
-                  Não há salas disponíveis.
-                </div>
+              <div class="card-reveal p-1">
+                  <span class="card-title grey-text text-darken-4 p-3 pb-0">Card Title<i class="material-icons right">close</i></span>
+                  <p class="px-3 pt-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
               </div>
           </div>
+      </div>
+      {% endfor %}
+
+      
+      <div id="man" class="col s12">
+        <div class="card material-table">
+          <div class="table-header">
+            <span class="table-title fs-4">Salas de Votações</span>
+            <div class="actions">
+              <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+            </div>
+          </div>
+            <table id="datatable" class="centered responsive-table">
+              <thead>
+                <tr>
+                  <th><span class="fs-6">Título</span></th>
+                  <th><span class="fs-6">Código</span></th>
+                  <th><span class="fs-6">Informações</span></th>
+                  <th><span class="fs-6">Votações</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for sala in salas %}
+                  <tr>
+                      <td><span class="fs-6">{{sala.sala.titulo}}</span></td>
+                      <td><a id="copy-code" class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Copiar"><span class="fs-6 text">{{sala.sala.codigo}}</span></a></td>
+                      <td>
+                        <a href="{% url 'editar_sala' sala.sala.id %}" class="waves-effect waves-light btn m-1 bt-secondary">DETALHES</a>
+                      </td>
+                      <td>
+                        <a href="{% url 'listar_votacoes' sala.sala.id %}" class="waves-effect waves-light btn m-1 bt-primary pe-0"><span class="new badge bg-secondary right ms-2 h-100" data-badge-caption="">{{sala.qtd_votacoes}}</span>VOTAÇÕES</a>
+                      </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <div class="container center mt-10">
+              <div class="fs-4 text-secondary">
+                Não há salas disponíveis.
+              </div>
+            </div>
         </div>
       </div>
     </div>
-  {% endif %}
-{% endblock %}
+  </div>
+{% endif %}
 
 <!-- Block CSS da Página -->
 {% block css %}
