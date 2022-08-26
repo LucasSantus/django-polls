@@ -1,212 +1,153 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="pt-br"> 
+
+<html lang="pt-BR">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
-        <meta name="description" content="Get started with Bootstrap, the world&rsquo;s most popular framework for building responsive, mobile-first sites, with jsDelivr and a template starter page.">
-        <meta name="author" content="Lucas Santus">
-        
-        <!-- Import Material Icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Simple site on posts" />
+        <meta name="author" content="Lucas Eduardo de Oliveira Santos" />
 
-        <!-- Import Font Awesome-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.svg' %}"> -->
 
-        <!-- Import CSS Materialize-->
-        <link type="text/css" rel="stylesheet" href="{% static 'css/materialize/materialize.min.css' %}" media="screen,projection"/>
+        <!-- <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}"> -->
 
-        <!-- Import CSS HoldON -->
-        <link type="text/css" rel="stylesheet" href="{% static 'css/holdon/hold-on.min.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-        <!-- Import CSS Personalizado -->
-        <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}">
+        <!-- {% if not "accounts" in request.path %}
+            <link rel="stylesheet" href="{% static 'css/material-icons/filled/material-icons-filled.min.css' %}">
+        {% endif %} -->
 
-        <!-- Import CSS DataTable -->
-        <link rel="stylesheet" href="{% static 'css/datatable/datatables.min.css' %}">
+        <!-- Import Styles CSS -->
+        <!-- <link rel="stylesheet" href="{% static 'css/styles.min.css' %}"> -->
 
-        <!-- Import Classes Personalizadas -->
-        <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/class.css' %}">
-
-        <!-- Let browser know website is optimized for mobile -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-
-        <!-- Estilização da Página -->
         {% block css %}
         {% endblock %}
 
-        <!-- Título da Página -->
-        <title>
-            {% block title %}
-                System Votation
-            {% endblock %}
-        </title>
+        <title>Django Posts</title>
+
+        <!-- if javascript is disabled, this content will appear -->
+        <noscript>
+            <style type="text/css">
+                body main,
+                body .container,
+                body footer{
+                    display: none;
+                }
+                .javascript__disabled{
+                    display: flex;
+                    width: 100%;
+                    height: 100vh;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 22px;
+                    background-color: #0D1117;
+                    color: #8f8f8f;
+                }
+            </style>
+            <div class="javascript__disabled">
+                JavaScript desativado, por favor, ative-o para o sistema funcionar corretamente!
+            </div>
+        </noscript>
     </head>
 
-    <body class="bg-body">
-        
-        <!-- HEADER -->
-        <header>
-            <!-- NAVBAR -->
-            <nav class="bg-primary">
-                <div class="nav-wrapper container">
-                    <a href="/" class="brand-logo fs-3">Votation</a>
-                    <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                    <ul id="ul-sidenav" class="right hide-on-med-and-down">
-                        <li><a href="{% url 'contato' %}" class="bt-primary"><i class="material-icons right">contact_page</i>Contato</a></li>
-                        <li><a href="{% url 'perfil_usuario' %}" class="bt-primary"><i class="material-icons right">account_circle</i>Perfil</a></li>
-                        <li><a href="{% url 'logout' %}" class="bt-primary"><i class="material-icons right">logout</i>Sair</a></li>
+    <body>
+        <!-- {% if not "accounts" in request.path %}
+            <div class="container">
+                <header class="d-flex flex-wrap justify-content-center pt-3 mb-4">
+                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                        <h4 class="fs-3 text-white hover">Posts</h4>
+                    </a>
+                    <ul class="nav nav-pills">
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link hover text-white text-decoration-underline">Logout</a></li>
+                        {% else %}
+                            <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link hover text-white text-decoration-underline">Sign UP</a></li>
+                            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link hover text-white text-decoration-underline">Log IN</a></li>
+                        {% endif %}
                     </ul>
-                </div>
-            </nav>
-            
-            <!-- SIDENAV -->
-            <ul class="sidenav" id="mobile-demo">
-                <li><a href="{% url 'perfil_usuario' %}"><i class="material-icons right">account_circle</i>Perfil</a></li>
-                <li><a href="{% url 'logout' %}"><i class="material-icons right">logout</i>Sair</a></li>
-            </ul>
-        </header>
+                </header>
+            </div>
+        {% endif %} -->
 
-        <!-- MAIN -->
         <main>
+            {% block breadcrumb %}
+            {% endblock %}
+
             {% block content %}
             {% endblock %}
 
-            <!-- Modal Structure -->
-            {% if modal %}
-                <div id="modal-back" class="modal">
-                    <div class="modal-content">
-                        <h4>{{modal.title}}</h4>
-                        <p>{{modal.content}}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="" class="modal-close bt-secondary btn btn-flat z-depth-2">SAIR</a>
-                        {% if modal.url_id %}
-                            <a href="{% url modal.url modal.url_id %}" class="modal-close bt-primary btn btn-flat z-depth-2">CONTINUAR</a>
-                        {% else %}
-                            <a href="{% url modal.url %}" class="modal-close bt-primary btn btn-flat z-depth-2">CONTINUAR</a>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endif %}
-        </main>
-
-        <!-- FOOTER -->
-        <footer class="page-footer transparent">
-            <div class="row w-70">
-                <div class="col s12 center text-primary fs-6">
-                    <span>&copy; 2020 - {{data}} Copyright Sistema de Votação, Todos os direitos reservados.</span>
+            <div aria-live="polite" aria-atomic="true" class="position-relative" data-bs-delay="3000">
+                <div class="toast-container position-fixed top-0 end-0 p-2">
+                    <div id="assembly"></div>
                 </div>
             </div>
-        </footer>
+        </main>
 
-        <!-- Import JQuery -->
-        <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
+        <!-- {% if not "accounts" in request.path %}
+            <footer class="footer bg-transparent p-3">
+                <div class="container text-center text-md-start">
+                    <span class="fs-6 text-muted">
+                        &copy; Copyright 2021 Posts | Todos os direitos reservados
+                    </span>
+                </div>
+            </footer>
+        {% endif %} -->
 
-        <!-- Import Java Script DateTimePicker -->
-        <script type="text/javascript" src="{% static 'js/materialize/datetimepicker.min.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <!-- <script src="{% static 'js/jquery/jquery.min.js' %}"></script> -->
         
-        <!-- Import Java Script Personalizado -->
-        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+        <!-- {% if not "accounts" in request.path %}
+            <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
 
-        <!-- Import JQuery Mask -->
-        <script src="{% static 'js/jquery/jquery.mask.min.js' %}"></script>
-
-        <!-- Import HoldON -->
-        <script src="{% static 'js/holdon/hold-on.min.js' %}"></script>
-
-        <!-- Import Java Script Materialize -->
-        <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
-
-        <!-- Import JQuery DataTable -->
-        <script src="{% static 'js/datatable/jquery-datatables.min.js' %}"></script>
-
-        <!-- Import Java Script DataTable -->
-        <script src="{% static 'js/datatable/datatables.min.js' %}"></script>
-
-        <!-- Inicialização -->
-        <script>
-            $(document).ready(function(){
-                /* Inicialização da tab */
-                $('.tabs').tabs();
-
-                /* Inicialização do modal */
-                $('.modal').modal();
-
-                /* Inicialização do tooltipped */
-                $('.tooltipped').tooltip({delay: 50});
-
-                /* Inicialização do sidenav */
-                $('.sidenav').sidenav();
-
-                /* Inicialização do select */
-                $('select').formSelect();
-
-                /* Inicialização do dropdown */
-                $('.dropdown-trigger').dropdown({
-                    coverTrigger: false,
-                    hover: true,
+            <script>
+                $(document).ready(function(){
+                    $(".toast").toast("show")
                 });
 
-                // Menu flutuante 
-                $('.fixed-action-btn').floatingActionButton({
-                    direction: 'left'
-                }); 
-                
-                /* Inicialização do collapsible */
-                $('.collapsible').collapsible();
+                /* disabled Context Menu on pages */
+                document.addEventListener('contextmenu', event => event.preventDefault());
+            </script>
+        {% endif %} -->
 
-                $(window).bind('beforeunload', function() {
-                    var options = {
-                        theme: "sk-falding-circle",
-                        message: 'Aguarde...',
-                        backgroundColor: "bg-dark",
-                        textColor: "white"
-                    };
-                    HoldOn.open(options);
-                });
+        <!-- {% if "accounts" in request.path %}
+            <script src="{% static 'js/function.js' %}"></script>
+        {% endif %} -->
 
-                $(window).load(function() {
-                    HoldOn.close();
-                });
-            });
-
-            $("#copy-code").click(function(event){
-                var range = document.createRange();
-                range.selectNode(this);
-                window.getSelection().removeAllRanges();
-                window.getSelection().addRange(range);
-                document.execCommand("copy");
-                window.getSelection().removeAllRanges();
-            });
-        </script>
-
-        <!-- Mensagens -->
-            {% if messages %}
-                {% for message in messages %}
-                    {% if message.tags == 'success' %}
-                        <script>
-                            M.toast({html: '{{message}}', displayLength:4000, classes:'rounded bt-success'});
-                        </script>
-                    {% elif message.tags == 'error' %}
-                        <script>
-                            M.toast({html: '{{message}}', displayLength:4000, classes:'rounded bt-danger'});
-                        </script>
-                    {% elif message.tags == 'info' %}
-                        <script>
-                            M.toast({html: '{{message}}', displayLength:4000, classes:'rounded bt-info'});
-                        </script>
-                    {% elif message.tags == 'warning' %}
-                        <script>
-                            M.toast({html: '{{message}}', displayLength:4000, classes:'rounded bt-warning'});
-                        </script>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-
-        <!-- Script da Página -->
-        {% block javascript %}
+        {% block script %}
         {% endblock %}
+
+        {% if messages %}
+            <div aria-live="polite" aria-atomic="true" class="position-relative">
+                <div class="toast-container position-fixed top-0 end-0 p-4">
+                    {% for message in messages %}
+                        <div class="toast fade" aria-live="polite" aria-atomic="true" data-bs-delay="3000">
+                            <div role="alert" aria-live="assertive" aria-atomic="true" >
+                                <div class="toast-header text-{% if message.tags == 'error' %}danger{% else %}{{message.tags}}{% endif %}">
+                                    <strong class="me-auto">
+                                        {% if message.tags == 'success' %}
+                                            Sucesso!!!
+                                        {% elif message.tags == 'info' %}
+                                            Informação!!!
+                                        {% elif message.tags == 'warning' %} 
+                                            Perigo!!!
+                                        {% elif message.tags == 'error' %}
+                                            Erro!!!
+                                        {% endif %}
+                                    </strong>
+                                    <small class="text-muted">Agora</small>
+                                </div>
+                                <div class="toast-body text-{% if message.tags == 'error' %}danger{% else %}{{message.tags}}{% endif %}">
+                                    {{message}}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
     </body>
 </html>
