@@ -1,0 +1,18 @@
+<div>HOME | {{ me }} | ABOUT | FORUM | {{ sponsor }}</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            {% for head in heads %}
+                <th>{{head}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% for col in cols %}
+                <td>{{col}}</td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
