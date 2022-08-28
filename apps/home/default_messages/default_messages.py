@@ -1,5 +1,5 @@
 DEFAULT_MESSAGES = {
-    "ADD_POST": "Postagem registrada com sucesso!",
-    "CHANGED_POST": "Postagem alterada com sucesso!",
-    "DELETE_POST": "Postagem deletada com sucesso!"
+    "ADD_ROOM": "Sala registrada com sucesso!",
+    "CHANGED_ROOM": "Sala alterada com sucesso!",
+    "DELETE_ROOM": "Sala deletada com sucesso!"
 }

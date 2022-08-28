@@ -2,19 +2,18 @@
 
 <!-- Block Conteúdo da Página -->
 {% block content %}
-    <div class="bg__primary w-100 vh-100">
-        <div class="bg-secondary rounded rounded-3 h-25 position-relative">
+    <div class="bg__secondary w-100 vh-100">
+        <div class="bg__primary rounded rounded-3 h-25 position-relative">
             <div class="position-absolute top-50 start-50 translate-middle w-100">
                 <div class="container">
-                    <div class="bg-danger p-3 rounded-3 mt-3 d-flex flex-column justify-content-center">
-                        TETETE
+                    <div class="p-3 rounded-3 mt-3 d-flex flex-column justify-content-center">
+                        <input type="text" class="form-control rounded-3 p-2" placeholder="Pesquisar...">
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="container">
-
             <div class="d-flex justify-content-between align-items-center py-4">
                 <div>
                     <nav aria-label="breadcrumb">
@@ -26,17 +25,16 @@
                     </nav>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary">Conectar</button>
-                    <button type="button" class="btn btn-secondary">Registrar</button>
+                    <a href="" class="btn bg__primary text__light hover">Conectar</a>
+                    <a href="{% url 'create_room' %}" class="btn bg__primary text__light hover">Registrar</a>
                 </div>
             </div>
 
-
             {% for item in rooms %}
-                <div class="p-3 rounded-3 d-flex justify-content-between align-items-center bg-white ">
-                    <a href="disney" class="hover cursor-pointer text-decoration-none">
+                <div class="p-3 rounded-3 d-flex justify-content-between align-items-center bg-white border {% if forloop.counter > 1 %} mt-3 {% endif %}">
+                    <a href="#" class="hover cursor-pointer text-decoration-none">
                         <div>
-                            {{ item.title }} {{forloop.counter}}
+                            {{ item.title }}
                         </div>
                     </a>
                     <div class="gap-3">

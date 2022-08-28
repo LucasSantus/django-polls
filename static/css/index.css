@@ -1,5 +1,5 @@
 :root{
-    --primary-color: blue;
+    --primary-color: gray;
     --secondary-color: green;
     --third-color: red;
     --light-color: white;
@@ -17,6 +17,10 @@
     background: var(--third-color);
 }
 
+.bg__light{
+    background: var(--light-color);
+}
+
 .text__primary{
     color: var(--primary-color);
 }
@@ -27,6 +31,10 @@
 
 .text__third{
     color: var(--third-color);
+}
+
+.text__light{
+    color: var(--light-color);
 }
 
 .hover:hover{
