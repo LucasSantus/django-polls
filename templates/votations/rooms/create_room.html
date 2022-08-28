@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+    <div class="container">
+        <section class="row min-vh-100 d-block pt-3 text-center d-sm-flex pt-sm-0 justify-content-sm-center align-items-sm-center text-sm-start">
+            <div class="col-12 col-sm-8 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                <div class="card rounded-3">
+                    <div class="card-body px-xl-4">
+                        <h4 class="text-grey font-public-sans fs-5 text-center">Bem vindo! 👋</h4>
+                        <p class="text-muted font-public-sans font__subtitle">Faça login com sua conta.</p>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <div class="d-grid justify-content-start pt-2 d-sm-flex justify-content-sm-between">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="check_login">
+                                    <label class="form-check-label text-muted" for="check_login">Mostrar Senha</label>
+                                </div>
+                                <a href="{% url 'reset_password' %}" class="text-decoration-none text__custom__primary hover">
+                                    Esqueceu a senha?
+                                </a>
+                            </div>
+                            <button class="btn btn__custom__primary hover d-grid w-100 rounded-3 mt-1 mb-2" type="submit">Logar</button>
+                        </form>
+                        <p class="text-center">
+                            <span class="text-muted font-public-sans font__platform">Novo na plataforma?</span>
+                            <a href="{% url 'signup' %}" class="text-decoration-none text__custom__primary hover">
+                                <span>Criar uma conta</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block css %}
+    <style>
+        .font__platform,
+        .font__subtitle{
+            font-size: 0.9375rem;
+        }
+    </style>
+{% endblock %}
+
+{% block script %}
+    <!-- BEGIN: INICIALIZAÇÂO -->
+        <script>
+            $(document).ready(function(){
+                $(".form-control").attr("required", false)
+            });
+        </script>
+    <!-- END: INICIALIZAÇÂO -->
+
+    <!-- BEGIN: INICIALIZAÇÂO -->
+        <script>
+            $(document).ready(function(){
+                $(".alert .close").remove();
+            });
+        </script>
+    <!-- END: INICIALIZAÇÂO -->
+
+    <!-- BEGIN: VALIDAÇÃO DE USUÁRIO -->
+        <script>
+            $("#id_username").change(function () {
+                var form = $(this).closest("form");
+                $.ajax({
+                    url: "{% url 'validate_user' %}",
+                    data: form.serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        if(!data.is_user){
+                            generate_toast("error", "Falha na autenticação!", "O e-mail inserido não está registrado no sistema!");
+                        }
+                    }
+                });
+            });
+        </script>
+    <!-- END: VALIDAÇÃO DE USUÁRIO -->
+
+    <!-- BEGIN: MOSTRAR/OCULTAR SENHA -->
+        <script>
+            $('#check_login').click(function () {
+                if($(this).is(':checked')){
+                    $("#id_password").attr("type", "text");
+                } 
+                else {
+                    $("#id_password").attr("type", "password");
+                }
+            })
+        </script>
+    <!-- END: VALIDAÇÃO DE USUÁRIO -->
+{% endblock %}
