@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="d-flex flex-column justify-content-center align-items-center w-100" style="height: 70vh">
+        <span class="error__404 text-muted">404</span>
+        <p class="page__not__found text-muted">Página não encontrada!</p>
+        <a href="/">Dashboard</a>
+    </div>
+{% endblock %}
+
+{% block css %}
+    <style>
+        .error__404{
+            font-size: 6rem;
+        }
+        .page__not__found{
+            font-size: 1.5rem;
+        }
+    </style>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        $("main div div.row").empty()
+        $("main div").addClass("d-flex justify-content-center align-content-center")
+    </script>
+{% endblock %}
