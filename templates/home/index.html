@@ -2,15 +2,59 @@
 
 <!-- Block Conteúdo da Página -->
 {% block content %}
+    <div class="bg__primary w-100 vh-100">
+        <div class="bg-secondary rounded rounded-3 h-25 position-relative">
+            <div class="position-absolute top-50 start-50 translate-middle w-100">
+                <div class="container">
+                    <div class="bg-danger p-3 rounded-3 mt-3 d-flex flex-column justify-content-center">
+                        TETETE
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  teste
+        <div class="container">
 
-  {% include "components/list/items.html" with me="TOBIAS" sponsor="W3SCHOOLS" %}
+            <div class="d-flex justify-content-between align-items-center py-4">
+                <div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Library</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Data</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary">Conectar</button>
+                    <button type="button" class="btn btn-secondary">Registrar</button>
+                </div>
+            </div>
 
+
+            {% for item in rooms %}
+                <div class="p-3 rounded-3 d-flex justify-content-between align-items-center bg-white ">
+                    <a href="disney" class="hover cursor-pointer text-decoration-none">
+                        <div>
+                            {{ item.title }} {{forloop.counter}}
+                        </div>
+                    </a>
+                    <div class="gap-3">
+                        <a href="#" class="text-decoration-none">
+                            <span class="material-icons border p-1 border-2 rounded-3 text-success hover">edit</span>
+                        </a>
+                        <a href="#" class="text-decoration-none">
+                            <span class="material-icons border p-1 border-2 rounded-3 text-danger hover">delete</span>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
 
-  <!-- BREADCUMB -->
-  <div class="nav-wrapper transparent">
+<!-- BREADCUMB -->
+<div class="nav-wrapper transparent">
     <div class="col s12 fs-5 p-3 m-2 pt-0">
         <a class="breadcrumb me-3"><span class="text-secondary">Dashboard</span></a>
     </div>
@@ -18,13 +62,13 @@
 
 <!-- Floating Action Button -->
 <div class="fixed-action-btn horizontal click-to-toggle">
-  <a class="btn-floating btn-large bt-primary">
-    <i class="material-icons">menu</i>
-  </a>
-  <ul>
-    <li><a href="{% url 'conectar_sala' %}" class="btn-floating tooltipped bt-secondary" data-position="top" data-tooltip="Conectar | Sala de Votação"><i class="material-icons">cast_connected</i></a></li>
-    <li><a href="{% url 'registrar_sala' %}" class="btn-floating tooltipped bt-secondary" data-position="top" data-tooltip="Registrar | Sala de Votação"><i class="material-icons">add</i></a></li>
-  </ul>
+    <a class="btn-floating btn-large bt-primary">
+        <i class="material-icons">menu</i>
+    </a>
+    <ul>
+        <li><a href="{% url 'conectar_sala' %}" class="btn-floating tooltipped bt-secondary" data-position="top" data-tooltip="Conectar | Sala de Votação"><i class="material-icons">cast_connected</i></a></li>
+        <li><a href="{% url 'registrar_sala' %}" class="btn-floating tooltipped bt-secondary" data-position="top" data-tooltip="Registrar | Sala de Votação"><i class="material-icons">add</i></a></li>
+    </ul>
 </div>
 
 <!-- CONTEÚDO -->
@@ -94,30 +138,3 @@
     </div>
   </div>
 {% endif %}
-
-<!-- Block CSS da Página -->
-{% block css %}
-    <style>
-        span.badge{
-            min-width: 2rem; 
-            line-height: 36px;
-        }
-        span.badge.new{
-            border-radius: 0px;
-        }
-    </style>
-{% endblock %}
-
-<!-- Block Título da Página -->
-{% block title %}
-  Dashboard | Votation
-{% endblock %}
-
-<!-- Block JavaScript da Página -->
-{% block javascript %}
-  <script>
-    $(document).ready(function() {
-      $('#datatable').DataTable();
-    });
-  </script>
-{% endblock %}

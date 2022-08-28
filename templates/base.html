@@ -21,12 +21,14 @@
         {% endif %} -->
 
         <!-- Import Styles CSS -->
-        <!-- <link rel="stylesheet" href="{% static 'css/styles.min.css' %}"> -->
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         {% block css %}
         {% endblock %}
 
-        <title>Django Posts</title>
+        <title>Django Votations</title>
 
         <!-- if javascript is disabled, this content will appear -->
         <noscript>
@@ -73,17 +75,14 @@
         {% endif %} -->
 
         <main>
-            {% block breadcrumb %}
-            {% endblock %}
-
             {% block content %}
             {% endblock %}
 
-            <div aria-live="polite" aria-atomic="true" class="position-relative" data-bs-delay="3000">
+            <!-- <div aria-live="polite" aria-atomic="true" class="position-relative" data-bs-delay="3000">
                 <div class="toast-container position-fixed top-0 end-0 p-2">
                     <div id="assembly"></div>
                 </div>
-            </div>
+            </div> -->
         </main>
 
         <!-- {% if not "accounts" in request.path %}
