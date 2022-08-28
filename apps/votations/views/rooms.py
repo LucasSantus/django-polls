@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.utils import timezone
 from votations.forms import RoomForm
+from votations.models import Room
+from home.default_messages import *
 
 def create_room(request):
     form = RoomForm()
@@ -9,13 +11,12 @@ def create_room(request):
     if request.POST:
         form = RoomForm(request.POST)
         if form.is_valid():
-            sala = form.save(commit = False)
-            sala.codigo = Votation.generated_code_random()
-            sala.admin = request.user
-            sala.save()
-            sala.usuarios.add(request.user)
-            messages.success(request,"Sala de Votação registrada com sucesso!")
-            return redirect("index")
+            room = form.save(commit = False)
+            room.code = Room.get_generated_code()
+            room.admin = request.user
+            room.save()
+            messages.success(request, DEFAULT_MESSAGES['ADD_ROOM'])
+            return redirect("/")
 
     context = {
         "teste": "teste",
