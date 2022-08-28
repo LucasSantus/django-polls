@@ -1,4 +1,45 @@
-@import "class";
+:root{
+    --primary-color: gray;
+    --secondary-color: green;
+    --third-color: red;
+    --light-color: white;
+}
+
+.bg__primary{
+    background: var(--primary-color);
+}
+
+.bg__secondary{
+    background: var(--secondary-color);
+}
+
+.bg__third{
+    background: var(--third-color);
+}
+
+.bg__light{
+    background: var(--light-color);
+}
+
+.text__primary{
+    color: var(--primary-color);
+}
+
+.text__secondary{
+    color: var(--secondary-color);
+}
+
+.text__third{
+    color: var(--third-color);
+}
+
+.text__light{
+    color: var(--light-color);
+}
+
+.hover:hover{
+    opacity: .6;
+}
 
 /* FOOTER */
 body {
@@ -11,68 +52,3 @@ main {
     flex: 1 0 auto;
 }
 
-/* BARRA ROLAGEM PERSONALIZADA */
-html {
-    scroll-behavior: smooth;
-}
-
-body::-webkit-scrollbar {
-    width: 10px
-} 
-
-body::-webkit-scrollbar-thumb {   
-    background-color: darkgrey;   
-}
-
-/* COLOR LINK NAVBAR */
-.nav-wrapper a,
-.sidenav a{
-    color: white,
-}
-
-/* Estilização dos Alert's */
-.alert{
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
-.alert .card-content span{
-    font-weight: bold;
-    font-size: 2em;
-    margin-right:4px;
-}
-.alert .card-content .material-icons {
-    font-size: 1.5em;
-    position: relative;
-    top: 6px;
-    margin-right: 0.5em;
-}
-
-/* datepicker */
-.datepicker-date-display {
-    background-color: #512da8;
-    color: #fff;
-}
-.datepicker-table td.is-today {
-    color: #512da8;
-}
-.timepicker-digital-display {
-    background-color: #512da8;
-}
-.datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done {
-    color: #512da8;
-}
-.datepicker-table td.is-selected {
-    background-color: #512da8;
-    color: #fff;
-}
-.dropdown-content li > a, .dropdown-content li>span {
-    color: #512da8;
-}
-
-.breadcrumb:before {
-    font-size: 20px;
-    color: #757575;
-}
-.toast {
-    margin-top: 25px;
-}

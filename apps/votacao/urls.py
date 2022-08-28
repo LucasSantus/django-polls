@@ -3,10 +3,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    # SALA
-    path("sala/registrar/", registrar_sala, name="registrar_sala"),
-    path("sala/editar/<int:id_sala>/", editar_sala, name="editar_sala"),
-    path("sala/conectar/", conectar_sala, name="conectar_sala"),
+
 
     # VOTAÇÃO
     path("votacao/registrar/<int:id_sala>/", registrar_votacao, name="registrar_votacao"),

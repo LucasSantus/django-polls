@@ -1,0 +1,5 @@
+<div class="w-100 bg-black">
+    {% for item in items %}
+        {% include "components/list/item.html" with title=item.title %}
+    {% endfor %}
+</div>
