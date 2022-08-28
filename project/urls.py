@@ -12,7 +12,7 @@ urlpatterns = [
     
     # INCLUDE APPS
     path('', include('home.urls')),
-    # path('', include('votations.urls')), 
+    path('', include('votations.urls')), 
     path('', include('users.urls')), 
 ]
 
