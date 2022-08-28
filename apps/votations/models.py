@@ -4,7 +4,7 @@ from .models import *
 import string
 import random
 
-class Rooms(models.Model):
+class Room(models.Model):
     title = models.CharField(verbose_name = "Título", max_length = 100)
     description = models.TextField(verbose_name = "Descrição", max_length = 2000)
     code = models.CharField(verbose_name = "Código", max_length = 30, unique = True, null = True, blank = True)
@@ -19,18 +19,30 @@ class Rooms(models.Model):
         db_table = "rooms"
         app_label = "votations"
 
+    def get_generated_code():
+        code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(16))
+        if Room.objects.get(code = code).exists():
+            self.get_generated_code()
+        return code
+
+        # valid = True
+        # while valid == True:
+        #     try:
+        #         code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(16))
+        #         Room.objects.get(code = code)
+        #     except Room.DoesNotExist:
+        #         valid = False
+        #         return code
+
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        return super().save(*args, **kwargs)
-
-class Votations(models.Model):
+class Votation(models.Model):
     titulo = models.CharField(verbose_name = "Título", max_length = 150)
     description = models.TextField(verbose_name = "Descrição", max_length = 2000)
     date_init = models.DateTimeField(verbose_name = "Inicio", auto_now = False, blank = True, null = True)
     date_end = models.DateTimeField(verbose_name = "Término", auto_now = False, blank = True, null = True)
-    rooms = models.ForeignKey("votations.Rooms", verbose_name = "Sala de Votação", on_delete = models.CASCADE, null = True, blank = True)
+    rooms = models.ForeignKey("votations.Room", verbose_name = "Sala de Votação", on_delete = models.CASCADE, null = True, blank = True)
     is_user_anonimous = models.BooleanField(verbose_name = "Usuário Anônimo", default = False,)
     is_active = models.BooleanField(default = True)
     create_at = models.DateTimeField(verbose_name = "Data da Criação", auto_now_add = True)
@@ -40,16 +52,6 @@ class Votations(models.Model):
         verbose_name_plural = "Votações"
         db_table = "votations"
         app_label = "votations"
-
-    def generated_code_random():
-        valid = True
-        while valid == True:
-            try:
-                code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(16))
-                Rooms.objects.get(code = code)
-            except Rooms.DoesNotExist:
-                valid = False
-                return code
 
     def get_qtd_votacoes(self, list_salas, list_votacoes):
         vinculo = []
@@ -101,7 +103,7 @@ class Votations(models.Model):
 #         null = True,
 #         blank = True,
 #     )
-    
+
 #     is_active = models.BooleanField(
 #         default=True
 #     )
