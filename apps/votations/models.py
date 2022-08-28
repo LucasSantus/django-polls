@@ -8,7 +8,6 @@ class Room(models.Model):
     title = models.CharField(verbose_name = "Título", max_length = 100)
     description = models.TextField(verbose_name = "Descrição", max_length = 2000)
     code = models.CharField(verbose_name = "Código", max_length = 30, unique = True, null = True, blank = True)
-    users = models.ManyToManyField("users.User", verbose_name = "Usuários", blank = True)
     admin = models.ForeignKey("users.User", on_delete = models.CASCADE, verbose_name = "Administrador", related_name = "admin_Rooms_FK", null = True, blank = True,)
     is_active = models.BooleanField(default = True)
     create_at = models.DateTimeField(verbose_name = "Data da Criação", auto_now_add = True)
@@ -21,18 +20,11 @@ class Room(models.Model):
 
     def get_generated_code():
         code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(16))
-        if Room.objects.get(code = code).exists():
-            self.get_generated_code()
-        return code
-
-        # valid = True
-        # while valid == True:
-        #     try:
-        #         code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(16))
-        #         Room.objects.get(code = code)
-        #     except Room.DoesNotExist:
-        #         valid = False
-        #         return code
+        try:
+            while Room.objects.get(code = code).exists(): 
+                code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(16))
+        except:
+            return code
 
     def __str__(self):
         return self.title
