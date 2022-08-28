@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
-from users.models import User
+from votations.models import Rooms
 
 # def index(request):
 #     posts = Post.objects.select_related('author').all().order_by('-create_at')
@@ -19,8 +19,6 @@ from users.models import User
 
 @login_required
 def index(request):
-    users = User.objects.all()
-
     # list_salas = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').filter(usuarios=request.user).order_by("-data_registrado")
     # list_votacoes = Votacao.objects.select_related('sala').filter(sala__in=list_salas)
 
@@ -31,9 +29,12 @@ def index(request):
 
     # list_salas_vinculadas = Votacao.get_qtd_votacoes(request, list_salas, list_votacoes)
 
+    # rooms = Rooms.objects.select_related('admin').prefetch_related('users').filter(users = request.user).order_by("-create_at")
+
+    rooms = Rooms.objects.all()
+
     context = {
-        # "salas": list_salas_vinculadas,
-        "users", users
+        "rooms": rooms,
     }
 
-    return render(request, "home/index.html")
+    return render(request, "home/index.html", context)
