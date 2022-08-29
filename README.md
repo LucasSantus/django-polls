@@ -63,7 +63,9 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <h3 id="funcionalidades">:sparkles: Funcionalidades</h3>
 
-:construction: Em construção :construction:
+<h4 align="center"> 
+	:construction: Em construção :construction:
+</h4>
 
 --------------------------------------------------------------------------------------
 
