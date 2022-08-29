@@ -19,42 +19,36 @@ def create_room(request):
             return redirect("/")
 
     context = {
-        "teste": "teste",
         "form": form,
-        # "usuario": request.user,
-        # "modal": {
-        #     "title": "Retornar para Sala de Votações",
-        #     "content": "Deseja realmente continuar com essa ação?",
-        #     "url": "index",
-        # },
     }
 
     return render(request, "votations/rooms/create_room.html", context)
 
-def editar_sala(request, id_sala):
-    sala = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').get(id = id_sala)
+def change_room(request, slug_room):
+    room = Room.objects.select_related('admin').get(slug = slug_room)
+    form = RoomForm(instance = room)
 
-    form = SalaVotacaoForm(instance=sala)
     if request.POST:
-        form = SalaVotacaoForm(request.POST, instance=sala)
+        form = RoomForm(request.POST, instance = room)
         if form.is_valid():
-            sala = form.save(commit=False)
-            sala.codigo = sala.codigo
-            sala.admin = request.user
-            sala.save()
-            messages.success(request,"Sala modificada com sucesso!")
-            return redirect('listar_votacoes', sala.id)
+            room = form.save(commit = False)
+            # room.code = room.code
+            room.admin = request.user
+            room.save()
+            messages.success(request, DEFAULT_MESSAGES['CHANGED_ROOM'])
+            return redirect('/')
 
     context = {
         "form": form,
-        "modal": {
-            "title": "Retornar para Sala de Votações",
-            "content": "Deseja realmente continuar com essa ação?",
-            "url": "index",
-        }
     }
 
-    return render(request, 'votacao/sala/editar.html', context)
+    return render(request, 'votations/rooms/create_room.html', context)
+
+def desactivate_room(request, id_room):
+    room = Room.objects.get(id = id_room)
+    room.is_active = False
+    room.save()
+    return redirect("/")
 
 def conectar_sala(request):
 

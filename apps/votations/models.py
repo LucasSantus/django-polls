@@ -1,16 +1,15 @@
 from django.db import models
 from .models import *
+from autoslug import AutoSlugField
+import string, random
+from home.models import Base
 
-import string
-import random
-
-class Room(models.Model):
-    title = models.CharField(verbose_name = "Título", max_length = 100)
+class Room(Base):
+    title = models.CharField(verbose_name = "Título", max_length = 100, unique = True)
     description = models.TextField(verbose_name = "Descrição", max_length = 2000)
     code = models.CharField(verbose_name = "Código", max_length = 30, unique = True, null = True, blank = True)
     admin = models.ForeignKey("users.User", on_delete = models.CASCADE, verbose_name = "Administrador", related_name = "admin_Rooms_FK", null = True, blank = True,)
-    is_active = models.BooleanField(default = True)
-    create_at = models.DateTimeField(verbose_name = "Data da Criação", auto_now_add = True)
+    slug = AutoSlugField(populate_from = 'title', unique_with = ['title'], unique = True, editable = True)
 
     class Meta:
         verbose_name = "Sala de Votação"
@@ -29,15 +28,14 @@ class Room(models.Model):
     def __str__(self):
         return self.title
 
-class Votation(models.Model):
-    titulo = models.CharField(verbose_name = "Título", max_length = 150)
+class Votation(Base):
+    titulo = models.CharField(verbose_name = "Título", max_length = 150, unique = True)
     description = models.TextField(verbose_name = "Descrição", max_length = 2000)
-    date_init = models.DateTimeField(verbose_name = "Inicio", auto_now = False, blank = True, null = True)
+    date_starting = models.DateTimeField(verbose_name = "Inicio", auto_now = False, blank = True, null = True)
     date_end = models.DateTimeField(verbose_name = "Término", auto_now = False, blank = True, null = True)
-    rooms = models.ForeignKey("votations.Room", verbose_name = "Sala de Votação", on_delete = models.CASCADE, null = True, blank = True)
+    room = models.ForeignKey("votations.Room", verbose_name = "Sala de Votação", on_delete = models.CASCADE, null = True, blank = True)
     is_user_anonimous = models.BooleanField(verbose_name = "Usuário Anônimo", default = False,)
-    is_active = models.BooleanField(default = True)
-    create_at = models.DateTimeField(verbose_name = "Data da Criação", auto_now_add = True)
+    slug = AutoSlugField(populate_from = 'title', unique_with = ['title'], unique = True, editable = True)
 
     class Meta:
         verbose_name = "Votação"
@@ -45,27 +43,27 @@ class Votation(models.Model):
         db_table = "votations"
         app_label = "votations"
 
-    def get_qtd_votacoes(self, list_salas, list_votacoes):
-        vinculo = []
-        if list_salas:
-            qtd_votacoes = 0
-            for sala in list_salas:
-                qtd_votacoes = len(list_votacoes.filter(sala=sala))
-                obj = {
-                    "sala": sala,
-                    "qtd_votacoes": qtd_votacoes,
-                }
-                vinculo.append(obj)
-        return vinculo
+    # def get_qtd_votacoes(self, list_salas, list_votacoes):
+    #     vinculo = []
+    #     if list_salas:
+    #         qtd_votacoes = 0
+    #         for sala in list_salas:
+    #             qtd_votacoes = len(list_votacoes.filter(sala=sala))
+    #             obj = {
+    #                 "sala": sala,
+    #                 "qtd_votacoes": qtd_votacoes,
+    #             }
+    #             vinculo.append(obj)
+    #     return vinculo
 
-    def format_date(data):
-        date_list = []
-        for a in range(16):
-            if data[a] != '+' or data[a] != ' ':
-                date_list.append(data[a])
-            else:
-                break
-        return "".join(date_list)
+    # def format_date(data):
+    #     date_list = []
+    #     for a in range(16):
+    #         if data[a] != '+' or data[a] != ' ':
+    #             date_list.append(data[a])
+    #         else:
+    #             break
+    #     return "".join(date_list)
 
     def __str__(self):
         return self.title

@@ -38,10 +38,10 @@
                         </div>
                     </a>
                     <div class="gap-3">
-                        <a href="#" class="text-decoration-none">
+                        <a href="{% url 'change_room' item.slug %}" class="text-decoration-none">
                             <span class="material-icons border p-1 border-2 rounded-3 text-success hover">edit</span>
                         </a>
-                        <a href="#" class="text-decoration-none">
+                        <a href="{% url 'desactivate_room' item.id %}" class="text-decoration-none">
                             <span class="material-icons border p-1 border-2 rounded-3 text-danger hover">delete</span>
                         </a>
                     </div>

@@ -29,9 +29,9 @@ def index(request):
 
     # list_salas_vinculadas = Votacao.get_qtd_votacoes(request, list_salas, list_votacoes)
 
-    # rooms = Room.objects.select_related('admin').prefetch_related('users').filter(users = request.user).order_by("-create_at")
+    # rooms = Room.objects.select_related('admin').filter(users = request.user, is_active = True).order_by("-create_at")
 
-    rooms = Room.objects.all()
+    rooms = Room.objects.filter(is_active = True)
 
     context = {
         "rooms": rooms,
