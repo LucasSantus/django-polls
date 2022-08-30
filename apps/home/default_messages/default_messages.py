@@ -1,5 +1,7 @@
 DEFAULT_MESSAGES = {
-    "ADD_ROOM": "Sala registrada com sucesso!",
-    "CHANGED_ROOM": "Sala alterada com sucesso!",
-    "DELETE_ROOM": "Sala deletada com sucesso!"
+    "ADD": "Registro realizado com sucesso!",
+    "CHANGED": "Registro alterado com sucesso!",
+    "DESACTIVATE": "Registro desativado com sucesso!",
+    "NOT_USER_ACCESS": "Sem permissão de acesso!",
+    "NOT_FOUND": "Registro não encontrado!",
 }
