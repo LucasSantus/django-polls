@@ -5,8 +5,8 @@ class UserRooms(models.Model):
     users = models.ManyToManyField("users.User", verbose_name = "Usuários", blank = True)
     is_active = models.BooleanField(default = True)
     create_at = models.DateTimeField(verbose_name = "Data da Criação", auto_now_add = True)
-    update_at = models.DateTimeField(verbose_name = "Data da Atualização", auto_now = False)
-    desactive_at = models.DateTimeField(verbose_name = "Data da Desativação", auto_now = False)
+    update_at = models.DateTimeField(verbose_name = "Data da Atualização", auto_now = False, blank = True, null = True)
+    desactive_at = models.DateTimeField(verbose_name = "Data da Desativação", auto_now = False, blank = True, null = True)
 
     class Meta:
         verbose_name = "Sala de Usuário"
@@ -15,4 +15,4 @@ class UserRooms(models.Model):
         app_label = "links"
 
     def __str__(self):
-        return self.room
+        return self.room.title

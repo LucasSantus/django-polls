@@ -30,6 +30,8 @@
                 </div>
             </div>
 
+            {{user_rooms}}
+
             {% for item in rooms %}
                 <div class="p-3 rounded-3 d-flex justify-content-between align-items-center bg-white border {% if forloop.counter > 1 %} mt-3 {% endif %}">
                     <a href="#" class="hover cursor-pointer text-decoration-none">
@@ -37,14 +39,23 @@
                             {{ item.title }}
                         </div>
                     </a>
-                    <div class="gap-3">
-                        <a href="{% url 'change_room' item.slug %}" class="text-decoration-none">
-                            <span class="material-icons border p-1 border-2 rounded-3 text-success hover">edit</span>
-                        </a>
-                        <a href="{% url 'desactivate_room' item.id %}" class="text-decoration-none">
-                            <span class="material-icons border p-1 border-2 rounded-3 text-danger hover">delete</span>
-                        </a>
-                    </div>
+
+                    {% if item.admin.id == request.user.id %}
+                        <div class="gap-3">
+                            <a href="{% url 'change_room' item.id %}" class="text-decoration-none">
+                                <span class="material-icons border p-1 border-2 rounded-3 text-success hover">edit</span>
+                            </a>
+                            <!-- <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal_{{ item.id }}">
+                                <span class="material-icons border p-1 border-2 rounded-3 text-danger hover">delete</span>
+                            </a> -->
+
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_{{item.id|safe}}">
+                                A
+                            </button>
+
+                            {% include "components/modal/index.html" with modal_id=item.id modal_title="UIIII" modal_message="TOMA NO SEU Cú" modal_text_btn_primary="Confirmar" modal_url="desactivate_room" %}
+                        </div>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>

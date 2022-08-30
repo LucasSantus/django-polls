@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
 from votations.models import Room
+from links.models import UserRooms
 
 # def index(request):
 #     posts = Post.objects.select_related('author').all().order_by('-create_at')
@@ -33,8 +34,11 @@ def index(request):
 
     rooms = Room.objects.filter(is_active = True)
 
+    user_rooms = UserRooms.objects.filter(is_active = True, users__id = request.user.id)
+
     context = {
         "rooms": rooms,
+        "user_rooms": user_rooms,
     }
 
     return render(request, "home/index.html", context)

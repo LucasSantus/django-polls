@@ -99,18 +99,18 @@
 
         <!-- <script src="{% static 'js/jquery/jquery.min.js' %}"></script> -->
         
-        <!-- {% if not "accounts" in request.path %}
-            <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+        
+        <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
 
-            <script>
-                $(document).ready(function(){
-                    $(".toast").toast("show")
-                });
+        <script>
+            $(document).ready(function(){
+                $(".toast").toast("show")
+            });
 
-                /* disabled Context Menu on pages */
-                document.addEventListener('contextmenu', event => event.preventDefault());
-            </script>
-        {% endif %} -->
+            /* disabled Context Menu on pages */
+            //document.addEventListener('contextmenu', event => event.preventDefault());
+        </script>
+    
 
         <!-- {% if "accounts" in request.path %}
             <script src="{% static 'js/function.js' %}"></script>
@@ -120,6 +120,10 @@
         {% endblock %}
 
         {% if messages %}
+            {% for message in messages %}
+                {{ message}}
+            {% endfor %}
+
             <div aria-live="polite" aria-atomic="true" class="position-relative">
                 <div class="toast-container position-fixed top-0 end-0 p-4">
                     {% for message in messages %}
