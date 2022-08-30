@@ -43,28 +43,6 @@ class Votation(Base):
         db_table = "votations"
         app_label = "votations"
 
-    # def get_qtd_votacoes(self, list_salas, list_votacoes):
-    #     vinculo = []
-    #     if list_salas:
-    #         qtd_votacoes = 0
-    #         for sala in list_salas:
-    #             qtd_votacoes = len(list_votacoes.filter(sala=sala))
-    #             obj = {
-    #                 "sala": sala,
-    #                 "qtd_votacoes": qtd_votacoes,
-    #             }
-    #             vinculo.append(obj)
-    #     return vinculo
-
-    # def format_date(data):
-    #     date_list = []
-    #     for a in range(16):
-    #         if data[a] != '+' or data[a] != ' ':
-    #             date_list.append(data[a])
-    #         else:
-    #             break
-    #     return "".join(date_list)
-
     def __str__(self):
         return self.title
 
