@@ -4,6 +4,7 @@ from django.utils import timezone
 from votations.forms import RoomForm
 from votations.models import Room
 from home.default_messages import *
+from links.models import UserRooms
 
 def create_room(request):
     form = RoomForm()
@@ -15,7 +16,12 @@ def create_room(request):
             room.code = Room.get_generated_code()
             room.admin = request.user
             room.save()
-            messages.success(request, DEFAULT_MESSAGES['ADD_ROOM'])
+
+            user_rooms = UserRooms(room = room, is_active = True)
+            user_rooms.save()
+            user_rooms.users.add(request.user)
+
+            messages.success(request, DEFAULT_MESSAGES['ADD'])
             return redirect("/")
 
     context = {
@@ -24,18 +30,24 @@ def create_room(request):
 
     return render(request, "votations/rooms/create_room.html", context)
 
-def change_room(request, slug_room):
-    room = Room.objects.select_related('admin').get(slug = slug_room)
-    form = RoomForm(instance = room)
+def change_room(request, id_room):
+    try:
+        room = Room.objects.select_related('admin').get(id = id_room)
+        if room.admin != request.user: 
+            messages.success(request, DEFAULT_MESSAGES["NOT_USER_ACCESS"])
+            return redirect("/")
+    except Room.DoesNotExists:
+        messages.success(request, DEFAULT_MESSAGES["NOT_FOUND"])
+        return redirect("/")
 
+    form = RoomForm(instance = room)
     if request.POST:
         form = RoomForm(request.POST, instance = room)
         if form.is_valid():
             room = form.save(commit = False)
-            # room.code = room.code
             room.admin = request.user
             room.save()
-            messages.success(request, DEFAULT_MESSAGES['CHANGED_ROOM'])
+            messages.success(request, DEFAULT_MESSAGES['CHANGED'])
             return redirect('/')
 
     context = {
@@ -45,32 +57,38 @@ def change_room(request, slug_room):
     return render(request, 'votations/rooms/create_room.html', context)
 
 def desactivate_room(request, id_room):
-    room = Room.objects.get(id = id_room)
+    try:
+        room = Room.objects.select_related('admin').get(id = id_room)
+        if room.admin != request.user: 
+            messages.success(request, DEFAULT_MESSAGES['NOT_USER_ACCESS'])
+            return redirect("/")
+    except Room.DoesNotExists:
+        messages.success(request, DEFAULT_MESSAGES['NOT_FOUND'])
+        return redirect("/")
+    
     room.is_active = False
     room.save()
+    messages.success(request, DEFAULT_MESSAGES['DESACTIVATE'])
     return redirect("/")
 
-def conectar_sala(request):
-
+def connect_room(request):
     if request.POST: 
-        codigo = request.POST.get("sala", False)
+        code = request.POST.get("room", False)
         try:
-            sala = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').get(codigo__icontains=codigo, usuarios=request.user)
-            if sala:
-                messages.error(request, f"Você já está conectado(a) a sala: {sala.titulo}!")
-        except:
-            sala = SalaVotacao.objects.select_related('admin').prefetch_related('usuarios').get(codigo__icontains=codigo)
-            if sala:
-                messages.success(request, f"Você conectou a sala: {sala.titulo}!")
-                sala.usuarios.add(request.user)
+            if Room.objects.select_related('admin').get(code__icontains = code).exists():
+                user_rooms = UserRooms.objects.select_related('room').prefetch_related('users').get(room__code = code)
+            # if room:
+            #     messages.error(request, f"Você já está conectado(a) a sala: {sala.title}!")
+        except Room.DoesNotExists:
+            print("A")
+            # room = Room.objects.select_related('admin').get(code__icontains = code)
+            # if room:
+            #     messages.success(request, f"Você conectou a room: {room.title}!")
+
         return redirect("index")
-    
+
     context = {
-        "modal": {
-            "title": "Retornar para Sala de Votações",
-            "content": "Deseja realmente continuar com essa ação?",
-            "url": "index",
-        }
+        "teste": "teste"
     }
 
-    return render(request, "votacao/sala/conectar.html", context)
+    return render(request, "votations/rooms/connect_room.html", context)
