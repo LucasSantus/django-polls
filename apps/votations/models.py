@@ -3,6 +3,7 @@ from .models import *
 from autoslug import AutoSlugField
 import string, random
 from home.models import Base
+from django.urls import reverse
 
 class Room(Base):
     title = models.CharField(verbose_name = "Título", max_length = 100, unique = True)
@@ -16,6 +17,9 @@ class Room(Base):
         verbose_name_plural = "Salas de Votações"
         db_table = "rooms"
         app_label = "votations"
+
+    def get_desactivate_room(self):
+        return reverse('desactivate_room', args = [str(self.id)])
 
     def get_generated_code():
         code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(16))

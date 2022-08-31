@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="modal_{{ modal_id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_{{ modal_id }}_label" aria-hidden="true">
+<!-- <div class="modal fade" id="modal_{{ modal_id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_{{ modal_id }}_label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,8 +11,27 @@
             </div>
             <div class="modal-footer">
                 <a class="btn btn-secondary" data-bs-dismiss="modal">Fechar</a>
-                <a href="/" class="btn btn-primary">{{ modal_text_btn_primary }}</a>
+                <a href="{{ modal_url }}" class="btn btn-primary">Confirmar</a>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Modal -->
+<div class="modal fade" id="modal_{{ modal_id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_{{ modal_id }}_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body text-center m-3">
+                <h5 class="modal-title" id="modal_{{ modal_id }}_label">{{ modal_title }}</h5>
+                <span>{{ modal_message }}</span>
+                <div class="d-flex justify-content-center gap-2">
+                    <a class="btn btn-secondary" data-bs-dismiss="modal">Fechar</a>
+                    <a href="{{ modal_url }}" class="btn btn-primary">Confirmar</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
