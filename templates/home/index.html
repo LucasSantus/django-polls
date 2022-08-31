@@ -48,7 +48,7 @@
                                 <span class="material-icons border p-1 border-2 rounded-3 text-danger hover">delete</span>
                             </a>
 
-                            {% include "components/modal/index.html" with modal_id=item.id modal_title="UIIII" modal_message="TOMA NO SEU Cú" modal_text_btn_primary="Confirmar" modal_url=item.get_desactivate_room %}
+                            {% include "components/modal/index.html" with modal_id=item.id modal_title="Exclusão de salas" modal_message="Deseja realmente continuar com essa ação?" modal_url=item.get_desactivate_room %}
                         </div>
                     {% endif %}
                 </div>
