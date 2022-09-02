@@ -3,42 +3,84 @@
     --secondary-color: green;
     --third-color: red;
     --light-color: white;
+    --dark-color: black;
 }
 
+/* BUTTON's */
+.btn__primary{
+    background: var(--primary-color) !important;
+}
+
+.btn__secondary{
+    background: var(--secondary-color) !important;
+}
+
+.btn__outline__primary{
+    background: transparent !important;
+    border: 1px solid var(--primary-color) !important;
+}
+
+.btn__outline__primary:hover{
+    background: var(--primary-color) !important;
+}
+
+.btn__outline__secondary{
+    background: transparent !important;
+    border: 1px solid var(--secondary-color) !important;
+}
+
+.btn__outline__secondary:hover{
+    background: var(--secondary-color) !important;
+    color: white !important;
+}
+
+/* BORDER's */
+.border__primary{
+    border: 1px solid var(--primary-color) !important;
+}
+
+/* BACKGROUND's */    
 .bg__primary{
-    background: var(--primary-color);
+    background: var(--primary-color) !important;
 }
 
 .bg__secondary{
-    background: var(--secondary-color);
+    background: var(--secondary-color) !important;
 }
 
 .bg__third{
-    background: var(--third-color);
+    background: var(--third-color) !important;
 }
 
 .bg__light{
-    background: var(--light-color);
+    background: var(--light-color) !important;
 }
 
+/* TEXT's */
 .text__primary{
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
 }
 
 .text__secondary{
-    color: var(--secondary-color);
+    color: var(--secondary-color) !important;
 }
 
 .text__third{
-    color: var(--third-color);
+    color: var(--third-color) !important;
 }
 
 .text__light{
-    color: var(--light-color);
+    color: var(--light-color) !important;
 }
 
+.text__dark{
+    color: var(--dark-color) !important;
+}
+
+/* OTHER's */
 .hover:hover{
     opacity: .6;
+    transition: 1s;
 }
 
 /* FOOTER */
@@ -52,3 +94,7 @@ main {
     flex: 1 0 auto;
 }
 
+.btn{
+    padding: 5px 20px !important;
+    font-weight: 500 !important;
+}
