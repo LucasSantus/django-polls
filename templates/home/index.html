@@ -48,7 +48,7 @@
                                 <span class="material-icons border p-1 border-2 rounded-3 text-danger hover">delete</span>
                             </a>
 
-                            {% include "components/modal/index.html" with modal_id=item.id modal_title="Exclusão de salas" modal_message="Deseja realmente continuar com essa ação?" modal_url=item.get_desactivate_room %}
+                            {% include "components/modal/index.html" with id=item.id icon="highlight_off" title="Tem certeza?" message="Você realmente deseja excluir esse registro? Este processo não pode ser desfeito." type="danger" url_primary=item.get_desactivate_room %}
                         </div>
                     {% endif %}
                 </div>

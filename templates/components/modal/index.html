@@ -1,37 +1,36 @@
-<!-- Modal -->
-<!-- <div class="modal fade" id="modal_{{ modal_id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_{{ modal_id }}_label" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal_{{ modal_id }}_label">{{ modal_title }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                {{ modal_message }}
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-secondary" data-bs-dismiss="modal">Fechar</a>
-                <a href="{{ modal_url }}" class="btn btn-primary">Confirmar</a>
-            </div>
-        </div>
-    </div>
-</div> -->
+<!-- 
+    id
+    icon
+    title
+    message
+    text_primary
+    text_secondary
+    url_primary
+    url_secondary
+    not_btn_secondary
+
+-->
 
 <!-- Modal -->
-<div class="modal fade" id="modal_{{ modal_id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_{{ modal_id }}_label" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body text-center m-3">
-                <h5 class="modal-title" id="modal_{{ modal_id }}_label">{{ modal_title }}</h5>
-                <span>{{ modal_message }}</span>
-                <div class="d-flex justify-content-center gap-2">
-                    <a class="btn btn-secondary" data-bs-dismiss="modal">Fechar</a>
-                    <a href="{{ modal_url }}" class="btn btn-primary">Confirmar</a>
+<div class="modal fade" id="modal_{{ id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_{{ id }}_label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg__light border__primary rounded-3">
+            <div class="modal-body text-center m-4 gap-5">
+                {% if icon %}
+                    <span class="material-icons text-{{ type }}" style="font-size: 80px;">{{ icon }}</span>
+                {% endif %}
+                <h3 class="modal-title fw-bolder pt-3 text__dark" id="modal_{{ id }}_label">{{ title }}</h3>
+                <span class="text-muted pt-4">{{ message }}</span>
+                <div class="d-flex justify-content-center gap-2 pt-3">
+                    {% if not_btn_secondary|default:1 %}
+                        <a href="{{ url_secondary|default:'#' }}" class="btn btn__outline__secondary text__secondary hover" data-bs-dismiss="modal">{{ text_secondary|default:"Cancelar" }}</a>
+                    {% endif %}
+                    {% if url_primary and type %}
+                        <a href="{{ url_primary }}" class="btn btn-{{ type }} text__light hover">{{ text_primary|default:"Confirmar" }}</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 

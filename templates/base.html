@@ -25,6 +25,8 @@
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         {% block css %}
         {% endblock %}
 
@@ -120,11 +122,11 @@
         {% endblock %}
 
         {% if messages %}
-            {% for message in messages %}
-                {{ message}}
-            {% endfor %}
+            <!-- {% for message in messages %}
+                {% include "components/modal/index.html" with id=item.id icon="highlight_off" title=message.extra_tags message=message type=message.tags text_secondary="BIRL" %}
+            {% endfor %} -->
 
-            <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <!-- <div aria-live="polite" aria-atomic="true" class="position-relative">
                 <div class="toast-container position-fixed top-0 end-0 p-4">
                     {% for message in messages %}
                         <div class="toast fade" aria-live="polite" aria-atomic="true" data-bs-delay="3000">
@@ -150,7 +152,7 @@
                         </div>
                     {% endfor %}
                 </div>
-            </div>
+            </div> -->
         {% endif %}
     </body>
 </html>
