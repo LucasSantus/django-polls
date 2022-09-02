@@ -21,7 +21,7 @@ def create_room(request):
             user_rooms.save()
             user_rooms.users.add(request.user)
 
-            messages.success(request, DEFAULT_MESSAGES['ADD'])
+            messages.success(request, DEFAULT_MESSAGES['ADD'], "TESTE")
             return redirect("/")
 
     context = {
