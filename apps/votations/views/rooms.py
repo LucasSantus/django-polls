@@ -5,7 +5,10 @@ from votations.forms import RoomForm
 from votations.models import Room
 from home.default_messages import *
 from links.models import UserRooms
+from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def create_room(request):
     form = RoomForm()
 
@@ -21,7 +24,7 @@ def create_room(request):
             user_rooms.save()
             user_rooms.users.add(request.user)
 
-            messages.success(request, DEFAULT_MESSAGES['ADD'], "TESTE")
+            messages.success(request, DEFAULT_MESSAGES['ADD'])
             return redirect("/")
 
     context = {
@@ -30,22 +33,18 @@ def create_room(request):
 
     return render(request, "votations/rooms/create_room.html", context)
 
-def change_room(request, id_room):
-    try:
-        room = Room.objects.select_related('admin').get(id = id_room)
-        if room.admin != request.user: 
-            messages.success(request, DEFAULT_MESSAGES["NOT_USER_ACCESS"])
-            return redirect("/")
-    except Room.DoesNotExists:
-        messages.success(request, DEFAULT_MESSAGES["NOT_FOUND"])
-        return redirect("/")
+@login_required
+def change_room(request, slug_room):
+    room = Room.get_room(request, slug_room)
 
     form = RoomForm(instance = room)
+
     if request.POST:
         form = RoomForm(request.POST, instance = room)
         if form.is_valid():
             room = form.save(commit = False)
             room.admin = request.user
+            room.update_at = datetime.now()
             room.save()
             messages.success(request, DEFAULT_MESSAGES['CHANGED'])
             return redirect('/')
@@ -56,23 +55,19 @@ def change_room(request, id_room):
 
     return render(request, 'votations/rooms/create_room.html', context)
 
-def desactivate_room(request, id_room):
-    try:
-        room = Room.objects.select_related('admin').get(id = id_room)
-        if room.admin != request.user: 
-            messages.success(request, DEFAULT_MESSAGES['NOT_USER_ACCESS'])
-            return redirect("/")
-    except Room.DoesNotExists:
-        messages.success(request, DEFAULT_MESSAGES['NOT_FOUND'])
-        return redirect("/")
-    
+@login_required
+def desactivate_room(request, slug_room):
+    room = Room.get_room(request, slug_room)
+
     room.is_active = False
+    room.desactivate_at = datetime.now()
     room.save()
     messages.success(request, DEFAULT_MESSAGES['DESACTIVATE'])
     return redirect("/")
 
+@login_required
 def connect_room(request):
-    if request.POST: 
+    if request.POST:
         code = request.POST.get("room", False)
         try:
             if Room.objects.select_related('admin').get(code__icontains = code).exists():
