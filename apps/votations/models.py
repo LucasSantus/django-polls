@@ -6,11 +6,9 @@ from home.models import Base
 from django.urls import reverse
 
 class Room(Base):
-    title = models.CharField(verbose_name = "Título", max_length = 100, unique = True)
     description = models.TextField(verbose_name = "Descrição", max_length = 2000)
     code = models.CharField(verbose_name = "Código", max_length = 30, unique = True, null = True, blank = True)
     admin = models.ForeignKey("users.User", on_delete = models.CASCADE, verbose_name = "Administrador", related_name = "admin_Rooms_FK", null = True, blank = True,)
-    slug = AutoSlugField(populate_from = 'title', unique_with = ['title'], unique = True, editable = True)
 
     class Meta:
         verbose_name = "Sala de Votação"
@@ -18,8 +16,20 @@ class Room(Base):
         db_table = "rooms"
         app_label = "votations"
 
+    def get_room(request, slug):
+        try:
+            room = Room.objects.select_related('admin').get(slug = slug)
+            if room.admin != request.user:
+                messages.success(request, DEFAULT_MESSAGES["NOT_USER_ACCESS"])
+                return reverse('/')
+            else:
+                return room
+        except Room.DoesNotExists:
+            messages.success(request, DEFAULT_MESSAGES["NOT_FOUND"])
+            return reverse('/')
+
     def get_desactivate_room(self):
-        return reverse('desactivate_room', args = [str(self.id)])
+        return reverse('desactivate_room', args = [str(self.slug)])
 
     def get_generated_code():
         code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(16))
@@ -33,13 +43,11 @@ class Room(Base):
         return self.title
 
 class Votation(Base):
-    titulo = models.CharField(verbose_name = "Título", max_length = 150, unique = True)
     description = models.TextField(verbose_name = "Descrição", max_length = 2000)
-    date_starting = models.DateTimeField(verbose_name = "Inicio", auto_now = False, blank = True, null = True)
+    date_start = models.DateTimeField(verbose_name = "Inicio", auto_now = False, blank = True, null = True)
     date_end = models.DateTimeField(verbose_name = "Término", auto_now = False, blank = True, null = True)
     room = models.ForeignKey("votations.Room", verbose_name = "Sala de Votação", on_delete = models.CASCADE, null = True, blank = True)
-    is_user_anonimous = models.BooleanField(verbose_name = "Usuário Anônimo", default = False,)
-    slug = AutoSlugField(populate_from = 'title', unique_with = ['title'], unique = True, editable = True)
+    is_user_anonimous = models.BooleanField(verbose_name = "Usuário Anônimo", default = False)
 
     class Meta:
         verbose_name = "Votação"

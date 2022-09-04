@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.urls import reverse
-from home.models import Base
+from home.models import BaseModel
 
 class UserManager(BaseUserManager):
     def create_user(self, name, last_name, email, password = None, **kwargs):
@@ -40,7 +40,7 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
-class User(AbstractBaseUser, PermissionsMixin, Base):
+class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     name = models.CharField(verbose_name = "Nome", max_length = 60, unique = True)
     last_name = models.CharField(verbose_name = "Sobrenome", max_length = 150, unique = True)
     email = models.EmailField(verbose_name = "E-mail", max_length = 194, unique = True) 

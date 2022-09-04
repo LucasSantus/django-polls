@@ -30,25 +30,23 @@
                 </div>
             </div>
 
-            {% for item in rooms %}
+            {% for item in user_rooms %}
                 <div class="p-3 rounded-3 d-flex justify-content-between align-items-center bg-white border {% if forloop.counter > 1 %} mt-3 {% endif %}">
-                    <a href="#" class="hover cursor-pointer text-decoration-none">
-                        <div>
-                            {{ item.title }}
-                        </div>
+                    <a href="{% url 'votations_room' item.room.slug %}" class="hover cursor-pointer text-decoration-none">
+                        {{ item.room.title }}
                     </a>
 
-                    {% if item.admin.id == request.user.id %}
+                    {% if item.room.admin.id == request.user.id %}
                         <div class="gap-3">
-                            <a href="{% url 'change_room' item.id %}" class="text-decoration-none">
+                            <a href="{% url 'change_room' item.room.slug %}" class="text-decoration-none">
                                 <span class="material-icons border p-1 border-2 rounded-3 text-success hover">edit</span>
                             </a>
 
-                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal_{{item.id|safe}}">
+                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal_{{item.room.id|safe}}">
                                 <span class="material-icons border p-1 border-2 rounded-3 text-danger hover">delete</span>
                             </a>
 
-                            {% include "components/modal/index.html" with id=item.id icon="highlight_off" title="Tem certeza?" message="Você realmente deseja excluir esse registro? Este processo não pode ser desfeito." type="danger" url_primary=item.get_desactivate_room %}
+                            {% include "components/modal/index.html" with id=item.room.id icon="highlight_off" title="Tem certeza?" message="Você realmente deseja excluir esse registro? Este processo não pode ser desfeito." type="danger" url_primary=item.room.get_desactivate_room %}
                         </div>
                     {% endif %}
                 </div>
@@ -142,3 +140,5 @@
     </div>
   </div>
 {% endif %}
+
+
