@@ -4,57 +4,7 @@
 
 <html lang="pt-BR">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Simple site on posts" />
-        <meta name="author" content="Lucas Eduardo de Oliveira Santos" />
-
-        <!-- <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.svg' %}"> -->
-
-        <!-- <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}"> -->
-
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-        <!-- {% if not "accounts" in request.path %}
-            <link rel="stylesheet" href="{% static 'css/material-icons/filled/material-icons-filled.min.css' %}">
-        {% endif %} -->
-
-        <!-- Import Styles CSS -->
-        <link rel="stylesheet" href="{% static 'css/index.css' %}">
-
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-        {% block css %}
-        {% endblock %}
-
-        <title>Django Votation</title>
-
-        <!-- if javascript is disabled, this content will appear -->
-        <noscript>
-            <style type="text/css">
-                body main,
-                body .container,
-                body footer{
-                    display: none;
-                }
-                .javascript__disabled{
-                    display: flex;
-                    width: 100%;
-                    height: 100vh;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 22px;
-                    background-color: #0D1117;
-                    color: #8f8f8f;
-                }
-            </style>
-            <div class="javascript__disabled">
-                JavaScript desativado, por favor, ative-o para o sistema funcionar corretamente!
-            </div>
-        </noscript>
+        {% include "components/head.html" %}
     </head>
 
     <body>
@@ -97,13 +47,6 @@
             </footer>
         {% endif %} -->
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-        <!-- <script src="{% static 'js/jquery/jquery.min.js' %}"></script> -->
-        
-        
-        <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
-
         <script>
             $(document).ready(function(){
                 $(".toast").toast("show")
@@ -112,7 +55,6 @@
             /* disabled Context Menu on pages */
             //document.addEventListener('contextmenu', event => event.preventDefault());
         </script>
-    
 
         <!-- {% if "accounts" in request.path %}
             <script src="{% static 'js/function.js' %}"></script>
@@ -121,38 +63,5 @@
         {% block script %}
         {% endblock %}
 
-        {% if messages %}
-            <!-- {% for message in messages %}
-                {% include "components/modal/index.html" with id=item.id icon="highlight_off" title=message.extra_tags message=message type=message.tags text_secondary="BIRL" %}
-            {% endfor %} -->
-
-            <!-- <div aria-live="polite" aria-atomic="true" class="position-relative">
-                <div class="toast-container position-fixed top-0 end-0 p-4">
-                    {% for message in messages %}
-                        <div class="toast fade" aria-live="polite" aria-atomic="true" data-bs-delay="3000">
-                            <div role="alert" aria-live="assertive" aria-atomic="true" >
-                                <div class="toast-header text-{% if message.tags == 'error' %}danger{% else %}{{message.tags}}{% endif %}">
-                                    <strong class="me-auto">
-                                        {% if message.tags == 'success' %}
-                                            Sucesso!!!
-                                        {% elif message.tags == 'info' %}
-                                            Informação!!!
-                                        {% elif message.tags == 'warning' %} 
-                                            Perigo!!!
-                                        {% elif message.tags == 'error' %}
-                                            Erro!!!
-                                        {% endif %}
-                                    </strong>
-                                    <small class="text-muted">Agora</small>
-                                </div>
-                                <div class="toast-body text-{% if message.tags == 'error' %}danger{% else %}{{message.tags}}{% endif %}">
-                                    {{message}}
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div> -->
-        {% endif %}
     </body>
 </html>
