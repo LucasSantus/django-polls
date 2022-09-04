@@ -32,12 +32,12 @@ def index(request):
 
     # rooms = Room.objects.select_related('admin').filter(users = request.user, is_active = True).order_by("-create_at")
 
-    rooms = Room.objects.filter(is_active = True)
+    # rooms = Room.objects.filter(is_active = True)
 
-    user_rooms = UserRooms.objects.filter(is_active = True, users__id = request.user.id)
+    user_rooms = UserRooms.objects.filter(room__is_active = True, users__id = request.user.id)
 
     context = {
-        "rooms": rooms,
+        # "rooms": rooms,
         "user_rooms": user_rooms,
     }
 
