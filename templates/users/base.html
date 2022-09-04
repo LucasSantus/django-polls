@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+    <head>
+        {% include "components/head.html" %}
+    </head>
+
+    <body>
+        <!-- {% if not "accounts" in request.path %}
+            <div class="container">
+                <header class="d-flex flex-wrap justify-content-center pt-3 mb-4">
+                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                        <h4 class="fs-3 text-white hover">Posts</h4>
+                    </a>
+                    <ul class="nav nav-pills">
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link hover text-white text-decoration-underline">Logout</a></li>
+                        {% else %}
+                            <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link hover text-white text-decoration-underline">Sign UP</a></li>
+                            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link hover text-white text-decoration-underline">Log IN</a></li>
+                        {% endif %}
+                    </ul>
+                </header>
+            </div>
+        {% endif %} -->
+
+        <main>
+            {% block content %}
+            {% endblock %}
+
+            <!-- <div aria-live="polite" aria-atomic="true" class="position-relative" data-bs-delay="3000">
+                <div class="toast-container position-fixed top-0 end-0 p-2">
+                    <div id="assembly"></div>
+                </div>
+            </div> -->
+        </main>
+
+        <!-- {% if not "accounts" in request.path %}
+            <footer class="footer bg-transparent p-3">
+                <div class="container text-center text-md-start">
+                    <span class="fs-6 text-muted">
+                        &copy; Copyright 2021 Posts | Todos os direitos reservados
+                    </span>
+                </div>
+            </footer>
+        {% endif %} -->
+
+        <script>
+            $(document).ready(function(){
+                $(".toast").toast("show")
+            });
+
+            /* disabled Context Menu on pages */
+            //document.addEventListener('contextmenu', event => event.preventDefault());
+        </script>
+
+        <!-- {% if "accounts" in request.path %}
+            <script src="{% static 'js/function.js' %}"></script>
+        {% endif %} -->
+
+        {% block script %}
+        {% endblock %}
+
+        {% if messages %}
+            <!-- {% for message in messages %}
+                {% include "components/modal/index.html" with id=item.id icon="highlight_off" title=message.extra_tags message=message type=message.tags text_secondary="BIRL" %}
+            {% endfor %} -->
+
+            <!-- <div aria-live="polite" aria-atomic="true" class="position-relative">
+                <div class="toast-container position-fixed top-0 end-0 p-4">
+                    {% for message in messages %}
+                        <div class="toast fade" aria-live="polite" aria-atomic="true" data-bs-delay="3000">
+                            <div role="alert" aria-live="assertive" aria-atomic="true" >
+                                <div class="toast-header text-{% if message.tags == 'error' %}danger{% else %}{{message.tags}}{% endif %}">
+                                    <strong class="me-auto">
+                                        {% if message.tags == 'success' %}
+                                            Sucesso!!!
+                                        {% elif message.tags == 'info' %}
+                                            Informação!!!
+                                        {% elif message.tags == 'warning' %} 
+                                            Perigo!!!
+                                        {% elif message.tags == 'error' %}
+                                            Erro!!!
+                                        {% endif %}
+                                    </strong>
+                                    <small class="text-muted">Agora</small>
+                                </div>
+                                <div class="toast-body text-{% if message.tags == 'error' %}danger{% else %}{{message.tags}}{% endif %}">
+                                    {{message}}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div> -->
+        {% endif %}
+    </body>
+</html>
