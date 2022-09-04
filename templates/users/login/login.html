@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'users/base.html' %}
 
 {% load bootstrap5 %}
 
@@ -15,7 +15,7 @@
                             {% bootstrap_form form %}
                             <div class="d-grid justify-content-start pt-2 d-sm-flex justify-content-sm-between">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="check_login">
+                                    <input id="check_login" class="form-check-input" type="checkbox">
                                     <label class="form-check-label text-muted" for="check_login">Mostrar Senha</label>
                                 </div>
                                 <a href="{% url 'reset_password' %}" class="text-decoration-none text__custom__primary hover">
@@ -55,14 +55,6 @@
         </script>
     <!-- END: INICIALIZAÇÂO -->
 
-    <!-- BEGIN: INICIALIZAÇÂO -->
-        <script>
-            $(document).ready(function(){
-                $(".alert .close").remove();
-            });
-        </script>
-    <!-- END: INICIALIZAÇÂO -->
-
     <!-- BEGIN: VALIDAÇÃO DE USUÁRIO -->
         <script>
             $("#id_username").change(function () {
@@ -72,9 +64,7 @@
                     data: form.serialize(),
                     dataType: 'json',
                     success: function (data) {
-                        if(!data.is_user){
-                            generate_toast("error", "Falha na autenticação!", "O e-mail inserido não está registrado no sistema!");
-                        }
+                        if(!data.is_user) generate_toast("error", "Falha na autenticação!", "O e-mail inserido não está registrado no sistema!");
                     }
                 });
             });
@@ -84,12 +74,9 @@
     <!-- BEGIN: MOSTRAR/OCULTAR SENHA -->
         <script>
             $('#check_login').click(function () {
-                if($(this).is(':checked')){
-                    $("#id_password").attr("type", "text");
-                } 
-                else {
-                    $("#id_password").attr("type", "password");
-                }
+                change_type_password([
+                    "id_password"
+                ], $(this).is(':checked'))
             })
         </script>
     <!-- END: VALIDAÇÃO DE USUÁRIO -->
