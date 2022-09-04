@@ -1,12 +1,9 @@
 from django.db import models
+from home.models import BaseModel
 
-class UserRooms(models.Model):
+class UserRooms(BaseModel):
     room = models.ForeignKey("votations.Room", on_delete = models.CASCADE, verbose_name = "Sala de Votação", related_name = "room_UserRooms_FK")
-    users = models.ManyToManyField("users.User", verbose_name = "Usuários", blank = True)
-    is_active = models.BooleanField(default = True)
-    create_at = models.DateTimeField(verbose_name = "Data da Criação", auto_now_add = True)
-    update_at = models.DateTimeField(verbose_name = "Data da Atualização", auto_now = False, blank = True, null = True)
-    desactive_at = models.DateTimeField(verbose_name = "Data da Desativação", auto_now = False, blank = True, null = True)
+    users = models.ManyToManyField("users.User", verbose_name = "Usuários da Sala", blank = True)
 
     class Meta:
         verbose_name = "Sala de Usuário"
