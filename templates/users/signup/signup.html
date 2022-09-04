@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'users/base.html' %}
 
 {% load bootstrap5 %}
 
@@ -110,14 +110,9 @@
     <!-- BEGIN: MOSTRAR/OCULTAR SENHA -->
     <script>
         $('#check_sign_up').click(function () {
-            if($(this).is(':checked')){
-                $("#id_password").attr("type", "text");
-                $("#id_confirm_password").attr("type", "text");
-            } 
-            else {
-                $("#id_password").attr("type", "password");
-                $("#id_confirm_password").attr("type", "password");
-            }
+            const ids = [ "id_password", "id_confirm_password" ];
+            let type = $(this).is(':checked') ? "text" : "password";
+            for( id of ids ) $(`#${id}`).attr("type", type);
         })
     </script>
     <!-- END: VALIDAÇÃO DE USUÁRIO -->
