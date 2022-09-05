@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- BREADCUMB -->
+    <div class="nav-wrapper transparent">
+        <div class="col s12 fs-5 p-3 m-2 pt-0">
+            <a href="/" class="breadcrumb"><span class="text-primary">Unidades</span></a>
+            <a href="{% url 'listar_votacoes' votacao.sala.id %}" class="breadcrumb"><span class="text-primary">{{votacao.sala}}</span></a>
+            <a class="breadcrumb"><span class="text-secondary">{{votacao}}</span></a>
+
+            {% if votacao.sala.admin == request.user %}
+                <div class="right">
+                    <a class="center waves-effect waves-light btn bt-secondary z-depth-4 m-1" href="{% url 'editar_votacao' votacao.id %}">
+                        EDITAR
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container center">
+        <div class="container">
+            <div class="card p-3 z-depth-4">
+                <h4 class="center fs-3 m-0 mb-4">Detalhes</h4>
+                <div class="row container">
+                    <div class="col s12 m12 x12 xl12">
+                        <div class="chip w-100 h-auto fs-7 bg-secondary text-white">
+                            <span class="fw-bold">Título:</span> {{votacao.titulo}}
+                        </div>
+                    </div>
+                    <div class="col s12 m12 x12 xl12">
+                        <div class="chip w-100 h-auto fs-7 bg-secondary text-white">
+                            <span class="fw-bold">Descrição:</span> {{votacao.descricao}}
+                        </div>
+                    </div>
+                    <div class="col s12 m12 x12 xl12">
+                        <div class="chip w-100 h-auto fs-7 bg-secondary text-white">
+                            <span class="fw-bold">Voto Anônimo:</span> 
+                            {% if votacao.anonimo %}
+                                hihi
+                            {% else %}
+                                hoho
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col s12 m12 x12 xl12">
+                        <div class="chip w-100 h-auto fs-7 bg-secondary text-white">
+                            <span class="fw-bold">Inicio:</span> {{votacao.data_inicio}}
+                        </div>
+                    </div>
+                    <div class="col s12 m12 x12 xl12">
+                        <div class="chip w-100 h-auto fs-7 bg-secondary text-white">
+                            <span class="fw-bold">Término:</span> {{votacao.data_fim}}
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+          
+        </div>
+      </div>
+{% endblock content %}
+
+{% block css %}
+    <style>
+        .chip{
+            border-radius: 2px;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load materializecss %}
+
+{% block title %}
+    Modificar Votação | System Votation
+{% endblock %}
+
+{% block content %}
+    <div class="item-center container center">
+        <div class="container">
+            <div class="container">
+                <div class="card p-5">
+                    <span class="card-title">
+                        <h5 class="fw-bold">MODIFICAR VOTAÇÃO</h5>
+                    </span>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.titulo|materializecss}}
+                        
+                        <a href="#modal-back" class="waves-effect waves-light bt-secondary z-depth-2 btn modal-trigger m-1">
+                            <span class="text">VOLTAR</span>
+                        </a>
+                        <button class="waves-effect waves-light bt-primary z-depth-2 btn m-1" type="submit">
+                            <span class="text">SALVAR</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function(){
+            $("#id_data_inicio").attr("type","text"); 
+            $("#id_data_fim").attr("type","text"); 
+            
+            var DateField = MaterialDateTimePicker.create($('#id_data_inicio'));
+            var DateField = MaterialDateTimePicker.create($('#id_data_fim'));
+        }); 
+    </script>
+{% endblock %}
