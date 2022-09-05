@@ -36,8 +36,13 @@ def index(request):
 
     user_rooms = UserRooms.objects.filter(room__is_active = True, users__id = request.user.id)
 
+    breadcrumb = [
+        { "title": "Dashboard" },
+    ]
+
     context = {
         # "rooms": rooms,
+        "breadcrumb": breadcrumb,
         "user_rooms": user_rooms,
     }
 
