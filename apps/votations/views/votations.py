@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from votations.models import Room
+from votations.models import Room, Votation
 from links.models import UserRooms
 
 @login_required
 def votations_room(request, slug_room):
     room = Room.get_room(request, slug_room)
 
-    votations = Votation.objects.filter(room_slug = room.slug, is_active = True)
+    votations = Votation.objects.filter(room__slug = room.slug, is_active = True)
 
     context = {
         "votations": votations,
