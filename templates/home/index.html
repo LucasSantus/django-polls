@@ -16,13 +16,9 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center py-4">
                 <div>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Library</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Data</li>
-                        </ol>
-                    </nav>
+                    {% if breadcrumb %}
+                        {% include "components/breadcrumb.html" with items=breadcrumb %}
+                    {% endif %}
                 </div>
                 <div>
                     <a href="" class="btn bg__primary text__light hover">Conectar</a>
