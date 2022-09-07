@@ -10,8 +10,15 @@ def votations_room(request, slug_room):
 
     votations = Votation.objects.filter(room__slug = room.slug, is_active = True)
 
+    breadcrumb = [
+        { "title": "Dashboard", "url": "/" },
+        { "title": room.title },
+    ]
+
     context = {
+        "breadcrumb": breadcrumb,
         "votations": votations,
+        "slug_room": slug_room
     }
 
     return render(request, "votations/votations/votations_room.html", context)
